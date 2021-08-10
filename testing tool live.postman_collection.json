@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "6c6536ef-c4a5-4081-8a46-49a395a373b3",
+		"name": "testing tool live",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://frm.sybrin.com/testingtool/chanelOrchestratorTest/",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "4rfvbgt%4rfvbgt%",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/chanelOrchestratorTest/12",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"chanelOrchestratorTest",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/chanelOrchestratorTest/",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "4rfvbgt%4rfvbgt%",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Url\": \"http://20.90.137.195:8080/function/off-channel-orchestrator.frm/execute\",\r\n    \"postData\":{\r\n    \"TransactionID\": \"025f8eca-693f-4fcf-83ea-8392837e1b25\",\r\n    \"ILPSourceAccountAddress\": \"g.tz.fsp001.msisdn.2558617728568\",\r\n    \"ILPDestinationAccountAddress\": \"g.tz.fsp002.msisdn.2558799634560\",\r\n    \"Payer\": {\r\n        \"PartyIDType\": \"MSISDN\",\r\n        \"PartyID\": \"22507008181\",\r\n        \"PartyName\": [\r\n            \"Mats\",\r\n            \"Hagman\"\r\n        ],\r\n        \"PersonalIdentifierType\": \"NATIONAL_ID_CARD\"\r\n    },\r\n    \"FSPIOPSource\": \"payerfsp\",\r\n    \"FSPIOPDestination\": \"payeefsp\",\r\n    \"TransactionType\": {\r\n        \"AmountType\": \"SEND\",\r\n        \"TransactionScenario\": \"TRANSFER\",\r\n        \"TransactionInitiator\": \"PAYER\",\r\n        \"TransactionInitiatorType\": \"CONSUMER\"\r\n    },\r\n    \"Amount\": \"100\",\r\n    \"additionalFields\": [\r\n        \"quoteId\",\r\n        \"payer.persoanlInfo.complexName.lastName\",\r\n        \"payer.personalInfo.dateOfBirth\",\r\n        \"payee.partyIdInfo.partyIdType\",\r\n        \"payee.partyIdInfo.partyIdentifier\",\r\n        \"amount.currency\",\r\n        \"note\"\r\n    ],\r\n    \"TransactionAuthenticationType\": \"OTP\",\r\n    \"SourceAccountBalance\": \"20000.00\",\r\n    \"SourceAccountDailyLimit\": \"2000.00\",\r\n    \"PayerContactNo\": \"+2558617728568\",\r\n    \"SourceAccountPINDate\": \"Mon, 14 Dec 2020 8:42:35 GMT\",\r\n    \"Location\": \"35.591818, 17.57770\",\r\n    \"Fee\": \"1.00\",\r\n    \"PayeeContactNo\": \"+2558799634560\",\r\n    \"Payee\": {\r\n        \"PartyName\": \"Donte Kirwan\"\r\n    },\r\n    \"HTTPTransactionDate\": \"1619003809685\",\r\n    \"PayerDeviceIMEI\": \"353258077919061\",\r\n    \"SourceAccountTransactionLimit\": \"1000.00\",\r\n    \"missingFields\": [\r\n        \"ILPSourceAccountAddress\",\r\n        \"ILPDestinationAccountAddress\",\r\n        \"PayerContactNo\",\r\n        \"PayeeContactNo\",\r\n        \"Fee\",\r\n        \"Payer.PersonalIdentifierType\",\r\n        \"Payee.PartyName\",\r\n        \"SourceAccountBalance\",\r\n        \"SourceAccountTransactionLimit\",\r\n        \"SourceAccountDailyLimit\",\r\n        \"SourceAccountPINDate\",\r\n        \"PayerDeviceIMEI\",\r\n        \"PayerICCID\",\r\n        \"Location\",\r\n        \"TransactionAuthenticationType\"\r\n    ]\r\n}  ,\r\n    \"ExpectedResultData1\": \"[ChannelOrchestrator][Result] 2 rules initiated for transaction ID: 025f8eca-693f-4fcf-83ea-8392837e1b25\",\r\n    \"ExpectedResultData\": \"[ChannelOrchestrator][Result] 2 rules initiated for transaction ID: 025f8eca-693f-4fcf-83ea-8392837e1b25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/chanelOrchestratorTest/",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"chanelOrchestratorTest",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/nifiTool/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool:80/nifiTool/",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool:80",
+						"nifiTool",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/nifiTool/",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"postData\":{ } , \r\n    \"ExpectedResultData\":  {\r\n        \"responseCode\": 1,\r\n        \"body\": \"FlowFile successfully received.\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/nifiTool/sendNifiRequest",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"nifiTool",
+						"sendNifiRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/CDPController/",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"Url\": \"http://20.90.137.195:8080/function/off-channel-decisioning-processor.frm/typology-scoring\",\r\n        \"postData\": {\r\n        \"typology\": \"typology-28\",\r\n        \"transactionID\": \"073a5299-7018-4c78-8ec7-af3afc0b50d0\",\r\n        \"createDate\": \"10/10/2020\",\r\n        \"processedDate\": \"10/10/2020\",\r\n        \"score\": 0.5,\r\n        \"typologyNumber\": 28,\r\n        \"textResult\": \"Typology 28 score is 0.5\",\r\n        \"Reason\": \"Typology 28 score is 0.5\"\r\n    } ,\r\n        \"ExpectedResultData\":  {\r\n            \"message\": \"Transaction is Negative for Fraud/Risk\",\r\n            \"score\": 0.5\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/CDPController/",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"CDPController",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/CRController/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool:80/CRController/",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool:80",
+						"CRController",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/CRController/",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Url\": \"http://20.90.137.195:8080/function/off-channel-router.frm-meshed/execute\",\r\n    \"postData\":  {\r\n    \"TransactionID\": \"c945c1a8-67f1-41a7-ae07-82dd056edf72\",\r\n    \"PayerICCID\": \"8964064042106240834722\",\r\n    \"ILPSourceAccountAddress\": \"g.tz.fsp002.msisdn.2558242421236\",\r\n    \"ILPDestinationAccountAddress\": \"g.tz.fsp001.msisdn.2558617728570\",\r\n    \"Payer\": {\r\n        \"PartyIDType\": \"PERSONAL_ID\",\r\n        \"PartyID\": \"2558799634560\",\r\n        \"PartyName\": [\r\n            \"Mats\",\r\n            \"Hagman\"\r\n        ],\r\n        \"PersonalIdentifierType\": \"NATIONAL_ID_CARD\"\r\n    },\r\n    \"FSPIOPSource\": \"payerfsp\",\r\n    \"FSPIOPDestination\": \"payeefsp\",\r\n    \"TransactionType\": {\r\n        \"AmountType\": \"SEND\",\r\n        \"TransactionScenario\": \"TRANSFER\",\r\n        \"TransactionInitiator\": \"PAYER\",\r\n        \"TransactionInitiatorType\": \"CONSUMER\"\r\n    },\r\n    \"Amount\": \"20000\",\r\n    \"Fee\": \"1.00\",\r\n    \"additionalFields\": [\r\n        \"quoteId\",\r\n        \"payer.persoanlInfo.complexName.lastName\",\r\n        \"payer.personalInfo.dateOfBirth\",\r\n        \"payee.partyIdInfo.partyIdType\",\r\n        \"payee.partyIdInfo.partyIdentifier\",\r\n        \"amount.currency\",\r\n        \"note\"\r\n    ],\r\n    \"Payee\": {\r\n        \"PartyName\": \"Donte Kirwan\"\r\n    },\r\n    \"HTTPTransactionDate\": \"1617891732460\",\r\n    \"PayeeContactNo\": \"+2558799634560\",\r\n    \"SourceAccountPINDate\": \"Mon, 14 Dec 2020 8:42:35 GMT\",\r\n    \"PayerContactNo\": \"+2558617728568\",\r\n    \"Location\": \"35.591818, 17.57770\",\r\n    \"SourceAccountBalance\": \"20000.00\",\r\n    \"TransactionAuthenticationType\": \"OTP\",\r\n    \"missingFields\": [\r\n        \"ILPSourceAccountAddress\",\r\n        \"ILPDestinationAccountAddress\",\r\n        \"PayerContactNo\",\r\n        \"PayeeContactNo\",\r\n        \"Fee\",\r\n        \"Payer.PersonalIdentifierType\",\r\n        \"Payee.PartyName\",\r\n        \"SourceAccountBalance\",\r\n        \"SourceAccountTransactionLimit\",\r\n        \"SourceAccountDailyLimit\",\r\n        \"SourceAccountPINDate\",\r\n        \"PayerDeviceIMEI\",\r\n        \"PayerICCID\",\r\n        \"Location\",\r\n        \"TransactionAuthenticationType\"\r\n    ],\r\n    \"SourceAccountDailyLimit\": \"2000.00\",\r\n    \"SourceAccountTransactionLimit\": \"1000.00\",\r\n    \"PayerDeviceIMEI\": \"353258077919061\"\r\n} ,\r\n    \"ExpectedResultData\":  \"[ChannelRouter][Result] 1 Channels initiated for transaction ID: c945c1a8-67f1-41a7-ae07-82dd056edf72\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/CRController/",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"CRController",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/PPAController",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool:80/PPAController",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool:80",
+						"PPAController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/PPAController",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Url\": \"http://20.90.137.195:8080/function/off-payment-platform-adapter.frm-meshed/execute\",\r\n    \"IgnoreFields\": [ \r\n\"GroupHeader.CreationDateTime\",\r\n\"GroupHeader.MessageIdentification\",\r\n\"PaymentInformation.RequestedExecutionDate.DateTime\"\r\n    ],\r\n    \"postData\": {\r\n        \"quoteId\": \"ABC123\",\r\n        \"transactionId\": \"asdf1234\",\r\n        \"transactionRequestId\": \"string\",\r\n        \"payee\": {\r\n            \"partyIdInfo\": {\r\n                \"partyIdType\": \"MSISDN\",\r\n                \"partyIdentifier\": \"+27723748019\",\r\n                \"partySubIdOrType\": \"string\",\r\n                \"fspId\": \"bank1\",\r\n                \"extensionList\": {\r\n                    \"extension\": [\r\n                        {\r\n                            \"key\": \"somekey\",\r\n                            \"value\": \"somevalue\"\r\n                        }\r\n                    ]\r\n                }\r\n            },\r\n            \"merchantClassificationCode\": \"merchCode\",\r\n            \"name\": \"string\",\r\n            \"personalInfo\": {\r\n                \"complexName\": {\r\n                    \"firstName\": \"payeefirstName\",\r\n                    \"middleName\": \"payeemiddleName\",\r\n                    \"lastName\": \"payeelastname\"\r\n                },\r\n                \"dateOfBirth\": \"2021-05-28\"\r\n            }\r\n        },\r\n        \"payer\": {\r\n            \"partyIdInfo\": {\r\n                \"partyIdType\": \"MSISDN\",\r\n                \"partyIdentifier\": \"+27723748020\",\r\n                \"partySubIdOrType\": \"string\",\r\n                \"fspId\": \"string\",\r\n                \"extensionList\": {\r\n                    \"extension\": [\r\n                        {\r\n                            \"key\": \"string\",\r\n                            \"value\": \"string\"\r\n                        }\r\n                    ]\r\n                }\r\n            },\r\n            \"merchantClassificationCode\": \"merchCode\",\r\n            \"name\": \"string\",\r\n            \"personalInfo\": {\r\n                \"complexName\": {\r\n                    \"firstName\": \"payerfirstName\",\r\n                    \"middleName\": \"payermiddleName\",\r\n                    \"lastName\": \"payerlastname\"\r\n                },\r\n                \"dateOfBirth\": \"2021-05-28\"\r\n            }\r\n        },\r\n        \"amountType\": \"SEND\",\r\n        \"amount\": {\r\n            \"currency\": \"USD\",\r\n            \"amount\": 123.45\r\n        },\r\n        \"fees\": {\r\n            \"currency\": \"USD\",\r\n            \"amount\": 12.34\r\n        },\r\n        \"transactionType\": {\r\n            \"scenario\": \"DEPOSIT\",\r\n            \"subScenario\": \"string\",\r\n            \"initiator\": \"PAYER\",\r\n            \"initiatorType\": \"CONSUMER\",\r\n            \"refundInfo\": {\r\n                \"originalTransactionId\": \"string\",\r\n                \"refundReason\": \"string\"\r\n            },\r\n            \"balanceOfPayments\": \"string\"\r\n        },\r\n        \"geoCode\": {\r\n            \"latitude\": \"string\",\r\n            \"longitude\": \"string\"\r\n        },\r\n        \"note\": \"string\",\r\n        \"expiration\": \"string\",\r\n        \"extensionList\": {\r\n            \"extension\": [\r\n                {\r\n                    \"key\": \"string\",\r\n                    \"value\": \"string\"\r\n                }\r\n            ]\r\n        }\r\n    },\r\n    \"ExpectedResultData\": {\r\n        \"GroupHeader\": {\r\n            \"InitiatingParty\": {\r\n                \"Name\": \"jonty\",\r\n                \"Identification\": {\r\n                    \"Identification\": \"\",\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    },\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"PrivateIdentification\": {\r\n                        \"DateAndPlaceOfBirth\": {\r\n                            \"Birthdate\": \"2021-05-28\",\r\n                            \"ProvinceOfBirth\": \"Uknown\",\r\n                            \"CityOfBirth\": \"\",\r\n                            \"CountryOfBirth\": \"ZAR\"\r\n                        },\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"MSISDN\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"+27-723748020\"\r\n                    }\r\n                }\r\n            },\r\n            \"MessageIdentification\": \"3159a6eb-8f4e-4d2f-bfed-d6cb47da0245\",\r\n            \"CreationDateTime\": 1627554708329,\r\n            \"NumberOfTransactions\": 1\r\n        },\r\n        \"PaymentInformation\": {\r\n            \"PaymentInformationIdentification\": \"ABC123\",\r\n            \"CreditTransferTransactionInformation\": {\r\n                \"PaymentIdentification\": {\r\n                    \"EndToEndIdentification\": \"asdf1234\"\r\n                },\r\n                \"CreditorAccount\": {\r\n                    \"Identification\": {\r\n                        \"Identification\": \"\",\r\n                        \"Other\": {\r\n                            \"Identification\": \"+27723748019\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"MSISDN\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        },\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"\"\r\n                        },\r\n                        \"PrivateIdentification\": {\r\n                            \"DateAndPlaceOfBirth\": {\r\n                                \"Birthdate\": \"2021-07-30\",\r\n                                \"ProvinceOfBirth\": \"Uknown\",\r\n                                \"CityOfBirth\": \"\",\r\n                                \"CountryOfBirth\": \"ZAR\"\r\n                            },\r\n                            \"Other\": {\r\n                                \"Identification\": \"\",\r\n                                \"SchemeName\": {\r\n                                    \"Proprietary\": \"\"\r\n                                },\r\n                                \"ContactDetails\": {\r\n                                    \"MobileNumber\": \"\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"+27-723748019\"\r\n                        }\r\n                    },\r\n                    \"Proxy\": \"\",\r\n                    \"Name\": \"\"\r\n                },\r\n                \"CreditorAgent\": {\r\n                    \"FinancialInstitutionIdentification\": {\r\n                        \"ClearingSystemMemberIdentification\": {\r\n                            \"MemberIdentification\": \"bank1\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Creditor\": {\r\n                    \"Name\": \"payeefirstName payeemiddleName payeelastname\",\r\n                    \"Identification\": {\r\n                        \"Identification\": \"\",\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"MSISDN\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        },\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"\"\r\n                        },\r\n                        \"PrivateIdentification\": {\r\n                            \"DateAndPlaceOfBirth\": {\r\n                                \"Birthdate\": \"2021-05-28\",\r\n                                \"ProvinceOfBirth\": \"Uknown\",\r\n                                \"CityOfBirth\": \"\",\r\n                                \"CountryOfBirth\": \"ZAR\"\r\n                            },\r\n                            \"Other\": {\r\n                                \"Identification\": \"\",\r\n                                \"SchemeName\": {\r\n                                    \"Proprietary\": \"\"\r\n                                },\r\n                                \"ContactDetails\": {\r\n                                    \"MobileNumber\": \"\"\r\n                                }\r\n                            }\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"+27-723748019\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Amount\": {\r\n                    \"InstructedAmount\": {\r\n                        \"Amount\": 123.45\r\n                    },\r\n                    \"EquivalentAmount\": {\r\n                        \"CurrencyOfTransfer\": \"USD\",\r\n                        \"Amount\": 123.45\r\n                    }\r\n                },\r\n                \"SupplementaryData\": {\r\n                    \"Envelope.Document.Creditor.FirstName\": \"payeefirstName\",\r\n                    \"Envelope.Document.Creditor.MiddleName\": \"payeemiddleName\",\r\n                    \"Envelope.Document.Creditor.LastName\": \"payeelastname\",\r\n                    \"Envelope.Document.Creditor.MerchantClassificationCode\": \"merchCode\",\r\n                    \"Envelope.Document.Debtor.FirstName\": \"payerfirstName\",\r\n                    \"Envelope.Document.Debtor.MiddleName\": \"payermiddleName\",\r\n                    \"Envelope.Document.Debtor.LastName\": \"payerlastname\",\r\n                    \"Envelope.Document.Debtor.MerchantClassificationCode\": \"merchCode\",\r\n                    \"fees.currency\": \"USD\",\r\n                    \"fees.amount\": 12.34,\r\n                    \"Envelope.Document.Expiration\": \"string\"\r\n                },\r\n                \"PaymentTypeInformation\": {\r\n                    \"CategoryPurpose\": {\r\n                        \"Proprietary\": \"DEPOSITstring\"\r\n                    }\r\n                },\r\n                \"RegulatoryReporting\": {\r\n                    \"Details\": {\r\n                        \"Code\": \"string\",\r\n                        \"Type\": \"BALANCE OF PAYMENTS\"\r\n                    },\r\n                    \"DebitCreditReportingIndicator\": \"BOTH\"\r\n                },\r\n                \"RemittanceInformation\": {\r\n                    \"Structured\": {\r\n                        \"AdditionalRemittanceInformation\": \"string\"\r\n                    },\r\n                    \"Unstructured\": \"string\"\r\n                },\r\n                \"ChargeBearer\": \"DEBT\",\r\n                \"Purpose\": {\r\n                    \"Code\": \"MP2P\"\r\n                }\r\n            },\r\n            \"PaymentMethod\": \"TRA\",\r\n            \"DebtorAccount\": {\r\n                \"Identification\": {\r\n                    \"Identification\": \"\",\r\n                    \"Other\": {\r\n                        \"Identification\": \"+27723748020\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"MSISDN\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    },\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"PrivateIdentification\": {\r\n                        \"DateAndPlaceOfBirth\": {\r\n                            \"Birthdate\": \"2021-07-30\",\r\n                            \"ProvinceOfBirth\": \"Uknown\",\r\n                            \"CityOfBirth\": \"\",\r\n                            \"CountryOfBirth\": \"ZAR\"\r\n                        },\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"\"\r\n                    }\r\n                },\r\n                \"Proxy\": \"string\",\r\n                \"Name\": \"\"\r\n            },\r\n            \"DebtorAgent\": {\r\n                \"FinancialInstitutionIdentification\": {\r\n                    \"ClearingSystemMemberIdentification\": {\r\n                        \"MemberIdentification\": \"string\"\r\n                    }\r\n                }\r\n            },\r\n            \"Debtor\": {\r\n                \"Name\": \"payerfirstName payermiddleName payerlastname\",\r\n                \"Identification\": {\r\n                    \"Identification\": \"\",\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    },\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"PrivateIdentification\": {\r\n                        \"DateAndPlaceOfBirth\": {\r\n                            \"Birthdate\": \"2021-05-28\",\r\n                            \"ProvinceOfBirth\": \"Uknown\",\r\n                            \"CityOfBirth\": \"\",\r\n                            \"CountryOfBirth\": \"ZAR\"\r\n                        },\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"MSISDN\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"+27-723748020\"\r\n                    }\r\n                }\r\n            },\r\n            \"RequestedAdviceType\": {\r\n                \"CreditAdvice\": {\r\n                    \"Code\": \"\",\r\n                    \"Proprietary\": \"\"\r\n                },\r\n                \"DebitAdvice\": {\r\n                    \"Code\": \"ADWD\",\r\n                    \"Proprietary\": \"Advice with transaction details\"\r\n                }\r\n            },\r\n            \"RequestedExecutionDate\": {\r\n                \"Date\": \"2021-07-29\",\r\n                \"DateTime\": \"2021-07-29T10:31:48.329Z\"\r\n            }\r\n        },\r\n        \"SupplementaryData\": {\r\n            \"payee.merchantClassificationCode\": \"merchCode\",\r\n            \"payer.merchantClassificationCode\": \"merchCode\",\r\n            \"transactionType.initiatorType\": \"CONSUMER\",\r\n            \"geoCode.latitude\": \"string\",\r\n            \"geoCode.longitude\": \"string\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/PPAController",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"PPAController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/TMSController",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool:80/TMSController",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool:80",
+						"TMSController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/TMSController",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Url\": \"http://20.90.137.195:8080/function/off-transaction-monitoring-service.frm-meshed/execute\",\r\n    \"postData\":\r\n     {\r\n    \"GroupHeader\": {\r\n        \"InitiatingParty\": {\r\n            \"Name\": \"'ABD AL-MALIK\",\r\n            \"Identification\": {\r\n                \"Identification\": \"\",\r\n                \"Other\": {\r\n                    \"Identification\": \"\",\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"\"\r\n                    }\r\n                },\r\n                \"SchemeName\": {\r\n                    \"Proprietary\": \"\"\r\n                },\r\n                \"PrivateIdentification\": {\r\n                    \"DateAndPlaceOfBirth\": {\r\n                        \"Birthdate\": \"1989-07-13\",\r\n                        \"ProvinceOfBirth\": \"Uknown\",\r\n                        \"CityOfBirth\": \"\",\r\n                        \"CountryOfBirth\": \"ZAR\"\r\n                    },\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"MSISDN\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"ContactDetails\": {\r\n                    \"MobileNumber\": \"+27-723748020\"\r\n                }\r\n            }\r\n        },\r\n        \"MessageIdentification\": \"b66d0880-3fa4-4c79-a459-522810a8f5aa\",\r\n        \"CreationDateTime\": 1625830317541,\r\n        \"NumberOfTransactions\": 1\r\n    },\r\n    \"PaymentInformation\": {\r\n        \"PaymentInformationIdentification\": \"ABC123\",\r\n        \"CreditTransferTransactionInformation\": {\r\n            \"PaymentIdentification\": {\r\n                \"EndToEndIdentification\": \"asdf1234\"\r\n            },\r\n            \"CreditorAccount\": {\r\n                \"Identification\": {\r\n                    \"Identification\": \"\",\r\n                    \"Other\": {\r\n                        \"Identification\": \"+27723748019\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"MSISDN\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    },\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"PrivateIdentification\": {\r\n                        \"DateAndPlaceOfBirth\": {\r\n                            \"Birthdate\": \"2021-07-09\",\r\n                            \"ProvinceOfBirth\": \"Uknown\",\r\n                            \"CityOfBirth\": \"\",\r\n                            \"CountryOfBirth\": \"ZAR\"\r\n                        },\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"+27-723748019\"\r\n                    }\r\n                },\r\n                \"Proxy\": \"\",\r\n                \"Name\": \"\"\r\n            },\r\n            \"CreditorAgent\": {\r\n                \"FinancialInstitutionIdentification\": {\r\n                    \"ClearingSystemMemberIdentification\": {\r\n                        \"MemberIdentification\": \"bank1\"\r\n                    }\r\n                }\r\n            },\r\n            \"Creditor\": {\r\n                \"Name\": \"'ABD AL-MALIK\",\r\n                \"Identification\": {\r\n                    \"Identification\": \"\",\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"MSISDN\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    },\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"PrivateIdentification\": {\r\n                        \"DateAndPlaceOfBirth\": {\r\n                            \"Birthdate\": \"1989-07-13\",\r\n                            \"ProvinceOfBirth\": \"Uknown\",\r\n                            \"CityOfBirth\": \"\",\r\n                            \"CountryOfBirth\": \"ZAR\"\r\n                        },\r\n                        \"Other\": {\r\n                            \"Identification\": \"\",\r\n                            \"SchemeName\": {\r\n                                \"Proprietary\": \"\"\r\n                            },\r\n                            \"ContactDetails\": {\r\n                                \"MobileNumber\": \"\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"+27-723748019\"\r\n                    }\r\n                }\r\n            },\r\n            \"Amount\": {\r\n                \"InstructedAmount\": {\r\n                    \"Amount\": 123.45\r\n                },\r\n                \"EquivalentAmount\": {\r\n                    \"CurrencyOfTransfer\": \"USD\",\r\n                    \"Amount\": 123.45\r\n                }\r\n            },\r\n            \"SupplementaryData\": {\r\n                \"Envelope.Document.Creditor.FirstName\": \"'ABD AL-MALIK\",\r\n                \"Envelope.Document.Creditor.MiddleName\": \"\",\r\n                \"Envelope.Document.Creditor.LastName\": \"\",\r\n                \"Envelope.Document.Creditor.MerchantClassificationCode\": \"merchCode\",\r\n                \"Envelope.Document.Debtor.FirstName\": \"'ABD AL-MALIK\",\r\n                \"Envelope.Document.Debtor.MiddleName\": \"\",\r\n                \"Envelope.Document.Debtor.LastName\": \"\",\r\n                \"Envelope.Document.Debtor.MerchantClassificationCode\": \"merchCode\",\r\n                \"fees.currency\": \"USD\",\r\n                \"fees.amount\": 12.34,\r\n                \"Envelope.Document.Expiration\": \"string\"\r\n            },\r\n            \"PaymentTypeInformation\": {\r\n                \"CategoryPurpose\": {\r\n                    \"Proprietary\": \"DEPOSITstring\"\r\n                }\r\n            },\r\n            \"RegulatoryReporting\": {\r\n                \"Details\": {\r\n                    \"Code\": \"string\",\r\n                    \"Type\": \"BALANCE OF PAYMENTS\"\r\n                },\r\n                \"DebitCreditReportingIndicator\": \"BOTH\"\r\n            },\r\n            \"RemittanceInformation\": {\r\n                \"Structured\": {\r\n                    \"AdditionalRemittanceInformation\": \"string\"\r\n                },\r\n                \"Unstructured\": \"string\"\r\n            },\r\n            \"ChargeBearer\": \"DEBT\",\r\n            \"Purpose\": {\r\n                \"Code\": \"MP2P\"\r\n            }\r\n        },\r\n        \"PaymentMethod\": \"TRA\",\r\n        \"DebtorAccount\": {\r\n            \"Identification\": {\r\n                \"Identification\": \"\",\r\n                \"Other\": {\r\n                    \"Identification\": \"(277)2374 8020\",\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"MSISDN\"\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"\"\r\n                    }\r\n                },\r\n                \"SchemeName\": {\r\n                    \"Proprietary\": \"\"\r\n                },\r\n                \"PrivateIdentification\": {\r\n                    \"DateAndPlaceOfBirth\": {\r\n                        \"Birthdate\": \"2021-07-09\",\r\n                        \"ProvinceOfBirth\": \"Uknown\",\r\n                        \"CityOfBirth\": \"\",\r\n                        \"CountryOfBirth\": \"ZAR\"\r\n                    },\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"ContactDetails\": {\r\n                    \"MobileNumber\": \"\"\r\n                }\r\n            },\r\n            \"Proxy\": \"string\",\r\n            \"Name\": \"\"\r\n        },\r\n        \"DebtorAgent\": {\r\n            \"FinancialInstitutionIdentification\": {\r\n                \"ClearingSystemMemberIdentification\": {\r\n                    \"MemberIdentification\": \"string\"\r\n                }\r\n            }\r\n        },\r\n        \"Debtor\": {\r\n            \"Name\": \"'ABD AL-MALIK\",\r\n            \"Identification\": {\r\n                \"Identification\": \"\",\r\n                \"Other\": {\r\n                    \"Identification\": \"\",\r\n                    \"SchemeName\": {\r\n                        \"Proprietary\": \"\"\r\n                    },\r\n                    \"ContactDetails\": {\r\n                        \"MobileNumber\": \"\"\r\n                    }\r\n                },\r\n                \"SchemeName\": {\r\n                    \"Proprietary\": \"\"\r\n                },\r\n                \"PrivateIdentification\": {\r\n                    \"DateAndPlaceOfBirth\": {\r\n                        \"Birthdate\": \"1989-07-13\",\r\n                        \"ProvinceOfBirth\": \"Uknown\",\r\n                        \"CityOfBirth\": \"\",\r\n                        \"CountryOfBirth\": \"ZAR\"\r\n                    },\r\n                    \"Other\": {\r\n                        \"Identification\": \"\",\r\n                        \"SchemeName\": {\r\n                            \"Proprietary\": \"MSISDN\"\r\n                        },\r\n                        \"ContactDetails\": {\r\n                            \"MobileNumber\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"ContactDetails\": {\r\n                    \"MobileNumber\": \"+27-723748020\"\r\n                }\r\n            }\r\n        },\r\n        \"RequestedAdviceType\": {\r\n            \"CreditAdvice\": {\r\n                \"Code\": \"\",\r\n                \"Proprietary\": \"\"\r\n            },\r\n            \"DebitAdvice\": {\r\n                \"Code\": \"ADWD\",\r\n                \"Proprietary\": \"Advice with transaction details\"\r\n            }\r\n        },\r\n        \"RequestedExecutionDate\": {\r\n            \"Date\": \"2021-07-09\",\r\n            \"DateTime\": \"2021-07-09T11:31:57.541Z\"\r\n        }\r\n    },\r\n    \"SupplementaryData\": {\r\n        \"payee.merchantClassificationCode\": \"merchCode\",\r\n        \"payer.merchantClassificationCode\": \"merchCode\",\r\n        \"transactionType.initiatorType\": \"CONSUMER\",\r\n        \"geoCode.latitude\": \"string\",\r\n        \"geoCode.longitude\": \"string\"\r\n    }\r\n},\r\n    \"ExpectedResultData\": {\r\n        \"message\": \"Transaction is Negative for Fraud/Risk\",\r\n        \"score\": 0.5\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool/TMSController",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool",
+						"TMSController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://frm.sybrin.com/testingtool/TMSTool/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://frm.sybrin.com/testingtool:80/TMSTool",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"testingtool:80",
+						"TMSTool"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
