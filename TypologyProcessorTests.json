@@ -33,11 +33,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
-						"development"
+						"openfaas"
 					],
 					"port": "8080",
 					"path": [
@@ -77,11 +77,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
-						"development"
+						"openfaas"
 					],
 					"port": "8080",
 					"path": [
@@ -121,11 +121,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
-						"development"
+						"openfaas"
 					],
 					"port": "8080",
 					"path": [
