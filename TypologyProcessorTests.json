@@ -33,13 +33,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-frm-typology-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"development"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-frm-typology-processor",
@@ -77,13 +77,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-frm-typology-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"development"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-frm-typology-processor",
@@ -121,13 +121,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-frm-typology-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.development:8080/function/off-frm-typology-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"development"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-frm-typology-processor",
