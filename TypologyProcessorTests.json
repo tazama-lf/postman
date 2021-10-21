@@ -60,14 +60,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -106,14 +106,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -149,14 +149,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -192,14 +192,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -236,14 +236,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -280,14 +280,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -324,14 +324,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -368,14 +368,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -412,14 +412,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -456,14 +456,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -500,14 +500,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -544,14 +544,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -588,14 +588,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -632,14 +632,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -676,14 +676,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -744,14 +744,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -816,14 +816,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -884,14 +884,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -956,14 +956,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -1024,14 +1024,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -1096,14 +1096,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -1164,14 +1164,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
@@ -1236,14 +1236,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-frm-typology-processor/execute",
+							"raw": "http://gateway.openfaas:8080/function/off-typology-processor/execute",
 							"protocol": "http",
 							"host": [
 								"gateway.openfaas"
 							],
 							"port": "8080",
 							"path": [
-								"function/off-frm-typology-processor/execute"
+								"function/off-typology-processor/execute"
 							]
 						}
 					},
