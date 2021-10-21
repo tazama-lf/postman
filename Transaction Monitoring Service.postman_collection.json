@@ -1,0 +1,1301 @@
+{
+	"info": {
+		"_postman_id": "83bd54a0-33d3-4d2c-982f-d37027c66083",
+		"name": "Transaction Monitoring Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test 1 -  Should receive the right incoming message with 200 HTTP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 2.1 - dynamic dates (CreDtTm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"// Future Dates test case needs to be written in code. These two tests are just placeholder for future development.",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"CreDtTm should be now, not 2 days later\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"    pm.expect(jsonData.data.CstmrCdtTrfInitn.GrpHdr.CreDtTm).not.to.equal(moment().add(2, 'days').toISOString())",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"CreDtTm\", moment().toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"{{CreDtTm}}\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 2.1 - dynamic dates (PmtInf.ReqdExctnDt.Dt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PmtInf.ReqdExctnDt.Dt should be now, not 2 days later\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"    pm.expect(jsonData.data.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm).not.to.equal(moment().add(2, 'days').toISOString())",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"DtTm\", moment().toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"{{DtTm}}\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3.1 - blank fields (MsgId)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"MsgId should not be blank\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.MsgId pattern mismatch\\ndata.CstmrCdtTrfInitn.GrpHdr.MsgId has less length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3.1 - blank fields (CreDtTm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"CreDtTm should not be blank\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3.1 - blank fields (NbOfTxs)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"NbOfTxs should not be null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\\ndata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs is the wrong type\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"\",\n            \"NbOfTxs\": null,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3.1 - blank fields (InitgPty.Nm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"InitgPty.Nm should not be blank\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm is the wrong type\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": null,\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.1 - happy path",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.2 - happy path (dynamic dates)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"CreDtTm\", moment().toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"{{CreDtTm}}\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.3 - happy path (dynamic dates)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"CreDtTm\", moment().add(1, 'days').toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"{{CreDtTm}}\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.4 - happy path (dynamic dates)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"CreDtTm\", moment().add(10, 'days').toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"{{CreDtTm}}\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.5 - happy path (dynamic dates)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.variables.set(\"CreDtTm\", moment().add(11, 'days').toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"{{CreDtTm}}\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.6 - happy path (dynamic uuid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4.7 - happy path (dynamic uuid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response should be successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"{{$guid}}\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 6.1 - negative amounts (InstdAmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\\ndata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt is less than minimum\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"InstdAmt\", -1);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": {{InstdAmt}},\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 6.2- negative amounts (EqvtAmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\\ndata.CstmrCdtTrfInitn is required\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"EqvtAmt\", -1);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\": {\n        \"TxTp\": \"pain.001.001.11\",\n        \"CstmrCdtTrfInitn\": {\n            \"GrpHdr\": {\n                \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n                \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n                \"NbOfTxs\": 1,\n                \"InitgPty\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                }\n            },\n            \"PmtInf\": {\n                \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n                \"PmtMtd\": \"TRA\",\n                \"ReqdAdvcTp\": {\n                    \"DbtAdvc\": {\n                        \"Cd\": \"ADWD\",\n                        \"Prtry\": \"Advice with transaction details\"\n                    }\n                },\n                \"ReqdExctnDt\": {\n                    \"Dt\": \"2021-10-07\",\n                    \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n                },\n                \"Dbtr\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                },\n                \"DbtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"PASSPORT\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"Ivan Russel-Klein\"\n                },\n                \"DbtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp001\"\n                        }\n                    }\n                },\n                \"CdtTrfTxInf\": {\n                    \"PmtId\": {\n                        \"EndToEndId\": \"c51ec534-ee48-4575-b6a9-ead2955b8069\"\n                    },\n                    \"PmtTpInf\": {\n                        \"CtgyPurp\": {\n                            \"Prtry\": \"TRANSFER\"\n                        }\n                    },\n                    \"Amt\": {\n                        \"InstdAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            }\n                        },\n                        \"EqvtAmt\": {\n                            \"Amt\": {\n                                \"Amt\": {{EqvtAmt}},\n                                \"Ccy\": \"USD\"\n                            },\n                            \"CcyOfTrf\": \"USD\"\n                        }\n                    },\n                    \"ChrgBr\": \"DEBT\",\n                    \"CdtrAgt\": {\n                        \"FinInstnId\": {\n                            \"ClrSysMmbId\": {\n                                \"MmbId\": \"dfsp002\"\n                            }\n                        }\n                    },\n                    \"Cdtr\": {\n                        \"Nm\": \"April Sam Adamson\",\n                        \"Id\": {\n                            \"PrvtId\": {\n                                \"DtAndPlcOfBirth\": {\n                                    \"BirthDt\": \"1923-04-26\",\n                                    \"CityOfBirth\": \"Unknown\",\n                                    \"CtryOfBirth\": \"ZZ\"\n                                },\n                                \"Othr\": {\n                                    \"Id\": \"+27782722305\",\n                                    \"SchmeNm\": {\n                                        \"Prtry\": \"MSISDN\"\n                                    }\n                                }\n                            }\n                        },\n                        \"CtctDtls\": {\n                            \"MobNb\": \"+27-782722305\"\n                        }\n                    },\n                    \"CdtrAcct\": {\n                        \"Id\": {\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        },\n                        \"Nm\": \"April Adamson\"\n                    },\n                    \"Purp\": {\n                        \"Cd\": \"MP2P\"\n                    },\n                    \"RgltryRptg\": {\n                        \"Dtls\": {\n                            \"Tp\": \"BALANCE OF PAYMENTS\",\n                            \"Cd\": \"100\"\n                        }\n                    },\n                    \"RmtInf\": {\n                        \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                    },\n                    \"SplmtryData\": {\n                        \"Envlp\": {\n                            \"Doc\": {\n                                \"Cdtr\": {\n                                    \"FrstNm\": \"Ivan\",\n                                    \"MddlNm\": \"Reese\",\n                                    \"LastNm\": \"Russel-Klein\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"Dbtr\": {\n                                    \"FrstNm\": \"April\",\n                                    \"MddlNm\": \"Sam\",\n                                    \"LastNm\": \"Adamson\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"DbtrFinSvcsPrvdrFees\": {\n                                    \"Ccy\": \"USD\",\n                                    \"Amt\": \"499325661187237\"\n                                },\n                                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                            }\n                        }\n                    }\n                }\n            },\n            \"SplmtryData\": {\n                \"Envlp\": {\n                    \"Doc\": {\n                        \"InitgPty\": {\n                            \"InitrTp\": \"CONSUMER\",\n                            \"Glctn\": {\n                                \"Lat\": \"-3.1291\",\n                                \"Long\": \"39.0006\"\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"ruleResult\": {\n        \"rule\": \"003@1.0\",\n        \"result\": true,\n        \"reason\": \"asdf\",\n        \"subRuleRef\": \"123\"\n    },\n    \"networkMap\": {\n        \"_key\": \"26345403\",\n        \"_id\": \"networkConfiguration/26345403\",\n        \"_rev\": \"_cxc-1vO---\",\n        \"messages\": [\n            {\n                \"id\": \"001@1.0\",\n                \"host\": \"http://openfaas:8080\",\n                \"cfg\": \"1.0\",\n                \"txTp\": \"pain.001.001.11\",\n                \"channels\": [\n                    {\n                        \"id\": \"001@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"028@1.0\",\n                                \"host\": \"http://gateway.openfaas:8080/function/off-frm-typology-processor\",\n                                \"cfg\": \"028@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.1 - Value Overflow (MsgId)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.MsgId has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0-7767a16608a0-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.2 - Value Overflow (InitgPty.Nm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.3 - Value Overflow (CityOfBirth)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.4 - Value Overflow (CtryOfBirth)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZXXXXXX\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.5 - Value Overflow (PmtInf. PmtInfId)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.PmtInfId has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7.6 - Value Overflow (PmtInf. Prtry)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"The swagger throw overflow value error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+							"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry has longer length than allowed\")",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n        \"GrpHdr\": {\n            \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n            \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n            \"NbOfTxs\": 1,\n            \"InitgPty\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            }\n        },\n        \"PmtInf\": {\n            \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n            \"PmtMtd\": \"TRA\",\n            \"ReqdAdvcTp\": {\n                \"DbtAdvc\": {\n                    \"Cd\": \"ADWD\",\n                    \"Prtry\": \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\"\n                }\n            },\n            \"ReqdExctnDt\": {\n                \"Dt\": \"2021-10-07\",\n                \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n            },\n            \"Dbtr\": {\n                \"Nm\": \"Ivan Reese Russel-Klein\",\n                \"Id\": {\n                    \"PrvtId\": {\n                        \"DtAndPlcOfBirth\": {\n                            \"BirthDt\": \"1967-11-23\",\n                            \"CityOfBirth\": \"Unknown\",\n                            \"CtryOfBirth\": \"ZZ\"\n                        },\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    }\n                },\n                \"CtctDtls\": {\n                    \"MobNb\": \"+27-783078685\"\n                }\n            },\n            \"DbtrAcct\": {\n                \"Id\": {\n                    \"Othr\": {\n                        \"Id\": \"+27783078685\",\n                        \"SchmeNm\": {\n                            \"Prtry\": \"PASSPORT\"\n                        }\n                    }\n                },\n                \"Nm\": \"Ivan Russel-Klein\"\n            },\n            \"DbtrAgt\": {\n                \"FinInstnId\": {\n                    \"ClrSysMmbId\": {\n                        \"MmbId\": \"dfsp001\"\n                    }\n                }\n            },\n            \"CdtTrfTxInf\": {\n                \"PmtId\": {\n                    \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                },\n                \"PmtTpInf\": {\n                    \"CtgyPurp\": {\n                        \"Prtry\": \"TRANSFER\"\n                    }\n                },\n                \"Amt\": {\n                    \"InstdAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 1,\n                            \"Ccy\": \"USD\"\n                        }\n                    },\n                    \"EqvtAmt\": {\n                        \"Amt\": {\n                            \"Amt\": 50431891779910900,\n                            \"Ccy\": \"USD\"\n                        },\n                        \"CcyOfTrf\": \"USD\"\n                    }\n                },\n                \"ChrgBr\": \"DEBT\",\n                \"CdtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp002\"\n                        }\n                    }\n                },\n                \"Cdtr\": {\n                    \"Nm\": \"April Sam Adamson\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1923-04-26\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27782722305\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-782722305\"\n                    }\n                },\n                \"CdtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"MSISDN\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"April Adamson\"\n                },\n                \"Purp\": {\n                    \"Cd\": \"MP2P\"\n                },\n                \"RgltryRptg\": {\n                    \"Dtls\": {\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\n                        \"Cd\": \"100\"\n                    }\n                },\n                \"RmtInf\": {\n                    \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                },\n                \"SplmtryData\": {\n                    \"Envlp\": {\n                        \"Doc\": {\n                            \"Cdtr\": {\n                                \"FrstNm\": \"Ivan\",\n                                \"MddlNm\": \"Reese\",\n                                \"LastNm\": \"Russel-Klein\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"Dbtr\": {\n                                \"FrstNm\": \"April\",\n                                \"MddlNm\": \"Sam\",\n                                \"LastNm\": \"Adamson\",\n                                \"MrchntClssfctnCd\": \"BLANK\"\n                            },\n                            \"DbtrFinSvcsPrvdrFees\": {\n                                \"Ccy\": \"USD\",\n                                \"Amt\": 499325661187237\n                            },\n                            \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                        }\n                    }\n                }\n            }\n        },\n        \"SplmtryData\": {\n            \"Envlp\": {\n                \"Doc\": {\n                    \"InitgPty\": {\n                        \"InitrTp\": \"CONSUMER\",\n                        \"Glctn\": {\n                            \"Lat\": \"-3.1291\",\n                            \"Long\": \"39.0006\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"openfaas"
+					],
+					"port": "8080",
+					"path": [
+						"function",
+						"off-transaction-monitoring-service",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "CreDtTm",
+			"value": ""
+		},
+		{
+			"key": "{{CreDtTm}}",
+			"value": ""
+		}
+	]
+}
