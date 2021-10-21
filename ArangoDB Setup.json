@@ -523,7 +523,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"vTransactions\", \r\n  \"type\" : \"arangosearch\" \r\n}",
+							"raw": "{\r\n    \"name\": \"vTransactions\",\r\n    \"type\": \"arangosearch\",\r\n    \"writebufferIdle\": 64,\r\n    \"writebufferSizeMax\": 33554432,\r\n    \"consolidationPolicy\": {\r\n        \"type\": \"tier\",\r\n        \"segmentsBytesFloor\": 2097152,\r\n        \"segmentsBytesMax\": 5368709120,\r\n        \"segmentsMax\": 10,\r\n        \"segmentsMin\": 1,\r\n        \"minScore\": 0\r\n    },\r\n    \"primarySort\": [],\r\n    \"storedValues\": [],\r\n    \"writebufferActive\": 0,\r\n    \"consolidationIntervalMsec\": 1000,\r\n    \"cleanupIntervalStep\": 2,\r\n    \"commitIntervalMsec\": 1000,\r\n    \"links\": {\r\n        \"transactionHistory\": {\r\n            \"analyzers\": [\r\n                \"identity\"\r\n            ],\r\n            \"fields\": {},\r\n            \"includeAllFields\": true,\r\n            \"storeValues\": \"none\",\r\n            \"trackListPositions\": false\r\n        }\r\n    },\r\n    \"primarySortCompression\": \"lz4\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
