@@ -120,7 +120,7 @@
 							"pm.sendRequest({\r",
 							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 							"    method: 'POST',\r",
-							"    headers:'Authorization:Bearer {{arangoToken}}',\r",
+							"    header:{'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}`},\r",
 							"    body: {\r",
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
@@ -144,7 +144,7 @@
 							"pm.sendRequest({\r",
 							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 							"    method: 'POST',\r",
-							"    headers:'Authorization:Bearer {{arangoToken}}',\r",
+							"    header:{'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}`},\r",
 							"    body: {\r",
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
@@ -174,7 +174,24 @@
 			],
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -188,8 +205,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://nifi.development:8081",
-					"protocol": "http",
+					"raw": "nifi.development:8081",
 					"host": [
 						"nifi",
 						"development"
