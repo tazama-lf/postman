@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "fd7d754f-cf91-4892-9c28-38e45901078c",
+    "_postman_id": "cda01a69-5160-4140-87f3-354e47294311",
     "name": "Transaction Monitoring Service",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -49,11 +49,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -101,11 +97,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -153,11 +145,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -205,11 +193,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -257,11 +241,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -309,11 +289,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -360,11 +336,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -411,11 +383,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -462,11 +430,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -513,11 +477,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -564,11 +524,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -615,11 +571,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -666,11 +618,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -717,11 +665,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "quoteReply"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "quoteReply"]
             }
           },
           "response": []
@@ -763,11 +707,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -827,11 +767,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -889,11 +825,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -945,11 +877,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1001,11 +929,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1057,11 +981,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1113,11 +1033,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1168,11 +1084,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1227,11 +1139,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1286,11 +1194,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1345,11 +1249,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1404,11 +1304,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1459,11 +1355,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1514,11 +1406,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1570,11 +1458,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1614,7 +1498,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"transaction\": {\n        \"TxTp\": \"pain.001.001.11\",\n        \"CstmrCdtTrfInitn\": {\n            \"GrpHdr\": {\n                \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n                \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n                \"NbOfTxs\": 1,\n                \"InitgPty\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                }\n            },\n            \"PmtInf\": {\n                \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n                \"PmtMtd\": \"TRA\",\n                \"ReqdAdvcTp\": {\n                    \"DbtAdvc\": {\n                        \"Cd\": \"ADWD\",\n                        \"Prtry\": \"Advice with transaction details\"\n                    }\n                },\n                \"ReqdExctnDt\": {\n                    \"Dt\": \"2021-10-07\",\n                    \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n                },\n                \"Dbtr\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                },\n                \"DbtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"PASSPORT\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"Ivan Russel-Klein\"\n                },\n                \"DbtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp001\"\n                        }\n                    }\n                },\n                \"CdtTrfTxInf\": {\n                    \"PmtId\": {\n                        \"EndToEndId\": \"c51ec534-ee48-4575-b6a9-ead2955b8069\"\n                    },\n                    \"PmtTpInf\": {\n                        \"CtgyPurp\": {\n                            \"Prtry\": \"TRANSFER\"\n                        }\n                    },\n                    \"Amt\": {\n                        \"InstdAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            }\n                        },\n                        \"EqvtAmt\": {\n                            \"Amt\": {\n                                \"Amt\": {{EqvtAmt}},\n                                \"Ccy\": \"USD\"\n                            },\n                            \"CcyOfTrf\": \"USD\"\n                        }\n                    },\n                    \"ChrgBr\": \"DEBT\",\n                    \"CdtrAgt\": {\n                        \"FinInstnId\": {\n                            \"ClrSysMmbId\": {\n                                \"MmbId\": \"dfsp002\"\n                            }\n                        }\n                    },\n                    \"Cdtr\": {\n                        \"Nm\": \"April Sam Adamson\",\n                        \"Id\": {\n                            \"PrvtId\": {\n                                \"DtAndPlcOfBirth\": {\n                                    \"BirthDt\": \"1923-04-26\",\n                                    \"CityOfBirth\": \"Unknown\",\n                                    \"CtryOfBirth\": \"ZZ\"\n                                },\n                                \"Othr\": {\n                                    \"Id\": \"+27782722305\",\n                                    \"SchmeNm\": {\n                                        \"Prtry\": \"MSISDN\"\n                                    }\n                                }\n                            }\n                        },\n                        \"CtctDtls\": {\n                            \"MobNb\": \"+27-782722305\"\n                        }\n                    },\n                    \"CdtrAcct\": {\n                        \"Id\": {\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        },\n                        \"Nm\": \"April Adamson\"\n                    },\n                    \"Purp\": {\n                        \"Cd\": \"MP2P\"\n                    },\n                    \"RgltryRptg\": {\n                        \"Dtls\": {\n                            \"Tp\": \"BALANCE OF PAYMENTS\",\n                            \"Cd\": \"100\"\n                        }\n                    },\n                    \"RmtInf\": {\n                        \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                    },\n                    \"SplmtryData\": {\n                        \"Envlp\": {\n                            \"Doc\": {\n                                \"Cdtr\": {\n                                    \"FrstNm\": \"Ivan\",\n                                    \"MddlNm\": \"Reese\",\n                                    \"LastNm\": \"Russel-Klein\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"Dbtr\": {\n                                    \"FrstNm\": \"April\",\n                                    \"MddlNm\": \"Sam\",\n                                    \"LastNm\": \"Adamson\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"DbtrFinSvcsPrvdrFees\": {\n                                    \"Ccy\": \"USD\",\n                                    \"Amt\": \"499325661187237\"\n                                },\n                                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                            }\n                        }\n                    }\n                }\n            },\n            \"SplmtryData\": {\n                \"Envlp\": {\n                    \"Doc\": {\n                        \"InitgPty\": {\n                            \"InitrTp\": \"CONSUMER\",\n                            \"Glctn\": {\n                                \"Lat\": \"-3.1291\",\n                                \"Long\": \"39.0006\"\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"ruleResult\": {\n        \"rule\": \"003@1.0\",\n        \"result\": true,\n        \"reason\": \"asdf\",\n        \"subRuleRef\": \"123\"\n    },\n    \"networkMap\": {\n        \"_key\": \"26345403\",\n        \"_id\": \"networkConfiguration/26345403\",\n        \"_rev\": \"_cxc-1vO---\",\n        \"messages\": [\n            {\n                \"id\": \"001@1.0\",\n                \"host\": \"http://openfaas:8080\",\n                \"cfg\": \"1.0\",\n                \"txTp\": \"pain.001.001.11\",\n                \"channels\": [\n                    {\n                        \"id\": \"001@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"028@1.0\",\n                                \"host\": \"http://gateway.openfaas:8080/function/off-frm-typology-processor\",\n                                \"cfg\": \"028@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    }\n}",
+              "raw": "{\n    \"transaction\": {\n        \"TxTp\": \"pain.001.001.11\",\n        \"CstmrCdtTrfInitn\": {\n            \"GrpHdr\": {\n                \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n                \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n                \"NbOfTxs\": 1,\n                \"InitgPty\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                }\n            },\n            \"PmtInf\": {\n                \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n                \"PmtMtd\": \"TRA\",\n                \"ReqdAdvcTp\": {\n                    \"DbtAdvc\": {\n                        \"Cd\": \"ADWD\",\n                        \"Prtry\": \"Advice with transaction details\"\n                    }\n                },\n                \"ReqdExctnDt\": {\n                    \"Dt\": \"2021-10-07\",\n                    \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n                },\n                \"Dbtr\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                },\n                \"DbtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"PASSPORT\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"Ivan Russel-Klein\"\n                },\n                \"DbtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp001\"\n                        }\n                    }\n                },\n                \"CdtTrfTxInf\": {\n                    \"PmtId\": {\n                        \"EndToEndId\": \"c51ec534-ee48-4575-b6a9-ead2955b8069\"\n                    },\n                    \"PmtTpInf\": {\n                        \"CtgyPurp\": {\n                            \"Prtry\": \"TRANSFER\"\n                        }\n                    },\n                    \"Amt\": {\n                        \"InstdAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            }\n                        },\n                        \"EqvtAmt\": {\n                            \"Amt\": {\n                                \"Amt\": {{EqvtAmt}},\n                                \"Ccy\": \"USD\"\n                            },\n                            \"CcyOfTrf\": \"USD\"\n                        }\n                    },\n                    \"ChrgBr\": \"DEBT\",\n                    \"CdtrAgt\": {\n                        \"FinInstnId\": {\n                            \"ClrSysMmbId\": {\n                                \"MmbId\": \"dfsp002\"\n                            }\n                        }\n                    },\n                    \"Cdtr\": {\n                        \"Nm\": \"April Sam Adamson\",\n                        \"Id\": {\n                            \"PrvtId\": {\n                                \"DtAndPlcOfBirth\": {\n                                    \"BirthDt\": \"1923-04-26\",\n                                    \"CityOfBirth\": \"Unknown\",\n                                    \"CtryOfBirth\": \"ZZ\"\n                                },\n                                \"Othr\": {\n                                    \"Id\": \"+27782722305\",\n                                    \"SchmeNm\": {\n                                        \"Prtry\": \"MSISDN\"\n                                    }\n                                }\n                            }\n                        },\n                        \"CtctDtls\": {\n                            \"MobNb\": \"+27-782722305\"\n                        }\n                    },\n                    \"CdtrAcct\": {\n                        \"Id\": {\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        },\n                        \"Nm\": \"April Adamson\"\n                    },\n                    \"Purp\": {\n                        \"Cd\": \"MP2P\"\n                    },\n                    \"RgltryRptg\": {\n                        \"Dtls\": {\n                            \"Tp\": \"BALANCE OF PAYMENTS\",\n                            \"Cd\": \"100\"\n                        }\n                    },\n                    \"RmtInf\": {\n                        \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                    },\n                    \"SplmtryData\": {\n                        \"Envlp\": {\n                            \"Doc\": {\n                                \"Cdtr\": {\n                                    \"FrstNm\": \"Ivan\",\n                                    \"MddlNm\": \"Reese\",\n                                    \"LastNm\": \"Russel-Klein\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"Dbtr\": {\n                                    \"FrstNm\": \"April\",\n                                    \"MddlNm\": \"Sam\",\n                                    \"LastNm\": \"Adamson\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"DbtrFinSvcsPrvdrFees\": {\n                                    \"Ccy\": \"USD\",\n                                    \"Amt\": \"499325661187237\"\n                                },\n                                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                            }\n                        }\n                    }\n                }\n            },\n            \"SplmtryData\": {\n                \"Envlp\": {\n                    \"Doc\": {\n                        \"InitgPty\": {\n                            \"InitrTp\": \"CONSUMER\",\n                            \"Glctn\": {\n                                \"Lat\": \"-3.1291\",\n                                \"Long\": \"39.0006\"\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"ruleResult\": {\n        \"rule\": \"003@1.0\",\n        \"result\": true,\n        \"reason\": \"asdf\",\n        \"subRuleRef\": \"123\"\n    },\n    \"networkMap\": {\n        \"_key\": \"26345403\",\n        \"_id\": \"networkConfiguration/26345403\",\n        \"_rev\": \"_cxc-1vO---\",\n        \"messages\": [\n            {\n                \"id\": \"001@1.0\",\n                \"host\": \"http://openfaas:8080\",\n                \"cfg\": \"1.0\",\n                \"txTp\": \"pain.001.001.11\",\n                \"channels\": [\n                    {\n                        \"id\": \"001@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"028@1.0\",\n                                \"host\": \"http://gateway.openfaas:8080/function/off-frm-typology-processor\",\n                                \"cfg\": \"028@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1626,11 +1510,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1675,11 +1555,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1724,11 +1600,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1773,11 +1645,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1822,11 +1690,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1871,11 +1735,7 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
             }
           },
           "response": []
@@ -1920,11 +1780,596 @@
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080",
-              "path": [
-                "function",
-                "off-transaction-monitoring-service",
-                "execute"
-              ]
+              "path": ["function", "off-transaction-monitoring-service", "execute"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pacs002",
+      "item": [
+        {
+          "name": "Test 1 - happy path Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "var req = JSON.parse(request.data);",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"should not have errors\", function () {",
+                  "    pm.expect(jsonData).not.to.have.property('errors')",
+                  "});",
+                  "",
+                  "pm.test(\"should be a valid transaction\", function () {",
+                  "    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+                  "});",
+                  "",
+                  "pm.test(\"should send to data preparation successfully\", function () {",
+                  "    pm.expect(jsonData.sent).to.eql(true);",
+                  "});",
+                  "",
+                  "pm.test(\"should have the same outgoing and incoming json\", function () {",
+                  "    pm.expect(jsonData.data).to.eql(req);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2.1 - blank fields (TxTp)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"TxTp should not be blank\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp must be an enum value\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2.2 - blank fields (FIToFIPmtSts)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts should not be blank\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2.3 - blank fields (FIToFIPmtSts.GrpHdr)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.GrpHdr should not be blank\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgID is required\\ndata.FIToFIPmtSts.GrpHdr.CreDtTm is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {},\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2.4 - blank fields (FIToFIPmtSts.GrpHdr.MsgID)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.GrpHdr.MsgID should not be blank\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgID pattern mismatch\\ndata.FIToFIPmtSts.GrpHdr.MsgID has less length than allowed\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 3.1 - missing fields (TxTp)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"TxTp should not be missing\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 3.2 - missing fields (FIToFIPmtSts)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts should not be missing\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 3.3 - missing fields (FIToFIPmtSts.GrpHdr)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.GrpHdr should not be missing\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 3.4 - missing fields (FIToFIPmtSts.GrpHdr.MsgID)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.GrpHdr.MsgID should not be missing\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgID is required\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 4.1 - field boundaries (FIToFIPmtSts.GrpHdr.MsgID)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.GrpHdr.MsgID should not overflow\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgID has longer length than allowed\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91fg\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 4.2 - field boundaries (FIToFIPmtSts.TxInfAndSts.OrgnlInstrId)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.TxInfAndSts.OrgnlInstrId should not overflow\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.TxInfAndSts.OrgnlInstrId has longer length than allowed\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1ds\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 4.3 - field boundaries (FIToFIPmtSts.TxInfAndSts.OrgnlEndToEndId)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.TxInfAndSts.OrgnlEndToEndId should not overflow\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.TxInfAndSts.OrgnlEndToEndId has longer length than allowed\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fds\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 4.4 - field boundaries (FIToFIPmtSts.TxInfAndSts.ChrgsInf.Agt.FinInstnId.ClrSysMmbId.MmbId)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"FIToFIPmtSts.TxInfAndSts.ChrgsInf.Agt.FinInstnId.ClrSysMmbId.MmbId should not overflow\", function () {",
+                  "    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+                  "    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.TxInfAndSts.ChrgsInf.0.Agt.FinInstnId.ClrSysMmbId.MmbId has longer length than allowed\")",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001jbsjbxbwswdiwhdsiwhidoeiwihifnrowfvnwoducnhuwfowuwnbuo\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": ["function", "off-transaction-monitoring-service", "transfer-response"]
             }
           },
           "response": []
