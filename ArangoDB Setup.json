@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "8184cbe0-bba4-439c-9d5d-2192d94a4245",
-		"name": "Mojaloop",
+		"_postman_id": "7ac9849c-ead2-4142-9774-2437bd72039d",
+		"name": "ArangoDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -251,6 +251,132 @@
 							"path": [
 								"_api",
 								"database"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create pseudonyms Collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"pseudonyms\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/collection",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create pseudonyms Collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"accounts\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/collection",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create configuration Collection Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzI5MDgwMDAsImV4cCI6MTYzNTUwMDAwMH0.9zLGPCQ_cbzrTjF0bxwpqV0rjhFpx73Bn_-1JQdtmRU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"pseudonyms\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 1, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/collection",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"collection"
 							]
 						}
 					},
@@ -711,6 +837,216 @@
 								"_api",
 								"document",
 								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Pseudonym",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"INSERT {_key: @pseudonymn} INTO participants OPTIONS { overwriteMode: 'ignore'}\",\r\n    \"bindVars\": {\r\n        \"pseudonymn\": \"s98df79sd887f9s7df89s7d9f\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/transactionHistory/_api/cursor",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"transactionHistory",
+								"_api",
+								"cursor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Edge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"INSERT {_key: @MsgId,_from:@_from, _to:@_to,TxTp:@TxTp,CreDtTm:@CreDtTm,Amt:@Amt,Ccy:@Ccy,PmtInfId:@PmtInfId,EndToEndId:@EndToEndId} INTO transactionRelationship OPTIONS { overwriteMode: 'ignore'}\",\r\n    \"bindVars\": {\r\n        \"_from\": \"participants/c7540bf2afd8f70a4002a97c72e7cb2a87bf7d7fa2b2988cc2542c51a5dd2620\",\r\n        \"_to\": \"participants/33ef62a2271b15c3f6ecef52975e84020239c54f51a98e7f34846fee2e3ecf52\",\r\n        \"TxTp\": \"pain.001.001.11\",\r\n        \"MsgId\": \"fcefa2a6-3ab9-46f4-ae73-dcaa413a723e\",\r\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\r\n        \"Amt\": 50431891779910900,\r\n        \"Ccy\": \"USD\",\r\n        \"PmtInfId\": \"16560d79-6afb-4487-bd50-09d7e10bdf6e\",\r\n        \"EndToEndId\": \"4369d9d8-2b29-4bc4-8ac7-524d4199b258\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/cursor",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"cursor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction History Graph",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"_graphs/transactionGraph\",\r\n    \"_key\": \"transactionGraph\",\r\n    \"_rev\": \"_dO1fHCu---\",\r\n    \"edgeDefinitions\": [\r\n        {\r\n            \"collection\": \"transactionRelationship\",\r\n            \"from\": [\r\n                \"accounts\"\r\n            ],\r\n            \"to\": [\r\n                \"accounts\"\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"transactionGraph\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/gharial",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"gharial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionRelationship Collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzY5NTg0ODksImV4cCI6MTYzOTU1MDQ4OX0.xrUC8JCeQ2qhLVVwZSmYIhz_ycFNjW7_BP9-dLf-f-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"transactionRelationship\",\r\n    \"type\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/collection",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Pseudonym Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2MzU4Mzg2NDQsImV4cCI6MTYzODQzMDY0NH0._C8GYzhP81NZlkBCfU1wOFZlzFYMJjqK-tPJwA_dEy4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\": \"FOR i IN pseudonyms FILTER i.pseudonym == TRIM(\\\"asdfSDF\\\") RETURN i\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://frmarango.sybrin.com/_db/pseudonyms/_api/cursor",
+							"protocol": "https",
+							"host": [
+								"frmarango",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"_db",
+								"pseudonyms",
+								"_api",
+								"cursor"
 							]
 						}
 					},
