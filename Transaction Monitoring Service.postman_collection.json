@@ -2741,7 +2741,26 @@
 			"name": "Pacs008",
 			"item": [
 				{
-					"name": "Scenario 1",
+					"name": "Scenario 1 - Valid JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Data sent to data preperation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var jsonReq = JSON.parse(pm.request.body);\r",
+									"    pm.expect(jsonData).to.eql(jsonReq);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2755,13 +2774,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2770,6 +2791,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (MsgId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"MsgID should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.GrpHdr.MsgId pattern mismatch\\ndata.FIToFICstmrCdt.GrpHdr.MsgId has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2783,13 +2824,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2798,6 +2841,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (FIToFIPmtSts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFIPmtSts should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2811,13 +2874,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2826,6 +2891,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (FIToFIPmtSts.GrpHdr)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFIPmtSts.GrpHdr should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.GrpHdr.MsgId is required\\ndata.FIToFICstmrCdt.GrpHdr.CreDtTm is required\\ndata.FIToFICstmrCdt.GrpHdr.NbOfTxs is required\\ndata.FIToFICstmrCdt.GrpHdr.SttlmInf is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2839,13 +2924,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2854,6 +2941,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (TxTp)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.TxTp should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp must be an enum value\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2867,13 +2974,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2882,6 +2991,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (NbOfTxs)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFIPmtSts.GrpHdr.NbOfTxs should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.GrpHdr.CreDtTm must be date-time format\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2895,13 +3024,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2910,6 +3041,26 @@
 				},
 				{
 					"name": "Scenario 2 - Blank Fields (CdtTrfTxInf.ChrgBr)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"CdtTrfTxInf.ChrgBr should not be blank\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.ChrgBr has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2923,13 +3074,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2938,6 +3091,26 @@
 				},
 				{
 					"name": "Scenario 3 - Missing fields (TxTp)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.TxTp should not be missing\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2951,13 +3124,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2966,12 +3141,32 @@
 				},
 				{
 					"name": "Scenario 3 - Missing fields (InitgPty)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.CdtTrfTxInf.InitgPty should not be missing\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.InitgPty.Nm is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InitgPty.Id is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InitgPty.CtctDtls is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"FIToFICstmrCdt\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n            \"CreDtTm\": \"2021-11-18T16:47:23.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"SttlmInf\": {\r\n                \"SttlmMtd\": \"CLRG\"\r\n            }\r\n        },\r\n        \"CdtTrfTxInf\": {\r\n            \"PmtId\": {\r\n                \"InstrId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n                \"EndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\"\r\n            },\r\n            \"IntrBkSttlmAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"InstdAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"ChrgBr\": \"DEBT\",\r\n            \"ChrgsInf\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 947677462261100,\r\n                    \"Ccy\": \"USD\"\r\n                },\r\n                \"Agt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"InitgPty\": {},\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27757347775\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Bruce Summers\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp002\"\r\n                    }\r\n                }\r\n            },\r\n            \"Cdtr\": {\r\n                \"Nm\": \"Geoffrey Piper Grant\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1926-09-18\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27880358989\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-880358989\"\r\n                }\r\n            },\r\n            \"CdtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27880358989\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Geoffrey Grant\"\r\n            },\r\n            \"Purp\": {\r\n                \"Cd\": \"MP2P\"\r\n            }\r\n        },\r\n        \"RgltryRptg\": {\r\n            \"Dtls\": {\r\n                \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                \"Cd\": \"100\"\r\n            }\r\n        },\r\n        \"RmtInf\": {\r\n            \"Ustrd\": \"Payment of USD 94767746226110000.62 from Bruce to Geoffrey\"\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"Xprtn\": \"2021-11-18T16:52:19.000Z\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+							"raw": "{   \"TxTp\": \"pacs.008.001.10\",\r\n    \"FIToFICstmrCdt\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n            \"CreDtTm\": \"2021-11-18T16:47:23.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"SttlmInf\": {\r\n                \"SttlmMtd\": \"CLRG\"\r\n            }\r\n        },\r\n        \"CdtTrfTxInf\": {\r\n            \"PmtId\": {\r\n                \"InstrId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n                \"EndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\"\r\n            },\r\n            \"IntrBkSttlmAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"InstdAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"ChrgBr\": \"DEBT\",\r\n            \"ChrgsInf\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 947677462261100,\r\n                    \"Ccy\": \"USD\"\r\n                },\r\n                \"Agt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"InitgPty\": {},\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27757347775\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Bruce Summers\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp002\"\r\n                    }\r\n                }\r\n            },\r\n            \"Cdtr\": {\r\n                \"Nm\": \"Geoffrey Piper Grant\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1926-09-18\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27880358989\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-880358989\"\r\n                }\r\n            },\r\n            \"CdtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27880358989\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Geoffrey Grant\"\r\n            },\r\n            \"Purp\": {\r\n                \"Cd\": \"MP2P\"\r\n            }\r\n        },\r\n        \"RgltryRptg\": {\r\n            \"Dtls\": {\r\n                \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                \"Cd\": \"100\"\r\n            }\r\n        },\r\n        \"RmtInf\": {\r\n            \"Ustrd\": \"Payment of USD 94767746226110000.62 from Bruce to Geoffrey\"\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"Xprtn\": \"2021-11-18T16:52:19.000Z\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2979,13 +3174,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -2994,6 +3191,26 @@
 				},
 				{
 					"name": "Scenario 3 - Missing fields (CdtTrfTxInf)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.FIToFICstmrCdt.CdtTrfTxInf should not be missing\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.PmtId is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InstdAmt is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.ChrgBr is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.ChrgsInf is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InitgPty is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.Dbtr is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.DbtrAgt is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.CdtrAgt is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.Cdtr is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.CdtrAcct is required\\ndata.FIToFICstmrCdt.CdtTrfTxInf.Purp is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3007,13 +3224,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3022,6 +3241,26 @@
 				},
 				{
 					"name": "Scenario 3 - Missing fields (RgltryRptg)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.FIToFICstmrCdt.RgltryRptg should not be missing\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.RgltryRptg.Dtls is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3035,13 +3274,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3050,6 +3291,26 @@
 				},
 				{
 					"name": "Scenario 3 - Missing fields (SplmtryData)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"data.FIToFICstmrCdt.SplmtryData should not be missing\", function () {\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.SplmtryData.Envlp is required\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3063,13 +3324,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3078,6 +3341,25 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (MsgId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.GrpHdr.MsgId has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.GrpHdr.MsgId pattern mismatch\\ndata.FIToFICstmrCdt.GrpHdr.MsgId has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3091,13 +3373,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3106,6 +3390,25 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (SttlmMtd)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.GrpHdr.SttlmMtd has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.GrpHdr.SttlmInf.SttlmMtd has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3119,13 +3422,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3134,6 +3439,25 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (InstrId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.PmtId.InstrId has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.PmtId.InstrId pattern mismatch\\ndata.FIToFICstmrCdt.CdtTrfTxInf.PmtId.InstrId has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3147,13 +3471,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3162,12 +3488,31 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (EndToEndId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId has longer length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId has longer length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"TxTp\": \"pacs.008.001.10\",\r\n    \"FIToFICstmrCdt\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n            \"CreDtTm\": \"2021-11-18T16:47:23.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"SttlmInf\": {\r\n                \"SttlmMtd\": \"CLRG\"\r\n            }\r\n        },\r\n        \"CdtTrfTxInf\": {\r\n            \"PmtId\": {\r\n                \"InstrId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n                \"EndToEndId\": \"b51ec5ee48-4575-b6a9-ead2955b8069\"\r\n            },\r\n            \"IntrBkSttlmAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"InstdAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"ChrgBr\": \"DEBT\",\r\n            \"ChrgsInf\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 947677462261100,\r\n                    \"Ccy\": \"USD\"\r\n                },\r\n                \"Agt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"InitgPty\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27757347775\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Bruce Summers\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp002\"\r\n                    }\r\n                }\r\n            },\r\n            \"Cdtr\": {\r\n                \"Nm\": \"Geoffrey Piper Grant\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1926-09-18\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27880358989\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-880358989\"\r\n                }\r\n            },\r\n            \"CdtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27880358989\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Geoffrey Grant\"\r\n            },\r\n            \"Purp\": {\r\n                \"Cd\": \"MP2P\"\r\n            }\r\n        },\r\n        \"RgltryRptg\": {\r\n            \"Dtls\": {\r\n                \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                \"Cd\": \"100\"\r\n            }\r\n        },\r\n        \"RmtInf\": {\r\n            \"Ustrd\": \"Payment of USD 94767746226110000.62 from Bruce to Geoffrey\"\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"Xprtn\": \"2021-11-18T16:52:19.000Z\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"TxTp\": \"pacs.008.001.10\",\r\n    \"FIToFICstmrCdt\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n            \"CreDtTm\": \"2021-11-18T16:47:23.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"SttlmInf\": {\r\n                \"SttlmMtd\": \"CLRG\"\r\n            }\r\n        },\r\n        \"CdtTrfTxInf\": {\r\n            \"PmtId\": {\r\n                \"InstrId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n                \"EndToEndId\": \"b51ec5ee48-4575-b6a9-ead2955b80695555555555\"\r\n            },\r\n            \"IntrBkSttlmAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"InstdAmt\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 95715423688371100,\r\n                    \"Ccy\": \"USD\"\r\n                }\r\n            },\r\n            \"ChrgBr\": \"DEBT\",\r\n            \"ChrgsInf\": {\r\n                \"Amt\": {\r\n                    \"Amt\": 947677462261100,\r\n                    \"Ccy\": \"USD\"\r\n                },\r\n                \"Agt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"InitgPty\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Bruce Drew Summers\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1942-01-24\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27757347775\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-757347775\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27757347775\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Bruce Summers\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp002\"\r\n                    }\r\n                }\r\n            },\r\n            \"Cdtr\": {\r\n                \"Nm\": \"Geoffrey Piper Grant\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1926-09-18\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27880358989\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-880358989\"\r\n                }\r\n            },\r\n            \"CdtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27880358989\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Geoffrey Grant\"\r\n            },\r\n            \"Purp\": {\r\n                \"Cd\": \"MP2P\"\r\n            }\r\n        },\r\n        \"RgltryRptg\": {\r\n            \"Dtls\": {\r\n                \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                \"Cd\": \"100\"\r\n            }\r\n        },\r\n        \"RmtInf\": {\r\n            \"Ustrd\": \"Payment of USD 94767746226110000.62 from Bruce to Geoffrey\"\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"Xprtn\": \"2021-11-18T16:52:19.000Z\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3175,13 +3520,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3190,6 +3537,25 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (ChrgBr)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.ChrgBr has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.ChrgBr has less length than allowed\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3203,13 +3569,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3218,6 +3586,26 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (Ccy)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.InstdAmt.Amt.Ccy has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Ccy must be an enum value\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InstdAmt.Amt.Ccy must be an enum value\\ndata.FIToFICstmrCdt.CdtTrfTxInf.ChrgsInf.Amt.Ccy must be an enum value\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3231,13 +3619,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3246,6 +3636,25 @@
 				},
 				{
 					"name": "Scenario 4 - Boundary Values (CtryOfBirth)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth has less length than allowed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth pattern mismatch\\ndata.FIToFICstmrCdt.CdtTrfTxInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth has less length than allowed\\ndata.FIToFICstmrCdt.CdtTrfTxInf.Cdtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth pattern mismatch\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3259,13 +3668,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
@@ -3274,6 +3685,25 @@
 				},
 				{
 					"name": "Scenario 5 - Negative Amounts (Amt)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Amt is less than minimum\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Amt is less than minimum\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InstdAmt.Amt.Amt is less than minimum\\ndata.FIToFICstmrCdt.CdtTrfTxInf.ChrgsInf.Amt.Amt is less than minimum\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -3287,13 +3717,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/transfer",
-							"protocol": "http",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"gateway",
+								"openfaas"
 							],
-							"port": "3000",
 							"path": [
+								"function",
+								"off-transaction-monitoring-service",
 								"transfer"
 							]
 						}
