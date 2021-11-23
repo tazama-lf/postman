@@ -3716,7 +3716,7 @@
 									"pm.test(\"FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Amt is less than minimum\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");\r",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Amt is less than minimum\\ndata.FIToFICstmrCdt.CdtTrfTxInf.InstdAmt.Amt.Amt is less than minimum\\ndata.FIToFICstmrCdt.CdtTrfTxInf.ChrgsInf.Amt.Amt is less than minimum\")\r",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFICstmrCdt.CdtTrfTxInf.IntrBkSttlmAmt.Amt.Amt is less than minimum\")\r",
 									"});"
 								],
 								"type": "text/javascript"
