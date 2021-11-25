@@ -1,171 +1,191 @@
 {
-  "info": {
-    "_postman_id": "6b6d4fdc-9c98-4f74-813f-f029e045bdb8",
-    "name": "CRSP-Tests",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "CRSP Pain001",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "var jsonData = pm.response.json();",
-              "var req = JSON.parse(request.data);",
-              "",
-              "",
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "",
-              "pm.test(\"should have equal incoming and outgoing transaction json\", function () {",
-              "    pm.expect(jsonData.transaction).to.eql(req);",
-              "});",
-              "",
-              "pm.test(\"should send payload to the correct rule processors just once\", function () {",
-              "    var resultsRequiredToBeSend = [",
-              "        \"003@1.0\",",
-              "        \"005@1.0\",",
-              "        \"006@1.0\",",
-              "        \"007@1.0\",",
-              "        \"028@1.0\"",
-              "    ];",
-              "    var rulesSentTo = jsonData.rulesSentTo;",
-              "    const rulesNotSentTo = jsonData.failedToSend",
-              "    const allRules = [...rulesSentTo, ...rulesNotSentTo]",
-              "    for (let i = 0; i < resultsRequiredToBeSend.length; i++) {",
-              "        var checkIfRuleIsSend = (allRules.indexOf(resultsRequiredToBeSend[i]) > -1);",
-              "        console.log(resultsRequiredToBeSend[i] + \" Send was \" + checkIfRuleIsSend);",
-              "        pm.expect(checkIfRuleIsSend).to.eql(true);",
-              "    }",
-              "})",
-              "",
-              "pm.test(\"should send the correct network sub-map\", function () {",
-              "    const networkMap = pm.environment.get(\"networkMapPain001\");",
-              "    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
-              "",
-              "})"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "exec": [""],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{url}}/function/off-channel-router-setup-processor/execute",
-          "host": ["{{url}}"],
-          "path": ["function", "off-channel-router-setup-processor", "execute"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "CRSP Pain 013",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "var jsonData = pm.response.json();",
-              "var req = JSON.parse(request.data);",
-              "",
-              "",
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"should respond with the correct networkMap\", function () {",
-              "    const networkMap = pm.environment.get(\"networkMapPain013\");",
-              "    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
-              "})"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\"TxTp\": \"pain.013.001.09\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{url}}/function/off-channel-router-setup-processor/execute",
-          "host": ["{{url}}"],
-          "path": ["function", "off-channel-router-setup-processor", "execute"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Pacs008",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "var jsonData = pm.response.json();",
-              "var req = JSON.parse(request.data);",
-              "",
-              "",
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"should return empty networkMap\", function () {",
-              "    pm.expect(jsonData.networkMap).to.eql({});",
-              "})"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\"TxTp\": \"pacs.008.001.10\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{url}}/function/off-channel-router-setup-processor/execute",
-          "host": ["{{url}}"],
-          "path": ["function", "off-channel-router-setup-processor", "execute"]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "ec2ec21a-a1be-4326-af7c-19cf4830fd6e",
+		"name": "CRSP-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CRSP Pain001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var req = JSON.parse(request.data);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"should have equal incoming and outgoing transaction json\", function () {",
+							"    pm.expect(jsonData.transaction).to.eql(req);",
+							"});",
+							"",
+							"pm.test(\"should send payload to the correct rule processors just once\", function () {",
+							"    var resultsRequiredToBeSend = [",
+							"        \"003@1.0\",",
+							"        \"028@1.0\"",
+							"    ];",
+							"    var rulesSentTo = jsonData.rulesSentTo;",
+							"    const rulesNotSentTo = jsonData.failedToSend",
+							"    const allRules = [...rulesSentTo, ...rulesNotSentTo]",
+							"    for (let i = 0; i < resultsRequiredToBeSend.length; i++) {",
+							"        var checkIfRuleIsSend = (allRules.indexOf(resultsRequiredToBeSend[i]) > -1);",
+							"        console.log(resultsRequiredToBeSend[i] + \" Send was \" + checkIfRuleIsSend);",
+							"        pm.expect(checkIfRuleIsSend).to.eql(true);",
+							"    }",
+							"})",
+							"",
+							"pm.test(\"should send the correct network sub-map\", function () {",
+							"    const networkMap = pm.environment.get(\"networkMapPain001\");",
+							"    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"TxTp\": \"pain.001.001.11\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-channel-router-setup-processor",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRSP Pain 013",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var req = JSON.parse(request.data);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"should respond with the correct networkMap\", function () {",
+							"    const networkMap = pm.environment.get(\"networkMapPain013\");",
+							"    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"TxTp\": \"pain.013.001.09\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/function/off-channel-router-setup-processor/execute",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"function",
+						"off-channel-router-setup-processor",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pacs008",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var req = JSON.parse(request.data);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"should return empty networkMap\", function () {",
+							"    pm.expect(jsonData.networkMap).to.eql({});",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"TxTp\": \"pacs.008.001.10\",\n    \"CstmrCdtTrfInitn\": {\n      \"GrpHdr\": {\n        \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a0\",\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n        \"NbOfTxs\": 1,\n        \"InitgPty\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1967-11-23\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        }\n      },\n      \"PmtInf\": {\n        \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n        \"PmtMtd\": \"TRA\",\n        \"ReqdAdvcTp\": {\n          \"DbtAdvc\": {\n            \"Cd\": \"ADWD\",\n            \"Prtry\": \"Advice with transaction details\"\n          }\n        },\n        \"ReqdExctnDt\": {\n          \"Dt\": \"2021-10-07\",\n          \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n        },\n        \"Dbtr\": {\n          \"Nm\": \"Ivan Reese Russel-Klein\",\n          \"Id\": {\n            \"PrvtId\": {\n              \"DtAndPlcOfBirth\": {\n                \"BirthDt\": \"1957-10-05\",\n                \"CityOfBirth\": \"Unknown\",\n                \"CtryOfBirth\": \"ZZ\"\n              },\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            }\n          },\n          \"CtctDtls\": {\n            \"MobNb\": \"+27-783078685\"\n          }\n        },\n        \"DbtrAcct\": {\n          \"Id\": {\n            \"Othr\": {\n              \"Id\": \"+27783078685\",\n              \"SchmeNm\": {\n                \"Prtry\": \"PASSPORT\"\n              }\n            }\n          },\n          \"Nm\": \"Ivan Russel-Klein\"\n        },\n        \"DbtrAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"CdtTrfTxInf\": {\n          \"PmtId\": {\n            \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n          },\n          \"PmtTpInf\": {\n            \"CtgyPurp\": {\n              \"Prtry\": \"TRANSFER\"\n            }\n          },\n          \"Amt\": {\n            \"InstdAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              }\n            },\n            \"EqvtAmt\": {\n              \"Amt\": {\n                \"Amt\": \"50431891779910900\",\n                \"Ccy\": \"USD\"\n              },\n              \"CcyOfTrf\": \"USD\"\n            }\n          },\n          \"ChrgBr\": \"DEBT\",\n          \"CdtrAgt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          },\n          \"Cdtr\": {\n            \"Nm\": \"April Sam Adamson\",\n            \"Id\": {\n              \"PrvtId\": {\n                \"DtAndPlcOfBirth\": {\n                  \"BirthDt\": \"1923-04-26\",\n                  \"CityOfBirth\": \"Unknown\",\n                  \"CtryOfBirth\": \"ZZ\"\n                },\n                \"Othr\": {\n                  \"Id\": \"+27782722305\",\n                  \"SchmeNm\": {\n                    \"Prtry\": \"MSISDN\"\n                  }\n                }\n              }\n            },\n            \"CtctDtls\": {\n              \"MobNb\": \"+27-782722305\"\n            }\n          },\n          \"CdtrAcct\": {\n            \"Id\": {\n              \"Othr\": {\n                \"Id\": \"+27783078685\",\n                \"SchmeNm\": {\n                  \"Prtry\": \"MSISDN\"\n                }\n              }\n            },\n            \"Nm\": \"April Adamson\"\n          },\n          \"Purp\": {\n            \"Cd\": \"MP2P\"\n          },\n          \"RgltryRptg\": {\n            \"Dtls\": {\n              \"Tp\": \"BALANCE OF PAYMENTS\",\n              \"Cd\": \"100\"\n            }\n          },\n          \"RmtInf\": {\n            \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n          },\n          \"SplmtryData\": {\n            \"Envlp\": {\n              \"Doc\": {\n                \"Cdtr\": {\n                  \"FrstNm\": \"Ivan\",\n                  \"MddlNm\": \"Reese\",\n                  \"LastNm\": \"Russel-Klein\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"Dbtr\": {\n                  \"FrstNm\": \"April\",\n                  \"MddlNm\": \"Sam\",\n                  \"LastNm\": \"Adamson\",\n                  \"MrchntClssfctnCd\": \"BLANK\"\n                },\n                \"DbtrFinSvcsPrvdrFees\": {\n                  \"Ccy\": \"USD\",\n                  \"Amt\": \"499325661187237\"\n                },\n                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n              }\n            }\n          }\n        }\n      },\n      \"SplmtryData\": {\n        \"Envlp\": {\n          \"Doc\": {\n            \"InitgPty\": {\n              \"InitrTp\": \"CONSUMER\",\n              \"Glctn\": {\n                \"Lat\": \"-3.1291\",\n                \"Long\": \"39.0006\"\n              }\n            }\n          }\n        }\n      }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/function/off-channel-router-setup-processor/execute",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"function",
+						"off-channel-router-setup-processor",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
