@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cc18d728-24eb-425a-b609-45533249e9b6",
+		"_postman_id": "1280b239-c9c4-4e83-b88e-bbc4dd0e369d",
 		"name": "Transaction Monitoring Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2067,28 +2067,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"const jsonData = pm.response.json();",
-									"var req = JSON.parse(request.data);",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"should not have errors\", function () {",
-									"    pm.expect(jsonData).not.to.have.property('errors')",
-									"});",
-									"",
-									"pm.test(\"should be a valid transaction\", function () {",
-									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
-									"});",
-									"",
-									"pm.test(\"should send to data preparation successfully\", function () {",
-									"    pm.expect(jsonData.sent).to.eql(true);",
-									"});",
-									"",
-									"pm.test(\"should have the same outgoing and incoming json\", function () {",
-									"    pm.expect(jsonData.data).to.eql(req);",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
