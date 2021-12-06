@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "de17a8d2-aa88-412e-a306-2c22700f94df",
+		"_postman_id": "06b53e47-81c9-4a4b-b6ae-0561047a73d9",
 		"name": "Data Preperation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -30,8 +30,8 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Test creditor fields pseudonyms\", function () {\r",
-									"    pm.expect(responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id).to.eq(\"7ef6a22de95d2a898f387c67256a8632890f2889887d44022cf555362fac436b\");\r",
-									"    pm.expect(responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.SchmeNm.Prtry).to.eq(\"PSEUDO\");\r",
+									"    pm.expect(responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id).to.eq(\"1123cc025752ab7dd848a7363dc21026769e80ffbef6e5c490863143149cfee8\");\r",
+									"    pm.expect(responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.SchmeNm.Prtry).to.eq(\"PSEUDO\");\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
@@ -40,9 +40,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -60,8 +57,7 @@
 							"host": [
 								"nifi",
 								"development"
-							],
-							"port": "8081"
+							]
 						}
 					},
 					"response": []
@@ -106,7 +102,7 @@
 									"    body: {\r",
 									"        mode: 'raw',\r",
 									"        raw: JSON.stringify({\r",
-									"            query: `FOR doc IN pseudonyms FILTER doc.pseudonym == '${pm.response.json().CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id}' RETURN doc`\r",
+									"            query: `FOR doc IN pseudonyms FILTER doc.pseudonym == '${pm.response.json().CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id}' RETURN doc`\r",
 									"        })\r",
 									"    }\r",
 									"}, function (err, res) {\r",
@@ -129,9 +125,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -174,9 +167,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -231,7 +221,7 @@
 									"                pm.expect('Not an error').to.eq(arangoRes.errorMessage)\r",
 									"            else {\r",
 									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._from);\r",
-									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
+									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
 									"                pm.sendRequest({\r",
 									"                    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 									"                    method: 'POST',\r",
@@ -239,7 +229,7 @@
 									"                    body: {\r",
 									"                        mode: 'raw',\r",
 									"                        raw: JSON.stringify({\r",
-									"                            query: `FOR i IN accounts FILTER i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id}\" OR i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id}\" RETURN i`\r",
+									"                            query: `FOR i IN accounts FILTER i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id}\" OR i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id}\" RETURN i`\r",
 									"                        })\r",
 									"                    }\r",
 									"                }, function (err, res) {\r",
@@ -321,7 +311,7 @@
 									"                pm.expect('Not an error').to.eq(arangoRes.errorMessage)\r",
 									"            else {\r",
 									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._from);\r",
-									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
+									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
 									"                pm.sendRequest({\r",
 									"                    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 									"                    method: 'POST',\r",
@@ -329,7 +319,7 @@
 									"                    body: {\r",
 									"                        mode: 'raw',\r",
 									"                        raw: JSON.stringify({\r",
-									"                            query: `FOR i IN accounts FILTER i._id == \"accounts/018b51cddba4354120f490e6d580821103aefec6345f57fc415784e1db471693\" OR i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id}\" RETURN i`\r",
+									"                            query: `FOR i IN accounts FILTER i._id == \"accounts/018b51cddba4354120f490e6d580821103aefec6345f57fc415784e1db471693\" OR i._id == \"accounts/${responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id}\" RETURN i`\r",
 									"                        })\r",
 									"                    }\r",
 									"                }, function (err, res) {\r",
@@ -411,7 +401,7 @@
 									"                pm.expect('Not an error').to.eq(arangoRes.errorMessage)\r",
 									"            else {\r",
 									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._from);\r",
-									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
+									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
 									"                pm.sendRequest({\r",
 									"                    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 									"                    method: 'POST',\r",
@@ -501,7 +491,7 @@
 									"                pm.expect('Not an error').to.eq(arangoRes.errorMessage)\r",
 									"            else {\r",
 									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._from);\r",
-									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Cdtr.Id.PrvtId.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
+									"                pm.expect(\"accounts/\" + responseJson.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id).to.eq(arangoRes.result[0]._to);\r",
 									"                pm.sendRequest({\r",
 									"                    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
 									"                    method: 'POST',\r",
@@ -1200,6 +1190,27 @@
 					"response": []
 				}
 			]
+		}
+	],
+	
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
