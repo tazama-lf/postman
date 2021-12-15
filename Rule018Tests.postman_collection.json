@@ -691,8 +691,8 @@
 							"",
 							"const ruleConfig = [",
 							"    {",
-							"  \"id\": \"018@1.0\",",
-							"  \"cfg\": \"1.0\",",
+							"  \"id\": \"018@1.0.0\",",
+							"  \"cfg\": \"1.0.0\",",
 							"  \"config\": {",
 							"    \"timeframes\": [",
 							"      {",
@@ -773,7 +773,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-018/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-018-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -782,7 +782,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-018",
+						"off-rule-018-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -809,7 +809,7 @@
 							"    pm.expect(jsonData.ruleResult.result).to.be.eql(true);",
 							"});",
 							"",
-							"pm.test(\"should have rule result with insufficient history reason\", function () {",
+							"pm.test(\"should have rule result with Exceptionally large outgoing transfer detected history reason\", function () {",
 							"    pm.expect(jsonData.ruleResult.reason).to.be.eql('Exceptionally large outgoing transfer detected');",
 							"});",
 							"",
@@ -846,7 +846,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-018/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-018-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -855,7 +855,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-018",
+						"off-rule-018-rel-1-0-0",
 						"execute"
 					]
 				}
