@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "2b95f92d-764f-4639-972b-4221481bd28e",
+		"name": "Rule-044Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Scenario 1 Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"should have status code of 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"/*pm.test(\"should respond with correct network map\", function () {",
+							"    const requestNetworkMap = JSON.parse(pm.request.body.raw).networkMap;",
+							"    const responseNetworkMap = pm.response.json().networkMap;",
+							"    pm.expect(requestNetworkMap).to.be.eql(responseNetworkMap);",
+							"});*/",
+							"",
+							"pm.test(\"No historical transactions for the debtor found, Result for Rule 044 is true\", function () {",
+							"    const requestTransaction = JSON.parse(pm.request.body.raw).transaction;",
+							"    const responseTransaction = pm.response.json().transaction;",
+							"    pm.expect(requestTransaction).to.eql(responseTransaction);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"TxTp\": \"pacs.002.001.12\",\n    \"FIToFIPmtSts\": {\n      \"GrpHdr\": {\n        \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n        \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n      },\n      \"TxInfAndSts\": {\n        \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n        \"OrgnlEndToEndId\": \"5036fa4f-0cb1-442c-b1a8-be0a3ce6635\",\n        \"TxSts\": \"ACSC\",\n        \"ChrgsInf\": [\n          {\n            \"Amt\": {\n              \"Amt\": \"157605510200862\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp002\"\n                }\n              }\n            }\n          }\n        ],\n        \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n        \"InstgAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"InstdAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp002\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"networkMap\": {\n    \"_key\": \"26345403\",\n    \"_id\": \"networkConfiguration/26345403\",\n    \"_rev\": \"_cxc-1vO---\",\n    \"messages\": [\n      {\n        \"id\": \"001@1.0\",\n        \"host\": \"http://openfaas:8080\",\n        \"cfg\": \"1.0\",\n        \"txTp\": \"pain.001.001.11\",\n        \"channels\": [\n          {\n            \"id\": \"001@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"028@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"028@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"028@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"029@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"029@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"005@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"002@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"030@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"030@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"006@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"031@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"031@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"007@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-rule-044",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 1 Test 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"should have status code of 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"/*pm.test(\"should respond with correct network map\", function () {",
+							"    const requestNetworkMap = JSON.parse(pm.request.body.raw).networkMap;",
+							"    const responseNetworkMap = pm.response.json().networkMap;",
+							"    pm.expect(requestNetworkMap).to.be.eql(responseNetworkMap);",
+							"});*/",
+							"",
+							"pm.test(\"Historical transactions for the debtor found, Result for Rule 044 is false\", function () {",
+							"    const requestTransaction = JSON.parse(pm.request.body.raw).transaction;",
+							"    const responseTransaction = pm.response.json().transaction;",
+							"    pm.expect(requestTransaction).to.eql(responseTransaction);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"TxTp\": \"pacs.002.001.12\",\n    \"FIToFIPmtSts\": {\n      \"GrpHdr\": {\n        \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n        \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n      },\n      \"TxInfAndSts\": {\n        \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n        \"OrgnlEndToEndId\": \"5036fa4f-0cb1-442c-b1a8-be0a3ce66365\",\n        \"TxSts\": \"ACSC\",\n        \"ChrgsInf\": [\n          {\n            \"Amt\": {\n              \"Amt\": \"157605510200862\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp002\"\n                }\n              }\n            }\n          }\n        ],\n        \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n        \"InstgAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"InstdAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp002\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"networkMap\": {\n    \"_key\": \"26345403\",\n    \"_id\": \"networkConfiguration/26345403\",\n    \"_rev\": \"_cxc-1vO---\",\n    \"messages\": [\n      {\n        \"id\": \"001@1.0\",\n        \"host\": \"http://openfaas:8080\",\n        \"cfg\": \"1.0\",\n        \"txTp\": \"pain.001.001.11\",\n        \"channels\": [\n          {\n            \"id\": \"001@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"028@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"028@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"028@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"029@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"029@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"005@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"002@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"030@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"030@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"006@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"031@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"031@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"007@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-rule-044",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 2 Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"should have status code of 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"/*pm.test(\"should respond with correct network map\", function () {",
+							"    const requestNetworkMap = JSON.parse(pm.request.body.raw).networkMap;",
+							"    const responseNetworkMap = pm.response.json().networkMap;",
+							"    pm.expect(requestNetworkMap).to.be.eql(responseNetworkMap);",
+							"});*/",
+							"",
+							"pm.test(\"Ensure that there are no historical transactions for the debtor status (RJCT), Result for Rule 044 is true\", function () {",
+							"    const requestTransaction = JSON.parse(pm.request.body.raw).transaction;",
+							"    const responseTransaction = pm.response.json().transaction;",
+							"    pm.expect(requestTransaction).to.eql(responseTransaction);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"TxTp\": \"pacs.002.001.12\",\n    \"FIToFIPmtSts\": {\n      \"GrpHdr\": {\n        \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n        \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n      },\n      \"TxInfAndSts\": {\n        \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n        \"OrgnlEndToEndId\": \"5036fa4f-0cb1-442c-b1a8-be0a3ce6635\",\n        \"TxSts\": \"ACSC\",\n        \"ChrgsInf\": [\n          {\n            \"Amt\": {\n              \"Amt\": \"157605510200862\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp002\"\n                }\n              }\n            }\n          }\n        ],\n        \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n        \"InstgAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"InstdAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp002\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"networkMap\": {\n    \"_key\": \"26345403\",\n    \"_id\": \"networkConfiguration/26345403\",\n    \"_rev\": \"_cxc-1vO---\",\n    \"messages\": [\n      {\n        \"id\": \"001@1.0\",\n        \"host\": \"http://openfaas:8080\",\n        \"cfg\": \"1.0\",\n        \"txTp\": \"pain.001.001.11\",\n        \"channels\": [\n          {\n            \"id\": \"001@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"028@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"028@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"028@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"029@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"029@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"005@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"002@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"030@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"030@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"006@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"031@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"031@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"007@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-rule-044",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 2 Test 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"should have status code of 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"/*pm.test(\"should respond with correct network map\", function () {",
+							"    const requestNetworkMap = JSON.parse(pm.request.body.raw).networkMap;",
+							"    const responseNetworkMap = pm.response.json().networkMap;",
+							"    pm.expect(requestNetworkMap).to.be.eql(responseNetworkMap);",
+							"});*/",
+							"",
+							"pm.test(\"No historical transactions for the debtor found, Result for Rule 044 is false\", function () {",
+							"    const requestTransaction = JSON.parse(pm.request.body.raw).transaction;",
+							"    const responseTransaction = pm.response.json().transaction;",
+							"    pm.expect(requestTransaction).to.eql(responseTransaction);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"TxTp\": \"pacs.002.001.12\",\n    \"FIToFIPmtSts\": {\n      \"GrpHdr\": {\n        \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n        \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n      },\n      \"TxInfAndSts\": {\n        \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n        \"OrgnlEndToEndId\": \"5036fa4f-0cb1-442c-b1a8-be0a3ce66365\",\n        \"TxSts\": \"ACSC\",\n        \"ChrgsInf\": [\n          {\n            \"Amt\": {\n              \"Amt\": \"157605510200862\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp002\"\n                }\n              }\n            }\n          }\n        ],\n        \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n        \"InstgAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"InstdAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp002\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"networkMap\": {\n    \"_key\": \"26345403\",\n    \"_id\": \"networkConfiguration/26345403\",\n    \"_rev\": \"_cxc-1vO---\",\n    \"messages\": [\n      {\n        \"id\": \"001@1.0\",\n        \"host\": \"http://openfaas:8080\",\n        \"cfg\": \"1.0\",\n        \"txTp\": \"pain.001.001.11\",\n        \"channels\": [\n          {\n            \"id\": \"001@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"028@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"028@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"028@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"029@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"029@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"005@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"002@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"030@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"030@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"006@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"031@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"031@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"007@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-rule-044",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario 3 Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"should have status code of 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"/*pm.test(\"should respond with correct network map\", function () {",
+							"    const requestNetworkMap = JSON.parse(pm.request.body.raw).networkMap;",
+							"    const responseNetworkMap = pm.response.json().networkMap;",
+							"    pm.expect(requestNetworkMap).to.be.eql(responseNetworkMap);",
+							"});*/",
+							"",
+							"pm.test(\"No historical transactions for the debtor found (Seed the transaction history with a single related set), Result for Rule 044 is true\", function () {",
+							"    const requestTransaction = JSON.parse(pm.request.body.raw).transaction;",
+							"    const responseTransaction = pm.response.json().transaction;",
+							"    pm.expect(requestTransaction).to.eql(responseTransaction);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"TxTp\": \"pacs.002.001.12\",\n    \"FIToFIPmtSts\": {\n      \"GrpHdr\": {\n        \"MsgID\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n        \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n      },\n      \"TxInfAndSts\": {\n        \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n        \"OrgnlEndToEndId\": \"5036fa4f-0cb1-442c-b1a8-be0a3ce6635\",\n        \"TxSts\": \"ACSC\",\n        \"ChrgsInf\": [\n          {\n            \"Amt\": {\n              \"Amt\": \"157605510200862\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp001\"\n                }\n              }\n            }\n          },\n          {\n            \"Amt\": {\n              \"Amt\": \"15918156530287100\",\n              \"Ccy\": \"USD\"\n            },\n            \"Agt\": {\n              \"FinInstnId\": {\n                \"ClrSysMmbId\": {\n                  \"MmbId\": \"dfsp002\"\n                }\n              }\n            }\n          }\n        ],\n        \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n        \"InstgAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp001\"\n            }\n          }\n        },\n        \"InstdAgt\": {\n          \"FinInstnId\": {\n            \"ClrSysMmbId\": {\n              \"MmbId\": \"dfsp002\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"networkMap\": {\n    \"_key\": \"26345403\",\n    \"_id\": \"networkConfiguration/26345403\",\n    \"_rev\": \"_cxc-1vO---\",\n    \"messages\": [\n      {\n        \"id\": \"001@1.0\",\n        \"host\": \"http://openfaas:8080\",\n        \"cfg\": \"1.0\",\n        \"txTp\": \"pain.001.001.11\",\n        \"channels\": [\n          {\n            \"id\": \"001@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"028@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"028@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"028@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"029@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"029@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"005@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"002@1.0\",\n            \"host\": \"http://openfaas:8080\",\n            \"cfg\": \"1.0\",\n            \"typologies\": [\n              {\n                \"id\": \"030@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"030@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"006@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"031@1.0\",\n                \"host\": \"{{url}}/function/off-typology-processor\",\n                \"cfg\": \"031@1.0\",\n                \"rules\": [\n                  {\n                    \"id\": \"003@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  },\n                  {\n                    \"id\": \"007@1.0\",\n                    \"host\": \"http://openfaas:8080\",\n                    \"cfg\": \"1.0\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-rule-044",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
