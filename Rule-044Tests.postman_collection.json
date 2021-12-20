@@ -57,13 +57,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-044",
@@ -125,13 +125,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-044",
@@ -193,13 +193,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-044",
@@ -261,13 +261,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-044",
@@ -329,13 +329,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-044/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-044",
