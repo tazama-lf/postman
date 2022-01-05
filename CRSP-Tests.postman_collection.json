@@ -72,13 +72,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-channel-router-setup-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-channel-router-setup-processor",
@@ -144,13 +144,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-channel-router-setup-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-channel-router-setup-processor",
@@ -215,13 +215,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-channel-router-setup-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-channel-router-setup-processor",
@@ -286,13 +286,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-channel-router-setup-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-channel-router-setup-processor",
@@ -357,13 +357,13 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-channel-router-setup-processor/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
 						"off-channel-router-setup-processor",
