@@ -265,7 +265,7 @@
 							"})",
 							"",
 							"pm.test(\"should respond with the correct networkMap\", function () {",
-							"    const networkMap = pm.environment.get(\"networkMap\");",
+							"    const networkMap = pm.environment.get(\"networkMapPacs008\");",
 							"    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
 							"})"
 						],
