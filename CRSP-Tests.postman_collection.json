@@ -334,11 +334,7 @@
 							"        pm.expect(checkIfRuleIsSend).to.eql(false);",
 							"    }",
 							"})",
-							"",
-							"pm.test(\"should respond with the correct networkMap\", function () {",
-							"    const networkMap = pm.environment.get(\"networkMap\");",
-							"    pm.expect(jsonData.networkMap).to.eql(JSON.parse(networkMap));",
-							"})"
+							""
 						],
 						"type": "text/javascript"
 					}
