@@ -72,12 +72,16 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/execute",
+					"raw": "https://frmfaas.sybrin.com/function/off-channel-router-setup-processor/execute",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"frmfaas",
+						"sybrin",
+						"com"
 					],
-					"port": "3000",
 					"path": [
+						"function",
+						"off-channel-router-setup-processor",
 						"execute"
 					]
 				}
