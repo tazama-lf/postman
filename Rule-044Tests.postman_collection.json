@@ -57,7 +57,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -66,7 +66,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-044",
+						"off-rule-044-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -125,7 +125,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -134,7 +134,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-044",
+						"off-rule-044-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -193,7 +193,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -202,7 +202,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-044",
+						"off-rule-044-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -261,7 +261,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -270,7 +270,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-044",
+						"off-rule-044-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -329,7 +329,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-044/execute",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-044-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -338,7 +338,7 @@
 					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-044",
+						"off-rule-044-rel-1-0-0",
 						"execute"
 					]
 				}
