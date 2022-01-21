@@ -380,7 +380,7 @@
         },
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-016-rel-1-0-0/execute",
-          "protocol": "https",
+          "protocol": "http",
           "host": ["gateway", "openfaas"],
           "port": "8080",
           "path": ["function", "off-rule-016-rel-1-0-0", "execute"]
@@ -771,7 +771,7 @@
         },
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-016-rel-1-0-0/execute",
-          "protocol": "https",
+          "protocol": "http",
           "host": ["gateway", "openfaas"],
           "port": "8080",
           "path": ["function", "off-rule-016-rel-1-0-0", "execute"]
@@ -1164,7 +1164,7 @@
         },
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-016-rel-1-0-0/execute",
-          "protocol": "https",
+          "protocol": "http",
           "host": ["gateway", "openfaas"],
           "port": "8080",
           "path": ["function", "off-rule-016-rel-1-0-0", "execute"]
@@ -1546,7 +1546,7 @@
         },
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-016-rel-1-0-0/execute",
-          "protocol": "https",
+          "protocol": "http",
           "host": ["gateway", "openfaas"],
           "port": "8080",
           "path": ["function", "off-rule-016-rel-1-0-0", "execute"]
@@ -1938,7 +1938,7 @@
         },
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-016-rel-1-0-0/execute",
-          "protocol": "https",
+          "protocol": "http",
           "host": ["gateway", "openfaas"],
           "port": "8080",
           "path": ["function", "off-rule-016-rel-1-0-0", "execute"]
