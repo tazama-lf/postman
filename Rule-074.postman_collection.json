@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "ad61af9b-9516-4807-9571-291e84fcb4cc",
-    "name": "Rule-074",
+    "name": "Rule-074 Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -4958,16 +4958,12 @@
               "            mode: 'raw',\r",
               "            raw: JSON.stringify({\r",
               "                query: `FOR transaction IN ${JSON.stringify(transactions)}\r",
-              "                \"TxTp.FIToFICstmrCdt.GrpHdr\": {\r",
-              "            \"MsgId\r",
               "                        REMOVE { _key: transaction } IN transactionHistory\r",
               "                        OPTIONS { ignoreErrors: true }`\r",
               "            })\r",
               "        }\r",
               "    })\r",
-              "});\r",
-              "\r",
-              ""
+              "});"
             ],
             "type": "text/javascript"
           }
