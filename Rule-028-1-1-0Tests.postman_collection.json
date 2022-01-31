@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "2155dabf-6680-42f2-aa6a-b4b8ae3a4439",
-		"name": "Rule-028 -1-1-0Tests",
+		"name": "Rule-028-1-1-0Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -762,16 +762,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -1510,16 +1510,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -2258,16 +2258,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -3032,16 +3032,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -3784,16 +3784,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
@@ -4570,16 +4570,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://frmfaas.sybrin.com/function/off-rule-028-rel-1-1-0/execute",
-					"protocol": "https",
+					"raw": "http://gateway.openfaas:8080/function/off-rule-001-rel-1-0-0/execute",
+					"protocol": "http",
 					"host": [
-						"frmfaas",
-						"sybrin",
-						"com"
+						"gateway",
+						"openfaas"
 					],
+					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-028-rel-1-1-0",
+						"off-rule-001-rel-1-0-0",
 						"execute"
 					]
 				}
