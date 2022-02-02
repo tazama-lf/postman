@@ -21,6 +21,17 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let now = new Date().toISOString();\r",
+							"console.log('Now the time is:' + now);\r",
+							"pm.globals.set(\"now\", now);"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -65,6 +76,17 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let now = new Date().toISOString();\r",
+							"console.log('Now the time is:' + now);\r",
+							"pm.globals.set(\"now\", now);"
 						],
 						"type": "text/javascript"
 					}
@@ -115,6 +137,17 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let now = new Date().toISOString();\r",
+							"console.log('Now the time is:' + now);\r",
+							"pm.globals.set(\"now\", now);"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -159,6 +192,17 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let now = new Date().toISOString();\r",
+							"console.log('Now the time is:' + now);\r",
+							"pm.globals.set(\"now\", now);"
 						],
 						"type": "text/javascript"
 					}
