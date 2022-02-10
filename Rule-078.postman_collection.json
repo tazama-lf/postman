@@ -728,7 +728,7 @@
               }
             },
             "url": {
-              "raw": "http://gateway.openfaas:8080function/off-transaction-monitoring-service-rel-1-0-0/transfer",
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer",
               "protocol": "http",
               "host": ["gateway", "openfaas"],
               "port": "8080function",
