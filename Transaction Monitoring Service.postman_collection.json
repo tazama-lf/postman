@@ -31,14 +31,14 @@
 							"\r",
 							"let random = Math.floor(Math.random() * 500)\r",
 							"let filestring = ''\r",
-							"filestring = 'yolo/' + '00' + random + 'yolo.json'\r",
+							"filestring = 'pain013/' + '00' + random + 'pain013.json'\r",
 							"\r",
 							"if (random > 9) {\r",
-							"    filestring = 'yolo/' + '0' + random + 'yolo.json'\r",
+							"    filestring = 'pain013/' + '0' + random + 'pain013.json'\r",
 							"}\r",
 							"\r",
 							"if (random > 99) {\r",
-							"    filestring = 'yolo/' + '' + random + 'yolo.json'\r",
+							"    filestring = 'pain013/' + '' + random + 'pain013.json'\r",
 							"}\r",
 							"\r",
 							"console.log('message id in use ', filestring)\r",
@@ -46,7 +46,7 @@
 							"let requestz = pm.sendRequest(\r",
 							"    {\r",
 							"        \r",
-							"        url: \"http://msg-waitron.development:3000/Waitron/getRandomMessage\",\r",
+							"        url: \"http://20.90.220.232:3000/Waitron/getRandomMessage\",\r",
 							"        method: \"GET\",\r",
 							"        header: {\r",
 							"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
@@ -54,7 +54,7 @@
 							"        body: {\r",
 							"            mode: 'urlencoded',\r",
 							"            urlencoded: [\r",
-							"                { key: \"messageType\", value: \"yolo\" },\r",
+							"                { key: \"messageType\", value: \"pain013\" },\r",
 							"                { key: \"messageID\", value: filestring },\r",
 							"            ]\r",
 							"        }\r",
@@ -69,10 +69,11 @@
 							"        let jsondata = JSON.parse(resBody)\r",
 							"\r",
 							"\r",
-							"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+							"        console.log('Sending Data', jsondata)\r",
 							"\r",
-							"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
+							"        let e2eID = JSON.parse(resBody).CdtrPmtActvtnReq.GrpHdr.MsgId;\r",
 							"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+							"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
 							"        console.log('Sending Data', jsondata)\r",
 							"\r",
 							"    }\r",
@@ -119,6 +120,16 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "EndToEndId",
+			"value": ""
+		},
+		{
+			"key": "jsondata",
+			"value": ""
 		}
 	]
 }
