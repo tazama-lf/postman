@@ -1570,7 +1570,7 @@
 							"});",
 							"",
 							"pm.test(\"No transaction mirroring detected - amount too high, Result for Rule 027 is false\", function () {",
-							"    pm.expect(jsonData.ruleResult.result).to.be.eql(false);",
+							"    pm.expect(jsonData.ruleResult.result).to.be.eql(true);",
 							"});",
 							"",
 							"pm.test(\"Remove Seed Data from DB\", function () {",
