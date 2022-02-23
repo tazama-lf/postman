@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "51dbca18-2361-4304-a305-3d57bd14cb9e",
-		"name": "Transaction Monitoring Service",
+		"_postman_id": "80299588-a31b-4647-ad8b-457b03fb11e0",
+		"name": "Transaction Monitoring Service Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -92,22 +92,15 @@
 								"exec": [
 									"\r",
 									"let random = Math.floor(Math.random() * 500)\r",
-									"  \r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } }\r",
+									"\r",
+									"\r",
 									"\r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
-									"        \r",
-									"        url: \"http://gateway.openfaas:8080/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"GET\",\r",
-									"        header: {\r",
-									"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
-									"        },\r",
-									"        body: {\r",
-									"            mode: 'urlencoded',\r",
-									"            urlencoded: [\r",
-									"                { key: \"messageType\", value: \"pain013\" } \r",
-									"            ]\r",
-									"        }\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
 									"    }, function (err, res) {\r",
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
@@ -132,6 +125,98 @@
 									"\r",
 									"\r",
 									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{jsondata}}"
+						},
+						"url": {
+							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/quoteReply",
+							"protocol": "https",
+							"host": [
+								"frmfaas",
+								"sybrin",
+								"com"
+							],
+							"path": [
+								"function",
+								"off-transaction-monitoring-service",
+								"quoteReply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Blank fields (credtTm)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"MsgId should not be blank\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.CreDtTm must be date-time format\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"var uuid = require('uuid');\r",
+									"var myUUID = uuid.v4();\r",
+									"let random = Math.floor(Math.random() * 500)\r",
+									" \r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"GET\",\r",
+									"        header: {\r",
+									"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
+									"        },\r",
+									"        body: {\r",
+									"            mode: 'urlencoded',\r",
+									"            urlencoded: [\r",
+									"                { key: \"messageType\", value: \"pain013\" } \r",
+									"            ]\r",
+									"        }\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
+									"        pm.collectionVariables.set(\"jsondata\", jsondata); \r",
+									"        console.log('Sending Data', jsondata)\r",
+									"    }\r",
+									") "
 								],
 								"type": "text/javascript"
 							}
@@ -220,98 +305,6 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = \"\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata); \r",
-									"        console.log('Sending Data', jsondata)\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{{jsondata}}"
-						},
-						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
-							"protocol": "http",
-							"host": [
-								"gateway",
-								"openfaas"
-							],
-							"port": "8080",
-							"path": [
-								"function",
-								"off-transaction-monitoring-service",
-								"quoteReply"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Blank fields (credtTm)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"MsgId should not be blank\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.CreDtTm must be date-time format\")",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									" \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"GET\",\r",
-									"        header: {\r",
-									"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
-									"        },\r",
-									"        body: {\r",
-									"            mode: 'urlencoded',\r",
-									"            urlencoded: [\r",
-									"                { key: \"messageType\", value: \"pain013\" } \r",
-									"            ]\r",
-									"        }\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
 									"        pm.collectionVariables.set(\"jsondata\", jsondata); \r",
 									"        console.log('Sending Data', jsondata)\r",
 									"    }\r",
