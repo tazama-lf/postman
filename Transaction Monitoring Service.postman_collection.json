@@ -48,7 +48,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        \r",
 									"        console.log('json b4 replace ', JSON.parse(resBody))\r",
-									"        resBody = resBody.replace(\"'\", \"\\\"\")\r",
+									"        resBody = resBody.replace('\\'', '\"')\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        pm.request.body = jsondata;\r",
 									"        console.log('body being send ', pm.request.body)\r",
