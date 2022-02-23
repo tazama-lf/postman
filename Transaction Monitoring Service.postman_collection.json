@@ -9,6 +9,73 @@
 			"name": "Pain013",
 			"item": [
 				{
+					"name": "Check msg waitron status",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"let random = Math.floor(Math.random() * 500)\r",
+									"  \r",
+									"\r",
+									"let requestz = pm.sendRequest(\r",
+									"    { \r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/health\",\r",
+									"        method: \"GET\",\r",
+									"        header: {\r",
+									"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
+									"        }\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"\r",
+									"\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"\r",
+									"\r",
+									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"\r",
+									"        let e2eID = JSON.parse(resBody).CdtrPmtActvtnReq.GrpHdr.MsgId;\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"        console.log('Sending Data', jsondata)\r",
+									"\r",
+									"    }\r",
+									")\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
+							"protocol": "http",
+							"host": [
+								"gateway",
+								"openfaas"
+							],
+							"port": "8080",
+							"path": [
+								"function",
+								"off-transaction-monitoring-service",
+								"quoteReply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Submit a valid JSON input message",
 					"event": [
 						{
@@ -38,7 +105,7 @@
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        \r",
-									"        url: \"http://gateway.openfaas:8080/function/off-msg-waitron/getRandomMessage\",\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getRandomMessage\",\r",
 									"        method: \"GET\",\r",
 									"        header: {\r",
 									"            \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
