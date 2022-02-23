@@ -47,7 +47,8 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody) \r",
-									"        pm.request.body.update(jsondata);\r",
+									"        pm.request.body=jsondata;\r",
+									"        console.log('body being send ',pm.request.body)\r",
 									"    }\r",
 									") "
 								],
@@ -69,7 +70,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {}"
+							"raw": " "
 						},
 						"url": {
 							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
@@ -130,7 +131,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -214,7 +215,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = \"\"; \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -299,7 +300,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.NbOfTxs = \"\";\r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -385,7 +386,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Nm = null;\r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -470,7 +471,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        resBody = resBody.replace(\"CdtrPmtActvtnReq\", \"CdtrPmtActvtn\")\r",
 									"        let jsondata = JSON.parse(resBody)  \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -553,7 +554,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        resBody = resBody.replace(\"TxTp\", \"Tx\")\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -635,7 +636,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = myUUID+myUUID+myUUID+myUUID+myUUID;\r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -719,7 +720,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
 									" \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -805,7 +806,7 @@
 									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"       \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -889,7 +890,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.PmtInfId = myUUID + myUUID + myUUID + myUUID + myUUID + myUUID;\r",
 									"      \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -973,7 +974,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.ReqdAdvcTp.Prtry = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
 									"       \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1057,7 +1058,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.PyeeRcvAmt.Amt.Amt = -1;\r",
 									"      \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1141,7 +1142,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1;\r",
 									"    \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1217,18 +1218,12 @@
 									"            console.error(err);\r",
 									"        }\r",
 									"\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"\r",
-									"\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        console.log('Sending Data', jsondata)\r",
-									"\r",
-									"\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
-									"\r",
+									"        let resBody = new Buffer.from(res.stream).toString() \r",
+									"        let jsondata = JSON.parse(resBody) \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									")\r",
 									"\r",
@@ -1246,7 +1241,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1313,11 +1308,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody)",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); ",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -1330,7 +1324,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1395,11 +1389,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody)",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -1412,7 +1405,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1475,11 +1468,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); \r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1492,7 +1484,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1555,11 +1547,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1572,7 +1563,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1635,11 +1626,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs = null;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs = null; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1652,7 +1642,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1715,11 +1705,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = null;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = null; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1732,7 +1721,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1794,11 +1783,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1811,7 +1799,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1873,11 +1861,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();  ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -1890,7 +1877,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1952,11 +1939,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -1969,7 +1955,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2031,11 +2017,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -2048,7 +2033,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2110,11 +2095,10 @@
 									"        }",
 									"        let resBody = new Buffer.from(res.stream).toString()",
 									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        console.log('Sending Data', jsondata)",
+									"        pm.request.body=jsondata;",
 									"    }",
 									") "
 								],
@@ -2127,7 +2111,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2191,11 +2175,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2208,7 +2191,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2272,11 +2255,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = myUUID;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2289,7 +2271,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2356,11 +2338,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2373,7 +2354,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2439,11 +2420,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt = -1;\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt = -1; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2456,7 +2436,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2520,11 +2500,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"2669e349-500d-44ba-9e27-7767a16608a0-7767a16608a0-7767a16608a0\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"2669e349-500d-44ba-9e27-7767a16608a0-7767a16608a0-7767a16608a0\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2537,7 +2516,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2600,11 +2579,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2617,7 +2595,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2683,11 +2661,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2700,7 +2677,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2765,11 +2742,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2782,7 +2758,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2848,10 +2824,10 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = \"b51ec534-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"      \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2864,7 +2840,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2929,11 +2905,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry = \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry = \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log('Sending Data', jsondata)\r",
+									"        pm.request.body=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2946,7 +2921,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jsondata}}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
