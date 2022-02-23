@@ -45,11 +45,11 @@
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        \r",
-									"        console.log('json b4 replace ', JSON.parse(resBody))\r",
-									"        resBody = resBody.replace(\"Id\", \"IdIdIdIdIdIdIdIdIdIdIdIdnot TXTP not TXTP not TXTP not TXTP not TXTP \")\r",
+									"        let resBody = new Buffer.from(res.stream).toString()  \r",
+									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
 									"        let jsondata = JSON.parse(resBody)\r",
+									"        console.log(jsondata)\r",
+									"        \r",
 									"        pm.request.body = jsondata;\r",
 									"        console.log('body being send ', pm.request.body)\r",
 									"    }\r",
@@ -76,13 +76,13 @@
 							"raw": " "
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
-							"protocol": "http",
+							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/quoteReply",
+							"protocol": "https",
 							"host": [
-								"gateway",
-								"openfaas"
+								"frmfaas",
+								"sybrin",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
