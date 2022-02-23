@@ -47,7 +47,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody) \r",
-									"        pm.request.body.update(JSON.stringify(jsondata));\r",
+									"        pm.request.body.update(jsondata);\r",
 									"    }\r",
 									") "
 								],
