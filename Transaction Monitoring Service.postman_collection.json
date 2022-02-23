@@ -81,7 +81,7 @@
 							"raw": " "
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/off-transaction-monitoring-service/quoteReply",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
 							"protocol": "http",
 							"host": [
 								"gateway",
@@ -89,6 +89,7 @@
 							],
 							"port": "8080",
 							"path": [
+								"function",
 								"off-transaction-monitoring-service",
 								"quoteReply"
 							]
