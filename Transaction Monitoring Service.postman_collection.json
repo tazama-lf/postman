@@ -69,7 +69,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " "
+							"raw": " {}"
 						},
 						"url": {
 							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
