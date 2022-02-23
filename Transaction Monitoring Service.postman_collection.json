@@ -31,8 +31,11 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013' }), options: { raw: { language: 'json' } } }\r",
+									"const moment = require('moment');\r",
+									"var uuid = require('uuid');\r",
+									"var myUUID = uuid.v4();\r",
+									"let random = Math.floor(Math.random() * 500)\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -42,23 +45,11 @@
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
-									"\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        pm.request.body.update(resBody);\r",
-									"\r",
-									"        let jsondata = JSON.parse(resBody)  \r",
-									"        let e2eID = jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        console.log(jsondata)\r",
+									"        let jsondata = JSON.parse(resBody) \r",
 									"        pm.request.body.update(JSON.stringify(jsondata));\r",
-									"\r",
 									"    }\r",
-									")\r",
-									"\r",
-									"\r",
-									"\r",
-									"\r",
-									""
+									") "
 								],
 								"type": "text/javascript"
 							}
