@@ -22,7 +22,10 @@
 									"    var jsonData = pm.response.json();",
 									"    var jsonReq = JSON.parse(pm.request.body );",
 									"    pm.expect(jsonData.data).to.eql(jsonReq);",
-									"});"
+									"});",
+									"",
+									"",
+									"console.log(pm.response.json())"
 								],
 								"type": "text/javascript"
 							}
@@ -47,13 +50,16 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()  \r",
 									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
-									"        let jsondata = JSON.parse(resBody)\r",
+									"        const jsondata = JSON.parse(resBody)\r",
 									"        console.log(jsondata)\r",
 									"        \r",
 									"        pm.request.body = jsondata;\r",
 									"        console.log('body being send ', pm.request.body)\r",
 									"    }\r",
-									") "
+									") \r",
+									"\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
