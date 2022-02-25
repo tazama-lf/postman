@@ -24,7 +24,7 @@
 									"    pm.expect(jsonData.data).to.eql(jsonReq);",
 									"});",
 									"",
-									"",
+									"console.log(pm.request.body)",
 									"console.log(pm.response.json())"
 								],
 								"type": "text/javascript"
@@ -48,15 +48,15 @@
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()  \r",
-									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
 									"        const jsondata = JSON.parse(resBody)\r",
 									"        console.log(jsondata)\r",
-									"        \r",
-									"        pm.request.body = jsondata;\r",
+									"\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"        console.log('body being send ', pm.request.body)\r",
 									"    }\r",
-									") \r",
+									")\r",
 									"\r",
 									"\r",
 									""
@@ -140,7 +140,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -224,7 +224,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = \"\"; \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -309,7 +309,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.NbOfTxs = \"\";\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -395,7 +395,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Nm = null;\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									" \r",
 									"    }\r",
 									") "
@@ -645,7 +645,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = myUUID+myUUID+myUUID+myUUID+myUUID;\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -729,7 +729,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
 									" \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -815,7 +815,7 @@
 									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"       \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -899,7 +899,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.PmtInfId = myUUID + myUUID + myUUID + myUUID + myUUID + myUUID;\r",
 									"      \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -983,7 +983,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.ReqdAdvcTp.Prtry = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
 									"       \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1067,7 +1067,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.PyeeRcvAmt.Amt.Amt = -1;\r",
 									"      \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1151,7 +1151,7 @@
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1;\r",
 									"    \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1232,7 +1232,7 @@
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									")\r",
 									"\r",
@@ -1320,7 +1320,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); ",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -1401,7 +1401,7 @@
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -1480,7 +1480,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); \r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1559,7 +1559,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1638,7 +1638,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs = null; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1717,7 +1717,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = null; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1795,7 +1795,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -1873,7 +1873,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();  ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -1951,7 +1951,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -2029,7 +2029,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -2107,7 +2107,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body=jsondata;",
+									"        pm.request.body.raw=jsondata;",
 									"    }",
 									") "
 								],
@@ -2187,7 +2187,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2267,7 +2267,7 @@
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2350,7 +2350,7 @@
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2432,7 +2432,7 @@
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt = -1; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2512,7 +2512,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"2669e349-500d-44ba-9e27-7767a16608a0-7767a16608a0-7767a16608a0\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2591,7 +2591,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2673,7 +2673,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2754,7 +2754,7 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2836,7 +2836,7 @@
 									"      \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
@@ -2917,7 +2917,7 @@
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry = \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body=jsondata;\r",
+									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
 								],
