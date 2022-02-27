@@ -520,7 +520,7 @@
 									"",
 									"pm.test(\"Remove Seed Data from transactionGraph\", function () {",
 									"    pm.sendRequest({",
-									"        url: 'http://arango.development:8529m/_db/pseudonyms/_api/cursor',",
+									"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',",
 									"        method: 'POST',",
 									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
 									"        body: {",
