@@ -1515,7 +1515,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080//function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
 							"protocol": "http",
 							"host": [
 								"gateway",
@@ -1523,7 +1523,6 @@
 							],
 							"port": "8080",
 							"path": [
-								"",
 								"function",
 								"off-transaction-monitoring-service-rel-1-0-0",
 								"transfer-response"
@@ -1603,13 +1602,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmarango.sybrin.com/_db/transactionHistory/_api/cursor",
-							"protocol": "https",
+							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
+							"protocol": "http",
 							"host": [
-								"frmarango",
-								"sybrin",
-								"com"
+								"arango",
+								"development"
 							],
+							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
