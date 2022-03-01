@@ -17,16 +17,13 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
 									"    pm.response.to.have.status(200);",
 									"",
 									"});",
 									"pm.test(\"Your test name\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    var jsonReq = JSON.parse(pm.request.body);",
-									"    pm.expect(jsonData.data).to.eql(jsonReq);",
+									"    var jsonData = pm.response.json().data; ",
+									"    var jsonReq = pm.request.body.raw;",
+									"    pm.expect(jsonData).to.eql(jsonReq);",
 									"});",
 									""
 								],
@@ -83,13 +80,13 @@
 							"raw": " "
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
-							"protocol": "http",
+							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/quoteReply",
+							"protocol": "https",
 							"host": [
-								"gateway",
-								"openfaas"
+								"frmfaas",
+								"sybrin",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
