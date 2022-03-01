@@ -149,7 +149,8 @@
             "url": {
               "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
               "protocol": "http",
-              "host": ["frmfaas", "sybrin", "com"],
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
               "path": [
                 "function",
                 "off-transaction-monitoring-service-rel-1-0-0",
@@ -234,7 +235,8 @@
             "url": {
               "raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
               "protocol": "http",
-              "host": ["frmarango", "sybrin", "com"],
+              "host": ["arango", "development"],
+              "port": "8529",
               "path": ["_db", "transactionHistory", "_api", "cursor"]
             }
           },
@@ -260,7 +262,7 @@
                   "   \"messages\":[\r",
                   "      {\r",
                   "         \"id\":\"002@1.0.0\",\r",
-                  "         \"host\":\"https://frmfaas.sybrin.com\",\r",
+                  "         \"host\":\"http://gateway.openfaas:8080\",\r",
                   "         \"cfg\":\"1.0.0\",\r",
                   "         \"txTp\":\"pain.013.001.09\",\r",
                   "         \"channels\":[\r",
@@ -403,7 +405,8 @@
             "url": {
               "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/quoteReply",
               "protocol": "http",
-              "host": ["frmfaas", "sybrin", "com"],
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
               "path": [
                 "function",
                 "off-transaction-monitoring-service-rel-1-0-0",
@@ -464,7 +467,8 @@
             "url": {
               "raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
               "protocol": "http",
-              "host": ["frmarango", "sybrin", "com"],
+              "host": ["arango", "development"],
+              "port": "8529",
               "path": ["_db", "transactionHistory", "_api", "cursor"]
             }
           },
@@ -595,7 +599,8 @@
             "url": {
               "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
               "protocol": "http",
-              "host": ["frmfaas", "sybrin", "com"],
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
               "path": [
                 "function",
                 "off-transaction-monitoring-service",
@@ -656,7 +661,8 @@
             "url": {
               "raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
               "protocol": "http",
-              "host": ["frmarango", "sybrin", "com"],
+              "host": ["arango", "development"],
+              "port": "8529",
               "path": ["_db", "transactionHistory", "_api", "cursor"]
             }
           },
@@ -726,7 +732,8 @@
             "url": {
               "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer",
               "protocol": "http",
-              "host": ["frmfaas", "sybrin", "com"],
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
               "path": [
                 "function",
                 "off-transaction-monitoring-service-rel-1-0-0",
@@ -788,7 +795,8 @@
             "url": {
               "raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
               "protocol": "http",
-              "host": ["frmarango", "sybrin", "com"],
+              "host": ["arango", "development"],
+              "port": "8529",
               "path": ["_db", "transactionHistory", "_api", "cursor"]
             }
           },
@@ -1201,7 +1209,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -1837,7 +1846,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw2\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw2\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -1847,7 +1856,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -2952,7 +2962,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw2\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw2\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -2962,7 +2972,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -3015,7 +3026,7 @@
               "\r",
               "pm.test(\"Remove Seed Data from DB\", function () {\r",
               "    pm.sendRequest({\r",
-              "        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+              "        url: 'https://frmarango.sybrin.com/_db/transactionHistory/_api/cursor',\r",
               "        method: 'POST',\r",
               "        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
               "        body: {\r",
@@ -4518,19 +4529,20 @@
               "    }\r",
               "});\r",
               "\r",
-              "\r",
-              "pm.sendRequest({\r",
-              "    url: 'http://arango.development:8529/_db/Configuration/_api/cursor',\r",
-              "    method: 'POST',\r",
-              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
-              "    body: {\r",
-              "        mode: 'raw',\r",
-              "        raw: JSON.stringify({\r",
-              "            query: `FOR config IN ${JSON.stringify(ruleConfig)}\r",
-              "                    INSERT {_key: \"011\", id: config.id, cfg: config.cfg, config: config.config} INTO configuration\r",
-              "                    OPTIONS { overwrite: true }`\r",
-              "        })\r",
-              "    }\r",
+              "pm.test(\"Remove Seed Data from DB\", function () {\r",
+              "    pm.sendRequest({\r",
+              "        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+              "        method: 'POST',\r",
+              "        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "        body: {\r",
+              "            mode: 'raw',\r",
+              "            raw: JSON.stringify({\r",
+              "                query: `FOR transaction IN ${JSON.stringify(transactions)}\r",
+              "                        REMOVE { _key: transaction } IN transactionHistory\r",
+              "                        OPTIONS { ignoreErrors: true }`\r",
+              "            })\r",
+              "        }\r",
+              "    })\r",
               "});"
             ],
             "type": "text/javascript"
@@ -4542,7 +4554,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -4552,7 +4564,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -6367,7 +6380,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004_011@1.0.0\",\r\n        \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"999_011@1.0.0\",\r\n                \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"011@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -6377,7 +6390,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -7966,7 +7980,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004_011@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_011@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"011@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.1\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004_011@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_011@1.0.0\",\r\n                            \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"011@1.0.0\",\r\n                                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.1\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -7976,7 +7990,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
@@ -9559,7 +9574,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004_011@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_011@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"011@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.2\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+          "raw": "{\r\n  \"transaction\": {\r\n    \"TxTp\": \"pacs.002.001.12\",\r\n    \"FIToFIPmtSts\": {\r\n      \"GrpHdr\": {\r\n        \"MsgId\": \"20bea71c5ayfd5d8d57f94baf2nj1dq1\",\r\n        \"CreDtTm\": \"{{now}}\"\r\n      },\r\n      \"TxInfAndSts\": {\r\n        \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n        \"OrgnlEndToEndId\": \"1c516801007642dfb892944ddeafr2fw1\",\r\n        \"TxSts\": \"ACCC\",\r\n        \"ChrgsInf\": [\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 307.14,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 153.57,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp001\"\r\n                }\r\n              }\r\n            }\r\n          },\r\n          {\r\n            \"Amt\": {\r\n              \"Amt\": 30.71,\r\n              \"Ccy\": \"USD\"\r\n            },\r\n            \"Agt\": {\r\n              \"FinInstnId\": {\r\n                \"ClrSysMmbId\": {\r\n                  \"MmbId\": \"dfsp002\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        ],\r\n        \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n        \"InstgAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp001\"\r\n            }\r\n          }\r\n        },\r\n        \"InstdAgt\": {\r\n          \"FinInstnId\": {\r\n            \"ClrSysMmbId\": {\r\n              \"MmbId\": \"dfsp002\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"networkMap\": {\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004_011@1.0.0\",\r\n            \"host\": \"https://frmfaas.sybrin.com/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"https://frmfaas.sybrin.com/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_011@1.0.0\",\r\n                            \"host\": \"https://frmfaas.sybrin.com/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"011@1.0.0\",\r\n                                    \"host\": \"https://frmfaas.sybrin.com/function/off-rule-011-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.2\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -9569,7 +9584,8 @@
         "url": {
           "raw": "http://gateway.openfaas:8080/function/off-rule-011-rel-1-0-0/execute",
           "protocol": "http",
-          "host": ["frmfaas", "sybrin", "com"],
+          "host": ["gateway", "openfaas"],
+          "port": "8080",
           "path": ["function", "off-rule-011-rel-1-0-0", "execute"]
         }
       },
