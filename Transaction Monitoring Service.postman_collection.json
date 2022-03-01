@@ -20,12 +20,10 @@
 									"});",
 									"pm.test(\"Your test name\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    var jsonReq = JSON.parse(pm.request.body );",
+									"    var jsonReq = JSON.parse(pm.request.body);",
 									"    pm.expect(jsonData.data).to.eql(jsonReq);",
 									"});",
-									"",
-									"console.log(pm.request.body)",
-									"console.log(pm.response.json())"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -41,6 +39,7 @@
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013' }), options: { raw: { language: 'json' } } }\r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
+									"\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
@@ -53,8 +52,7 @@
 									"        const jsondata = JSON.parse(resBody)\r",
 									"        console.log(jsondata)\r",
 									"\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"        console.log('body being send ', pm.request.body)\r",
+									"        pm.request.body.raw=jsondata; \r",
 									"    }\r",
 									")\r",
 									"\r",
@@ -197,6 +195,7 @@
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.MsgId pattern mismatch\\ndata.CdtrPmtActvtnReq.GrpHdr.MsgId has less length than allowed\")",
 									"});",
+									"",
 									""
 								],
 								"type": "text/javascript"
