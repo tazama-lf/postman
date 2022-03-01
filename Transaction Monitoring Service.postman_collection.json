@@ -83,13 +83,13 @@
 							"raw": " "
 						},
 						"url": {
-							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/quoteReply",
-							"protocol": "https",
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
+							"protocol": "http",
 							"host": [
-								"frmfaas",
-								"sybrin",
-								"com"
+								"gateway",
+								"openfaas"
 							],
+							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
