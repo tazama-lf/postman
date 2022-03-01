@@ -1502,7 +1502,7 @@
 									"pm.test(\"MsgId should not be blank\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.MsgId pattern mismatch\\ndata.CstmrCdtTrfInitn.GrpHdr.MsgId has less length than allowed\")",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.MsgId has less length than allowed\")",
 									"});",
 									"",
 									""
@@ -1666,7 +1666,7 @@
 									"pm.test(\"NbOfTxs should not be null\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\\ndata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs is the wrong type\")",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\")",
 									"});",
 									"",
 									""
@@ -1691,7 +1691,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.NbOfTxs = null; \r",
+									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"nodate\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -1715,13 +1715,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
-							"protocol": "http",
+							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/execute",
+							"protocol": "https",
 							"host": [
-								"gateway",
-								"openfaas"
+								"frmfaas",
+								"sybrin",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -1853,8 +1853,7 @@
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
+									"        let jsondata = JSON.parse(resBody) \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2261,6 +2260,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
+									"        myUUID= myUUID.replace('-','')\r",
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
@@ -2344,7 +2344,9 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
+									"        myUUID= myUUID.replace('-','')\r",
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = myUUID; \r",
+									"       \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2401,7 +2403,7 @@
 									"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\\ndata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt is less than minimum\")",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt is less than minimum\")",
 									"});",
 									"",
 									""
@@ -2487,7 +2489,7 @@
 									"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\\ndata.CstmrCdtTrfInitn is required\")",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt is less than minimum\")",
 									"});",
 									"",
 									""
@@ -2849,7 +2851,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
+									"        jsondata.CstmrCdtTrfInitn.PmtInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth= \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
