@@ -16,7 +16,12 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
+									"",
 									"});",
 									"pm.test(\"Your test name\", function () {",
 									"    var jsonData = pm.response.json();",
@@ -50,9 +55,7 @@
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
 									"        const jsondata = JSON.parse(resBody)\r",
-									"        console.log(jsondata)\r",
-									"\r",
-									"        pm.request.body.raw=jsondata; \r",
+									"        pm.request.body.raw = jsondata;\r",
 									"    }\r",
 									")\r",
 									"\r",
@@ -104,7 +107,10 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
+									"    pm.response.to.have.status(400);  ",
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -187,6 +193,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -273,6 +282,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -358,6 +370,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -444,6 +459,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -528,6 +546,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -611,6 +632,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -693,6 +717,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -777,6 +804,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -863,6 +893,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -947,6 +980,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1031,6 +1067,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1115,6 +1154,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1204,6 +1246,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
@@ -1285,6 +1330,9 @@
 									"// Future Dates test case needs to be written in code. These two tests are just placeholder for future development.",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -1366,6 +1414,9 @@
 									"const moment = require('moment');",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -1445,6 +1496,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1524,6 +1578,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1603,6 +1660,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1682,6 +1742,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -1761,6 +1824,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -1839,6 +1905,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -1917,6 +1986,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -1995,6 +2067,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -2073,6 +2148,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -2151,6 +2229,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -2231,6 +2312,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -2311,6 +2395,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2394,6 +2481,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2476,6 +2566,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2556,6 +2649,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2635,6 +2731,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2717,6 +2816,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2798,6 +2900,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
@@ -2880,6 +2985,9 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
+									"    if (pm.response.code != 200) { ",
+									"        console.error(pm.response.json().errors[0].error);",
+									"    }",
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
