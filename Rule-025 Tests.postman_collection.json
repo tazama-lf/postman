@@ -422,7 +422,7 @@
 							"});",
 							"",
 							"pm.test(\"Aggregated and commissioned transaction mirroring detected, Result for Rule 025 is true\", function () {",
-							"    pm.expect(jsonData.ruleResult.result).to.be.eql(true);",
+							"    pm.expect(jsonData.ruleResult.result).to.be.eql(false);",
 							"});",
 							"",
 							"pm.test(\"Remove Seed Data from DB\", function () {",
