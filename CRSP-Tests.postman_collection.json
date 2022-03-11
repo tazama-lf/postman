@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3c189c16-d8da-4990-aee5-f746141590bc",
+		"_postman_id": "8c173102-100c-484f-9f1a-ddc62fb230ec",
 		"name": "CRSP-Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -62,11 +62,6 @@
 									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0.0\",\r",
 									"                     \"rules\":[\r",
-									"                        {\r",
-									"                           \"id\":\"003@1.0.0\",\r",
-									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-003\",\r",
-									"                           \"cfg\":\"1.0.0\"\r",
-									"                        },\r",
 									"                        {\r",
 									"                           \"id\":\"028@1.0.0\",\r",
 									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-028\",\r",
