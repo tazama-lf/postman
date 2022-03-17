@@ -19,25 +19,12 @@
 									"",
 									"//updated AM-990",
 									"pm.test(\"Status code is 200\", function () {",
-<<<<<<< Updated upstream
-									"",
-=======
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
->>>>>>> Stashed changes
 									"    pm.response.to.have.status(200);",
-									"",
 									"});",
-<<<<<<< Updated upstream
-									"pm.test(\"Your test name\", function () {",
-									"    var jsonData = pm.response.json().data; ",
-									"    var jsonReq = pm.request.body.raw;",
-									"    pm.expect(jsonData).to.eql(jsonReq);",
-									"});",
-=======
 									"",
->>>>>>> Stashed changes
 									""
 								],
 								"type": "text/javascript"
@@ -47,21 +34,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013' }), options: { raw: { language: 'json' } } }\r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"\r",
-=======
 									"// AM-987 \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
->>>>>>> Stashed changes
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
@@ -69,28 +45,18 @@
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
-<<<<<<< Updated upstream
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        resBody = resBody.replace(\"\\'\\/g\", \"\\\"\")\r",
-									"        const jsondata = JSON.parse(resBody)\r",
-									"        pm.request.body.raw = jsondata;\r",
-=======
 									"        let resBody = new Buffer.from(res.stream).toString() \r",
 									"        let jsondata = JSON.parse(resBody) \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
 									"        pm.request.body.raw=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									")\r",
 									"\r",
 									"\r",
-<<<<<<< Updated upstream
-=======
 									"\r",
 									"\r",
->>>>>>> Stashed changes
 									""
 								],
 								"type": "text/javascript"
@@ -102,16 +68,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -128,23 +90,12 @@
 					"response": []
 				},
 				{
-<<<<<<< Updated upstream
-					"name": "Blank fields (credtTm)",
-=======
 					"name": "Test 2.1 - dynamic dates (CreDtTm)",
->>>>>>> Stashed changes
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);  ",
-=======
 									"const moment = require('moment');",
 									"",
 									"// Future Dates test case needs to be written in code. These two tests are just placeholder for future development.",
@@ -154,18 +105,12 @@
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(200);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"CreDtTm should be now, not 2 days later\", function () {",
 									"    var jsonData = pm.response.json();",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.CreDtTm must be date-time format\")",
-=======
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"    pm.expect(jsonData.data.CstmrCdtTrfInitn.GrpHdr.CreDtTm).not.to.equal(moment().add(2, 'days').toISOString())",
->>>>>>> Stashed changes
 									"});",
 									"",
 									""
@@ -177,28 +122,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-=======
 									"    const moment = require('moment'); ",
 									"    let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' ,messageID:'002'}), options: { raw: { language: 'json' } } } ",
 									"    let requestz = pm.sendRequest(",
@@ -218,7 +141,6 @@
 									"            pm.request.body.raw=jsondata;",
 									"        }",
 									"    ) "
->>>>>>> Stashed changes
 								],
 								"type": "text/javascript"
 							}
@@ -229,16 +151,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -255,23 +173,12 @@
 					"response": []
 				},
 				{
-<<<<<<< Updated upstream
-					"name": "Blank fields (MsgId)",
-=======
 					"name": "Test 2.1 - dynamic dates (PmtInf.ReqdExctnDt.Dt)",
->>>>>>> Stashed changes
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-=======
 									"const moment = require('moment');",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -279,18 +186,12 @@
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(200);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"PmtInf.ReqdExctnDt.Dt should be now, not 2 days later\", function () {",
 									"    var jsonData = pm.response.json();",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.MsgId has less length than allowed\")",
-=======
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"    pm.expect(jsonData.data.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm).not.to.equal(moment().add(2, 'days').toISOString())",
->>>>>>> Stashed changes
 									"});",
 									"",
 									""
@@ -302,29 +203,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = \"\"; \r",
-									"        pm.request.body.raw=jsondata;\r",
-									" \r",
-									"    }\r",
-=======
 									"const moment = require('moment'); ",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
 									"let requestz = pm.sendRequest(",
@@ -343,7 +221,6 @@
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
 									"        pm.request.body.raw=jsondata;",
 									"    }",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -355,16 +232,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -409,42 +282,23 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment'); \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    }, function (err, res) {\r",
-=======
 									"    },function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.NbOfTxs = \"\";\r",
-									"        pm.request.body.raw=jsondata;\r",
-									" \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); \r",
 									"        pm.request.body.raw=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -457,16 +311,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -511,18 +361,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									" \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment'); \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -534,16 +374,10 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Nm = null;\r",
-									"        pm.request.body.raw=jsondata;\r",
-									" \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -556,16 +390,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -598,11 +428,7 @@
 									"pm.test(\"NbOfTxs should not be null\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\\ndata.CdtrPmtActvtnReq is required\")",
-=======
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\")",
->>>>>>> Stashed changes
 									"});",
 									"",
 									""
@@ -614,42 +440,23 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment'); \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    }, function (err, res) {\r",
-=======
 									"    },function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-<<<<<<< Updated upstream
-									"        resBody = resBody.replace(\"CdtrPmtActvtnReq\", \"CdtrPmtActvtn\")\r",
-									"        let jsondata = JSON.parse(resBody)  \r",
-									"        pm.request.body=jsondata;\r",
-=======
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"nodate\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -662,16 +469,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -704,15 +507,10 @@
 									"pm.test(\"InitgPty.Nm should not be blank\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\\ndata.CdtrPmtActvtnReq is required\")",
-									"});"
-=======
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm is the wrong type\")",
 									"});",
 									"",
 									""
->>>>>>> Stashed changes
 								],
 								"type": "text/javascript"
 							}
@@ -721,17 +519,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment'); \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -742,17 +531,11 @@
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-<<<<<<< Updated upstream
-									"        resBody = resBody.replace(\"TxTp\", \"Tx\")\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        pm.request.body=jsondata;\r",
-=======
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = null; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -765,16 +548,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -797,19 +576,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-=======
 									"pm.test(\"Status code is 200\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(200);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"The response should be successful\", function () {",
@@ -847,34 +618,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = myUUID+myUUID+myUUID+myUUID+myUUID;\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -882,16 +625,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -914,16 +653,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"Status code is 200\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
@@ -932,7 +661,6 @@
 									"});",
 									"",
 									"pm.test(\"The response should be successful\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"});",
@@ -968,36 +696,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
-									" \r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -1005,16 +703,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -1037,16 +731,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"Status code is 200\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
@@ -1055,7 +739,6 @@
 									"});",
 									"",
 									"pm.test(\"The response should be successful\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"});",
@@ -1091,38 +774,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody); \r",
-									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
-									"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
-									"        let e2eID = JSON.parse(resBody).CdtrPmtActvtnReq.GrpHdr.MsgId;\r",
-									"       \r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -1130,16 +781,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -1162,16 +809,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"Status code is 200\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
@@ -1180,7 +817,6 @@
 									"});",
 									"",
 									"pm.test(\"The response should be successful\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"});",
@@ -1212,36 +848,6 @@
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
 									"        pm.request.body.raw=jsondata;",
 									"    }",
-									") "
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.PmtInf.PmtInfId = myUUID + myUUID + myUUID + myUUID + myUUID + myUUID;\r",
-									"      \r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
 									") "
 								],
 								"type": "text/javascript"
@@ -1331,16 +937,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -1363,16 +965,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"Status code is 200\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
@@ -1381,7 +973,6 @@
 									"});",
 									"",
 									"pm.test(\"The response should be successful\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
 									"});",
@@ -1414,36 +1005,6 @@
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry= \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\";\r",
-									"       \r",
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
@@ -1539,16 +1100,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -1578,11 +1135,7 @@
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
-<<<<<<< Updated upstream
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt is less than minimum\")",
@@ -1623,36 +1176,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500) \r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.PyeeRcvAmt.Amt.Amt  = -1;\r",
-									"      \r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -1660,16 +1183,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " "
-=======
 							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
@@ -1699,11 +1218,7 @@
 									"    pm.response.to.have.status(400);",
 									"});",
 									"",
-<<<<<<< Updated upstream
-									"pm.test(\"MsgId should not be blank\", function () {",
-=======
 									"pm.test(\"InstdAmt.Amt can not be negative\", function () {",
->>>>>>> Stashed changes
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt is less than minimum\")",
@@ -1713,69 +1228,11 @@
 								],
 								"type": "text/javascript"
 							}
-<<<<<<< Updated upstream
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"  \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt  = -1;\r",
-									"    \r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": " "
-=======
->>>>>>> Stashed changes
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-									"});"
-=======
 									"pm.variables.set(\"InstdAmt\", -1);\r",
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
@@ -1798,40 +1255,6 @@
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
->>>>>>> Stashed changes
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									" \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"\r",
-									"        let resBody = new Buffer.from(res.stream).toString() \r",
-									"        let jsondata = JSON.parse(resBody) \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									")\r",
-									"\r",
-									"\r",
-									"\r",
-									"\r",
-									""
 								],
 								"type": "text/javascript"
 							}
@@ -1870,23 +1293,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');",
-									"",
-									"// Future Dates test case needs to be written in code. These two tests are just placeholder for future development.",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"The swagger throw overflow value error\", function () {",
@@ -1904,26 +1315,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); ",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    },function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody)",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); ",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-=======
 									"const moment = require('moment');\r",
 									"let random = Math.floor(Math.random() * 500)\r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
@@ -1943,7 +1334,6 @@
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -1983,21 +1373,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"The swagger throw overflow value error\", function () {",
@@ -2015,26 +1395,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); ",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    },function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody)",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt.DtTm = moment().toISOString(); ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-=======
 									"const moment = require('moment'); \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
@@ -2053,7 +1413,6 @@
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -2115,39 +1474,25 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
 									"let random = Math.floor(Math.random() * 500)\r",
->>>>>>> Stashed changes
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    },function (err, res) {\r",
-=======
 									"    }, function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID); \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
->>>>>>> Stashed changes
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
@@ -2211,13 +1556,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4(); \r",
->>>>>>> Stashed changes
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
@@ -2230,11 +1571,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"\"; \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth= \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
->>>>>>> Stashed changes
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2288,11 +1625,7 @@
 									"pm.test(\"The swagger throw overflow value error\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.CreDtTm must be date-time format\")",
-=======
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.PmtInfId has longer length than allowed\")",
->>>>>>> Stashed changes
 									"});",
 									"",
 									""
@@ -2304,13 +1637,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4(); \r",
->>>>>>> Stashed changes
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
@@ -2323,12 +1652,8 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = \"nodate\"; \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = \"b51ec534-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069\";\r",
 									"      \r",
->>>>>>> Stashed changes
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2352,18 +1677,9 @@
 							}
 						},
 						"url": {
-<<<<<<< Updated upstream
-							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/execute",
-							"protocol": "https",
-							"host": [
-								"frmfaas",
-								"sybrin",
-								"com"
-=======
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/execute",
 							"host": [
 								"{{ofUrl}}"
->>>>>>> Stashed changes
 							],
 							"path": [
 								"function",
@@ -2403,15 +1719,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } }\r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -2423,11 +1734,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = null; \r",
-=======
 									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry = \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\"; \r",
->>>>>>> Stashed changes
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2471,19 +1778,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"The swagger throw overflow value error\", function () {",
@@ -2508,21 +1807,13 @@
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    }, function (err, res) {\r",
-=======
 									"    },function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-<<<<<<< Updated upstream
-									"        let jsondata = JSON.parse(resBody) \r",
-=======
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\"; \r",
->>>>>>> Stashed changes
 									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
 									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"        pm.request.body.raw=jsondata;\r",
@@ -2572,13 +1863,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
-<<<<<<< Updated upstream
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-=======
 									"",
->>>>>>> Stashed changes
 									"    pm.response.to.have.status(200);",
 									"",
 									"});",
@@ -2596,27 +1881,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); ",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    }, function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString();  ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-									") "
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
@@ -2641,7 +1905,6 @@
 									"\r",
 									"\r",
 									""
->>>>>>> Stashed changes
 								],
 								"type": "text/javascript"
 							}
@@ -2661,16 +1924,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -2693,19 +1947,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);  ",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -2722,26 +1968,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); ",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    },function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
@@ -2761,7 +1987,6 @@
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.CreDtTm = \"\";\r",
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -2782,16 +2007,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -2814,19 +2030,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -2844,26 +2052,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment'); ",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    },function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
@@ -2885,7 +2073,6 @@
 									"        pm.request.body.raw=jsondata;\r",
 									" \r",
 									"    }\r",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -2906,16 +2093,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -2938,19 +2116,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -2967,26 +2137,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"const moment = require('moment');",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } ",
-									"let requestz = pm.sendRequest(",
-									"    {",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",",
-									"        method: \"POST\",",
-									"        body: body",
-									"    },function (err, res) {",
-									"        if (err != null) {",
-									"            console.error(err);",
-									"        }",
-									"        let resBody = new Buffer.from(res.stream).toString()",
-									"        let jsondata = JSON.parse(resBody) ",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.CreDtTm = moment().toISOString(); ",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);",
-									"        pm.request.body.raw=jsondata;",
-									"    }",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
@@ -3008,7 +2158,6 @@
 									"        pm.request.body.raw=jsondata;\r",
 									" \r",
 									"    }\r",
->>>>>>> Stashed changes
 									") "
 								],
 								"type": "text/javascript"
@@ -3029,16 +2178,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3061,19 +2201,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -3093,40 +2225,24 @@
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
-<<<<<<< Updated upstream
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-=======
 									"let random = Math.floor(Math.random() * 500)\r",
 									" \r",
 									"  \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    },function (err, res) {\r",
-=======
 									"    }, function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        myUUID= myUUID.replace('-','')\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = myUUID; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-=======
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.InitgPty.Nm = null;\r",
 									"        pm.request.body.raw=jsondata;\r",
 									" \r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -3148,16 +2264,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3180,19 +2287,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 200\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(200);",
-=======
 									"pm.test(\"Status code is 400\", function () {",
 									"    if (pm.response.code != 200) { ",
 									"        console.error(pm.response.json().errors[0].error);",
 									"    }",
 									"    pm.response.to.have.status(400);",
->>>>>>> Stashed changes
 									"});",
 									"",
 									"pm.test(\"MsgId should not be blank\", function () {",
@@ -3212,13 +2311,9 @@
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
-<<<<<<< Updated upstream
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-=======
 									"let random = Math.floor(Math.random() * 500) \r",
 									"  \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -3229,19 +2324,9 @@
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-<<<<<<< Updated upstream
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        myUUID= myUUID.replace('-','')\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = myUUID; \r",
-									"       \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-=======
 									"        resBody = resBody.replace(\"CdtrPmtActvtnReq\", \"CdtrPmtActvtn\")\r",
 									"        let jsondata = JSON.parse(resBody)  \r",
 									"        pm.request.body=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -3263,16 +2348,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3305,15 +2381,8 @@
 									"pm.test(\"MsgId should not be blank\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt is less than minimum\")",
-									"});",
-									"",
-									""
-=======
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\\ndata.CdtrPmtActvtnReq is required\")",
 									"});"
->>>>>>> Stashed changes
 								],
 								"type": "text/javascript"
 							}
@@ -3322,46 +2391,25 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.variables.set(\"InstdAmt\", -1);\r",
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
 									"let random = Math.floor(Math.random() * 500) \r",
 									"  \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
 									"        method: \"POST\",\r",
 									"        body: body\r",
-<<<<<<< Updated upstream
-									"    },function (err, res) {\r",
-=======
 									"    }, function (err, res) {\r",
->>>>>>> Stashed changes
 									"        if (err != null) {\r",
 									"            console.error(err);\r",
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
-<<<<<<< Updated upstream
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.InstdAmt.Amt.Amt = -1; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-=======
 									"        resBody = resBody.replace(\"TxTp\", \"Tx\")\r",
 									"        let jsondata = JSON.parse(resBody)\r",
 									"        pm.request.body=jsondata;\r",
->>>>>>> Stashed changes
 									"    }\r",
 									") "
 								],
@@ -3383,16 +2431,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3425,15 +2464,8 @@
 									"pm.test(\"MsgId should not be blank\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-<<<<<<< Updated upstream
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt is less than minimum\")",
-									"});",
-									"",
-									""
-=======
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CdtrPmtActvtnReq.GrpHdr.MsgId has longer length than allowed\")",
 									"});"
->>>>>>> Stashed changes
 								],
 								"type": "text/javascript"
 							}
@@ -3442,19 +2474,11 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.variables.set(\"InstdAmt\", -1);\r",
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-=======
 									"const moment = require('moment');\r",
 									"var uuid = require('uuid');\r",
 									"var myUUID = uuid.v4();\r",
 									"let random = Math.floor(Math.random() * 500)  \r",
 									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain013'}), options: { raw: { language: 'json' } } } \r",
->>>>>>> Stashed changes
 									"let requestz = pm.sendRequest(\r",
 									"    {\r",
 									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
@@ -3466,13 +2490,7 @@
 									"        }\r",
 									"        let resBody = new Buffer.from(res.stream).toString()\r",
 									"        let jsondata = JSON.parse(resBody)\r",
-<<<<<<< Updated upstream
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.Amt.EqvtAmt.Amt.Amt = -1; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-=======
 									"        jsondata.CdtrPmtActvtnReq.GrpHdr.MsgId = myUUID+myUUID+myUUID+myUUID+myUUID;\r",
->>>>>>> Stashed changes
 									"        pm.request.body.raw=jsondata;\r",
 									"    }\r",
 									") "
@@ -3495,16 +2513,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3572,34 +2581,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.MsgId = \"2669e349-500d-44ba-9e27-7767a16608a0-7767a16608a0-7767a16608a0\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -3616,16 +2597,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3695,51 +2667,10 @@
 								],
 								"type": "text/javascript"
 							}
-<<<<<<< Updated upstream
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment'); \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    },function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
-=======
->>>>>>> Stashed changes
 						}
 					],
 					"request": {
 						"method": "POST",
-<<<<<<< Updated upstream
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 						"header": [
 							{
 								"key": "Content-Type",
@@ -3753,7 +2684,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3821,36 +2751,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let random = Math.floor(Math.random() * 500)\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.PrvtId.DtAndPlcOfBirth.CityOfBirth = \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -3867,16 +2767,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -3944,35 +2835,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4(); \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.Dbtr.Id.PrvtId.DtAndPlcOfBirth.CtryOfBirth= \"UnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknownUnknown\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -3989,16 +2851,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -4066,36 +2919,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4(); \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    },function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.PmtInfId = \"b51ec534-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069-ee48-4575-b6a9-ead2955b8069\";\r",
-									"      \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -4112,16 +2935,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -4189,35 +3003,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment');\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } }\r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    }, function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.PmtInf.ReqdAdvcTp.DbtAdvc.Prtry = \"Advice with transaction details Advice with transaction details Advice with transaction detailsAdvice with transaction details Advice with transaction details Advice with transaction details Advice with transaction details\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -4234,16 +3019,7 @@
 						],
 						"body": {
 							"mode": "raw",
-<<<<<<< Updated upstream
-							"raw": " ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-=======
 							"raw": " "
->>>>>>> Stashed changes
 						},
 						"url": {
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/quoteReply",
@@ -4258,30 +3034,19 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Pacs002",
+			"item": [
 				{
-					"name": "Test 7.2 - Value Overflow (InitgPty.Nm) Copy",
+					"name": "Test 1 - happy path",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-<<<<<<< Updated upstream
-									"pm.test(\"Status code is 400\", function () {",
-									"    if (pm.response.code != 200) { ",
-									"        console.error(pm.response.json().errors[0].error);",
-									"    }",
-									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"The swagger throw overflow value error\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm has longer length than allowed\")",
-									"});",
-									"",
-									""
-=======
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
@@ -4312,34 +3077,6 @@
 									"        pm.request.body.raw = jsondata;\r",
 									"    }\r",
 									") "
->>>>>>> Stashed changes
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const moment = require('moment'); \r",
-									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pain001' }), options: { raw: { language: 'json' } } } \r",
-									"let requestz = pm.sendRequest(\r",
-									"    {\r",
-									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
-									"        method: \"POST\",\r",
-									"        body: body\r",
-									"    },function (err, res) {\r",
-									"        if (err != null) {\r",
-									"            console.error(err);\r",
-									"        }\r",
-									"        let resBody = new Buffer.from(res.stream).toString()\r",
-									"        let jsondata = JSON.parse(resBody)\r",
-									"        jsondata.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm = \"Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein Ivan Reese Russel-Klein\"; \r",
-									"        let e2eID = JSON.parse(resBody).CstmrCdtTrfInitn.GrpHdr.MsgId;\r",
-									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"        pm.request.body.raw=jsondata;\r",
-									"    }\r",
-									") "
 								],
 								"type": "text/javascript"
 							}
@@ -4358,21 +3095,13 @@
 							}
 						},
 						"url": {
-<<<<<<< Updated upstream
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
-							"protocol": "http",
-=======
 							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer-response",
->>>>>>> Stashed changes
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
-<<<<<<< Updated upstream
-								"execute"
-=======
 								"transfer-response"
 							]
 						}
@@ -5967,7 +4696,6 @@
 								"function",
 								"off-transaction-monitoring-service",
 								"transfer"
->>>>>>> Stashed changes
 							]
 						}
 					},
