@@ -3128,6 +3128,33 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pacs002' }), options: { raw: { language: 'json' } } }\r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"        jsondata.TxTp = \"\"; \r",
+									"        let e2eID = JSON.parse(resBody).FIToFIPmtSts.GrpHdr.MsgId;\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"        pm.request.body.raw = jsondata;\r",
+									"    }\r",
+									") "
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -3135,7 +3162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"TxTp\": \"\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgId\": \"ec3a6a10-0c31-4564-94f6-ed1d79fed91f\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3176,6 +3203,33 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pacs002' }), options: { raw: { language: 'json' } } }\r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"        jsondata.FIToFIPmtSts = {}; \r",
+									"        let e2eID = JSON.parse(resBody).FIToFIPmtSts.GrpHdr.MsgId;\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"        pm.request.body.raw = jsondata;\r",
+									"    }\r",
+									") "
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -3183,7 +3237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {}\n}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3224,6 +3278,36 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pacs002' }), options: { raw: { language: 'json' } } }\r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"        \r",
+									"        //minupulate data\r",
+									"        jsondata.FIToFIPmtSts.GrpHdr = {}; \r",
+									"\r",
+									"        let e2eID = JSON.parse(resBody).FIToFIPmtSts.GrpHdr.MsgId;\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"        pm.request.body.raw = jsondata;\r",
+									"    }\r",
+									") "
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -3231,7 +3315,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {},\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb518646aa1d\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\n      \"TxSts\": \"ACSC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+							"raw": " ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3267,8 +3351,37 @@
 									"",
 									"pm.test(\"FIToFIPmtSts.GrpHdr.MsgId should not be blank\", function () {",
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
-									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgId pattern mismatch\\ndata.FIToFIPmtSts.GrpHdr.MsgId has less length than allowed\")",
+									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.FIToFIPmtSts.GrpHdr.MsgId has less length than allowed\")",
 									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pacs002' }), options: { raw: { language: 'json' } } }\r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									"        }\r",
+									"        let resBody = new Buffer.from(res.stream).toString()\r",
+									"        let jsondata = JSON.parse(resBody)\r",
+									"\r",
+									"        //minupulate data\r",
+									"        jsondata.FIToFIPmtSts.GrpHdr.MsgId = \"\";\r",
+									"        let e2eID = JSON.parse(resBody).FIToFIPmtSts.GrpHdr.MsgId;\r",
+									"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"        pm.request.body.raw = jsondata;\r",
+									"    }\r",
+									") "
 								],
 								"type": "text/javascript"
 							}
@@ -3317,6 +3430,15 @@
 									"    pm.expect(jsonData.code).to.eql(\"SWAGGER_REQUEST_VALIDATION_FAILED\");",
 									"    pm.expect(jsonData.errors[0].error).to.equal(\"data.TxTp is required\")",
 									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									" "
 								],
 								"type": "text/javascript"
 							}
@@ -3708,6 +3830,25 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"let body = { mode: 'raw', raw: JSON.stringify({ messageType: 'pacs008' }), options: { raw: { language: 'json' } } }\r",
+									"let requestz = pm.sendRequest(\r",
+									"    {\r",
+									"        url: \"https://frmfaas.sybrin.com/function/off-msg-waitron/getrandommessage\",\r",
+									"        method: \"POST\",\r",
+									"        body: body\r",
+									"    }, function (err, res) {\r",
+									"        if (err != null) {\r",
+									"            console.error(err);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -3723,13 +3864,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -3774,13 +3912,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -3825,13 +3960,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -3876,13 +4008,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -3927,13 +4056,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -3978,13 +4104,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4029,12 +4152,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service/transfer",
-							"protocol": "https",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"frmfaas",
-								"sybrin",
-								"com"
+								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
@@ -4080,13 +4200,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4131,13 +4248,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4182,13 +4296,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4233,13 +4344,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4284,13 +4392,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4334,13 +4439,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4384,13 +4486,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4434,13 +4533,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4484,13 +4580,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4534,13 +4627,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4585,13 +4675,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4635,13 +4722,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
@@ -4685,13 +4769,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
