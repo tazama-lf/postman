@@ -259,7 +259,7 @@
 									"    pm.expect(jsonData.result[0].report.status).to.eql(\"NALT\")\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(false);\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".00\");\r",
-									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient transaction history\");\r",
+									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient account history\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -328,7 +328,7 @@
 							"            raw: JSON.stringify({",
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
-							"            \"MsgId",
+							"                \"MsgId",
 							"                        REMOVE { _key: transaction } IN transactionHistory",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
@@ -630,15 +630,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}//function/off-rule-008-rel-1-0-0/execute ",
+					"raw": "{{baseUrl}}/function/off-rule-008-rel-1-0-0/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"",
 						"function",
 						"off-rule-008-rel-1-0-0",
-						"execute "
+						"execute"
 					]
 				}
 			},
@@ -1765,13 +1764,13 @@
 							"const jsonData = pm.response.json();",
 							"const req = JSON.parse(request.data);",
 							"const arangourl = pm.environment.get('arangourl');",
-							"const transactions = [\"96ae98292ec04jhf29b5d40ba99864c38\"]",
+							"const transactions = [\"96ae98292ec04tjhf29b5d40ba99864c38\"]",
 							"const graphTransactions = [",
-							"    \"d923682a97089a8416151afd1ef58355b8e777908007\",",
-							"    \"d923682a97089aa84161519878e58355b8eeee108008\",",
-							"    \"d923682a97077a841615r1ad1e581355b8eeee108007f7accd\",",
-							"    \"d923682a97089aa8416151878e54898355b8eeee108008\",",
-							"    \"d923682a97077a841615r4p1ad1e58355b8eeee108007f7accd\"",
+							"    \"d923682a97089a8416151rafd1ef58355b8e777908007\",",
+							"    \"d923682a97089aa8f4161519878e58355b8eeee108008\",",
+							"    \"d923682a97077a84161r5r1ad1e581355b8eeee108007f7accd\",",
+							"    \"d923682a97089aa8416u151878e54898355b8eeee108008\",",
+							"    \"d923682a97077a84161w5r4p1ad1e58355b8eeee108007f7accd\"",
 							"]",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
