@@ -1145,13 +1145,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service/execute",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{baseUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
 								"off-transaction-monitoring-service",
