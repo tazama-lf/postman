@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6eace5e-ce44-4d56-9604-f7f735a148b5",
+		"_postman_id": "fb3954fb-f248-471a-8e22-b6b7143a4ca6",
 		"name": "Rule-048",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -203,7 +203,7 @@
 									"               \"typologies\":[\r",
 									"                  {\r",
 									"                     \"id\":\"028@1.0.0\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"host\":\"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0.0\",\r",
 									"                     \"rules\":[\r",
 									"                        {\r",
@@ -388,7 +388,7 @@
 									"               \"typologies\":[\r",
 									"                  {\r",
 									"                     \"id\":\"028@1.0.\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"host\":\"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0\",\r",
 									"                     \"rules\":[\r",
 									"                        {\r",
@@ -400,7 +400,7 @@
 									"                  },\r",
 									"                  {\r",
 									"                     \"id\":\"029@1.0\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"host\":\"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0\",\r",
 									"                     \"rules\":[\r",
 									"                        {\r",
@@ -419,7 +419,7 @@
 									"               \"typologies\":[\r",
 									"                  {\r",
 									"                     \"id\":\"030@1.0\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"host\":\"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0.0\",\r",
 									"                     \"rules\":[\r",
 									"                        {\r",
@@ -431,7 +431,7 @@
 									"                  },\r",
 									"                  {\r",
 									"                     \"id\":\"031@1.0\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"host\":\"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                     \"cfg\":\"1.0\",\r",
 									"                     \"rules\":[\r",
 									"                        {\r",
@@ -666,7 +666,7 @@
 									"                        \"typologies\": [\r",
 									"                            {\r",
 									"                                \"id\": \"999_048@1.0.0\",\r",
-									"                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r",
 									"                                \"cfg\": \"1.0.0\",\r",
 									"                                \"rules\": [\r",
 									"                                    {\r",
@@ -1376,7 +1376,7 @@
 									"});\r",
 									"\r",
 									"pm.sendRequest({\r",
-									"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+									"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
@@ -1469,7 +1469,7 @@
 									"",
 									"pm.test(\"Remove Seed Data from DB\", function () {",
 									"    pm.sendRequest({",
-									"        url: 'https://frmarango.sybrin.com/_db/transactionHistory/_api/cursor',",
+									"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,",
 									"        method: 'POST',",
 									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
 									"        body: {",
@@ -1631,7 +1631,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -1885,7 +1885,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -1921,6 +1921,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\"]\r",
 							"\r",
@@ -1971,7 +1972,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -1994,7 +1995,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2002,7 +2003,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -2027,7 +2028,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -2624,7 +2625,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -2687,6 +2688,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\"]\r",
@@ -2739,7 +2741,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -2762,7 +2764,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2770,7 +2772,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -2795,7 +2797,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -3854,7 +3856,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -3930,6 +3932,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\", \"05fe06ae-73b8-11ec-90d6-0242ac12997\"]\r",
@@ -3984,7 +3987,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -4007,7 +4010,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n      \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n      \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -4015,7 +4018,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -4040,7 +4043,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -5099,7 +5102,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -5175,6 +5178,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\", \"05fe06ae-73b8-11ec-90d6-0242ac12997\"]\r",
@@ -5229,7 +5233,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -5252,7 +5256,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -5260,7 +5264,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -5285,7 +5289,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -6344,7 +6348,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -6420,6 +6424,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\", \"05fe06ae-73b8-11ec-90d6-0242ac12997\"]\r",
@@ -6474,7 +6479,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -6497,7 +6502,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -6505,7 +6510,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -6530,7 +6535,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -7596,7 +7601,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -7672,6 +7677,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\", \"05fe06ae-73b8-11ec-90d6-0242ac12997\"]\r",
@@ -7726,7 +7732,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -7749,7 +7755,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_048@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_048@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"048@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.1\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_048@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_048@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"048@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.1\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -7757,7 +7763,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -7782,7 +7788,7 @@
 						"exec": [
 							"\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
-							"\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const now = new Date().getTime();\r",
 							"\r",
 							"const ruleConfig = [\r",
@@ -8840,7 +8846,7 @@
 							"});\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
@@ -8916,6 +8922,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json();\r",
+							"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\", \"05fe06ae-73b8-11ec-90d6-0242ac12997\"]\r",
@@ -8970,7 +8977,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -8993,7 +9000,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n      \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n      \"networkMap\": {\r\n    \"messages\": [\r\n      {\r\n            \"id\": \"004_048@1.0.0\",\r\n            \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"channels\": [\r\n                {\r\n                    \"id\": \"001@1.0.0\",\r\n                    \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"999_048@1.0.0\",\r\n                            \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"048@1.0.0\",\r\n                                    \"host\": \"http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -9001,7 +9008,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-048-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-048-rel-1-0-0/execute",
 					"protocol": "http",
 					"host": [
 						"gateway",
