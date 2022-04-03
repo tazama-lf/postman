@@ -1025,216 +1025,6 @@
 			]
 		},
 		{
-			"name": "pain 001",
-			"item": [
-				{
-					"name": "transaction 1",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
-									"    method: 'POST',\r",
-									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({\r",
-									"            query: `FOR doc IN networkConfiguration\r",
-									"                    FILTER doc.active == true\r",
-									"                    UPDATE doc WITH { active: false } IN networkConfiguration`\r",
-									"        })\r",
-									"    }\r",
-									"});\r",
-									"\r",
-									"var req = JSON.parse(request.data);\r",
-									"console.log(req.CstmrCdtTrfInitn.GrpHdr.MsgId);\r",
-									"let e2eID = JSON.stringify(req.CstmrCdtTrfInitn.GrpHdr.MsgId);\r",
-									"\r",
-									"console.log(e2eID)\r",
-									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
-									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
-									"console.log(e2eID)\r",
-									"\r",
-									"pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
-									"\r",
-									"const networkMaps = [\r",
-									"    {\r",
-									"    \"key\": \"102\",\r",
-									"    \"active\": true,\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"   \"messages\":[\r",
-									"      {\r",
-									"         \"id\":\"001@1.0.0\",\r",
-									"         \"host\":\"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r",
-									"         \"cfg\":\"1.0.0\",\r",
-									"         \"txTp\":\"pain.001.001.11\",\r",
-									"         \"channels\":[\r",
-									"            {\r",
-									"               \"id\":\"001@1.0.0\",\r",
-									"               \"host\":\"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r",
-									"               \"cfg\":\"1.0.0\",\r",
-									"               \"typologies\":[\r",
-									"                  {\r",
-									"                     \"id\":\"028@1.0.0\",\r",
-									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
-									"                     \"cfg\":\"1.0.0\",\r",
-									"                     \"rules\":[\r",
-									"                        {\r",
-									"                           \"id\":\"003@1.0.0\",\r",
-									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-003\",\r",
-									"                           \"cfg\":\"1.0.0\"\r",
-									"                        },\r",
-									"                        {\r",
-									"                           \"id\":\"028@1.0.0\",\r",
-									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-028\",\r",
-									"                           \"cfg\":\"1.0.0\"\r",
-									"                        }\r",
-									"                     ]\r",
-									"                  }\r",
-									"               ]\r",
-									"            }\r",
-									"         ]\r",
-									"      }\r",
-									"   ]\r",
-									"}\r",
-									"]\r",
-									"\r",
-									"setTimeout(checkStatusCode, 5000);\r",
-									"\r",
-									"    function checkStatusCode() {\r",
-									"\r",
-									"        pm.sendRequest({\r",
-									"            url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
-									"            method: 'POST',\r",
-									"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
-									"            body: {\r",
-									"                mode: 'raw',\r",
-									"                raw: JSON.stringify({\r",
-									"                    query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
-									"                            INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
-									"                            OPTIONS { overwrite: true }`\r",
-									"                })\r",
-									"            }\r",
-									"        });\r",
-									"    }\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"TxTp\": \"pain.001.001.11\",\r\n    \"CstmrCdtTrfInitn\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"6b444365559776cbe7dfb551a6888\",\r\n            \"CreDtTm\": \"2021-11-12T10:18:43.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"InitgPty\": {\r\n                \"Nm\": \"Colin Cameron\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1951-04-28\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": { \r\n                            \"Id\": \"+27718877119\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-718877119\"\r\n                }\r\n            }\r\n        },\r\n        \"PmtInf\": {\r\n            \"PmtInfId\": \"6fba567b-bc2b-4d66-80a8-2434dbd2\",\r\n            \"PmtMtd\": \"TRA\",\r\n            \"ReqdAdvcTp\": {\r\n                \"DbtAdvc\": {\r\n                    \"Cd\": \"ADWD\",\r\n                    \"Prtry\": \"Advice with transaction details\"\r\n                }\r\n            },\r\n            \"ReqdExctnDt\": {\r\n                \"Dt\": \"2021-11-12\",\r\n                \"DtTm\": \"2021-11-12T10:18:43.000Z\"\r\n            },\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Colin Cameron\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1951-04-28\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27718877119\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-718877119\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27718877119\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Colin Cameron\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtTrfTxInf\": {\r\n                \"PmtId\": {\r\n                    \"EndToEndId\": \"2c516801007642dfb892944dde1cf845800\"\r\n                },\r\n                \"PmtTpInf\": {\r\n                    \"CtgyPurp\": {\r\n                        \"Prtry\": \"WITHDRAWAL\"\r\n                    }\r\n                },\r\n                \"Amt\": {\r\n                    \"InstdAmt\": {\r\n                        \"Amt\": {\r\n                            \"Amt\":123123,\r\n                            \"Ccy\": \"USD\"\r\n                        }\r\n                    },\r\n                    \"EqvtAmt\": {\r\n                        \"Amt\": {\r\n                            \"Amt\":123123,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"CcyOfTrf\": \"USD\"\r\n                    }\r\n                },\r\n                \"ChrgBr\": \"DEBT\",\r\n                \"CdtrAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Cdtr\": {\r\n                    \"Nm\": \"David Owen Klein\",\r\n                    \"Id\": {\r\n                        \"PrvtId\": {\r\n                            \"DtAndPlcOfBirth\": {\r\n                                \"BirthDt\": \"1962-01-26\",\r\n                                \"CityOfBirth\": \"Unknown\",\r\n                                \"CtryOfBirth\": \"ZZ\"\r\n                            },\r\n                            \"Othr\": {\r\n                                \"Id\": \"+27781569879\",\r\n                                \"SchmeNm\": {\r\n                                    \"Prtry\": \"MSISDN\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    \"CtctDtls\": {\r\n                        \"MobNb\": \"+27-781569879\"\r\n                    }\r\n                },\r\n                \"CdtrAcct\": {\r\n                    \"Id\": {\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27781569879\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"Nm\": \"David Klein\"\r\n                },\r\n                \"Purp\": {\r\n                    \"Cd\": \"MP2P\"\r\n                },\r\n                \"RgltryRptg\": {\r\n                    \"Dtls\": {\r\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                        \"Cd\": \"100\"\r\n                    }\r\n                },\r\n                \"RmtInf\": {\r\n                    \"Ustrd\": \"Payment of USD 53317231546556900.46 from Colin to David\"\r\n                },\r\n                \"SplmtryData\": {\r\n                    \"Envlp\": {\r\n                        \"Doc\": {\r\n                            \"Dbtr\": {\r\n                                \"FrstNm\": \"Colin\",\r\n                                \"MddlNm\": \"\",\r\n                                \"LastNm\": \"Cameron\",\r\n                                \"MrchntClssfctnCd\": \"BLANK\"\r\n                            },\r\n                            \"Cdtr\": {\r\n                                \"FrstNm\": \"David\",\r\n                                \"MddlNm\": \"Owen\",\r\n                                \"LastNm\": \"Klein\",\r\n                                \"MrchntClssfctnCd\": \"BLANK\"\r\n                            },\r\n                            \"DbtrFinSvcsPrvdrFees\": {\r\n                                \"Ccy\": \"USD\",\r\n                                \"Amt\": 123123\r\n                            },\r\n                            \"Xprtn\": \"2021-11-12T10:23:43.000Z\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"InitgPty\": {\r\n                        \"InitrTp\": \"CONSUMER\",\r\n                        \"Glctn\": {\r\n                            \"Lat\": \"-3.0187\",\r\n                            \"Long\": \"37.4368\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
-							"protocol": "http",
-							"host": [
-								"gateway",
-								"openfaas"
-							],
-							"port": "8080",
-							"path": [
-								"function",
-								"off-transaction-monitoring-service",
-								"execute"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Arango db check transaction 1",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var Header = require('postman-collection').Header;\r",
-									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var req = JSON.parse(request.data);\r",
-									"\r",
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"check that there is actual data received back \", function () {\r",
-									"    console.log(jsonData.result)\r",
-									"    pm.expect(jsonData.result).to.not.eql([]);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"for transaction In transactions FILTER transaction.transaction.CstmrCdtTrfInitn.GrpHdr.MsgId == {{EndToEndId}} return transaction \"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
-							"host": [
-								"arango",
-								"development"
-							],
-							"port": "8529",
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"cursor"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "pain 013",
 			"item": [
 				{
@@ -1625,6 +1415,216 @@
 			]
 		},
 		{
+			"name": "pain 001",
+			"item": [
+				{
+					"name": "transaction 1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"    method: 'POST',\r",
+									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            query: `FOR doc IN networkConfiguration\r",
+									"                    FILTER doc.active == true\r",
+									"                    UPDATE doc WITH { active: false } IN networkConfiguration`\r",
+									"        })\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"var req = JSON.parse(request.data);\r",
+									"console.log(req.CstmrCdtTrfInitn.GrpHdr.MsgId);\r",
+									"let e2eID = JSON.stringify(req.CstmrCdtTrfInitn.GrpHdr.MsgId);\r",
+									"\r",
+									"console.log(e2eID)\r",
+									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
+									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
+									"console.log(e2eID)\r",
+									"\r",
+									"pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+									"\r",
+									"const networkMaps = [\r",
+									"    {\r",
+									"    \"key\": \"102\",\r",
+									"    \"active\": true,\r",
+									"    \"cfg\": \"1.0.0\",\r",
+									"   \"messages\":[\r",
+									"      {\r",
+									"         \"id\":\"001@1.0.0\",\r",
+									"         \"host\":\"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r",
+									"         \"cfg\":\"1.0.0\",\r",
+									"         \"txTp\":\"pain.001.001.11\",\r",
+									"         \"channels\":[\r",
+									"            {\r",
+									"               \"id\":\"001@1.0.0\",\r",
+									"               \"host\":\"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r",
+									"               \"cfg\":\"1.0.0\",\r",
+									"               \"typologies\":[\r",
+									"                  {\r",
+									"                     \"id\":\"028@1.0.0\",\r",
+									"                     \"host\":\"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r",
+									"                     \"cfg\":\"1.0.0\",\r",
+									"                     \"rules\":[\r",
+									"                        {\r",
+									"                           \"id\":\"003@1.0.0\",\r",
+									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-003\",\r",
+									"                           \"cfg\":\"1.0.0\"\r",
+									"                        },\r",
+									"                        {\r",
+									"                           \"id\":\"028@1.0.0\",\r",
+									"                           \"host\":\"http://gateway.openfaas:8080/function/off-rule-028\",\r",
+									"                           \"cfg\":\"1.0.0\"\r",
+									"                        }\r",
+									"                     ]\r",
+									"                  }\r",
+									"               ]\r",
+									"            }\r",
+									"         ]\r",
+									"      }\r",
+									"   ]\r",
+									"}\r",
+									"]\r",
+									"\r",
+									"setTimeout(checkStatusCode, 5000);\r",
+									"\r",
+									"    function checkStatusCode() {\r",
+									"\r",
+									"        pm.sendRequest({\r",
+									"            url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"            method: 'POST',\r",
+									"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"            body: {\r",
+									"                mode: 'raw',\r",
+									"                raw: JSON.stringify({\r",
+									"                    query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
+									"                            INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
+									"                            OPTIONS { overwrite: true }`\r",
+									"                })\r",
+									"            }\r",
+									"        });\r",
+									"    }\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TxTp\": \"pain.001.001.11\",\r\n    \"CstmrCdtTrfInitn\": {\r\n        \"GrpHdr\": {\r\n            \"MsgId\": \"6b444365559776cbe7dfb551a6888\",\r\n            \"CreDtTm\": \"2021-11-12T10:18:43.000Z\",\r\n            \"NbOfTxs\": 1,\r\n            \"InitgPty\": {\r\n                \"Nm\": \"Colin Cameron\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1951-04-28\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": { \r\n                            \"Id\": \"+27718877119\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-718877119\"\r\n                }\r\n            }\r\n        },\r\n        \"PmtInf\": {\r\n            \"PmtInfId\": \"6fba567b-bc2b-4d66-80a8-2434dbd2\",\r\n            \"PmtMtd\": \"TRA\",\r\n            \"ReqdAdvcTp\": {\r\n                \"DbtAdvc\": {\r\n                    \"Cd\": \"ADWD\",\r\n                    \"Prtry\": \"Advice with transaction details\"\r\n                }\r\n            },\r\n            \"ReqdExctnDt\": {\r\n                \"Dt\": \"2021-11-12\",\r\n                \"DtTm\": \"2021-11-12T10:18:43.000Z\"\r\n            },\r\n            \"Dbtr\": {\r\n                \"Nm\": \"Colin Cameron\",\r\n                \"Id\": {\r\n                    \"PrvtId\": {\r\n                        \"DtAndPlcOfBirth\": {\r\n                            \"BirthDt\": \"1951-04-28\",\r\n                            \"CityOfBirth\": \"Unknown\",\r\n                            \"CtryOfBirth\": \"ZZ\"\r\n                        },\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27718877119\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    }\r\n                },\r\n                \"CtctDtls\": {\r\n                    \"MobNb\": \"+27-718877119\"\r\n                }\r\n            },\r\n            \"DbtrAcct\": {\r\n                \"Id\": {\r\n                    \"Othr\": {\r\n                        \"Id\": \"+27718877119\",\r\n                        \"SchmeNm\": {\r\n                            \"Prtry\": \"MSISDN\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Nm\": \"Colin Cameron\"\r\n            },\r\n            \"DbtrAgt\": {\r\n                \"FinInstnId\": {\r\n                    \"ClrSysMmbId\": {\r\n                        \"MmbId\": \"dfsp001\"\r\n                    }\r\n                }\r\n            },\r\n            \"CdtTrfTxInf\": {\r\n                \"PmtId\": {\r\n                    \"EndToEndId\": \"2c516801007642dfb892944dde1cf845800\"\r\n                },\r\n                \"PmtTpInf\": {\r\n                    \"CtgyPurp\": {\r\n                        \"Prtry\": \"WITHDRAWAL\"\r\n                    }\r\n                },\r\n                \"Amt\": {\r\n                    \"InstdAmt\": {\r\n                        \"Amt\": {\r\n                            \"Amt\":123123,\r\n                            \"Ccy\": \"USD\"\r\n                        }\r\n                    },\r\n                    \"EqvtAmt\": {\r\n                        \"Amt\": {\r\n                            \"Amt\":123123,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"CcyOfTrf\": \"USD\"\r\n                    }\r\n                },\r\n                \"ChrgBr\": \"DEBT\",\r\n                \"CdtrAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Cdtr\": {\r\n                    \"Nm\": \"David Owen Klein\",\r\n                    \"Id\": {\r\n                        \"PrvtId\": {\r\n                            \"DtAndPlcOfBirth\": {\r\n                                \"BirthDt\": \"1962-01-26\",\r\n                                \"CityOfBirth\": \"Unknown\",\r\n                                \"CtryOfBirth\": \"ZZ\"\r\n                            },\r\n                            \"Othr\": {\r\n                                \"Id\": \"+27781569879\",\r\n                                \"SchmeNm\": {\r\n                                    \"Prtry\": \"MSISDN\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    \"CtctDtls\": {\r\n                        \"MobNb\": \"+27-781569879\"\r\n                    }\r\n                },\r\n                \"CdtrAcct\": {\r\n                    \"Id\": {\r\n                        \"Othr\": {\r\n                            \"Id\": \"+27781569879\",\r\n                            \"SchmeNm\": {\r\n                                \"Prtry\": \"MSISDN\"\r\n                            }\r\n                        }\r\n                    },\r\n                    \"Nm\": \"David Klein\"\r\n                },\r\n                \"Purp\": {\r\n                    \"Cd\": \"MP2P\"\r\n                },\r\n                \"RgltryRptg\": {\r\n                    \"Dtls\": {\r\n                        \"Tp\": \"BALANCE OF PAYMENTS\",\r\n                        \"Cd\": \"100\"\r\n                    }\r\n                },\r\n                \"RmtInf\": {\r\n                    \"Ustrd\": \"Payment of USD 53317231546556900.46 from Colin to David\"\r\n                },\r\n                \"SplmtryData\": {\r\n                    \"Envlp\": {\r\n                        \"Doc\": {\r\n                            \"Dbtr\": {\r\n                                \"FrstNm\": \"Colin\",\r\n                                \"MddlNm\": \"\",\r\n                                \"LastNm\": \"Cameron\",\r\n                                \"MrchntClssfctnCd\": \"BLANK\"\r\n                            },\r\n                            \"Cdtr\": {\r\n                                \"FrstNm\": \"David\",\r\n                                \"MddlNm\": \"Owen\",\r\n                                \"LastNm\": \"Klein\",\r\n                                \"MrchntClssfctnCd\": \"BLANK\"\r\n                            },\r\n                            \"DbtrFinSvcsPrvdrFees\": {\r\n                                \"Ccy\": \"USD\",\r\n                                \"Amt\": 123123\r\n                            },\r\n                            \"Xprtn\": \"2021-11-12T10:23:43.000Z\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        },\r\n        \"SplmtryData\": {\r\n            \"Envlp\": {\r\n                \"Doc\": {\r\n                    \"InitgPty\": {\r\n                        \"InitrTp\": \"CONSUMER\",\r\n                        \"Glctn\": {\r\n                            \"Lat\": \"-3.0187\",\r\n                            \"Long\": \"37.4368\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
+							"protocol": "http",
+							"host": [
+								"gateway",
+								"openfaas"
+							],
+							"port": "8080",
+							"path": [
+								"function",
+								"off-transaction-monitoring-service",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Arango db check transaction 1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var Header = require('postman-collection').Header;\r",
+									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check that there is actual data received back \", function () {\r",
+									"    console.log(jsonData.result)\r",
+									"    pm.expect(jsonData.result).to.not.eql([]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"for transaction In transactions FILTER transaction.transaction.CstmrCdtTrfInitn.GrpHdr.MsgId == {{EndToEndId}} return transaction \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
+							"protocol": "http",
+							"host": [
+								"arango",
+								"development"
+							],
+							"port": "8529",
+							"path": [
+								"_db",
+								"transactionHistory",
+								"_api",
+								"cursor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Test Scenario 1",
 			"event": [
 				{
@@ -1917,6 +1917,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"const arangourl = pm.environment.get('arangourl');\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\"]\r",
 							"\r",
@@ -1950,7 +1951,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from DB\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -1967,7 +1968,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -1990,7 +1991,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"{{openFaasUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{openFaasUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"{{openFaasUrl}}/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1998,13 +1999,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/function/off-rule-076-rel-1-0-0/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-076-rel-1-0-0",
@@ -2965,6 +2963,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"const arangourl = pm.environment.get('arangourl');\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\"]\r",
 							"\r",
@@ -3001,7 +3000,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from DB\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -3018,7 +3017,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -3041,7 +3040,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"{{openFaasUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{openFaasUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"{{openFaasUrl}}/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3049,13 +3048,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/function/off-rule-076-rel-1-0-0/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-076-rel-1-0-0",
@@ -4016,6 +4012,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"const arangourl = pm.environment.get('arangourl');\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\"]\r",
 							"\r",
@@ -4052,7 +4049,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from DB\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -4069,7 +4066,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -4092,7 +4089,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"{{openFaasUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{openFaasUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"{{openFaasUrl}}/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -5046,6 +5043,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"const arangourl = pm.environment.get('arangourl');\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\"]\r",
 							"\r",
@@ -5082,7 +5080,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from DB\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -5099,7 +5097,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -5122,7 +5120,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n     \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"{{openFaasUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{openFaasUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"{{openFaasUrl}}/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -6073,6 +6071,7 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
+							"const arangourl = pm.environment.get('arangourl');\r",
 							"\r",
 							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\", \"05fe06ae-73b8-11ec-90d6-0242ac120003\",\"40bea71c5a054978ad0da7f94b2a40e9799\",\"22bea71c5a054978ad0da7f94b2a40e9799\", \"66ae98292ec04b66890ba99864c38\", \"aadg795a054978ad0da7f94b2a40e9799\"]\r",
 							"\r",
@@ -6109,7 +6108,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from DB\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',\r",
+							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -6126,7 +6125,7 @@
 							"\r",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
 							"    pm.sendRequest({\r",
-							"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',\r",
+							"        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
 							"        method: 'POST',\r",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"        body: {\r",
@@ -6149,7 +6148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.1\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"6b444365119746c5be7dfb5516ba67c4\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb89294dde\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_076@1.0.0\",\r\n                \"host\": \"{{openFaasUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{openFaasUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_076@1.0.0\",\r\n                                \"host\": \"{{openFaasUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"076@1.0.0\",\r\n                                        \"host\": \"{{openFaasUrl}}/function/off-rule-076-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.1\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -6157,13 +6156,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-076-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/function/off-rule-076-rel-1-0-0/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
 						"off-rule-076-rel-1-0-0",
