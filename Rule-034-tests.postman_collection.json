@@ -1,0 +1,747 @@
+{
+  "info": {
+    "_postman_id": "0fe4cf26-6ad0-47c7-be49-64110d4c273e",
+    "name": "Rule-034 - jenkins",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "e2e pacs 002",
+      "item": [
+        {
+          "name": "transaction 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "var req = JSON.parse(request.data);",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"should not have errors\", function () {",
+                  "    pm.expect(jsonData).not.to.have.property('errors')",
+                  "});",
+                  "",
+                  "pm.test(\"should be a valid transaction\", function () {",
+                  "    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+                  "});",
+                  "",
+                  "pm.test(\"should send to data preparation successfully\", function () {",
+                  "    pm.expect(jsonData.sent).to.eql(true);",
+                  "});",
+                  "",
+                  "pm.test(\"should have the same outgoing and incoming json\", function () {",
+                  "    pm.expect(jsonData.data).to.eql(req);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "\r",
+                  "var uuid = require('uuid');\r",
+                  "var myUUID = uuid.v4();\r",
+                  "pm.collectionVariables.set(\"transactionID\", myUUID.slice(-32));\r",
+                  "const arangourl = pm.environment.get(\"arangourl\");\r",
+                  "const baseUrl = pm.environment.get(\"baseUrl\");\r",
+                  "\r",
+                  "const msgId = pm.collectionVariables.get(\"transactionID\");\r",
+                  "\r",
+                  "pm.sendRequest({\r",
+                  "    url: `http://arango.development:8529/_db/networkmap/_api/cursor`,\r",
+                  "    method: 'POST',\r",
+                  "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+                  "    body: {\r",
+                  "        mode: 'raw',\r",
+                  "        raw: JSON.stringify({\r",
+                  "            query: `FOR doc IN networkConfiguration\r",
+                  "                    FILTER doc.active == true\r",
+                  "                    UPDATE doc WITH { active: false } IN networkConfiguration`\r",
+                  "        })\r",
+                  "    }\r",
+                  "});\r",
+                  "\r",
+                  "let e2eID = JSON.stringify(msgId);\r",
+                  "e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
+                  "e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
+                  "pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+                  "\r",
+                  "const networkMaps = [\r",
+                  "{   \"key\": \"034\",\r",
+                  "    \"active\":true,\r",
+                  "    \"cfg\": \"1.0.0\",\r",
+                  "    \"messages\": [\r",
+                  "        {\r",
+                  "            \"id\": \"004_034@1.0.0\",\r",
+                  "            \"host\": `http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
+                  "            \"cfg\": \"1.0.0\",\r",
+                  "            \"txTp\": \"pacs.002.001.12\",\r",
+                  "            \"channels\": [\r",
+                  "                {\r",
+                  "                    \"id\": \"001@1.0.0\",\r",
+                  "                    \"host\": `http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
+                  "                    \"cfg\": \"1.0.0\",\r",
+                  "                    \"typologies\": [\r",
+                  "                        {\r",
+                  "                            \"id\": \"999_034@1.0.0\",\r",
+                  "                            \"host\": `http://gateway.openfaas:8080/function/off-typology-processor-rel-1-0-0`,\r",
+                  "                            \"cfg\": \"1.0.0\",\r",
+                  "                            \"rules\": [\r",
+                  "                                {\r",
+                  "                                    \"id\": \"034@1.0.0\",\r",
+                  "                                    \"host\": `http://gateway.openfaas:8080/function/off-rule-034-rel-1-0-0`,\r",
+                  "                                    \"cfg\": \"1.0.0\"\r",
+                  "                                }\r",
+                  "                            ]\r",
+                  "                        }\r",
+                  "                    ]\r",
+                  "                }\r",
+                  "            ]\r",
+                  "        }\r",
+                  "    ]\r",
+                  "}           \r",
+                  "\r",
+                  "]\r",
+                  "\r",
+                  "setTimeout(checkStatusCode, 2000);\r",
+                  "\r",
+                  "    function checkStatusCode() {\r",
+                  "\r",
+                  "       pm.sendRequest({\r",
+                  "    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
+                  "    method: 'POST',\r",
+                  "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+                  "    body: {\r",
+                  "        mode: 'raw',\r",
+                  "        raw: JSON.stringify({\r",
+                  "            query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
+                  "                    INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
+                  "                    OPTIONS { overwrite: true }`\r",
+                  "        })\r",
+                  "    }\r",
+                  "});\r",
+                  "    }\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TxTp\": \"pacs.002.001.12\",\n  \"FIToFIPmtSts\": {\n    \"GrpHdr\": {\n      \"MsgId\": \"{{transactionID}}\",\n      \"CreDtTm\": \"2021-11-03T07:24:48.000Z\"\n    },\n    \"TxInfAndSts\": {\n      \"OrgnlInstrId\": \"2f68ae16-467a-4ac4-ba32-eb5\",\n      \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d511\",\n      \"TxSts\": \"ACCC\",\n      \"ChrgsInf\": [\n        {\n          \"Amt\": {\n            \"Amt\": 157605510200862,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp001\"\n              }\n            }\n          }\n        },\n        {\n          \"Amt\": {\n            \"Amt\": 15918156530287100,\n            \"Ccy\": \"USD\"\n          },\n          \"Agt\": {\n            \"FinInstnId\": {\n              \"ClrSysMmbId\": {\n                \"MmbId\": \"dfsp002\"\n              }\n            }\n          }\n        }\n      ],\n      \"AccptncDtTm\": \"2021-11-03T07:24:47.000Z\",\n      \"InstgAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp001\"\n          }\n        }\n      },\n      \"InstdAgt\": {\n        \"FinInstnId\": {\n          \"ClrSysMmbId\": {\n            \"MmbId\": \"dfsp002\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+              "protocol": "http",
+              "host": ["gateway", "openfaas"],
+              "port": "8080",
+              "path": [
+                "function",
+                "off-transaction-monitoring-service-rel-1-0-0",
+                "transfer-response"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Arango db check transaction 1",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "\r",
+                  "setTimeout(checkStatusCode, 5000);\r",
+                  "\r",
+                  "    function checkStatusCode() {\r",
+                  "\r",
+                  "        pm.sendRequest('https://postman-echo.com/get', function (err, res) {\r",
+                  "\r",
+                  "            tests['status code should be 200']= res.code ===200;\r",
+                  "\r",
+                  "        });\r",
+                  "    }var Header = require('postman-collection').Header;\r",
+                  "pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
+                  "console.log(\"received end to end id for above request \",pm.collectionVariables.get(\"EndToEndId\")); "
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "var req = JSON.parse(request.data);\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"check that there is actual data received back \", function () {\r",
+                  "    pm.expect(jsonData.result).to.not.eql([]);\r",
+                  "    pm.expect(jsonData.result[0].networkMap.cfg).to.eql('1.0.0');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"check that the report status is NALT \", function () {\r",
+                  "    pm.expect(jsonData.result[0].report.status).to.eql(\"NALT\")\r",
+                  "    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(false);\r",
+                  "    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".00\");\r",
+                  "    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Debtor account is not watch-listed\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"query\": \"for transaction In transactions FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId ==  {{EndToEndId}} return transaction \"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
+              "protocol": "http",
+              "host": ["arango", "development"],
+              "port": "8529",
+              "path": ["_db", "transactionHistory", "_api", "cursor"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Test Scenario 1 - Account Number Not Found",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Test to check debtor with no watchlist record\r",
+              "\r",
+              "const now = new Date().getTime();\r",
+              "pm.globals.set(\"now\", new Date().toISOString());\r",
+              "\r",
+              "const arangourl = pm.environment.get(\"arangourl\")\r",
+              "\r",
+              "const ruleConfig = [{\r",
+              "    \"id\": \"034@1.0.0\",\r",
+              "    \"cfg\": \"1.0.0\",\r",
+              "    \"config\": {\r",
+              "        \"bands\": [\r",
+              "            {\r",
+              "                \"subRuleRef\": \".00\",\r",
+              "                \"outcome\": false,\r",
+              "                \"reason\": \"Debtor account is not watch-listed\"\r",
+              "            },\r",
+              "            {\r",
+              "                \"subRuleRef\": \".01\",\r",
+              "                \"outcome\": true,\r",
+              "                \"reason\": \"Debtor account is watch-listed\"\r",
+              "            }\r",
+              "        ]\r",
+              "    }\r",
+              "\r",
+              "   } \r",
+              " ]\r",
+              "  \r",
+              "\r",
+              "const transactionGraph = [{\r",
+              "    \"_key\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r",
+              "    \"_id\": \"transactionRelationship/b51ec534ee48-4575-b6a9-ead2955b8069\",\r",
+              "    \"_from\": \"accounts/24058ebbdd500fe2307cdd55186e0abcd9726de434ae492dbe9d1e12822914aa\",\r",
+              "    \"_to\": \"accounts/6d58cf46402d5f527ce16b6a95530ec7f0eb43da75db0080f2cd1e180f3454a6\",\r",
+              "    \"_rev\": \"_dV_7GYO---\",\r",
+              "    \"TxTp\": \"pacs.008.001.10\",\r",
+              "    \"CreDtTm\": \"2021-11-18T16:47:23.000Z\",\r",
+              "    \"Amt\": 957154,\r",
+              "    \"Ccy\": \"USD\",\r",
+              "    \"PmtInfId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r",
+              "    \"EndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\"\r",
+              "  }]\r",
+              "\r",
+              "// Create \"list\" collection in transactionHistory database\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/collection`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\" : \"list\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Create an index for list collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/index?collection=list`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\": \"account\",\r",
+              "            \"type\" : \"string\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Seed rule config to Configuration collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({\r",
+              "            query: `FOR config IN ${JSON.stringify(ruleConfig)}\r",
+              "                    INSERT {_key: \"034\", id: config.id, cfg: config.cfg, config: config.config} INTO configuration\r",
+              "                    OPTIONS { overwrite: true }`\r",
+              "        })\r",
+              "    }\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test to check debtor with no watchlist record\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "const req = JSON.parse(request.data);\r",
+              "\r",
+              "const graphTransactions = [ \"b51ec534ee48-4575-b6a9-ead2955b8069\" ]\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule result of false\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.result).to.be.eql(false);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule reason of non-watchlisted debtor\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.reason).to.be.eql(\"Debtor account is not watch-listed\");\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b806\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_034@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_034@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"034@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-034-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/function/off-rule-034-rel-1-0-0/execute",
+          "host": ["{{baseUrl}}"],
+          "path": ["function", "off-rule-034-rel-1-0-0", "execute"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Scenario 2 - Account Number found",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// 5 or more successful transactions - true\r",
+              "\r",
+              "const now = new Date().getTime();\r",
+              "pm.globals.set(\"now\", new Date().toISOString());\r",
+              "\r",
+              "const arangourl = pm.environment.get(\"arangourl\")\r",
+              "\r",
+              "const ruleConfig = [{\r",
+              "    \"id\": \"034@1.0.0\",\r",
+              "    \"cfg\": \"1.0.0\",\r",
+              "    \"config\": {\r",
+              "        \"bands\": [\r",
+              "            {\r",
+              "                \"subRuleRef\": \".00\",\r",
+              "                \"outcome\": false,\r",
+              "                \"reason\": \"Debtor account is not watch-listed\"\r",
+              "            },\r",
+              "            {\r",
+              "                \"subRuleRef\": \".01\",\r",
+              "                \"outcome\": true,\r",
+              "                \"reason\": \"Debtor account is watch-listed\"\r",
+              "            }\r",
+              "        ]\r",
+              "    }\r",
+              "\r",
+              "   } \r",
+              " ]\r",
+              "  \r",
+              "\r",
+              "const transactionGraph = [{\r",
+              "    \"_key\": \"1bbcbee-2475-4865-88d6-44cc75aaf516\",\r",
+              "    \"_id\": \"transactionRelationship/1bbcbee-2475-4865-88d6-44cc75aaf516\",\r",
+              "    \"_from\": \"accounts/24058ebbdd500fe2307cdd55186e0abcd9726de434ae492dbe9d1e12822914aa\",\r",
+              "    \"_to\": \"accounts/6d58cf46402d5f527ce16b6a95530ec7f0eb43da75db0080f2cd1e180f3454a6\",\r",
+              "    \"_rev\": \"_drKX9yO---\",\r",
+              "    \"TxTp\": \"pacs.008.001.10\",\r",
+              "    \"CreDtTm\": \"2022-02-07T07:33:21.489Z\",\r",
+              "    \"Amt\": 95715423688371100,\r",
+              "    \"Ccy\": \"USD\",\r",
+              "    \"PmtInfId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r",
+              "    \"EndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\"\r",
+              "  }]\r",
+              "\r",
+              "// Create \"list\" collection in transactionHistory database\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/collection`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\" : \"list\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Create an index for list collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/index?collection=list`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\": \"account\",\r",
+              "            \"type\" : \"string\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Seed transactions to Graph Database\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({\r",
+              "            query: `FOR transaction IN ${JSON.stringify(transactionGraph)}\r",
+              "                    INSERT transaction INTO transactionRelationship\r",
+              "                    OPTIONS { overwrite: true }`\r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Seed rule config to Configuration collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({\r",
+              "            query: `FOR config IN ${JSON.stringify(ruleConfig)}\r",
+              "                    INSERT {_key: \"034\", id: config.id, cfg: config.cfg, config: config.config} INTO configuration\r",
+              "                    OPTIONS { overwrite: true }`\r",
+              "        })\r",
+              "    }\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test to check debtor with active watchlist record\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "const req = JSON.parse(request.data);\r",
+              "const arangourl = pm.environment.get(\"arangourl\")\r",
+              "\r",
+              "const graphTransactions = [\r",
+              "    \"1bbcbee-2475-4865-88d6-44cc75aaf516\"\r",
+              "]\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule result of true\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.result).to.be.eql(true);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule reason of watchlisted debtor\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.reason).to.be.eql(\"Debtor account is watch-listed\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
+              "    pm.sendRequest({\r",
+              "        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
+              "        method: 'POST',\r",
+              "        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "        body: {\r",
+              "            mode: 'raw',\r",
+              "            raw: JSON.stringify({\r",
+              "                query: `FOR transaction IN ${JSON.stringify(graphTransactions)}\r",
+              "                        REMOVE { _key: transaction } IN transactionRelationship\r",
+              "                        OPTIONS { ignoreErrors: true }`\r",
+              "            })\r",
+              "        }\r",
+              "    })\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"b51ec534ee48-4575-b6a9-ead2955b8069\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_034@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_034@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"034@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-034-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/function/off-rule-034-rel-1-0-0/execute",
+          "host": ["{{baseUrl}}"],
+          "path": ["function", "off-rule-034-rel-1-0-0", "execute"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Scenario 3 - Account Number Found, not active",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Test to check debtor with inactive watchlist record\r",
+              "\r",
+              "const now = new Date().getTime();\r",
+              "pm.globals.set(\"now\", new Date().toISOString());\r",
+              "\r",
+              "const arangourl = pm.environment.get(\"arangourl\")\r",
+              "\r",
+              "const ruleConfig = [{\r",
+              "    \"id\": \"034@1.0.0\",\r",
+              "    \"cfg\": \"1.0.0\",\r",
+              "    \"config\": {\r",
+              "        \"bands\": [\r",
+              "            {\r",
+              "                \"subRuleRef\": \".00\",\r",
+              "                \"outcome\": false,\r",
+              "                \"reason\": \"Debtor account is not watch-listed\"\r",
+              "            },\r",
+              "            {\r",
+              "                \"subRuleRef\": \".01\",\r",
+              "                \"outcome\": true,\r",
+              "                \"reason\": \"Debtor account is watch-listed\"\r",
+              "            }\r",
+              "        ]\r",
+              "    }\r",
+              "\r",
+              "   } \r",
+              " ]\r",
+              "  \r",
+              "\r",
+              "const transactionGraph = [{\r",
+              "    \"_key\": \"8cc4f6ffb4fd4e31b42aec0ed5d600a0123\",\r",
+              "    \"_id\": \"transactionRelationship/8cc4f6ffb4fd4e31b42aec0ed5d600a0123\",\r",
+              "    \"_from\": \"accounts/352afab0eed3e035ff73cec422c7d4a9f66f289cee9c16dc6bca02eba4d91566\",\r",
+              "    \"_to\": \"accounts/5b01b73472c0c1924757fe6153c0791aaa94e0a843abdc6aca7e9a1626228c12\",\r",
+              "    \"_rev\": \"_dltr3A2---\",\r",
+              "    \"TxTp\": \"pacs.008.001.10\",\r",
+              "    \"CreDtTm\": \"2021-12-03T15:24:25.000Z\",\r",
+              "    \"Amt\": 31020.89,\r",
+              "    \"Ccy\": \"USD\",\r",
+              "    \"PmtInfId\": \"5ab4fc7355de4ef8a75b78b00a681ed2879\",\r",
+              "    \"EndToEndId\": \"2c516801007642dfb892944dde1cf845789\"\r",
+              "  }]\r",
+              "\r",
+              "// Create \"list\" collection in transactionHistory database\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/collection`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\" : \"list\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Create an index for list collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/transactionHistory/_api/index?collection=list`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({ \r",
+              "            \"name\": \"account\",\r",
+              "            \"type\" : \"string\" \r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Seed transactions to Graph Database\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({\r",
+              "            query: `FOR transaction IN ${JSON.stringify(transactionGraph)}\r",
+              "                    INSERT transaction INTO transactionRelationship\r",
+              "                    OPTIONS { overwrite: true }`\r",
+              "        })\r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "// Seed rule config to Configuration collection\r",
+              "pm.sendRequest({\r",
+              "    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+              "    method: 'POST',\r",
+              "    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "    body: {\r",
+              "        mode: 'raw',\r",
+              "        raw: JSON.stringify({\r",
+              "            query: `FOR config IN ${JSON.stringify(ruleConfig)}\r",
+              "                    INSERT {_key: \"034\", id: config.id, cfg: config.cfg, config: config.config} INTO configuration\r",
+              "                    OPTIONS { overwrite: true }`\r",
+              "        })\r",
+              "    }\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// 5 or more successful transactions - true\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "const req = JSON.parse(request.data);\r",
+              "const arangourl = pm.environment.get(\"arangourl\")\r",
+              "\r",
+              "const graphTransactions = [\r",
+              "    \"8cc4f6ffb4fd4e31b42aec0ed5d600a0123\"\r",
+              "]\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule result of false\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.result).to.be.eql(false);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"should have rule reason of a non-watchlisted debtor\", function () {\r",
+              "    pm.expect(jsonData.ruleResult.reason).to.be.eql(\"Debtor account is not watch-listed\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Remove Seed Data from transactionGraph\", function () {\r",
+              "    pm.sendRequest({\r",
+              "        url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
+              "        method: 'POST',\r",
+              "        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+              "        body: {\r",
+              "            mode: 'raw',\r",
+              "            raw: JSON.stringify({\r",
+              "                query: `FOR transaction IN ${JSON.stringify(graphTransactions)}\r",
+              "                        REMOVE { _key: transaction } IN transactionRelationship\r",
+              "                        OPTIONS { ignoreErrors: true }`\r",
+              "            })\r",
+              "        }\r",
+              "    })\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845789\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_034@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_034@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"034@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-034-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/function/off-rule-034-rel-1-0-0/execute",
+          "host": ["{{baseUrl}}"],
+          "path": ["function", "off-rule-034-rel-1-0-0", "execute"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "transactionID",
+      "value": ""
+    },
+    {
+      "key": "EndToEndId",
+      "value": ""
+    }
+  ]
+}
