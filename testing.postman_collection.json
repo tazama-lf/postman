@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "0266afa7-9f52-46d9-b61b-6c2b3be087dc",
+		"name": "testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Submit a valid JSON input message Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonReq = JSON.parse(pm.request.body);",
+							"    pm.expect(jsonData.data).to.eql(jsonReq);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"let random = Math.floor(Math.random() * 500)\r",
+							"let filestring = ''\r",
+							"filestring = 'pain013/' + '00' + random + 'pain013.json'\r",
+							"\r",
+							"if (random > 9) {\r",
+							"    filestring = 'pain013/' + '0' + random + 'pain013.json'\r",
+							"}\r",
+							"\r",
+							"if (random > 99) {\r",
+							"    filestring = 'pain013/' + '' + random + 'pain013.json'\r",
+							"}\r",
+							"\r",
+							"console.log('message id in use ', filestring)\r",
+							"\r",
+							"let requestz = pm.sendRequest(\r",
+							"    {\r",
+							"        \r",
+							"        url: \"http://localhost:3000/Waitron/getRandomMessage\",\r",
+							"        method: \"GET\",\r",
+							"        header: {\r",
+							"            \"Content-Type\": \"application/json\"\r",
+							"        },\r",
+							"        body: {\r",
+							"            mode: 'urlencoded',\r",
+							"            urlencoded: [\r",
+							"                { key: \"messageType\", value: \"pain013\" },\r",
+							"                { key: \"messageID\", value: filestring },\r",
+							"            ]\r",
+							"        }\r",
+							"    }, function (err, res) {\r",
+							"        if (err != null) {\r",
+							"            console.error(err);\r",
+							"        }\r",
+							"\r",
+							"        let resBody = new Buffer.from(res.stream).toString()\r",
+							"\r",
+							"\r",
+							"        let jsondata = JSON.parse(resBody)\r",
+							"\r",
+							"\r",
+							"        console.log('Sending Data', jsondata)\r",
+							"\r",
+							"        let e2eID = JSON.parse(resBody).CdtrPmtActvtnReq.GrpHdr.MsgId;\r",
+							"        pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
+							"        pm.collectionVariables.set(\"jsondata\", jsondata);\r",
+							"        console.log('Sending Data', jsondata)\r",
+							"\r",
+							"    }\r",
+							")\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{jsondata}}"
+				},
+				"url": {
+					"raw": "https://frmfaas.sybrin.com/function/off-transaction-monitoring-service-rel-1-0-0/quoteReply",
+					"protocol": "https",
+					"host": [
+						"frmfaas",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"function",
+						"off-transaction-monitoring-service-rel-1-0-0",
+						"quoteReply"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "EndToEndId",
+			"value": ""
+		},
+		{
+			"key": "jsondata",
+			"value": ""
+		}
+	]
+}
