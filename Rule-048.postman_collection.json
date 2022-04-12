@@ -156,8 +156,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"const arangourl = pm.environment.get('arangourl');\r",
+									"\r",
 									"pm.sendRequest({\r",
-									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
@@ -228,7 +230,7 @@
 									"    function checkStatusCode() {\r",
 									"\r",
 									"        pm.sendRequest({\r",
-									"            url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"            url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
 									"            method: 'POST',\r",
 									"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"            body: {\r",
@@ -363,6 +365,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"const arangourl = pm.environment.get('arangourl');\r",
+									"\r",
 									"const networkMaps = [\r",
 									"    {\r",
 									"   \"key\":\"55\",\r",
@@ -444,7 +448,7 @@
 									"]\r",
 									"\r",
 									"pm.sendRequest({\r",
-									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
@@ -459,7 +463,7 @@
 									"\r",
 									"\r",
 									"pm.sendRequest({\r",
-									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
+									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
