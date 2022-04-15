@@ -778,12 +778,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/execute",
+					"raw": "{{baseUrl}}/function/off-rule-091-rel-1-0-0.openfaas-fn/execute",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
+						"function",
+						"off-rule-091-rel-1-0-0.openfaas-fn",
 						"execute"
 					]
 				}
