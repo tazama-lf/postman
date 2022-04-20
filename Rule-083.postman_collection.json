@@ -1374,7 +1374,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service/execute",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service-rel-1-0-0/execute",
 							"host": [
 								"{{baseUrl}}"
 							],
