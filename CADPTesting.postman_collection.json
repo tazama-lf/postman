@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9cc63289-8e37-41c1-bf4a-2645f44dbd14",
+		"_postman_id": "82a44ee4-7f1a-42d4-84a0-d13806daa35e",
 		"name": "# CADP Testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1323032"
 	},
 	"item": [
 		{
@@ -23,7 +24,7 @@
 							"\r",
 							"pm.test(\"Body matches string\", function () {\r",
 							"     var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID: ${transactionID}`);\r",
+							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID:`);\r",
 							"    pm.expect(jsonData.result).to.include(\"{\\\"Channel\\\": 001@1.0, \\\"Result\\\":Incomplete},{\\\"Channel\\\": 002@1.0, \\\"Result\\\":Incomplete\");\r",
 							"});\r",
 							""
@@ -57,16 +58,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-channel-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-channel-aggregation-decisioning-processor",
+						"off-channel-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
@@ -94,7 +91,7 @@
 							"    var jsonData = pm.response.json();\r",
 							"    var jsonReq = JSON.parse(pm.request.body);\r",
 							"\r",
-							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID: ${transactionID}`);\r",
+							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID:`);\r",
 							"    pm.expect(jsonData.result).to.include(\"{\\\"Channel\\\": 001@1.0, \\\"Result\\\":Complete},{\\\"Channel\\\": 002@1.0, \\\"Result\\\":Incomplete\");\r",
 							"    pm.expect(jsonData.tadpReqBody.transaction).to.eql(jsonReq.transaction);\r",
 							"    pm.expect(jsonData.tadpReqBody.channelResult.typologyResult[1].ruleResults).to.eql(jsonReq.typologyResult.ruleResults);\r",
@@ -130,16 +127,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-channel-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-channel-aggregation-decisioning-processor",
+						"off-channel-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
@@ -165,7 +158,7 @@
 							"\r",
 							"pm.test(\"Body matches string\", function () {\r",
 							"     var jsonData = pm.response.json();\r",
-							"   pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID: ${transactionID}`);\r",
+							"   pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID:`);\r",
 							"    pm.expect(jsonData.result).to.include(\"{\\\"Channel\\\": 001@1.0, \\\"Result\\\":Incomplete},{\\\"Channel\\\": 002@1.0, \\\"Result\\\":Incomplete\");\r",
 							"    pm.expect(jsonData.tadpReqBody).to.eql(undefined);\r",
 							"});\r",
@@ -200,16 +193,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-channel-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-channel-aggregation-decisioning-processor",
+						"off-channel-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
@@ -236,7 +225,7 @@
 							"    var jsonData = pm.response.json();\r",
 							"        var jsonReq = JSON.parse(pm.request.body);\r",
 							"\r",
-							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID: ${transactionID}`);\r",
+							"    pm.expect(jsonData.msg).to.include(`2 channels initiated for transaction ID:`);\r",
 							"     pm.expect(jsonData.result).to.include(\"{\\\"Channel\\\": 001@1.0, \\\"Result\\\":Incomplete},{\\\"Channel\\\": 002@1.0, \\\"Result\\\":Complete\");\r",
 							"     pm.expect(jsonData.tadpReqBody.transaction).to.eql(jsonReq.transaction);\r",
 							"    pm.expect(jsonData.tadpReqBody.channelResult.typologyResult[1].ruleResults).to.eql(jsonReq.typologyResult.ruleResults);\r",
@@ -274,16 +263,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-channel-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-channel-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-channel-aggregation-decisioning-processor",
+						"off-channel-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
