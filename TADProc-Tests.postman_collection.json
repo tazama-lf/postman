@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c02ae702-a5e6-48a8-bf27-7cdbd1ce8c96",
+		"_postman_id": "6f32fb3e-6bfa-4df9-99c5-fa73e1b576c3",
 		"name": "TADProc-Tests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1323032"
 	},
 	"item": [
 		{
@@ -63,6 +64,64 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const transactionConfig = [\r",
+							"    {\r",
+							"        \"messages\": [\r",
+							"            {\r",
+							"                \"id\": \"001@1.0\",\r",
+							"                \"cfg\": \"1.0\",\r",
+							"                \"txTp\": \"pacs.002.001.12\",\r",
+							"                \"channels\": [\r",
+							"                    {\r",
+							"                        \"id\": \"001@1.0\",\r",
+							"                        \"cfg\": \"1.0\",\r",
+							"                        \"typologies\": [\r",
+							"                            {\r",
+							"                                \"id\": \"028@1.0\",\r",
+							"                                \"cfg\": \"1.0\",\r",
+							"                                \"threshold\": 75\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    },\r",
+							"                    {\r",
+							"                        \"id\": \"002@1.0\",\r",
+							"                        \"cfg\": \"1.0\",\r",
+							"                        \"typologies\": [\r",
+							"                            {\r",
+							"                                \"id\": \"028@1.0\",\r",
+							"                                \"cfg\": \"1.0\",\r",
+							"                                \"threshold\": 75\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    }\r",
+							"                ]\r",
+							"            }\r",
+							"        ]\r",
+							"    }]\r",
+							"\r",
+							"\r",
+							"pm.sendRequest({\r",
+							"    //url: 'https://frmarango.sybrin.com/_db/Configuration/_api/cursor',\r",
+							"    url: 'http://arango.development:8529/_db/Configuration/_api/cursor',\r",
+							"    method: 'POST',\r",
+							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            query: `FOR config IN ${JSON.stringify(transactionConfig)}\r",
+							"                    INSERT {messages: config.messages} INTO transactionConfiguration\r",
+							"                    OPTIONS { overwrite: true }`\r",
+							"        })\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -78,16 +137,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-transaction-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-transaction-aggregation-decisioning-processor",
+						"off-transaction-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
@@ -123,6 +178,64 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const transactionConfig = [\r",
+							"    {\r",
+							"        \"messages\": [\r",
+							"            {\r",
+							"                \"id\": \"001@1.0\",\r",
+							"                \"cfg\": \"1.0\",\r",
+							"                \"txTp\": \"pacs.002.001.12\",\r",
+							"                \"channels\": [\r",
+							"                    {\r",
+							"                        \"id\": \"001@1.0\",\r",
+							"                        \"cfg\": \"1.0\",\r",
+							"                        \"typologies\": [\r",
+							"                            {\r",
+							"                                \"id\": \"028@1.0\",\r",
+							"                                \"cfg\": \"1.0\",\r",
+							"                                \"threshold\": 75\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    },\r",
+							"                    {\r",
+							"                        \"id\": \"002@1.0\",\r",
+							"                        \"cfg\": \"1.0\",\r",
+							"                        \"typologies\": [\r",
+							"                            {\r",
+							"                                \"id\": \"028@1.0\",\r",
+							"                                \"cfg\": \"1.0\",\r",
+							"                                \"threshold\": 75\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    }\r",
+							"                ]\r",
+							"            }\r",
+							"        ]\r",
+							"    }]\r",
+							"\r",
+							"\r",
+							"pm.sendRequest({\r",
+							"    //url: 'https://frmarango.sybrin.com/_db/Configuration/_api/cursor',\r",
+							"    url: 'http://arango.development:8529/_db/Configuration/_api/cursor',\r",
+							"    method: 'POST',\r",
+							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            query: `FOR config IN ${JSON.stringify(transactionConfig)}\r",
+							"                    INSERT {messages: config.messages} INTO transactionConfiguration\r",
+							"                    OPTIONS { overwrite: true }`\r",
+							"        })\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -130,7 +243,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"transaction\": {\n        \"TxTp\": \"pain.001.001.11\",\n        \"CstmrCdtTrfInitn\": {\n            \"GrpHdr\": {\n                \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a1\",\n                \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n                \"NbOfTxs\": 1,\n                \"InitgPty\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                }\n            },\n            \"PmtInf\": {\n                \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n                \"PmtMtd\": \"TRA\",\n                \"ReqdAdvcTp\": {\n                    \"DbtAdvc\": {\n                        \"Cd\": \"ADWD\",\n                        \"Prtry\": \"Advice with transaction details\"\n                    }\n                },\n                \"ReqdExctnDt\": {\n                    \"Dt\": \"2021-10-07\",\n                    \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n                },\n                \"Dbtr\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1957-10-05\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                },\n                \"DbtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"PASSPORT\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"Ivan Russel-Klein\"\n                },\n                \"DbtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp001\"\n                        }\n                    }\n                },\n                \"CdtTrfTxInf\": {\n                    \"PmtId\": {\n                        \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                    },\n                    \"PmtTpInf\": {\n                        \"CtgyPurp\": {\n                            \"Prtry\": \"TRANSFER\"\n                        }\n                    },\n                    \"Amt\": {\n                        \"InstdAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            }\n                        },\n                        \"EqvtAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            },\n                            \"CcyOfTrf\": \"USD\"\n                        }\n                    },\n                    \"ChrgBr\": \"DEBT\",\n                    \"CdtrAgt\": {\n                        \"FinInstnId\": {\n                            \"ClrSysMmbId\": {\n                                \"MmbId\": \"dfsp002\"\n                            }\n                        }\n                    },\n                    \"Cdtr\": {\n                        \"Nm\": \"April Sam Adamson\",\n                        \"Id\": {\n                            \"PrvtId\": {\n                                \"DtAndPlcOfBirth\": {\n                                    \"BirthDt\": \"1923-04-26\",\n                                    \"CityOfBirth\": \"Unknown\",\n                                    \"CtryOfBirth\": \"ZZ\"\n                                },\n                                \"Othr\": {\n                                    \"Id\": \"+27782722305\",\n                                    \"SchmeNm\": {\n                                        \"Prtry\": \"MSISDN\"\n                                    }\n                                }\n                            }\n                        },\n                        \"CtctDtls\": {\n                            \"MobNb\": \"+27-782722305\"\n                        }\n                    },\n                    \"CdtrAcct\": {\n                        \"Id\": {\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        },\n                        \"Nm\": \"April Adamson\"\n                    },\n                    \"Purp\": {\n                        \"Cd\": \"MP2P\"\n                    },\n                    \"RgltryRptg\": {\n                        \"Dtls\": {\n                            \"Tp\": \"BALANCE OF PAYMENTS\",\n                            \"Cd\": \"100\"\n                        }\n                    },\n                    \"RmtInf\": {\n                        \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                    },\n                    \"SplmtryData\": {\n                        \"Envlp\": {\n                            \"Doc\": {\n                                \"Cdtr\": {\n                                    \"FrstNm\": \"Ivan\",\n                                    \"MddlNm\": \"Reese\",\n                                    \"LastNm\": \"Russel-Klein\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"Dbtr\": {\n                                    \"FrstNm\": \"April\",\n                                    \"MddlNm\": \"Sam\",\n                                    \"LastNm\": \"Adamson\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"DbtrFinSvcsPrvdrFees\": {\n                                    \"Ccy\": \"USD\",\n                                    \"Amt\": \"499325661187237\"\n                                },\n                                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                            }\n                        }\n                    }\n                }\n            },\n            \"SplmtryData\": {\n                \"Envlp\": {\n                    \"Doc\": {\n                        \"InitgPty\": {\n                            \"InitrTp\": \"CONSUMER\",\n                            \"Glctn\": {\n                                \"Lat\": \"-3.1291\",\n                                \"Long\": \"39.0006\"\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"networkMap\": {\n        \"messages\": [\n            {\n                \"id\": \"001@1.0\",\n                \"host\": \"http://openfaas:8080\",\n                \"cfg\": \"1.0\",\n                \"txTp\": \"pain.001.001.11\",\n                \"channels\": [\n                    {\n                        \"id\": \"001@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"028@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"028@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"028@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-028\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"id\": \"029@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"029@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"005@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"id\": \"002@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"030@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"030@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"006@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"id\": \"031@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"031@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"007@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    },\n    \"channelResult\": {\n        \"result\": 0,\n        \"id\": \"002@1.0\",\n        \"cfg\": \"1.0\",\n        \"typologyResult\": [\n            {\n                \"id\": \"028@1.0\",\n                \"cfg\": \"1.0\",\n                \"result\": 100,\n                \"ruleResults\": [\n                    {\n                        \"id\": \"003@1.0\",\n                        \"cfg\": \"1.0\",\n                        \"result\": true,\n                        \"reason\": \"asdf\",\n                        \"subRuleRef\": \"123\"\n                    },\n                    {\n                        \"id\": \"028@1.0\",\n                        \"cfg\": \"1.0\",\n                        \"result\": true,\n                        \"subRuleRef\": \"04\",\n                        \"reason\": \"The debtor is 50 or older\"\n                    }\n                ]\n            }\n        ]\n    }\n}",
+					"raw": "{\n    \"transaction\": {\n        \"TxTp\": \"pacs.002.001.12\",\n        \"CstmrCdtTrfInitn\": {\n            \"GrpHdr\": {\n                \"MsgId\": \"2669e349-500d-44ba-9e27-7767a16608a1\",\n                \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\n                \"NbOfTxs\": 1,\n                \"InitgPty\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1967-11-23\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                }\n            },\n            \"PmtInf\": {\n                \"PmtInfId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\",\n                \"PmtMtd\": \"TRA\",\n                \"ReqdAdvcTp\": {\n                    \"DbtAdvc\": {\n                        \"Cd\": \"ADWD\",\n                        \"Prtry\": \"Advice with transaction details\"\n                    }\n                },\n                \"ReqdExctnDt\": {\n                    \"Dt\": \"2021-10-07\",\n                    \"DtTm\": \"2021-10-07T09:25:31.000Z\"\n                },\n                \"Dbtr\": {\n                    \"Nm\": \"Ivan Reese Russel-Klein\",\n                    \"Id\": {\n                        \"PrvtId\": {\n                            \"DtAndPlcOfBirth\": {\n                                \"BirthDt\": \"1957-10-05\",\n                                \"CityOfBirth\": \"Unknown\",\n                                \"CtryOfBirth\": \"ZZ\"\n                            },\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        }\n                    },\n                    \"CtctDtls\": {\n                        \"MobNb\": \"+27-783078685\"\n                    }\n                },\n                \"DbtrAcct\": {\n                    \"Id\": {\n                        \"Othr\": {\n                            \"Id\": \"+27783078685\",\n                            \"SchmeNm\": {\n                                \"Prtry\": \"PASSPORT\"\n                            }\n                        }\n                    },\n                    \"Nm\": \"Ivan Russel-Klein\"\n                },\n                \"DbtrAgt\": {\n                    \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                            \"MmbId\": \"dfsp001\"\n                        }\n                    }\n                },\n                \"CdtTrfTxInf\": {\n                    \"PmtId\": {\n                        \"EndToEndId\": \"b51ec534-ee48-4575-b6a9-ead2955b8069\"\n                    },\n                    \"PmtTpInf\": {\n                        \"CtgyPurp\": {\n                            \"Prtry\": \"TRANSFER\"\n                        }\n                    },\n                    \"Amt\": {\n                        \"InstdAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            }\n                        },\n                        \"EqvtAmt\": {\n                            \"Amt\": {\n                                \"Amt\": \"50431891779910900\",\n                                \"Ccy\": \"USD\"\n                            },\n                            \"CcyOfTrf\": \"USD\"\n                        }\n                    },\n                    \"ChrgBr\": \"DEBT\",\n                    \"CdtrAgt\": {\n                        \"FinInstnId\": {\n                            \"ClrSysMmbId\": {\n                                \"MmbId\": \"dfsp002\"\n                            }\n                        }\n                    },\n                    \"Cdtr\": {\n                        \"Nm\": \"April Sam Adamson\",\n                        \"Id\": {\n                            \"PrvtId\": {\n                                \"DtAndPlcOfBirth\": {\n                                    \"BirthDt\": \"1923-04-26\",\n                                    \"CityOfBirth\": \"Unknown\",\n                                    \"CtryOfBirth\": \"ZZ\"\n                                },\n                                \"Othr\": {\n                                    \"Id\": \"+27782722305\",\n                                    \"SchmeNm\": {\n                                        \"Prtry\": \"MSISDN\"\n                                    }\n                                }\n                            }\n                        },\n                        \"CtctDtls\": {\n                            \"MobNb\": \"+27-782722305\"\n                        }\n                    },\n                    \"CdtrAcct\": {\n                        \"Id\": {\n                            \"Othr\": {\n                                \"Id\": \"+27783078685\",\n                                \"SchmeNm\": {\n                                    \"Prtry\": \"MSISDN\"\n                                }\n                            }\n                        },\n                        \"Nm\": \"April Adamson\"\n                    },\n                    \"Purp\": {\n                        \"Cd\": \"MP2P\"\n                    },\n                    \"RgltryRptg\": {\n                        \"Dtls\": {\n                            \"Tp\": \"BALANCE OF PAYMENTS\",\n                            \"Cd\": \"100\"\n                        }\n                    },\n                    \"RmtInf\": {\n                        \"Ustrd\": \"Payment of USD 49932566118723700.89 from Ivan to April\"\n                    },\n                    \"SplmtryData\": {\n                        \"Envlp\": {\n                            \"Doc\": {\n                                \"Cdtr\": {\n                                    \"FrstNm\": \"Ivan\",\n                                    \"MddlNm\": \"Reese\",\n                                    \"LastNm\": \"Russel-Klein\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"Dbtr\": {\n                                    \"FrstNm\": \"April\",\n                                    \"MddlNm\": \"Sam\",\n                                    \"LastNm\": \"Adamson\",\n                                    \"MrchntClssfctnCd\": \"BLANK\"\n                                },\n                                \"DbtrFinSvcsPrvdrFees\": {\n                                    \"Ccy\": \"USD\",\n                                    \"Amt\": \"499325661187237\"\n                                },\n                                \"Xprtn\": \"2021-10-07T09:30:31.000Z\"\n                            }\n                        }\n                    }\n                }\n            },\n            \"SplmtryData\": {\n                \"Envlp\": {\n                    \"Doc\": {\n                        \"InitgPty\": {\n                            \"InitrTp\": \"CONSUMER\",\n                            \"Glctn\": {\n                                \"Lat\": \"-3.1291\",\n                                \"Long\": \"39.0006\"\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"networkMap\": {\n        \"messages\": [\n            {\n                \"id\": \"001@1.0\",\n                \"host\": \"http://openfaas:8080\",\n                \"cfg\": \"1.0\",\n                \"txTp\": \"pacs.002.001.12\",\n                \"channels\": [\n                    {\n                        \"id\": \"001@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"028@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"028@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"028@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-028\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"id\": \"029@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"029@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"005@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"id\": \"002@1.0\",\n                        \"host\": \"http://openfaas:8080\",\n                        \"cfg\": \"1.0\",\n                        \"typologies\": [\n                            {\n                                \"id\": \"030@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"030@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"006@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"id\": \"031@1.0\",\n                                \"host\": \"{{url}}/function/off-typology-processor\",\n                                \"cfg\": \"031@1.0\",\n                                \"rules\": [\n                                    {\n                                        \"id\": \"003@1.0\",\n                                        \"host\": \"{{url}}/function/off-rule-003\",\n                                        \"cfg\": \"1.0\"\n                                    },\n                                    {\n                                        \"id\": \"007@1.0\",\n                                        \"host\": \"http://openfaas:8080\",\n                                        \"cfg\": \"1.0\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    },\n    \"channelResult\": {\n        \"result\": 0,\n        \"id\": \"002@1.0\",\n        \"cfg\": \"1.0\",\n        \"typologyResult\": [\n            {\n                \"id\": \"028@1.0\",\n                \"cfg\": \"1.0\",\n                \"result\": 100,\n                \"ruleResults\": [\n                    {\n                        \"id\": \"003@1.0\",\n                        \"cfg\": \"1.0\",\n                        \"result\": true,\n                        \"reason\": \"asdf\",\n                        \"subRuleRef\": \"123\"\n                    },\n                    {\n                        \"id\": \"028@1.0\",\n                        \"cfg\": \"1.0\",\n                        \"result\": true,\n                        \"subRuleRef\": \"04\",\n                        \"reason\": \"The debtor is 50 or older\"\n                    }\n                ]\n            }\n        ]\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -138,16 +251,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-transaction-aggregation-decisioning-processor/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}function/off-transaction-aggregation-decisioning-processor{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}function"
 					],
-					"port": "8080",
 					"path": [
-						"function",
-						"off-transaction-aggregation-decisioning-processor",
+						"off-transaction-aggregation-decisioning-processor{{version}}",
 						"execute"
 					]
 				}
