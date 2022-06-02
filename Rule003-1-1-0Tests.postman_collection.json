@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1c08814c-863a-481b-919b-5a42f0f10424",
+		"_postman_id": "8fe3a253-57fd-4392-9228-559c5c275830",
 		"name": "Rule003-1-1-0 Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -145,16 +145,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer-response"
 							]
 						}
@@ -240,13 +237,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
@@ -975,16 +969,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -2361,16 +2352,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -3747,16 +3735,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -5133,16 +5118,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -6519,16 +6501,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -7905,16 +7884,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -9291,16 +9267,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -10677,16 +10650,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -12063,16 +12033,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -14074,16 +14041,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -16085,16 +16049,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -18096,16 +18057,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -20114,16 +20072,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
@@ -22150,21 +22105,28 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-003-rel-1-1-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-003{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-003-rel-1-1-0",
+						"off-rule-003{{version}}",
 						"execute"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "transactionID",
+			"value": ""
+		},
+		{
+			"key": "EndToEndId",
+			"value": ""
 		}
 	]
 }
