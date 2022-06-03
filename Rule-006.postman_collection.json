@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "26853c89-fb98-4415-99c2-2aec97189076",
+		"_postman_id": "b45bbb87-6961-4c38-83a0-f12964bd671e",
 		"name": "Rule-006",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -131,16 +131,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/execute",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/execute",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"execute"
 							]
 						}
@@ -196,15 +193,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}_db"
 							],
-							"port": "8529",
 							"path": [
-								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -377,16 +370,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/quoteReply",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/quoteReply",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"quoteReply"
 							]
 						}
@@ -442,15 +432,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}_db"
 							],
-							"port": "8529",
 							"path": [
-								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -521,16 +507,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service/transfer",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer"
 							]
 						}
@@ -586,15 +569,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}_db"
 							],
-							"port": "8529",
 							"path": [
-								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -611,76 +590,6 @@
 				{
 					"name": "transaction 1",
 					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const jsonData = pm.response.json();",
-									"",
-									"const req = JSON.parse(request.data);",
-									"",
-									"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\",  \"2669e349-500d-44ba-9e27-7767a1660aa0\", \"c46087cb-7688-4b36-9141-c9f1fb1ae511\",\"40bea71c5a054978ad0da7f94b2a40e9799\"]",
-									"const graphTransactions = [",
-									"    \"d923682a97089a8416151ad1e58355b8eeee108007f7accd4adc9dc\",",
-									"    \"97089a8416151ad1e58355b8eeee108007f7accd4adc9dc\"",
-									"]",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"should not have errors\", function () {",
-									"    pm.expect(jsonData).not.to.have.property('errors')",
-									"});",
-									"",
-									"pm.test(\"should be a valid transaction\", function () {",
-									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
-									"});",
-									"",
-									"pm.test(\"should send to data preparation successfully\", function () {",
-									"    pm.expect(jsonData.sent).to.eql(true);",
-									"});",
-									"",
-									"pm.test(\"should have the same outgoing and incoming json\", function () {",
-									"    pm.expect(jsonData.data).to.eql(req);",
-									"});",
-									"",
-									"",
-									"pm.test(\"Remove Seed Data from DB\", function () {",
-									"    pm.sendRequest({",
-									"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',",
-									"        method: 'POST',",
-									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
-									"        body: {",
-									"            mode: 'raw',",
-									"            raw: JSON.stringify({",
-									"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
-									"                        REMOVE { _key: transaction } IN transactionHistory",
-									"                        OPTIONS { ignoreErrors: true }`",
-									"            })",
-									"        }",
-									"    })",
-									"});",
-									"",
-									"pm.test(\"Remove Seed Data from transactionGraph\", function () {",
-									"    pm.sendRequest({",
-									"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',",
-									"        method: 'POST',",
-									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
-									"        body: {",
-									"            mode: 'raw',",
-									"            raw: JSON.stringify({",
-									"                query: `FOR transaction IN ${JSON.stringify(graphTransactions)}",
-									"                        REMOVE { _key: transaction } IN transactionRelationship",
-									"                        OPTIONS { ignoreErrors: true }`",
-									"            })",
-									"        }",
-									"    })",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
 						{
 							"listen": "prerequest",
 							"script": {
@@ -922,7 +831,7 @@
 									"        \"FIToFIPmtSts\": {\r",
 									"            \"GrpHdr\": {\r",
 									"                \"MsgId\": \"40bea71c5a054978ad0da7f94b2a40e9799\",\r",
-									"               \"CreDtTm\": new Date(new Date(now)).toISOString(),\r",
+									"               \"CreDtTm\": new Date(new Date(now)).toISOString(), \r",
 									"            },\r",
 									"            \"TxInfAndSts\": {\r",
 									"                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r",
@@ -1500,6 +1409,76 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"const req = JSON.parse(request.data);",
+									"",
+									"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\",  \"2669e349-500d-44ba-9e27-7767a1660aa0\", \"c46087cb-7688-4b36-9141-c9f1fb1ae511\",\"40bea71c5a054978ad0da7f94b2a40e9799\"]",
+									"const graphTransactions = [",
+									"    \"d923682a97089a8416151ad1e58355b8eeee108007f7accd4adc9dc\",",
+									"    \"97089a8416151ad1e58355b8eeee108007f7accd4adc9dc\"",
+									"]",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"should not have errors\", function () {",
+									"    pm.expect(jsonData).not.to.have.property('errors')",
+									"});",
+									"",
+									"pm.test(\"should be a valid transaction\", function () {",
+									"    pm.expect(jsonData.message).to.eql(\"Transaction is valid\");",
+									"});",
+									"",
+									"pm.test(\"should send to data preparation successfully\", function () {",
+									"    pm.expect(jsonData.sent).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"should have the same outgoing and incoming json\", function () {",
+									"    pm.expect(jsonData.data).to.eql(req);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Remove Seed Data from DB\", function () {",
+									"    pm.sendRequest({",
+									"        url: 'http://arango.development:8529/_db/transactionHistory/_api/cursor',",
+									"        method: 'POST',",
+									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
+									"        body: {",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify({",
+									"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
+									"                        REMOVE { _key: transaction } IN transactionHistory",
+									"                        OPTIONS { ignoreErrors: true }`",
+									"            })",
+									"        }",
+									"    })",
+									"});",
+									"",
+									"pm.test(\"Remove Seed Data from transactionGraph\", function () {",
+									"    pm.sendRequest({",
+									"        url: 'http://arango.development:8529/_db/pseudonyms/_api/cursor',",
+									"        method: 'POST',",
+									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
+									"        body: {",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify({",
+									"                query: `FOR transaction IN ${JSON.stringify(graphTransactions)}",
+									"                        REMOVE { _key: transaction } IN transactionRelationship",
+									"                        OPTIONS { ignoreErrors: true }`",
+									"            })",
+									"        }",
+									"    })",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1515,16 +1494,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer-response"
 							]
 						}
@@ -1602,15 +1578,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}_db"
 							],
-							"port": "8529",
 							"path": [
-								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -2000,16 +1972,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -2768,16 +2737,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -3536,16 +3502,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -4589,16 +4552,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -5357,16 +5317,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -6125,16 +6082,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
@@ -6893,16 +6847,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-006-rel-1-0-0/execute",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-006{{version}}/execute",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-006-rel-1-0-0",
+						"off-rule-006{{version}}",
 						"execute"
 					]
 				}
