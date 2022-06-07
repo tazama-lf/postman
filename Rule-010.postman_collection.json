@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fe43f52a-5196-44a8-9167-abc8ad3dec18",
+		"_postman_id": "94431741-8b0f-40b3-a2bc-f68ff50a400c",
 		"name": "Rule-010",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -46,9 +46,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"const now = new Date().getTime();\r",
-									"\r",
-									"pm.globals.set(\"now\", new Date(now).toISOString());\r",
+									"const now = new Date().getTime(); \r",
+									"pm.globals.set(\"now\", new Date(now).toISOString()); \r",
+									"console.log(pm.globals.get(\"arangoToken\"));\r",
 									"\r",
 									"pm.sendRequest({\r",
 									"    url: 'http://arango.development:8529/_db/networkmap/_api/cursor',\r",
@@ -167,9 +167,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var Header = require('postman-collection').Header;\r",
+									"var Header = require('postman-collection').Header; \r",
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization')); \r",
-									"\r",
+									"console.log(pm.globals.get(\"arangoToken\"))\r",
 									"pm.environment.set(\"query\", JSON.stringify(\r",
 									"      `\r",
 									"      for transaction In transactions\r",
@@ -177,7 +177,6 @@
 									"       `+pm.collectionVariables.get(\"EndToEndId\")+`\r",
 									"       return transaction ` \r",
 									"));\r",
-									"\r",
 									" "
 								],
 								"type": "text/javascript"
@@ -462,11 +461,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"{{arangoUrl}}_db"
+								"{{arangoUrl}}"
 							],
 							"path": [
+								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -800,13 +800,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://arango.development:8529/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangourl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangourl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
