@@ -22,7 +22,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Same transaction than sent\", function () {\r",
-									"    pm.expect(responseJson.cadpRequests[0].transaction.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId).to.eq(\"c51ec534-ee48-4575-b6a9-ead2955b8069\");\r",
+									"    pm.expect(responseJson.cadpRequests[0].transaction.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId).to.eq(responseJson.cadpRequests[0].transaction.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Same network map than sent\", function () {\r",
