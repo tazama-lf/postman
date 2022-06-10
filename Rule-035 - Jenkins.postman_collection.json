@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "27601750-b84c-4c9e-baed-d1edfba896b3",
+		"_postman_id": "9c7783ac-1f30-42dd-b811-2d854c98ca58",
 		"name": "Rule-035 - Jenkins",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1323032"
 	},
 	"item": [
 		{
@@ -18,7 +19,7 @@
 									"const jsonData = pm.response.json();",
 									"",
 									"const req = JSON.parse(request.data);",
-									"const arangourl = pm.environment.get(\"arangourl\");",
+									"const arangourl = pm.environment.get(\"arangoUrl\");",
 									"",
 									"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\"]",
 									"",
@@ -69,8 +70,9 @@
 								"exec": [
 									"\r",
 									"const now = new Date().getTime();\r",
-									"const arangourl = pm.environment.get(\"arangourl\");\r",
-									"const baseUrl = pm.environment.get(\"baseUrl\");\r",
+									"const arangourl = pm.environment.get(\"arangoUrl\");\r",
+									"const baseUrl = pm.environment.get(\"ofUrl\");\r",
+									"const virgin = pm.environment.get(\"version\");\r",
 									"pm.globals.set(\"now\", new Date().toISOString());\r",
 									"\r",
 									"\r",
@@ -99,47 +101,42 @@
 									"\r",
 									"pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
-									"\r",
-									"\r",
-									"\r",
 									"const networkMaps = [\r",
-									"{\r",
-									"       \"key\": \"075\",\r",
-									"       \"active\": true,\r",
+									"    {\r",
+									"        \"key\": \"999035\",\r",
+									"        \"active\": true,\r",
 									"        \"cfg\": \"1.0.0\",\r",
-									"    \"messages\": [\r",
-									"        {\r",
-									"            \"id\": \"004_075@1.0.0\",\r",
-									"            \"host\": \"${baseUrl}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r",
-									"            \"cfg\": \"1.0.0\",\r",
-									"            \"txTp\": \"pacs.002.001.12\",\r",
-									"            \"channels\": [\r",
-									"                {\r",
-									"                    \"id\": \"001@1.0.0\",\r",
-									"                    \"host\": \"${baseUrl}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r",
-									"                    \"cfg\": \"1.0.0\",\r",
-									"                    \"typologies\": [\r",
-									"                        {\r",
-									"                            \"id\": \"999_075@1.0.0\",\r",
-									"                            \"host\": \"${baseUrl}/function/off-typology-processor-rel-1-0-0\",\r",
-									"                            \"cfg\": \"1.0.0\",\r",
-									"                            \"rules\": [\r",
-									"                                {\r",
-									"                                    \"id\": \"075@1.0.0\",\r",
-									"                                    \"host\": \"${baseUrl}/function/off-rule-075-rel-1-0-0\",\r",
-									"                                    \"cfg\": \"1.0.0\"\r",
-									"                                }\r",
-									"                            ]\r",
-									"                        }\r",
-									"                    ]\r",
-									"                }\r",
-									"            ]\r",
-									"        }\r",
-									"    ]\r",
-									"}\r",
+									"        \"messages\": [\r",
+									"            {\r",
+									"                \"id\": \"004_075@1.0.0\",\r",
+									"                \"host\": `${baseUrl}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                \"cfg\": \"1.0.0\",\r",
+									"                \"txTp\": \"pacs.002.001.12\",\r",
+									"                \"channels\": [\r",
+									"                    {\r",
+									"                        \"id\": \"001@1.0.0\",\r",
+									"                        \"host\": `${baseUrl}function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                        \"cfg\": \"1.0.0\",\r",
+									"                        \"typologies\": [\r",
+									"                            {\r",
+									"                                \"id\": \"999_035@1.0.0\",\r",
+									"                                \"host\": `${baseUrl}function/off-typology-processor-rel-1-0-0`,\r",
+									"                                \"cfg\": \"1.0.0\",\r",
+									"                                \"rules\": [\r",
+									"                                    {\r",
+									"                                        \"id\": \"035@1.0.0\",\r",
+									"                                        \"host\": `${baseUrl}function/off-rule-035${virgin}`,\r",
+									"                                        \"cfg\": \"1.0.0\"\r",
+									"                                    }\r",
+									"                                ]\r",
+									"                            }\r",
+									"                        ]\r",
+									"                    }\r",
+									"                ]\r",
+									"            }\r",
+									"        ]\r",
+									"    }\r",
 									"]\r",
-									"\r",
-									"\r",
 									"\r",
 									"const pacs008Transactions = [{\r",
 									"    \"TxTp\": \"pacs.008.001.10\",\r",
@@ -305,26 +302,54 @@
 									"    }\r",
 									"}]\r",
 									"\r",
-									"\r",
+									"const tpExpressions = [\r",
+									"    {\r",
+									"        \"id\": \"999_035@1.0.0\",\r",
+									"        \"cfg\": \"1.0.0\",\r",
+									"        \"rules\": [\r",
+									"            {\r",
+									"                \"id\": \"035@1.0.0\",\r",
+									"                \"cfg\": \"1.0.0\",\r",
+									"                \"ref\": \".01\",\r",
+									"                \"true\": 150,\r",
+									"                \"false\": 100\r",
+									"            },\r",
+									"            {\r",
+									"                \"id\": \"035@1.0.0\",\r",
+									"                \"cfg\": \"1.0.0\",\r",
+									"                \"ref\": \".00\",\r",
+									"                \"true\": 150,\r",
+									"                \"false\": 100\r",
+									"            }\r",
+									"        ],\r",
+									"        \"expression\": {\r",
+									"            \"operator\": \"+\",\r",
+									"            \"terms\": [\r",
+									"                {\r",
+									"                    \"id\": \"035@1.0.0\",\r",
+									"                    \"cfg\": \"1.0.0\"\r",
+									"                }\r",
+									"            ]\r",
+									"        }\r",
+									"    }\r",
+									"]\r",
 									"\r",
 									"setTimeout(checkStatusCode, 5000);\r",
-									"\r",
-									"    function checkStatusCode() {\r",
-									"\r",
-									"        pm.sendRequest({\r",
-									"            url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
-									"            method: 'POST',\r",
-									"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
-									"            body: {\r",
-									"                mode: 'raw',\r",
-									"                raw: JSON.stringify({\r",
-									"                    query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
+									"function checkStatusCode() {\r",
+									"    pm.sendRequest({\r",
+									"        url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
+									"        method: 'POST',\r",
+									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
 									"                            INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
 									"                            OPTIONS { overwrite: true }`\r",
-									"                })\r",
-									"            }\r",
-									"        });\r",
-									"    }\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"}\r",
 									"\r",
 									"pm.sendRequest({\r",
 									"    url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
@@ -332,11 +357,25 @@
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
 									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({\r",
+									"        raw: {\r",
 									"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-									"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+									"                    INSERT {_key: \"9990351\", TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
 									"                    OPTIONS { overwrite: true }`\r",
-									"        })\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+									"    method: 'POST',\r",
+									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: {\r",
+									"            query: `FOR expression IN ${JSON.stringify(tpExpressions)}\r",
+									"                    INSERT {_key: \"9990351\", id: expression.id, cfg: expression.cfg, rules: expression.rules, expression: expression.expression } INTO typologyExpression\r",
+									"                    OPTIONS { overwrite: true }`\r",
+									"        }\r",
 									"    }\r",
 									"});\r",
 									""
@@ -358,12 +397,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "{{ofUrl}}function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
 							"host": [
-								"{{baseUrl}}"
+								"{{ofUrl}}function"
 							],
 							"path": [
-								"function",
 								"off-transaction-monitoring-service-rel-1-0-0",
 								"transfer-response"
 							]
@@ -397,7 +435,7 @@
 									"    pm.expect(jsonData.result[0].report.status).to.eql(\"NALT\")\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(false);\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".00\");\r",
-									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Creditor has only one account\");\r",
+									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Creditor account is not watch-listed\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -420,7 +458,7 @@
 									"));\r",
 									"\r",
 									"console.log(pm.environment.get(\"query\"))\r",
-									" "
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -434,7 +472,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"for transaction In transactions FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId ==  {{EndToEndId}} return transaction\"\r\n}",
+							"raw": "{\r\n    \"query\": \"for transaction In transactions FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == {{EndToEndId}} return transaction\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -442,9 +480,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangourl}}/_db/transactionHistory/_api/cursor",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"{{arangourl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
@@ -468,7 +506,7 @@
 							"const now = new Date().getTime();\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
 							"\r",
-							"const arangourl = pm.environment.get(\"arangourl\")\r",
+							"const arangourl = pm.environment.get(\"arangoUrl\")\r",
 							"\r",
 							"const ruleConfig = [{\r",
 							"    \"id\": \"035@1.0.0\",\r",
@@ -487,23 +525,46 @@
 							"            }\r",
 							"        ]\r",
 							"    }\r",
-							"    }\r",
-							" ]\r",
-							"  \r",
+							"}\r",
+							"]\r",
 							"\r",
 							"const transactionGraph = [{\r",
-							"  _key: '6b444365119746c5be7dfb5516ba678c',\r",
-							"  _id: 'transactionRelationship/6b444365119746c5be7dfb5516ba678c',\r",
-							"  _from: 'accounts/daabdaad517c7de088524556ef370e7402324b099456694d99401ef66c38c46e',\r",
-							"  _to: 'accounts/19be8f83e5f8a97584dfc9298b01f4e66bd3b6bebda883c8921d1d37eb5a6cb9',\r",
-							"  _rev: '_dr6bb_a---',\r",
-							"  TxTp: 'pacs.008.001.10',\r",
-							"  CreDtTm: '2021-11-23T12:30:21.000Z',\r",
-							"  Amt: 14315.99,\r",
-							"  Ccy: 'USD',\r",
-							"  PmtInfId: '557bf747-12f1-4983-9004-10a',\r",
-							"  EndToEndId: '2c516801007642dfb892944dde1cf845800'\r",
+							"    _key: '6b444365119746c5be7dfb5516ba678c',\r",
+							"    _id: 'transactionRelationship/6b444365119746c5be7dfb5516ba678c',\r",
+							"    _from: 'accounts/daabdaad517c7de088524556ef370e7402324b099456694d99401ef66c38c46e',\r",
+							"    _to: 'accounts/19be8f83e5f8a97584dfc9298b01f4e66bd3b6bebda883c8921d1d37eb5a6cb9',\r",
+							"    _rev: '_dr6bb_a---',\r",
+							"    TxTp: 'pacs.008.001.10',\r",
+							"    CreDtTm: '2021-11-23T12:30:21.000Z',\r",
+							"    Amt: 14315.99,\r",
+							"    Ccy: 'USD',\r",
+							"    PmtInfId: '557bf747-12f1-4983-9004-10a',\r",
+							"    EndToEndId: '2c516801007642dfb892944dde1cf845800'\r",
 							"}];\r",
+							"\r",
+							"const listEntry = [\r",
+							"    {\r",
+							"        _key: \"9990351\",\r",
+							"        account: \"19be8f83e5f8a97584dfc9298b01f4e66bd3b6bebda883c8921d1d37eb5a6cb9\",\r",
+							"        status: \"active\",\r",
+							"        timestamp: \"iets\"\r",
+							"    }\r",
+							"]\r",
+							"\r",
+							"// Seed transactions to Graph Database\r",
+							"pm.sendRequest({\r",
+							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
+							"    method: 'POST',\r",
+							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            query: `FOR transaction IN ${JSON.stringify(transactionGraph)}\r",
+							"                    INSERT transaction INTO transactionRelationship\r",
+							"                    OPTIONS { overwrite: true }`\r",
+							"        })\r",
+							"    }\r",
+							"});\r",
 							"\r",
 							"// Seed rule config to Configuration collection\r",
 							"pm.sendRequest({\r",
@@ -518,7 +579,23 @@
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
-							"});"
+							"});\r",
+							"\r",
+							"// Seed watchlist entry to transactionHistory collection\r",
+							"pm.sendRequest({\r",
+							"    url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
+							"    method: 'POST',\r",
+							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            query: `FOR entry IN ${JSON.stringify(listEntry)}\r",
+							"                    INSERT {_key: entry._key, account: entry.account, status: entry.status, timestamp: entry.timestamp} INTO list\r",
+							"                    OPTIONS { overwrite: true }`\r",
+							"        })\r",
+							"    }\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -555,7 +632,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845800\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845800\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{ofUrl}}function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -563,12 +640,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-035-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-035-rel-1-0-0/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-035-rel-1-0-0",
 						"execute"
 					]
@@ -586,7 +662,7 @@
 							"const now = new Date().getTime();\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
 							"\r",
-							"const arangourl = pm.environment.get(\"arangourl\")\r",
+							"const arangourl = pm.environment.get(\"arangoUrl\")\r",
 							"\r",
 							"const ruleConfig = [{\r",
 							"    \"id\": \"035@1.0.0\",\r",
@@ -673,7 +749,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"5cb8a2db-5c32-41bb-ac27-2597125d50fd\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{ofUrl}}function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -681,12 +757,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-035-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-035-rel-1-0-0/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-035-rel-1-0-0",
 						"execute"
 					]
@@ -706,7 +781,7 @@
 							"const now = new Date().getTime();\r",
 							"pm.globals.set(\"now\", new Date().toISOString());\r",
 							"\r",
-							"const arangourl = pm.environment.get(\"arangourl\")\r",
+							"const arangourl = pm.environment.get(\"arangoUrl\")\r",
 							"\r",
 							"const ruleConfig = [{\r",
 							"    \"id\": \"035@1.0.0\",\r",
@@ -827,7 +902,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845789\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{baseUrl}}/function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"transaction\": {\r\n        \"TxTp\": \"pacs.002.001.12\",\r\n        \"FIToFIPmtSts\": {\r\n            \"GrpHdr\": {\r\n                \"MsgId\": \"30bea71c5a054978ad0da7f94b2a40e9789\",\r\n                \"CreDtTm\": \"{{now}}\"\r\n            },\r\n            \"TxInfAndSts\": {\r\n                \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2255\",\r\n                \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845789\",\r\n                \"TxSts\": \"ACCC\",\r\n                \"ChrgsInf\": [\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 307.14,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 153.57,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp001\"\r\n                                }\r\n                            }\r\n                        }\r\n                    },\r\n                    {\r\n                        \"Amt\": {\r\n                            \"Amt\": 30.71,\r\n                            \"Ccy\": \"USD\"\r\n                        },\r\n                        \"Agt\": {\r\n                            \"FinInstnId\": {\r\n                                \"ClrSysMmbId\": {\r\n                                    \"MmbId\": \"dfsp002\"\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                ],\r\n                \"AccptncDtTm\": \"2021-12-03T15:24:26.000Z\",\r\n                \"InstgAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp001\"\r\n                        }\r\n                    }\r\n                },\r\n                \"InstdAgt\": {\r\n                    \"FinInstnId\": {\r\n                        \"ClrSysMmbId\": {\r\n                            \"MmbId\": \"dfsp002\"\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"networkMap\": {\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004_035@1.0.0\",\r\n                \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"999_035@1.0.0\",\r\n                                \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\r\n                                \"cfg\": \"1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"035@1.0.0\",\r\n                                        \"host\": \"{{ofUrl}}function/off-rule-035-rel-1-0-0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -835,18 +910,37 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-035-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-035-rel-1-0-0/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-035-rel-1-0-0",
 						"execute"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
