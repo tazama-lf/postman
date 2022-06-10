@@ -859,7 +859,7 @@
 							"const jsonData = pm.response.json();\r",
 							"const req = JSON.parse(request.data);\r",
 							"\r",
-							"const arangourl = pm.environment.get(\"arangourl\")\r",
+							"const arangourl = pm.environment.get(\"arangoUrl\")\r",
 							"\r",
 							"const graphTransactions = [\r",
 							"    \"8cc4f6ffb4fd4e31b42aec0ed5d600a0123\"\r",
