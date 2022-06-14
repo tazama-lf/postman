@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "012aa4d4-46c5-44d8-934d-9e036a73acd5",
+		"_postman_id": "2ea71193-a1de-4570-84b5-b10072ad3f17",
 		"name": "Rule017 Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -186,13 +186,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer-response"
 							]
 						}
@@ -1045,13 +1045,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -1850,13 +1850,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -2663,13 +2663,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -3437,13 +3437,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -4250,13 +4250,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -5064,13 +5064,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
@@ -5879,13 +5879,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-017-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-017{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-017-rel-1-0-0",
+						"off-rule-017{{version}}",
 						"execute"
 					]
 				}
