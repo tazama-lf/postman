@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7a9dc8fe-7856-4c0f-bab3-e21f80fde4d6",
+		"_postman_id": "b86ed702-7ed4-4d72-990d-d863de0b82d2",
 		"name": "Rule018Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -193,13 +193,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer-response"
 							]
 						}
@@ -350,13 +350,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-018-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-018{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-018-rel-1-0-0",
+						"off-rule-018{{version}}",
 						"execute"
 					]
 				}
@@ -1160,13 +1160,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-018-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-018{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-018-rel-1-0-0",
+						"off-rule-018{{version}}",
 						"execute"
 					]
 				}
@@ -1970,13 +1970,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-018-rel-1-0-0/execute",
+					"raw": "{{baseUrl}}/function/off-rule-018{{version}}/execute",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-018-rel-1-0-0",
+						"off-rule-018{{version}}",
 						"execute"
 					]
 				}
