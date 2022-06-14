@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4155958b-0f0a-4b51-9efa-d19732adcd72",
+		"_postman_id": "15eb783a-08be-46aa-af2b-73f8eaf37942",
 		"name": "Rule-090",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -95,6 +95,7 @@
 									"}\r",
 									"]\r",
 									"\r",
+									"\r",
 									"pm.sendRequest({\r",
 									"    url: '${arangourl}/_db/networkmap/_api/cursor',\r",
 									"    method: 'POST',\r",
@@ -167,13 +168,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service/quoteReply",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/quoteReply",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"quoteReply"
 							]
 						}
@@ -229,13 +230,10 @@
 							}
 						},
 						"url": {
-							"raw": "${arangourl}/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
@@ -308,13 +306,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service/transfer",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer"
 							]
 						}
@@ -370,13 +368,10 @@
 							}
 						},
 						"url": {
-							"raw": "${arangourl}/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
@@ -515,13 +510,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service/execute",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/execute",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service",
+								"off-transaction-monitoring-service{{version}}",
 								"execute"
 							]
 						}
@@ -577,13 +572,10 @@
 							}
 						},
 						"url": {
-							"raw": "${arangourl}/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
@@ -1497,13 +1489,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{version}}",
 								"transfer-response"
 							]
 						}
@@ -1581,13 +1573,10 @@
 							}
 						},
 						"url": {
-							"raw": "${arangourl}/_db/transactionHistory/_api/cursor",
-							"protocol": "http",
+							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
 							"host": [
-								"arango",
-								"development"
+								"{{arangoUrl}}"
 							],
-							"port": "8529",
 							"path": [
 								"_db",
 								"transactionHistory",
@@ -1793,13 +1782,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-090-rel-1-0-0/execute/",
+					"raw": "{{baseUrl}}/function/off-rule-090{{version}}/execute/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-090-rel-1-0-0",
+						"off-rule-090{{version}}",
 						"execute",
 						""
 					]
@@ -2064,13 +2053,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-090-rel-1-0-0/execute/",
+					"raw": "{{baseUrl}}/function/off-rule-090{{version}}/execute/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-090-rel-1-0-0",
+						"off-rule-090{{version}}",
 						"execute",
 						""
 					]
@@ -2347,13 +2336,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-090-rel-1-0-0/execute/",
+					"raw": "{{baseUrl}}/function/off-rule-090{{version}}/execute/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-090-rel-1-0-0",
+						"off-rule-090{{version}}",
 						"execute",
 						""
 					]
@@ -2618,13 +2607,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-090-rel-1-0-0/execute/",
+					"raw": "{{baseUrl}}/function/off-rule-090{{version}}/execute/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-090-rel-1-0-0",
+						"off-rule-090{{version}}",
 						"execute",
 						""
 					]
@@ -2889,13 +2878,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-090-rel-1-0-0/execute/",
+					"raw": "{{baseUrl}}/function/off-rule-090{{version}}/execute/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"function",
-						"off-rule-090-rel-1-0-0",
+						"off-rule-090{{version}}",
 						"execute",
 						""
 					]
