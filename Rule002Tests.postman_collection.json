@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "289b42e0-68a7-4c7f-9e60-dafc001a12b5",
+		"_postman_id": "3a279b72-fafd-446d-8eaf-ad282ddd3623",
 		"name": "Rule002Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -145,13 +145,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}

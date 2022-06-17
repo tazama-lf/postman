@@ -186,13 +186,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}
