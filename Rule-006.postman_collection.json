@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b45bbb87-6961-4c38-83a0-f12964bd671e",
+		"_postman_id": "140469b1-e819-45ab-a219-1603b1a569e6",
 		"name": "Rule-006",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -131,13 +131,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/execute",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/execute",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"execute"
 							]
 						}
@@ -370,13 +370,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/quoteReply",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/quoteReply",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"quoteReply"
 							]
 						}
@@ -507,13 +507,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer"
 							]
 						}
@@ -1494,13 +1494,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}
