@@ -372,7 +372,9 @@
 									"        mode: 'raw',\r",
 									"        raw: {\r",
 									"            query: `FOR expression IN ${JSON.stringify(tpExpressions)}\r",
+
 									"                    INSERT {_key: \"045\", id: expression.id, cfg: expression.cfg, rules: expression.rules, expression: expression.expression } INTO typologyExpression\r",
+
 									"                    OPTIONS { overwrite: true }`\r",
 									"        }\r",
 									"    }\r",
@@ -515,6 +517,7 @@
 									"            })\r",
 									"        }\r",
 									"    })\r",
+
 									"});"
 								],
 								"type": "text/javascript"

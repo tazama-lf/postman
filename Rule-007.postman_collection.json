@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f3d70ff4-e4b3-4a82-a43f-2ac89d1ba339",
+		"_postman_id": "c87ba8a2-93d5-4485-a8cc-fa2e30b8abb4",
 		"name": "Rule-007",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -133,13 +133,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/execute",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/execute",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"execute"
 							]
 						}
@@ -372,13 +372,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/quoteReply",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/quoteReply",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"quoteReply"
 							]
 						}
@@ -509,13 +509,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{version}}/transfer",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer"
 							]
 						}
@@ -1496,16 +1496,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://gateway.openfaas:8080/function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
-							"protocol": "http",
+							"raw": "{{ofUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
-								"gateway",
-								"openfaas"
+								"{{ofUrl}}"
 							],
-							"port": "8080",
 							"path": [
 								"function",
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}
@@ -5181,16 +5178,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://gateway.openfaas:8080/function/off-rule-007-rel-1-0-0/execute/",
-					"protocol": "http",
+					"raw": "{{ofUrl}}/function/off-rule-007{{version}}/execute/",
 					"host": [
-						"gateway",
-						"openfaas"
+						"{{ofUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"function",
-						"off-rule-007-rel-1-0-0",
+						"off-rule-007{{version}}",
 						"execute",
 						""
 					]

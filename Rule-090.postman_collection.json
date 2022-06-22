@@ -168,13 +168,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/quoteReply",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/quoteReply",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"quoteReply"
 							]
 						}
@@ -306,13 +306,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer"
 							]
 						}
@@ -510,13 +510,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/execute",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/execute",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"execute"
 							]
 						}
@@ -1489,13 +1489,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{version}}/transfer-response",
+							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"function",
-								"off-transaction-monitoring-service{{version}}",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}
