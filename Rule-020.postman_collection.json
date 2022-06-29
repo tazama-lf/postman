@@ -1099,20 +1099,30 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var Header = require('postman-collection').Header;\r",
+									"\r",
+									"setTimeout(checkStatusCode, 5000);\r",
+									"\r",
+									"function checkStatusCode() {\r",
+									"\r",
+									"    pm.sendRequest('https://postman-echo.com/get', function (err, res) {\r",
+									"\r",
+									"        tests['status code should be 200'] = res.code === 200;\r",
+									"\r",
+									"    });\r",
+									"} var Header = require('postman-collection').Header;\r",
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
-									"console.log(\"received end to end id for above request \",pm.collectionVariables.get(\"transactionID\")); \r",
+									"console.log(\"received end to end id for above request \", pm.collectionVariables.get(\"EndToEndId\"));\r",
 									"\r",
 									"pm.environment.set(\"query\", JSON.stringify(\r",
-									"      `\r",
+									"    `\r",
 									"      for transaction In transactions\r",
 									"       FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == \r",
-									"       `+pm.collectionVariables.get(\"transactionID\")+`\r",
-									"       return transaction ` \r",
+									"       `+ pm.collectionVariables.get(\"EndToEndId\") + `\r",
+									"       return transaction `\r",
 									"));\r",
 									"\r",
 									"console.log(pm.environment.get(\"query\"))\r",
-									" "
+									""
 								],
 								"type": "text/javascript"
 							}
