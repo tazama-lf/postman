@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4cf33c7d-980c-4203-81a8-1485aded77b4",
+		"_postman_id": "69e1c608-426a-4cbf-8421-3a91dd7d15e7",
 		"name": "Rule-037Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -77,59 +77,46 @@
 									"    }\r",
 									"}]\r",
 									"\r",
-									"pm.sendRequest({\r",
-									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
-									"    method: 'POST',\r",
-									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({\r",
-									"            query: `FOR doc IN networkConfiguration\r",
-									"                    FILTER doc.active == true\r",
-									"                    UPDATE doc WITH { active: false } IN networkConfiguration`\r",
-									"        })\r",
-									"    }\r",
-									"});\r",
-									"\r",
 									"let e2eID = JSON.stringify(msgId);\r",
 									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
 									"e2eID = e2eID.replace(\"\\\"\", \"'\")\r",
 									"pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
 									"const networkMaps = [\r",
-									"{   \"key\": \"037\",\r",
-									"    \"active\":true,\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"messages\": [\r",
-									"        {\r",
-									"            \"id\": \"004_037@1.0.0\",\r",
-									"            \"host\": `${baseUrl}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
-									"            \"cfg\": \"1.0.0\",\r",
-									"            \"txTp\": \"pacs.002.001.12\",\r",
-									"            \"channels\": [\r",
-									"                {\r",
-									"                    \"id\": \"001@1.0.0\",\r",
-									"                    \"host\": `${baseUrl}function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
-									"                    \"cfg\": \"1.0.0\",\r",
-									"                    \"typologies\": [\r",
-									"                        {\r",
-									"                            \"id\": \"999_037@1.0.0\",\r",
-									"                            \"host\": `${baseUrl}function/off-typology-processor-rel-1-0-0`,\r",
-									"                            \"cfg\": \"1.0.0\",\r",
-									"                            \"rules\": [\r",
-									"                                {\r",
-									"                                    \"id\": \"037@1.0.0\",\r",
-									"                                    \"host\": `${baseUrl}function/off-rule-037${version}`,\r",
-									"                                    \"cfg\": \"1.0.0\"\r",
-									"                                }\r",
-									"                            ]\r",
-									"                        }\r",
-									"                    ]\r",
-									"                }\r",
-									"            ]\r",
-									"        }\r",
-									"    ]\r",
-									"}]\r",
+									"    {\r",
+									"        \"key\": \"037\",\r",
+									"        \"active\": true,\r",
+									"        \"cfg\": \"1.0.0\",\r",
+									"        \"messages\": [\r",
+									"            {\r",
+									"                \"id\": \"004_037@1.0.0\",\r",
+									"                \"host\": `${baseUrl}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                \"cfg\": \"1.0.0\",\r",
+									"                \"txTp\": \"pacs.002.001.12\",\r",
+									"                \"channels\": [\r",
+									"                    {\r",
+									"                        \"id\": \"001@1.0.0\",\r",
+									"                        \"host\": `${baseUrl}function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                        \"cfg\": \"1.0.0\",\r",
+									"                        \"typologies\": [\r",
+									"                            {\r",
+									"                                \"id\": \"999_037@1.0.0\",\r",
+									"                                \"host\": `${baseUrl}function/off-typology-processor-rel-1-0-0`,\r",
+									"                                \"cfg\": \"1.0.0\",\r",
+									"                                \"rules\": [\r",
+									"                                    {\r",
+									"                                        \"id\": \"037@1.0.0\",\r",
+									"                                        \"host\": `${baseUrl}function/off-rule-037${version}`,\r",
+									"                                        \"cfg\": \"1.0.0\"\r",
+									"                                    }\r",
+									"                                ]\r",
+									"                            }\r",
+									"                        ]\r",
+									"                    }\r",
+									"                ]\r",
+									"            }\r",
+									"        ]\r",
+									"    }]\r",
 									"\r",
 									"const tpExpressions = [\r",
 									"    {\r",
@@ -164,23 +151,36 @@
 									"]\r",
 									"\r",
 									"pm.sendRequest({\r",
-									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
+									"    url: `${arangourl}_db/networkmap/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
 									"        mode: 'raw',\r",
 									"        raw: JSON.stringify({\r",
-									"            query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
-									"                    INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
-									"                    OPTIONS { overwrite: true }`\r",
+									"            query: `FOR doc IN networkConfiguration\r",
+									"                    FILTER doc.active == true\r",
+									"                    UPDATE doc WITH { active: false } IN networkConfiguration`\r",
 									"        })\r",
 									"    }\r",
+									"}, () => {\r",
+									"    pm.sendRequest({\r",
+									"        url: `${arangourl}_db/networkmap/_api/cursor`,\r",
+									"        method: 'POST',\r",
+									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                query: `FOR networkmap IN ${JSON.stringify(networkMaps)}\r",
+									"                    INSERT {_id: networkmap._id, _key: networkmap.key, active: networkmap.active, cfg: networkmap.cfg, messages: networkmap.messages} INTO networkConfiguration\r",
+									"                    OPTIONS { overwrite: true }`\r",
+									"            })\r",
+									"        }\r",
+									"    })\r",
 									"})\r",
-									"    \r",
 									"\r",
-									"// Seed rule config to Configuration collection\r",
+									"\r",
 									"pm.sendRequest({\r",
-									"    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+									"    url: `${arangourl}_db/Configuration/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
@@ -194,7 +194,7 @@
 									"});\r",
 									"\r",
 									"pm.sendRequest({\r",
-									"    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
+									"    url: `${arangourl}_db/Configuration/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"    body: {\r",
@@ -224,12 +224,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}function/off-transaction-monitoring-service-rel-1-0-0/transfer-response",
+							"raw": "{{ofUrl}}function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
 								"{{ofUrl}}function"
 							],
 							"path": [
-								"off-transaction-monitoring-service-rel-1-0-0",
+								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
 						}
@@ -304,12 +304,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/cursor",
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/cursor",
 							"host": [
-								"{{arangoUrl}}"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
 								"transactionHistory",
 								"_api",
 								"cursor"
@@ -538,12 +537,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{ofUrl}}function/off-rule-037-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-037{{version}}/execute",
 					"host": [
 						"{{ofUrl}}function"
 					],
 					"path": [
-						"off-rule-037-rel-1-0-0",
+						"off-rule-037{{version}}",
 						"execute"
 					]
 				}
@@ -759,12 +758,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{ofUrl}}function/off-rule-037-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-037{{version}}/execute",
 					"host": [
 						"{{ofUrl}}function"
 					],
 					"path": [
-						"off-rule-037-rel-1-0-0",
+						"off-rule-037{{version}}",
 						"execute"
 					]
 				}
@@ -981,12 +980,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{ofUrl}}function/off-rule-037-rel-1-0-0/execute",
+					"raw": "{{ofUrl}}function/off-rule-037{{version}}/execute",
 					"host": [
 						"{{ofUrl}}function"
 					],
 					"path": [
-						"off-rule-037-rel-1-0-0",
+						"off-rule-037{{version}}",
 						"execute"
 					]
 				}
