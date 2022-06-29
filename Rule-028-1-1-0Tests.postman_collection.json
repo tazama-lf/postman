@@ -946,6 +946,8 @@
 									"    pm.expect(jsonData.result[0].report.status).to.eql(\"NALT\")\r",
 									"});\r",
 									"\r",
+									"console.log(JSON.stringify(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0]))\r",
+									"\r",
 									"pm.test(\"check that report match band outcome\", function () {\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(true);\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".04\");\r",
