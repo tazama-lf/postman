@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "efe150c9-fdfd-41d1-bd3c-52f541c7102e",
+		"_postman_id": "7ef57767-18c3-400c-9f94-5485f4def078",
 		"name": "Rule-008 Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,10 +15,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"\r",
-									"var uuid = require('uuid');\r",
-									"var myUUID = uuid.v4();\r",
-									"pm.collectionVariables.set(\"transactionID\", myUUID.slice(-32));\r",
+									" \r",
+									"pm.collectionVariables.set(\"transactionID\", \"6b444365119746c5be7dfb5516ba67c4\");\r",
 									"\r",
 									"const msgId = pm.collectionVariables.get(\"transactionID\");\r",
 									"const arangourl = pm.environment.get('arangourl');\r",
@@ -40,33 +38,33 @@
 									"\r",
 									"const ruleConfig = [\r",
 									"    {\r",
-									"    \"id\": \"008@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"config\": {\r",
-									"        \"bands\": [\r",
-									"            {\r",
-									"                \"subRuleRef\": \".02\",\r",
-									"                \"outcome\": false,\r",
-									"                \"reason\": \"Different creditor in consecutive transactions\"\r",
-									"            },\r",
-									"            {\r",
-									"                \"subRuleRef\": \".03\",\r",
-									"                \"outcome\": true,\r",
-									"                \"reason\": \"Same creditor found in consecutive transactions\"\r",
-									"            },\r",
-									"            {\r",
-									"                \"subRuleRef\": \".00\",\r",
-									"                \"outcome\": false,\r",
-									"                \"reason\": \"Insufficient account history\"\r",
-									"            },\r",
-									"            {\r",
-									"                \"subRuleRef\": \".01\",\r",
-									"                \"outcome\": false,\r",
-									"                \"reason\": \"Unsuccessful transaction\"\r",
-									"            }\r",
-									"         ]\r",
+									"        \"id\": \"008@1.0.0\",\r",
+									"        \"cfg\": \"1.0.0\",\r",
+									"        \"config\": {\r",
+									"            \"bands\": [\r",
+									"                {\r",
+									"                    \"subRuleRef\": \".02\",\r",
+									"                    \"outcome\": false,\r",
+									"                    \"reason\": \"Different creditor in consecutive transactions\"\r",
+									"                },\r",
+									"                {\r",
+									"                    \"subRuleRef\": \".03\",\r",
+									"                    \"outcome\": true,\r",
+									"                    \"reason\": \"Same creditor found in consecutive transactions\"\r",
+									"                },\r",
+									"                {\r",
+									"                    \"subRuleRef\": \".00\",\r",
+									"                    \"outcome\": false,\r",
+									"                    \"reason\": \"Insufficient account history\"\r",
+									"                },\r",
+									"                {\r",
+									"                    \"subRuleRef\": \".01\",\r",
+									"                    \"outcome\": false,\r",
+									"                    \"reason\": \"Unsuccessful transaction\"\r",
+									"                }\r",
+									"            ]\r",
+									"        }\r",
 									"    }\r",
-									"}\r",
 									"]\r",
 									"\r",
 									"let e2eID = JSON.stringify(msgId);\r",
@@ -75,29 +73,30 @@
 									"pm.collectionVariables.set(\"EndToEndId\", e2eID);\r",
 									"\r",
 									"const networkMaps = [\r",
-									"{   \"key\": \"008\",\r",
-									"    \"active\":true,\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"messages\": [\r",
-									"       {\r",
+									"    {\r",
+									"        \"key\": \"008\",\r",
+									"        \"active\": true,\r",
+									"        \"cfg\": \"1.0.0\",\r",
+									"        \"messages\": [\r",
+									"            {\r",
 									"                \"id\": \"004_008@1.0.0\",\r",
-									"                \"host\": `${baseUrl}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                \"host\": `\"http://gateway.openfaas:8080/function/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0`,\r",
 									"                \"cfg\": \"1.0.0\",\r",
 									"                \"txTp\": \"pacs.002.001.12\",\r",
 									"                \"channels\": [\r",
 									"                    {\r",
 									"                        \"id\": \"001@1.0.0\",\r",
-									"                        \"host\": `${baseUrl}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
+									"                        \"host\": `\"http://gateway.openfaas:8080/function/function/off-channel-aggregation-decisioning-processor-rel-1-0-0`,\r",
 									"                        \"cfg\": \"1.0.0\",\r",
 									"                        \"typologies\": [\r",
 									"                            {\r",
 									"                                \"id\": \"999_008@1.0.0\",\r",
-									"                                \"host\": `${baseUrl}/function/off-typology-processor-rel-1-0-0`,\r",
+									"                                \"host\": `\"http://gateway.openfaas:8080/function/function/off-typology-processor-rel-1-0-0`,\r",
 									"                                \"cfg\": \"1.0.0\",\r",
 									"                                \"rules\": [\r",
 									"                                    {\r",
 									"                                        \"id\": \"008@1.0.0\",\r",
-									"                                        \"host\": `${baseUrl}/function/off-rule-008-rel-1-0-0`,\r",
+									"                                        \"host\": `\"http://gateway.openfaas:8080/function/function/off-rule-008-rel-1-0-0`,\r",
 									"                                        \"cfg\": \"1.0.0\"\r",
 									"                                    }\r",
 									"                                ]\r",
@@ -106,15 +105,12 @@
 									"                    }\r",
 									"                ]\r",
 									"            }\r",
-									"      ]\r",
+									"        ]\r",
 									"    }\r",
 									"]\r",
 									"\r",
-									"setTimeout(checkStatusCode, 2000);\r",
 									"\r",
-									"    function checkStatusCode() {\r",
-									"\r",
-									"       pm.sendRequest({\r",
+									"pm.sendRequest({\r",
 									"    url: `${arangourl}/_db/networkmap/_api/cursor`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
@@ -127,7 +123,6 @@
 									"        })\r",
 									"    }\r",
 									"});\r",
-									"    }\r",
 									"\r",
 									"pm.sendRequest({\r",
 									"    url: `${arangourl}/_db/Configuration/_api/cursor`,\r",
@@ -190,12 +185,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
+							"raw": "{{ofUrl}}function/off-transaction-monitoring-service{{TMSversion}}/transfer-response",
 							"host": [
-								"{{baseUrl}}"
+								"{{ofUrl}}function"
 							],
 							"path": [
-								"function",
 								"off-transaction-monitoring-service{{TMSversion}}",
 								"transfer-response"
 							]
@@ -210,30 +204,22 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									" \r",
 									"\r",
-									"setTimeout(checkStatusCode, 5000);\r",
-									"\r",
-									"    function checkStatusCode() {\r",
-									"\r",
-									"        pm.sendRequest('https://postman-echo.com/get', function (err, res) {\r",
-									"\r",
-									"            tests['status code should be 200']= res.code ===200;\r",
-									"\r",
-									"        });\r",
-									"    }var Header = require('postman-collection').Header;\r",
+									"var Header = require('postman-collection').Header;\r",
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
-									"console.log(\"received end to end id for above request \",pm.collectionVariables.get(\"EndToEndId\")); \r",
+									"console.log(\"received end to end id for above request \", pm.collectionVariables.get(\"EndToEndId\"));\r",
 									"\r",
 									"pm.environment.set(\"query\", JSON.stringify(\r",
-									"      `\r",
+									"    `\r",
 									"      for transaction In transactions\r",
 									"       FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == \r",
-									"       `+pm.collectionVariables.get(\"EndToEndId\")+`\r",
-									"       return transaction ` \r",
+									"       `+ pm.collectionVariables.get(\"EndToEndId\") + `\r",
+									"       return transaction `\r",
 									"));\r",
 									"\r",
 									"console.log(pm.environment.get(\"query\"))\r",
-									" "
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -252,14 +238,14 @@
 									"\r",
 									"pm.test(\"check that there is actual data received back \", function () {\r",
 									"    pm.expect(jsonData.result).to.not.eql([]);\r",
-									"    pm.expect(jsonData.result[0].networkMap.cfg).to.eql('1.0.0');\r",
+									"    pm.expect(jsonData.result[0].networkMap.messages[0].cfg).to.eql('1.0.0');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"check that the report status is NALT \", function () {\r",
 									"    pm.expect(jsonData.result[0].report.status).to.eql(\"NALT\")\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(false);\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".00\");\r",
-									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient account history\");\r",
+									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient transaction history\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -630,13 +616,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-008{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule008{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
-						"off-rule-008{{version}}",
+						"off-rule008{{version}}",
 						"execute"
 					]
 				}
@@ -653,9 +638,9 @@
 							"const jsonData = pm.response.json();",
 							"const req = JSON.parse(request.data);",
 							"const arangourl = pm.environment.get('arangourl');",
-							"const transactions = [\"96ae98292ec04bf29b5d40ba99864c38\"]",
+							"const transactions = [\"96ae98292ec04bff2985d40ba99864c38\"]",
 							"const graphTransactions = [",
-							"    \"d923682a97089a8416151ad1e58355b8eeee108007f7accd4adc9dc7067767d7\"",
+							"    \"d923682a97089a8416151ad1e58355b8eeee108007\"",
 							"]",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
@@ -977,13 +962,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-008{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule008{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
-						"off-rule-008{{version}}",
+						"off-rule008{{version}}",
 						"execute"
 					]
 				}
@@ -1347,13 +1331,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-008{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule008{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
-						"off-rule-008{{version}}",
+						"off-rule008{{version}}",
 						"execute"
 					]
 				}
@@ -1741,13 +1724,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-008{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule008{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
-						"off-rule-008{{version}}",
+						"off-rule008{{version}}",
 						"execute"
 					]
 				}
@@ -1764,7 +1746,8 @@
 							"const jsonData = pm.response.json();",
 							"const req = JSON.parse(request.data);",
 							"const arangourl = pm.environment.get('arangourl');",
-							"const transactions = [\"96ae98292ec04tjhf29b5d40ba99864c38\"]",
+							"",
+							"const transactions = [\"9990060081\"]",
 							"const graphTransactions = [",
 							"    \"d923682a97089a8416151rafd1ef58355b8e777908007\",",
 							"    \"d923682a97089aa8f4161519878e58355b8eeee108008\",",
@@ -1781,23 +1764,25 @@
 							"    pm.expect(jsonData.ruleResult.result).to.be.eql(true);",
 							"});",
 							"",
+							"",
 							"pm.test(\"Remove Seed Data from DB\", function () {",
 							"    pm.sendRequest({",
-							"        url: `${arangourl}/_db/transactionHistory/_api/cursor`,",
+							"        url: `${arangourl}_db/transactionHistory/_api/cursor`,",
 							"        method: 'POST',",
 							"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
 							"        body: {",
 							"            mode: 'raw',",
 							"            raw: JSON.stringify({",
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
-							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
-							"            \"MsgId",
 							"                        REMOVE { _key: transaction } IN transactionHistory",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
 							"    })",
 							"});",
+							"",
+							"",
+							"",
 							"",
 							"pm.test(\"Remove Seed Data from transactionGraph\", function () {",
 							"    pm.sendRequest({",
@@ -1829,36 +1814,37 @@
 							"\r",
 							"const ruleConfig = [\r",
 							"    {\r",
-							"    \"id\": \"008@1.0.0\",\r",
-							"    \"cfg\": \"1.0.0\",\r",
-							"    \"config\": {\r",
-							"        \"bands\": [\r",
-							"            {\r",
-							"                \"subRuleRef\": \".02\",\r",
-							"                \"outcome\": false,\r",
-							"                \"reason\": \"Different creditor in consecutive transactions\"\r",
-							"            },\r",
-							"            {\r",
-							"                \"subRuleRef\": \".03\",\r",
-							"                \"outcome\": true,\r",
-							"                \"reason\": \"Same creditor found in consecutive transactions\"\r",
-							"            },\r",
-							"            {\r",
-							"                \"subRuleRef\": \".00\",\r",
-							"                \"outcome\": false,\r",
-							"                \"reason\": \"Insufficient account history\"\r",
-							"            },\r",
-							"            {\r",
-							"                \"subRuleRef\": \".01\",\r",
-							"                \"outcome\": false,\r",
-							"                \"reason\": \"Unsuccessful transaction\"\r",
-							"            }\r",
-							"         ]\r",
+							"        \"id\": \"008@1.0.0\",\r",
+							"        \"cfg\": \"1.0.0\",\r",
+							"        \"config\": {\r",
+							"            \"bands\": [\r",
+							"                {\r",
+							"                    \"subRuleRef\": \".02\",\r",
+							"                    \"outcome\": false,\r",
+							"                    \"reason\": \"Different creditor in consecutive transactions\"\r",
+							"                },\r",
+							"                {\r",
+							"                    \"subRuleRef\": \".03\",\r",
+							"                    \"outcome\": true,\r",
+							"                    \"reason\": \"Same creditor found in consecutive transactions\"\r",
+							"                },\r",
+							"                {\r",
+							"                    \"subRuleRef\": \".00\",\r",
+							"                    \"outcome\": false,\r",
+							"                    \"reason\": \"Insufficient account history\"\r",
+							"                },\r",
+							"                {\r",
+							"                    \"subRuleRef\": \".01\",\r",
+							"                    \"outcome\": false,\r",
+							"                    \"reason\": \"Unsuccessful transaction\"\r",
+							"                }\r",
+							"            ]\r",
+							"        }\r",
 							"    }\r",
-							"}\r",
 							"]\r",
 							"\r",
 							"const pacs008Transactions = [{\r",
+							"    \"_key\": \"9990060081\",\r",
 							"    \"TxTp\": \"pacs.008.001.10\",\r",
 							"    \"FIToFICstmrCdt\": {\r",
 							"        \"GrpHdr\": {\r",
@@ -1876,13 +1862,13 @@
 							"            },\r",
 							"            \"IntrBkSttlmAmt\": {\r",
 							"                \"Amt\": {\r",
-							"                    \"Amt\": 9899 ,\r",
+							"                    \"Amt\": 9899,\r",
 							"                    \"Ccy\": \"USD\"\r",
 							"                }\r",
 							"            },\r",
 							"            \"InstdAmt\": {\r",
 							"                \"Amt\": {\r",
-							"                    \"Amt\": 9899 ,\r",
+							"                    \"Amt\": 9899,\r",
 							"                    \"Ccy\": \"USD\"\r",
 							"                }\r",
 							"            },\r",
@@ -2076,18 +2062,19 @@
 							"}]\r",
 							"\r",
 							"pm.sendRequest({\r",
-							"    url: `${arangourl}/_db/transactionHistory/_api/cursor`,\r",
+							"    url: `${arangourl}_db/transactionHistory/_api/cursor`,\r",
 							"    method: 'POST',\r",
 							"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 							"    body: {\r",
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction._key, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
-							"});\r",
+							"}); \r",
+							"\r",
 							"\r",
 							"pm.sendRequest({\r",
 							"    url: `${arangourl}/_db/pseudonyms/_api/cursor`,\r",
@@ -2134,18 +2121,27 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-008{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule008{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
-						"off-rule-008{{version}}",
+						"off-rule008{{version}}",
 						"execute"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "transactionID",
+			"value": ""
+		},
+		{
+			"key": "EndToEndId",
+			"value": ""
 		}
 	]
 }
