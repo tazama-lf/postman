@@ -1832,21 +1832,7 @@
 							"                    OPTIONS { overwrite: true }`",
 							"        })",
 							"    }",
-							"});",
-							"",
-							"// pm.sendRequest({",
-							"//     url: `${arangourl}_db/transactionHistory/_api/cursor?waitForSync=true`,",
-							"//     method: 'POST',",
-							"//     header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
-							"//     body: {",
-							"//         mode: 'raw',",
-							"//         raw: JSON.stringify({",
-							"//             query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}",
-							"//                     INSERT {_key: \"99902150081\", TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory",
-							"//                     OPTIONS { overwrite: true }`",
-							"//         })",
-							"//     }",
-							"// });"
+							"});"
 						],
 						"type": "text/javascript"
 					}
