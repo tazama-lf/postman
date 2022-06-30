@@ -267,7 +267,16 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									" \r",
+									" setTimeout(checkStatusCode, 5000);\r",
+									"\r",
+									"function checkStatusCode() {\r",
+									"\r",
+									"    pm.sendRequest('https://postman-echo.com/get', function (err, res) {\r",
+									"\r",
+									"        tests['status code should be 200'] = res.code === 200;\r",
+									"\r",
+									"    });\r",
+									"}\r",
 									"\r",
 									"var Header = require('postman-collection').Header;\r",
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
