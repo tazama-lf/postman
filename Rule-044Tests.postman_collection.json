@@ -730,6 +730,8 @@
 					"script": {
 						"exec": [
 							"",
+							"const arangourl = pm.environment.get('arangoUrl');",
+							"",
 							"const jsonData = pm.response.json();",
 							"",
 							"const transactions = [\"9990441\", \"9990442\", \"9990443\", \"9990444\"]",
