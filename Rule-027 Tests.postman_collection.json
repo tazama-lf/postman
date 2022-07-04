@@ -493,6 +493,7 @@
 									"});\r",
 									"\r",
 									"pm.sendRequest({\r",
+
 									"    url: `${arangourl}_db/Configuration/_api/cursor?waitForSync=true`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
@@ -507,6 +508,7 @@
 									"});\r",
 									"\r",
 									"pm.sendRequest({\r",
+                  
 									"    url: `${arangourl}_db/transactionHistory/_api/cursor?waitForSync=true`,\r",
 									"    method: 'POST',\r",
 									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
