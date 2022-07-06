@@ -1060,7 +1060,7 @@
 									"pm.test(\"check that report matches rule config band \", function () {\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].result).to.eql(false);\r",
 									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].subRuleRef).to.eql(\".00\");\r",
-									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient transaction history\");\r",
+									"    pm.expect(jsonData.result[0].report.tadpResult.channelResult[0].typologyResult[0].ruleResults[0].reason).to.eql(\"Insufficient account history\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Remove Seed Data from DB\", function () {\r",
