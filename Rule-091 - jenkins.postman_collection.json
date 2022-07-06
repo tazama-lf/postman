@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66dd146c-f498-4765-a726-730d75fd7458",
+		"_postman_id": "3c9f8d37-e353-47fd-be56-cf9f60706958",
 		"name": "Rule-091 - jenkins",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -574,20 +574,31 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"setTimeout(checkStatusCode, 5000);\r",
+									"\r",
+									"function checkStatusCode() {\r",
+									"\r",
+									"    pm.sendRequest('https://postman-echo.com/get', function (err, res) {\r",
+									"\r",
+									"        tests['status code should be 200'] = res.code === 200;\r",
+									"\r",
+									"    });\r",
+									"}\r",
+									"\r",
 									"var Header = require('postman-collection').Header;\r",
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
-									"console.log(\"received end to end id for above request \",pm.collectionVariables.get(\"EndToEndId\")); \r",
+									"console.log(\"received end to end id for above request \", pm.collectionVariables.get(\"EndToEndId\"));\r",
 									"\r",
 									"pm.environment.set(\"query\", JSON.stringify(\r",
-									"      `\r",
+									"    `\r",
 									"      for transaction In transactions\r",
 									"       FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == \r",
-									"       `+pm.collectionVariables.get(\"EndToEndId\")+`\r",
-									"       return transaction ` \r",
+									"       `+ pm.collectionVariables.get(\"EndToEndId\") + `\r",
+									"       return transaction `\r",
 									"));\r",
 									"\r",
 									"console.log(pm.environment.get(\"query\"))\r",
-									" "
+									""
 								],
 								"type": "text/javascript"
 							}
