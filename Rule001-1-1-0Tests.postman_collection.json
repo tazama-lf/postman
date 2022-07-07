@@ -1188,12 +1188,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/execute",
+					"raw": "{{ofUrl}}function/off-rule-001{{version}}/execute",
 					"host": [
-						"localhost"
+						"{{ofUrl}}function"
 					],
-					"port": "3000",
 					"path": [
+						"off-rule-001{{version}}",
 						"execute"
 					]
 				}
