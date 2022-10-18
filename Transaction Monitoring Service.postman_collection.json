@@ -3825,7 +3825,7 @@
 									"pm.test(\"Data sent to data preperation\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    var jsonReq = JSON.parse(pm.request.body);\r",
-									"    pm.expect(jsonData.data).to.eql(jsonReq);\r",
+									"    pm.expect(jsonData).to.eql(jsonReq);\r",
 									"});"
 								],
 								"type": "text/javascript"
