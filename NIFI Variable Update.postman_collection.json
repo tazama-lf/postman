@@ -45,13 +45,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "frm",
+							"key": "password",
+							"value": "{{NIFIPassword}}",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"key": "username",
+							"value": "{{NIFIUsername}}",
 							"type": "string"
 						}
 					]
@@ -126,13 +126,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "frm",
+							"key": "password",
+							"value": "{{NIFIPassword}}",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"key": "username",
+							"value": "{{NIFIUsername}}",
 							"type": "string"
 						}
 					]
