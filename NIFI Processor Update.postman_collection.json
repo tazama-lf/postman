@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "85bbad6a-e3fb-4051-8d3a-b6322b5c5ec7",
+		"name": "NIFI Processor Update",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8089578"
+	},
+	"item": [
+		{
+			"name": "Get Processor Configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"console.log(jsonData.revision.clientId);\r",
+							"\r",
+							"pm.environment.set(\"clientId\", jsonData.revision.clientId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/processors/{{processorId}}",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"processors",
+						"{{processorId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stopping a Processor",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const clientId = pm.environment.get(\"clientId\");\r",
+							"console.log(clientId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"revision\": {\r\n    \"clientId\": \"{{clientId}}\",\r\n    \"version\": 203\r\n  },\r\n  \"state\": \"STOPPED\",\r\n  \"disconnectedNodeAcknowledged\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/processors/{{processorId}}/run-status",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"processors",
+						"{{processorId}}",
+						"run-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Amending Processor Configuration values",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const clientId = pm.environment.get(\"clientId\");\r",
+							"console.log(clientId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"revision\": {\r\n    \"version\": 289\r\n  },\r\n  \"id\": \"61327e0d-0180-1000-ffff-ffff83787f0a\",\r\n  \"uri\": \"https://frm.sybrin.com:443/nifi-api/parameter-contexts/61327e0d-0180-1000-ffff-ffff83787f0a\",\r\n  \"permissions\": {\r\n    \"canRead\": true,\r\n    \"canWrite\": true\r\n  },\r\n  \"component\": {\r\n    \"name\": \"arango pword\",\r\n    \"description\": \"\",\r\n    \"parameters\": [\r\n      {\r\n        \"canWrite\": true,\r\n        \"parameter\": {\r\n          \"name\": \"Authorization\",\r\n          \"description\": \"\",\r\n          \"sensitive\": false,\r\n          \"value\": \"bearer {{arangoToken}}\",\r\n          \"referencingComponents\": []\r\n        }\r\n      }\r\n    ],\r\n    \"boundProcessGroups\": [\r\n      {\r\n        \"revision\": {\r\n          \"clientId\": \"0e14c1f1-0184-1000-2f45-92c61cef7188\",\r\n          \"version\": 3\r\n        },\r\n        \"id\": \"5030529c-0180-1000-ffff-ffff940c106c\",\r\n        \"position\": {\r\n          \"x\": 3328,\r\n          \"y\": 1888\r\n        },\r\n        \"permissions\": {\r\n          \"canRead\": true,\r\n          \"canWrite\": true\r\n        },\r\n        \"component\": {\r\n          \"id\": \"5030529c-0180-1000-ffff-ffff940c106c\",\r\n          \"versionedComponentId\": \"78886850-9e0b-3b30-9177-9ddb44dc9650\",\r\n          \"parentGroupId\": \"d7f1bd6a-df68-4d08-abf8-e642f30ba52b\",\r\n          \"position\": {\r\n            \"x\": 3328,\r\n            \"y\": 1888\r\n          },\r\n          \"name\": \"Nifi Flow\",\r\n          \"comments\": \"\",\r\n          \"variables\": {},\r\n          \"versionControlInformation\": {\r\n            \"groupId\": \"5030529c-0180-1000-ffff-ffff940c106c\",\r\n            \"registryId\": \"83965ae8-36e0-44c1-959f-eb1ea3cb3d60\",\r\n            \"registryName\": \"default\",\r\n            \"bucketId\": \"5db15007-6f97-469c-bc07-fcd48fc9ca55\",\r\n            \"bucketName\": \"imports\",\r\n            \"flowId\": \"93e4a2f5-ecda-4426-9ca2-2721a40ca467\",\r\n            \"flowName\": \"foley\",\r\n            \"version\": 21,\r\n            \"state\": \"LOCALLY_MODIFIED\",\r\n            \"stateExplanation\": \"Local changes have been made\"\r\n          },\r\n          \"parameterContext\": {\r\n            \"id\": \"942a88f6-0180-1000-ffff-ffffe9e388ee\",\r\n            \"permissions\": {\r\n              \"canRead\": true,\r\n              \"canWrite\": true\r\n            },\r\n            \"component\": {\r\n              \"id\": \"942a88f6-0180-1000-ffff-ffffe9e388ee\",\r\n              \"name\": \"arango pword\"\r\n            }\r\n          },\r\n          \"flowfileConcurrency\": \"SINGLE_FLOWFILE_PER_NODE\",\r\n          \"flowfileOutboundPolicy\": \"STREAM_WHEN_AVAILABLE\",\r\n          \"runningCount\": 255,\r\n          \"stoppedCount\": 1,\r\n          \"invalidCount\": 20,\r\n          \"disabledCount\": 57,\r\n          \"activeRemotePortCount\": 0,\r\n          \"inactiveRemotePortCount\": 0,\r\n          \"upToDateCount\": 0,\r\n          \"locallyModifiedCount\": 0,\r\n          \"staleCount\": 0,\r\n          \"locallyModifiedAndStaleCount\": 0,\r\n          \"syncFailureCount\": 0,\r\n          \"localInputPortCount\": 0,\r\n          \"localOutputPortCount\": 0,\r\n          \"publicInputPortCount\": 0,\r\n          \"publicOutputPortCount\": 0,\r\n          \"inputPortCount\": 0,\r\n          \"outputPortCount\": 0\r\n        },\r\n        \"runningCount\": 255,\r\n        \"stoppedCount\": 1,\r\n        \"invalidCount\": 20,\r\n        \"disabledCount\": 57,\r\n        \"activeRemotePortCount\": 0,\r\n        \"inactiveRemotePortCount\": 0,\r\n        \"versionedFlowState\": \"LOCALLY_MODIFIED\",\r\n        \"upToDateCount\": 0,\r\n        \"locallyModifiedCount\": 0,\r\n        \"staleCount\": 0,\r\n        \"locallyModifiedAndStaleCount\": 0,\r\n        \"syncFailureCount\": 0,\r\n        \"localInputPortCount\": 0,\r\n        \"localOutputPortCount\": 0,\r\n        \"publicInputPortCount\": 0,\r\n        \"publicOutputPortCount\": 0,\r\n        \"parameterContext\": {\r\n          \"id\": \"942a88f6-0180-1000-ffff-ffffe9e388ee\",\r\n          \"permissions\": {\r\n            \"canRead\": true,\r\n            \"canWrite\": true\r\n          },\r\n          \"component\": {\r\n            \"id\": \"942a88f6-0180-1000-ffff-ffffe9e388ee\",\r\n            \"name\": \"arango pword\"\r\n          }\r\n        },\r\n        \"inputPortCount\": 0,\r\n        \"outputPortCount\": 0\r\n      }\r\n    ],\r\n    \"id\": \"942a88f6-0180-1000-ffff-ffffe9e388ee\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/parameter-contexts/942a88f6-0180-1000-ffff-ffffe9e388ee",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"parameter-contexts",
+						"942a88f6-0180-1000-ffff-ffffe9e388ee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Starting a Processor",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const clientId = pm.environment.get(\"clientId\");\r",
+							"console.log(clientId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"revision\": {\r\n    \"clientId\": \"{{clientId}}\",\r\n    \"version\": 210\r\n  },\r\n  \"state\": \"RUNNING\",\r\n  \"disconnectedNodeAcknowledged\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/processors/61327e0d-0180-1000-ffff-ffff83787f0a/run-status",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"processors",
+						"61327e0d-0180-1000-ffff-ffff83787f0a",
+						"run-status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "e77b8996-7263-4f97-80bf-75070e51cd4b",
+		"name": "NIFI Variable Update",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8089578"
+	},
+	"item": [
+		{
+			"name": "Get NIFI  ArangoToken Variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
+							"pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
+							"//pm.environment.set(\"processGroupID\", jsonData.processGroupRevision.clientId);\r",
+							"//pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
+							"\r",
+							"console.log(jsonData.processGroupRevision.clientId);\r",
+							"console.log(jsonData.processGroupRevision.version);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/process-groups/{{processGroupID}}/variable-registry",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"process-groups",
+						"{{processGroupID}}",
+						"variable-registry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update NIFI  ArangoToken Variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Completed\", function () {\r",
+							"    pm.expect(jsonData.request.complete).to.eql(true);\r",
+							"});*/"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const clientID = pm.environment.get(\"clientID\");\r",
+							"const groupVersion = pm.environment.get(\"groupVersion\");\r",
+							"const processGroupID = pm.environment.get(\"processGroupID\");\r",
+							"const variableName = pm.environment.get(\"variableName\");\r",
+							"const arangoToken = pm.environment.get(\"arangoToken\");\r",
+							"\r",
+							"console.log(clientID);\r",
+							"console.log(groupVersion);\r",
+							"console.log(processGroupID);\r",
+							"console.log(variableName);\r",
+							"console.log(arangoToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"processGroupRevision\": {\r\n    \"clientId\": \"{{clientID}}\",\r\n    \"version\": {{groupVersion}}\r\n  },\r\n  \"disconnectedNodeAcknowledged\": false,\r\n  \"variableRegistry\": {\r\n    \"processGroupId\": \"{{processGroupID}}\",\r\n    \"variables\": [\r\n      {\r\n        \"variable\": {\r\n          \"name\": \"{{variableName}}\",\r\n          \"value\": \"{{arangoToken}}\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/process-groups/{{processGroupID}}/variable-registry/update-requests",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"process-groups",
+						"{{processGroupID}}",
+						"variable-registry",
+						"update-requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update NIFI  ArangoToken Variable Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Completed\", function () {\r",
+							"    pm.expect(jsonData.request.complete).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frm",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "GeJj2BzCC2VNZ3zdMcE5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"processGroupRevision\": {\r\n    \"clientId\": \"565f7c79-0184-1000-7331-4b3421e69c6d\",\r\n    \"version\": 28\r\n  },\r\n  \"disconnectedNodeAcknowledged\": false,\r\n  \"variableRegistry\": {\r\n    \"processGroupId\": \"5030529c-0180-1000-ffff-ffff940c106c\",\r\n    \"variables\": [\r\n      {\r\n        \"variable\": {\r\n          \"name\": \"ArangoToken\",\r\n          \"value\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290IiwiaXNzIjoiYXJhbmdvZGIiLCJpYXQiOjE2NjgwMDAwNjUsImV4cCI6MTY2ODAwMzY2NX0.uN4GO9Z5z14AFi5oOgIuIFmcP06bZ0dZ_tmYz0ca5_0\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://frm.sybrin.com/nifi-api/process-groups/5030529c-0180-1000-ffff-ffff940c106c/variable-registry/update-requests",
+					"protocol": "https",
+					"host": [
+						"frm",
+						"sybrin",
+						"com"
+					],
+					"path": [
+						"nifi-api",
+						"process-groups",
+						"5030529c-0180-1000-ffff-ffff940c106c",
+						"variable-registry",
+						"update-requests"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "clientID",
+			"value": ""
+		},
+		{
+			"key": "groupVersion",
+			"value": ""
+		},
+		{
+			"key": "processGroupID",
+			"value": ""
+		},
+		{
+			"key": "variableName",
+			"value": ""
+		},
+		{
+			"key": "arangoToken",
+			"value": ""
+		}
+	]
+}
