@@ -68,12 +68,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://frm.sybrin.com/nifi-api/process-groups/{{processGroupID}}/variable-registry",
-					"protocol": "https",
+					"raw": "{{nifiUrl}}/nifi-api/process-groups/{{processGroupID}}/variable-registry",
 					"host": [
-						"frm",
-						"sybrin",
-						"com"
+						"{{nifiUrl}}"
 					],
 					"path": [
 						"nifi-api",
@@ -149,12 +146,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://frm.sybrin.com/nifi-api/process-groups/{{processGroupID}}/variable-registry/update-requests",
-					"protocol": "https",
+					"raw": "{{nifiUrl}}/nifi-api/process-groups/{{processGroupID}}/variable-registry/update-requests",
 					"host": [
-						"frm",
-						"sybrin",
-						"com"
+						"{{nifiUrl}}"
 					],
 					"path": [
 						"nifi-api",
