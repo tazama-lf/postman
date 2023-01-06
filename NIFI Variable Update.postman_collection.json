@@ -74,6 +74,7 @@
 						"exec": [
 							"let jsonData = pm.response.json();\r",
 							"\r",
+							"/*setting variables from response*/\r",
 							"pm.environment.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
 							"pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
 							"\r",
@@ -159,6 +160,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
+							"/*Setting variables*/\r",
 							"const clientID = pm.environment.get(\"clientID\");\r",
 							"const groupVersion = pm.environment.get(\"groupVersion\");\r",
 							"const processGroupID = pm.environment.get(\"processGroupID\");\r",
