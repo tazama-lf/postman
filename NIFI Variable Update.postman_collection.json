@@ -7,6 +7,65 @@
 	},
 	"item": [
 		{
+			"name": "Update Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"",
+							"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"{{arangoUsername}}\",\r\n  \"password\": \"{{arangoPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}_open/auth",
+					"host": [
+						"{{arangoUrl}}_open"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get NIFI  ArangoToken Variable",
 			"event": [
 				{
@@ -17,8 +76,6 @@
 							"\r",
 							"pm.environment.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
 							"pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
-							"//pm.environment.set(\"processGroupID\", jsonData.processGroupRevision.clientId);\r",
-							"//pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
 							"\r",
 							"console.log(jsonData.processGroupRevision.clientId);\r",
 							"console.log(jsonData.processGroupRevision.version);\r",
