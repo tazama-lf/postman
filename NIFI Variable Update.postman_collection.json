@@ -15,7 +15,7 @@
 						"exec": [
 							"let jsonData = pm.response.json();",
 							"",
-							"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])",
+							"pm.environment.set(\"arangoToken\", jsonData[\"jwt\"])",
 							""
 						],
 						"type": "text/javascript"
@@ -74,6 +74,7 @@
 						"exec": [
 							"let jsonData = pm.response.json();\r",
 							"\r",
+							"/*setting variables from response*/\r",
 							"pm.environment.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
 							"pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
 							"\r",
@@ -159,17 +160,18 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
+							"/*Setting variables*/\r",
 							"const clientID = pm.environment.get(\"clientID\");\r",
 							"const groupVersion = pm.environment.get(\"groupVersion\");\r",
 							"const processGroupID = pm.environment.get(\"processGroupID\");\r",
 							"const variableName = pm.environment.get(\"variableName\");\r",
-							"const arangoToken = pm.environment.get(\"arangoToken\");\r",
+							"const arangoToken = pm.environment.get(\"arangoToken\")\r",
+							"\r",
 							"\r",
 							"console.log(clientID);\r",
 							"console.log(groupVersion);\r",
 							"console.log(processGroupID);\r",
-							"console.log(variableName);\r",
-							"console.log(arangoToken);"
+							"console.log(variableName);"
 						],
 						"type": "text/javascript"
 					}
