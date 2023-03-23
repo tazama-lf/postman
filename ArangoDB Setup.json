@@ -434,7 +434,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"configuration\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"configuration\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -472,7 +472,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"typologyExpression\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"typologyExpression\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -510,7 +510,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"channelExpression\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"channelExpression\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -548,7 +548,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -586,7 +586,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"networkConfiguration\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"networkConfiguration\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -609,6 +609,20 @@
 				},
 				{
 					"name": "Create transactionHistory Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -624,7 +638,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistory\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistory\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,7 +676,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactions\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactions\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -700,7 +714,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"watchlist\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"watchlist\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -738,7 +752,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"list\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"list\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -776,7 +790,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"Individuals\", \r\n  \"keyOptions\" : { \r\n    \"type\" : \"autoincrement\", \r\n    \"increment\" : 5, \r\n    \"allowUserKeys\" : true \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"Individuals\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -832,6 +846,171 @@
 								"view"
 							],
 							"hash": "arangosearch"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create analyzer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"text_en_no_stem\",\r\n    \"type\": \"text\",\r\n    \"properties\": {\r\n        \"locale\": \"en.utf-8\",\r\n        \"accent\": false,\r\n        \"case\": \"lower\",\r\n        \"stemming\": false,\r\n        \"stopwords\": []\r\n    },\r\n    \"features\": [\r\n        \"position\",\r\n        \"frequency\",\r\n        \"norm\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/analyzer",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"analyzer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create vEntityResolution",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vEntityResolution\",\r\n    \"type\": \"arangosearch\",\r\n    \"writebufferIdle\": 64,\r\n    \"writebufferSizeMax\": 33554432,\r\n    \"consolidationPolicy\": {\r\n        \"type\": \"tier\",\r\n        \"segmentsBytesFloor\": 2097152,\r\n        \"segmentsBytesMax\": 5368709120,\r\n        \"segmentsMax\": 10,\r\n        \"segmentsMin\": 1,\r\n        \"minScore\": 0\r\n    },\r\n    \"primarySort\": [],\r\n    \"storedValues\": [],\r\n    \"writebufferActive\": 0,\r\n    \"consolidationIntervalMsec\": 1000,\r\n    \"cleanupIntervalStep\": 2,\r\n    \"commitIntervalMsec\": 1000,\r\n    \"links\": {\r\n        \"transactionHistory\": {\r\n            \"fields\": {\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Cdtr.MddlNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                },\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Cdtr.LastNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                },\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Cdtr.FrstNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                },\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Dbtr.MddlNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                },\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Dbtr.FrstNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                },\r\n                \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Dbtr.LastNm\": {\r\n                    \"analyzers\": [\r\n                        \"text_en_no_stem\"\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"primarySortCompression\": \"lz4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/view#arangosearch",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"view"
+							],
+							"hash": "arangosearch"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionHistory Fulltext Dbtr",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"type\":\"fulltext\",\"fields\":[\"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Dbtr\"],\"minLength\":1,\"inBackground\":false,\"name\":\"fti_dbtr\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection={{id}}",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionHistory Fulltext Cdtr",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"type\":\"fulltext\",\"fields\":[\"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.SplmtryData.Envlp.Doc.Cdtr\"],\"minLength\":1,\"inBackground\":false,\"name\":\"fti_cdtr\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection={{id}}",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "{{id}}"
+								}
+							]
 						}
 					},
 					"response": []
@@ -970,7 +1149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\"_key\":\"1\",\"_id\":\"transactionConfiguration/1\",\"_rev\":\"_eLx9Uue---\",\"messages\":[{\"id\":\"004@1.0.0\",\"cfg\":\"1.0.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0.0\",\"cfg\":\"1.0.0\",\"typologies\":[{\"id\":\"001@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":500},{\"id\":\"002@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"003@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":350},{\"id\":\"005@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":600},{\"id\":\"010@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"011@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":300},{\"id\":\"013@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":400},{\"id\":\"024@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":600},{\"id\":\"028@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":700},{\"id\":\"037@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":550},{\"id\":\"044@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":500},{\"id\":\"045@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":500},{\"id\":\"047@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":650},{\"id\":\"051@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"052@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"092@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":650},{\"id\":\"095@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":250},{\"id\":\"098@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":500},{\"id\":\"105@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":400},{\"id\":\"107@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":450},{\"id\":\"121@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":350},{\"id\":\"124@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":450},{\"id\":\"129@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":500},{\"id\":\"137@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"169@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":250},{\"id\":\"179@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"185@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":250},{\"id\":\"191@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"195@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":200},{\"id\":\"214@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":1000},{\"id\":\"216@1.0.0\",\"cfg\":\"1.0.0\",\"threshold\":400}]}]}]},{\"_key\":\"524134\",\"_id\":\"transactionConfiguration/524134\",\"_rev\":\"_eQNqHvS---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524257\",\"_id\":\"transactionConfiguration/524257\",\"_rev\":\"_eQNsopu---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524754\",\"_id\":\"transactionConfiguration/524754\",\"_rev\":\"_eQO-Bqy---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524785\",\"_id\":\"transactionConfiguration/524785\",\"_rev\":\"_eQO-uXW---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524796\",\"_id\":\"transactionConfiguration/524796\",\"_rev\":\"_eQO-1py---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524801\",\"_id\":\"transactionConfiguration/524801\",\"_rev\":\"_eQO-5be---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"524883\",\"_id\":\"transactionConfiguration/524883\",\"_rev\":\"_eQOBom----\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525075\",\"_id\":\"transactionConfiguration/525075\",\"_rev\":\"_eQOInum---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525084\",\"_id\":\"transactionConfiguration/525084\",\"_rev\":\"_eQOI2Ei---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525205\",\"_id\":\"transactionConfiguration/525205\",\"_rev\":\"_eQOM7cy---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525210\",\"_id\":\"transactionConfiguration/525210\",\"_rev\":\"_eQON-aa---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525756\",\"_id\":\"transactionConfiguration/525756\",\"_rev\":\"_eQOg1CW---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525839\",\"_id\":\"transactionConfiguration/525839\",\"_rev\":\"_eQOj9qK---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525850\",\"_id\":\"transactionConfiguration/525850\",\"_rev\":\"_eQOkQdu---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525906\",\"_id\":\"transactionConfiguration/525906\",\"_rev\":\"_eQOlSXi---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"525971\",\"_id\":\"transactionConfiguration/525971\",\"_rev\":\"_eQOndcu---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"526338\",\"_id\":\"transactionConfiguration/526338\",\"_rev\":\"_eQO03Re---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"526556\",\"_id\":\"transactionConfiguration/526556\",\"_rev\":\"_eQO88Jm---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"527213\",\"_id\":\"transactionConfiguration/527213\",\"_rev\":\"_eQPH5Za---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"527263\",\"_id\":\"transactionConfiguration/527263\",\"_rev\":\"_eQPJjse---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]},{\"_key\":\"527477\",\"_id\":\"transactionConfiguration/527477\",\"_rev\":\"_eQPNtNa---\",\"messages\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"txTp\":\"pacs.002.001.12\",\"channels\":[{\"id\":\"001@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]},{\"id\":\"002@1.0\",\"cfg\":\"1.0\",\"typologies\":[{\"id\":\"028@1.0\",\"cfg\":\"1.0\",\"threshold\":75}]}]}]}]",
+							"raw": "[\r\n   {\r\n      \"_key\":\"1\",\r\n      \"_id\":\"transactionConfiguration/1\",\r\n      \"_rev\":\"_eLx9Uue---\",\r\n\t  \"id\":\"004@1.0.0\",\r\n      \"cfg\":\"1.0.0\",\r\n      \"messages\":[\r\n         {\r\n            \"id\":\"004@1.0.0\",\r\n            \"cfg\":\"1.0.0\",\r\n            \"txTp\":\"pacs.002.001.12\",\r\n            \"channels\":[\r\n               {\r\n                  \"id\":\"001@1.0.0\",\r\n                  \"cfg\":\"1.0.0\",\r\n                  \"typologies\":[\r\n                     {\r\n                        \"id\":\"001@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":500\r\n                     },\r\n                     {\r\n                        \"id\":\"002@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"003@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":350\r\n                     },\r\n                     {\r\n                        \"id\":\"005@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":600\r\n                     },\r\n                     {\r\n                        \"id\":\"010@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"011@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":300\r\n                     },\r\n                     {\r\n                        \"id\":\"013@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":400\r\n                     },\r\n                     {\r\n                        \"id\":\"024@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":600\r\n                     },\r\n                     {\r\n                        \"id\":\"028@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":700\r\n                     },\r\n                     {\r\n                        \"id\":\"037@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":550\r\n                     },\r\n                     {\r\n                        \"id\":\"044@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":500\r\n                     },\r\n                     {\r\n                        \"id\":\"045@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":500\r\n                     },\r\n                     {\r\n                        \"id\":\"047@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":650\r\n                     },\r\n                     {\r\n                        \"id\":\"051@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"052@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"092@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":650\r\n                     },\r\n                     {\r\n                        \"id\":\"095@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":250\r\n                     },\r\n                     {\r\n                        \"id\":\"098@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":500\r\n                     },\r\n                     {\r\n                        \"id\":\"105@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":400\r\n                     },\r\n                     {\r\n                        \"id\":\"107@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":450\r\n                     },\r\n                     {\r\n                        \"id\":\"121@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":350\r\n                     },\r\n                     {\r\n                        \"id\":\"124@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":450\r\n                     },\r\n                     {\r\n                        \"id\":\"129@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":500\r\n                     },\r\n                     {\r\n                        \"id\":\"137@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"169@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":250\r\n                     },\r\n                     {\r\n                        \"id\":\"179@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"185@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":250\r\n                     },\r\n                     {\r\n                        \"id\":\"191@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"195@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":200\r\n                     },\r\n                     {\r\n                        \"id\":\"214@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":1000\r\n                     },\r\n                     {\r\n                        \"id\":\"216@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":400\r\n                     }\r\n                  ]\r\n               }\r\n            ]\r\n         }\r\n      ]\r\n   },\r\n   {\r\n      \"_key\":\"524134\",\r\n      \"_id\":\"transactionConfiguration/524134\",\r\n      \"_rev\":\"_eQNqHvS---\",\r\n\t  \"id\":\"001@1.0.0\",\r\n      \"cfg\":\"1.0.0\",\r\n      \"messages\":[\r\n         {\r\n            \"id\":\"001@1.0.0\",\r\n            \"cfg\":\"1.0.0\",\r\n            \"txTp\":\"pacs.002.001.12\",\r\n            \"channels\":[\r\n               {\r\n                  \"id\":\"001@1.0.0\",\r\n                  \"cfg\":\"1.0.0\",\r\n                  \"typologies\":[\r\n                     {\r\n                        \"id\":\"028@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":75\r\n                     }\r\n                  ]\r\n               },\r\n               {\r\n                  \"id\":\"002@1.0.0\",\r\n                  \"cfg\":\"1.0.0\",\r\n                  \"typologies\":[\r\n                     {\r\n                        \"id\":\"028@1.0.0\",\r\n                        \"cfg\":\"1.0.0\",\r\n                        \"threshold\":75\r\n                     }\r\n                  ]\r\n               }\r\n            ]\r\n         }\r\n      ]\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1056,12 +1235,50 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/cursor",
+							"raw": "{{arangourl}}_db/pseudonyms/_api/cursor",
 							"host": [
 								"{{arangourl}}_db"
 							],
 							"path": [
-								"transactionHistory",
+								"pseudonyms",
+								"_api",
+								"cursor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Pseudonym",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"INSERT {_key: @pseudonymn} INTO participants OPTIONS { overwriteMode: 'ignore'}\",\r\n    \"bindVars\": {\r\n        \"pseudonymn\": \"s98df79sd887f9s7df89s7d9f\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/pseudonyms/_api/cursor",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"pseudonyms",
 								"_api",
 								"cursor"
 							]
@@ -1102,6 +1319,234 @@
 								"pseudonyms",
 								"_api",
 								"cursor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Sanction List",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var dsSanctionList = pm.environment.get(\"sanctionlist\");\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"\r",
+									"    pm.response.to.have.status(200),\r",
+									"\r",
+									"    url: dsSanctionList,\r",
+									"    method: 'GET',\r",
+									"    header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            query: `FOR config IN ${JSON.stringify(ruleConfig)}\r",
+									"                    INSERT {_key: \"007\", id: config.id, cfg: config.cfg, config: config.config} INTO configuration\r",
+									"                    OPTIONS { overwrite: true, waitForSync: true }`\r",
+									"        })\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var auth = pm.environment.get(\"Autherization\");\r",
+									"\r",
+									"    for (let i = 0; i < jsonData.length; i++) {\r",
+									"        pm.sendRequest({\r",
+									"            url: pm.environment.get(\"baseUrl\") + \"/sessions/\" + jsonData[i].guid,\r",
+									"            method: 'GET',\r",
+									"            header: {\r",
+									"                'Authorization': auth,\r",
+									"            }\r",
+									"        }, (error, response) => {\r",
+									"            var data = JSON.parse(responseBody);\r",
+									"            console.log(data);\r",
+									"            if (response.active === true)\r",
+									"                pm.environment.set(\"site_active_guid\", response.json().guid);\r",
+									"        \r",
+									"        });\r",
+									"    }\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"INSERT {_from:@_from, _to:@_to,TxTp:@TxTp,CreDtTm:@CreDtTm,Amt:@Amt,Ccy:@Ccy,PmtInfId:@PmtInfId,EndToEndId:@EndToEndId} INTO transactionRelationship OPTIONS { overwriteMode: 'ignore'}\",\r\n    \"bindVars\": {\r\n        \"_from\": \"participants/c7540bf2afd8f70a4002a97c72e7cb2a87bf7d7fa2b2988cc2542c51a5dd2620\",\r\n        \"_to\": \"participants/33ef62a2271b15c3f6ecef52975e84020239c54f51a98e7f34846fee2e3ecf52\",\r\n        \"TxTp\": \"pain.001.001.11\",\r\n        \"MsgId\": \"fcefa2a6-3ab9-46f4-ae73-dcaa413a723e\",\r\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\r\n        \"Amt\": 200,\r\n        \"Ccy\": \"USD\",\r\n        \"PmtInfId\": \"16560d79-6afb-4487-bd50-09d7e10bdf6e\",\r\n        \"EndToEndId\": \"4369d9d8-2b29-4bc4-8ac7-524d4199b258\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/sanctionData/_api/edge/Individuals",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"sanctionData",
+								"_api",
+								"edge",
+								"Individuals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Sanction List Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const dsSanctionList = pm.environment.get(\"sanctionlist\");\r",
+									"\r",
+									"/*var response = pm.sendRequest({\r",
+									"    url: dsSanctionList,\r",
+									"    method: 'GET',\r",
+									"    header: {'content-type': 'application/xml'}\r",
+									"}, function (err, response) {\r",
+									"    //console.log(response);\r",
+									"   // const jsonObject = xml2Json(pm.response);\r",
+									"   // console.log(response.body);\r",
+									"   // const jsonData = pm.response.json();\r",
+									"    //console.log(jsonData);\r",
+									"    //const responseJson = xml2Json(response);\r",
+									"    //console.log(response.stream.data);\r",
+									"   //const responseJson = JSON.stringify(response.responseBody());\r",
+									"   //var jsonResponse = JSON.parse(response.body);\r",
+									"   //const getResponse = response.xml();\r",
+									"   //console.log(jsonResponse);\r",
+									"\r",
+									"\r",
+									"\r",
+									"   // for (let i = 0; i < response.body; i++) {\r",
+									"      //   (error, response) => {\r",
+									"       //     var data = JSON.parse(response.body);\r",
+									"       //     console.log(data);\r",
+									"            //if (response.active === true)\r",
+									"               // pm.environment.set(\"site_active_guid\", response.json().guid);\r",
+									"        \r",
+									"       // };\r",
+									"   // };\r",
+									"});\r",
+									"*/\r",
+									"\r",
+									"\r",
+									"const getTokenRequest = {\r",
+									"  method: 'GET',\r",
+									"  url: dsSanctionList,\r",
+									"  header: {'content-type': 'text/xml'}\r",
+									"};\r",
+									"\r",
+									"const xml = pm.sendRequest(getTokenRequest, (err, response) => {\r",
+									"  //const jsonObject = xml2Json(response);\r",
+									"  //console.log(jsonObject)\r",
+									"  //const jsonResponse = response.json();\r",
+									"  //const newAccessToken = jsonResponse.access_token;\r",
+									"  //pm.variables.set('access_token', newAccessToken);\r",
+									"});\r",
+									"\r",
+									"console.log(\"here\")\r",
+									"\r",
+									"function xml2json(xml) {\r",
+									"  var json = {};\r",
+									"  console.log(\"here2\")\r",
+									"\r",
+									"  if (xml.nodeType == 1) { // element node\r",
+									"    if (xml.attributes.length > 0) {\r",
+									"      json['@attributes'] = {};\r",
+									"      for (var j = 0; j < xml.attributes.length; j++) {\r",
+									"        var attribute = xml.attributes.item(j);\r",
+									"        json['@attributes'][attribute.nodeName] = attribute.nodeValue;\r",
+									"      }\r",
+									"    }\r",
+									"  } else if (xml.nodeType == 3) { // text node\r",
+									"    return xml.nodeValue;\r",
+									"  }\r",
+									"\r",
+									"  // deal with children\r",
+									"  if (xml.hasChildNodes()) {\r",
+									"    for(var i = 0; i < xml.childNodes.length; i++) {\r",
+									"      var child = xml.childNodes.item(i);\r",
+									"      var nodeName = child.nodeName;\r",
+									"      if (json[nodeName] == null) {\r",
+									"        json[nodeName] = xml2json(child);\r",
+									"      } else {\r",
+									"        if (json[nodeName].push == null) {\r",
+									"          var old = json[nodeName];\r",
+									"          json[nodeName] = [];\r",
+									"          json[nodeName].push(old);\r",
+									"        }\r",
+									"        json[nodeName].push(xml2json(child));\r",
+									"      }\r",
+									"    }\r",
+									"  }\r",
+									"  console.log(\"here\")\r",
+									"  return json;\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"INSERT {_key: @MsgId,_from:@_from, _to:@_to,TxTp:@TxTp,CreDtTm:@CreDtTm,Amt:@Amt,Ccy:@Ccy,PmtInfId:@PmtInfId,EndToEndId:@EndToEndId} INTO transactionRelationship OPTIONS { overwriteMode: 'ignore'}\",\r\n    \"bindVars\": {\r\n        \"_from\": \"participants/c7540bf2afd8f70a4002a97c72e7cb2a87bf7d7fa2b2988cc2542c51a5dd2620\",\r\n        \"_to\": \"participants/33ef62a2271b15c3f6ecef52975e84020239c54f51a98e7f34846fee2e3ecf52\",\r\n        \"TxTp\": \"pain.001.001.11\",\r\n        \"MsgId\": \"fcefa2a6-3ab9-46f4-ae73-dcaa413a723e\",\r\n        \"CreDtTm\": \"2021-10-07T09:25:31.000Z\",\r\n        \"Amt\": 50431891779910900,\r\n        \"Ccy\": \"USD\",\r\n        \"PmtInfId\": \"16560d79-6afb-4487-bd50-09d7e10bdf6e\",\r\n        \"EndToEndId\": \"4369d9d8-2b29-4bc4-8ac7-524d4199b258\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/sanctionData/_api/edge/Individuals",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"sanctionData",
+								"_api",
+								"edge",
+								"Individuals"
 							]
 						}
 					},
