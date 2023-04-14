@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3b2e87ac-6f82-4803-9672-ecdbae9bfac5",
+		"_postman_id": "f3f69bcc-87ae-4b3c-8dc9-ac321818e849",
 		"name": "ArangoDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8089578"
@@ -608,7 +608,7 @@
 					"response": []
 				},
 				{
-					"name": "Create transactionHistory Collection",
+					"name": "Create  transactionHistoryPacs002 Collection",
 					"event": [
 						{
 							"listen": "test",
@@ -638,7 +638,163 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistory\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionHistoryPacs008 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs008\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionHistoryPain001 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactionHistoryPain013 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain013\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
