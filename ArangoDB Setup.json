@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "903fa1e1-1f43-42df-a2da-0522e3e1b615",
+		"_postman_id": "f3f69bcc-87ae-4b3c-8dc9-ac321818e849",
 		"name": "ArangoDB",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8089578"
 	},
 	"item": [
 		{
@@ -341,61 +342,6 @@
 					"response": []
 				},
 				{
-					"name": "Create entities Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"Id\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangourl}}_db/pseudonyms/_api/index?collection=entities",
-							"host": [
-								"{{arangourl}}_db"
-							],
-							"path": [
-								"pseudonyms",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "entities"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create transactionRelationship Collection",
 					"request": {
 						"auth": {
@@ -428,61 +374,6 @@
 								"pseudonyms",
 								"_api",
 								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionRelationship Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"CreDtTm\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangourl}}_db/pseudonyms/_api/index?collection=transactionRelationship",
-							"host": [
-								"{{arangourl}}_db"
-							],
-							"path": [
-								"pseudonyms",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionRelationship"
-								}
 							]
 						}
 					},
@@ -717,7 +608,7 @@
 					"response": []
 				},
 				{
-					"name": "Create transactionHistory Collection",
+					"name": "Create  transactionHistoryPacs002 Collection",
 					"event": [
 						{
 							"listen": "test",
@@ -747,7 +638,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistory\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs002\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -769,12 +660,21 @@
 					"response": []
 				},
 				{
-					"name": "Create transactionHistoryPain001 Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
+					"name": "Create transactionHistoryPacs008 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
 						}
-					},
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -787,16 +687,10 @@
 							]
 						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"DebtorAcctId\",\r\n        \"CreditorAcctId\",\r\n        \"CreDtTm\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs008\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -804,32 +698,35 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
 							"host": [
 								"{{arangourl}}_db"
 							],
 							"path": [
 								"transactionHistory",
 								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
+								"collection"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create transactionHistoryPain013 Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
+					"name": "Create transactionHistoryPain001 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
 						}
-					},
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -842,16 +739,10 @@
 							]
 						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain001\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -859,32 +750,35 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain013",
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
 							"host": [
 								"{{arangourl}}_db"
 							],
 							"path": [
 								"transactionHistory",
 								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPain013"
-								}
+								"collection"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create transactionHistoryPacs008 Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
+					"name": "Create transactionHistoryPain013 Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"//console.log(jsonData[\"jwt\"])\r",
+									"\r",
+									"pm.environment.set(\"id\", jsonData[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
 						}
-					},
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -897,16 +791,10 @@
 							]
 						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"DebtorAcctId\",\r\n        \"CreditorAcctId\",\r\n        \"CreDtTm\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain013\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -914,75 +802,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+							"raw": "{{arangourl}}_db/transactionHistory/_api/collection",
 							"host": [
 								"{{arangourl}}_db"
 							],
 							"path": [
 								"transactionHistory",
 								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs002 Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs002",
-							"host": [
-								"{{arangourl}}_db"
-							],
-							"path": [
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs002"
-								}
+								"collection"
 							]
 						}
 					},
@@ -1059,61 +886,6 @@
 								"transactionHistory",
 								"_api",
 								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create watchlist Indexes",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"party_id\",\r\n        \"account\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": true,\r\n    \"name\": \"CustomRoot\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=watchlist",
-							"host": [
-								"{{arangourl}}_db"
-							],
-							"path": [
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "watchlist"
-								}
 							]
 						}
 					},
