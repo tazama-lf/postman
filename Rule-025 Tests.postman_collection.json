@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "f51e5232-9497-41d8-8507-e52ed97e1ac7",
-		"name": "Rule-025 Tests Copy",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8089578"
+		"_postman_id": "a2380f0e-2d6d-4276-9830-f480a3aac7a1",
+		"name": "Rule-025",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -43,7 +42,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -336,7 +335,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                     INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -379,7 +379,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"8d3b3600efb74f4196ac0e5e60365957\",\n            \"OrgnlEndToEndId\": \"8d3b3600efb74f4196ac0e5e60365957\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"8d3b3600efb74f4196ac0e5e60365957\",\n            \"OrgnlEndToEndId\": \"8d3b3600efb74f4196ac0e5e60365957\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -387,12 +387,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -436,7 +435,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -730,7 +729,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -773,7 +773,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf846\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf846\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -781,12 +781,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -830,7 +829,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -1123,7 +1122,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -1166,7 +1166,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb892944dde1cf\",\n            \"OrgnlEndToEndId\": \"7cca11d346934bae868e18d417790f39\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb892944dde1cf\",\n            \"OrgnlEndToEndId\": \"7cca11d346934bae868e18d417790f39\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1174,12 +1174,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -1223,7 +1222,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -1516,7 +1515,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -1559,7 +1559,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"0bb671db40d248f9b4c66fc1c1bd6db9\",\n            \"OrgnlEndToEndId\": \"0bb671db40d248f9b4c66fc1c1bd6db9\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"0bb671db40d248f9b4c66fc1c1bd6db9\",\n            \"OrgnlEndToEndId\": \"0bb671db40d248f9b4c66fc1c1bd6db9\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1567,12 +1567,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -1611,7 +1610,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"                \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -1854,7 +1853,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -1883,7 +1883,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845\",\n            \"TxSts\": \"ACSC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf845\",\n            \"TxSts\": \"ACSC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1891,12 +1891,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -2010,7 +2009,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801009642dfb892944dde1cf845\",\n            \"OrgnlEndToEndId\": \"2c516801009642dfb892944dde1cf845\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801009642dfb892944dde1cf845\",\n            \"OrgnlEndToEndId\": \"2c516801009642dfb892944dde1cf845\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2018,12 +2017,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -2069,7 +2067,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -2384,7 +2382,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -2427,7 +2426,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"3641b4071c414a908868689b4c0c8a80\",\n            \"OrgnlEndToEndId\": \"3641b4071c414a908868689b4c0c8a80\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"3641b4071c414a908868689b4c0c8a80\",\n            \"OrgnlEndToEndId\": \"3641b4071c414a908868689b4c0c8a80\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2435,12 +2434,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -2484,7 +2482,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -2777,7 +2775,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                     INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -2820,7 +2819,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf8\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"5ab4fc7355de4ef8a75b78b00a681ed2\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb892944dde1cf8\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-0-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2828,12 +2827,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -2877,7 +2875,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"            \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -3170,7 +3168,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -3213,7 +3212,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb8892944dde1cf\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb8892944dde1cf\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-1-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}/function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb8892944dde1cf\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb8892944dde1cf\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-1-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{ofUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3221,12 +3220,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
@@ -3268,7 +3266,7 @@
 							"                query: `FOR transaction IN ${JSON.stringify(transactions)}",
 							"                \"TxTp.FIToFICstmrCdt.GrpHdr\": {",
 							"                \"MsgId",
-							"                        REMOVE { _key: transaction } IN transactionHistory",
+							"                        REMOVE { _key: transaction } IN transactionHistoryPacs008",
 							"                        OPTIONS { ignoreErrors: true }`",
 							"            })",
 							"        }",
@@ -3561,7 +3559,8 @@
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({\r",
 							"            query: `FOR transaction IN ${JSON.stringify(pacs008Transactions)}\r",
-							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt} INTO transactionHistory\r",
+							"                    INSERT {_key: transaction.FIToFICstmrCdt.GrpHdr.MsgId, TxTp: transaction.TxTp, FIToFICstmrCdt: transaction.FIToFICstmrCdt}\r",
+							"                    INTO transactionHistoryPacs008\r",
 							"                    OPTIONS { overwrite: true }`\r",
 							"        })\r",
 							"    }\r",
@@ -3604,7 +3603,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb8892944dde1cf\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb8892944dde1cf\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{baseUrl}}/function/off-transaction-aggregation-decisioning-processor-rel-1-1-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{baseUrl}}/function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{baseUrl}}/function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
+					"raw": "{\n   \"transaction\": {\n      \"TxTp\": \"pacs.002.001.12\",\n      \"FIToFIPmtSts\": {\n         \"GrpHdr\": {\n            \"MsgId\": \"{{$guid}}\",\n            \"CreDtTm\": \"{{now}}\"\n         },\n         \"TxInfAndSts\": {\n            \"OrgnlInstrId\": \"2c516801007642dfb8892944dde1cf\",\n            \"OrgnlEndToEndId\": \"2c516801007642dfb8892944dde1cf\",\n            \"TxSts\": \"ACCC\",\n            \"ChrgsInf\": [\n               {\n                  \"Amt\": {\n                     \"Amt\": 307.14,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 153.57,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp001\"\n                        }\n                     }\n                  }\n               },\n               {\n                  \"Amt\": {\n                     \"Amt\": 30.71,\n                     \"Ccy\": \"USD\"\n                  },\n                  \"Agt\": {\n                     \"FinInstnId\": {\n                        \"ClrSysMmbId\": {\n                           \"MmbId\": \"dfsp002\"\n                        }\n                     }\n                  }\n               }\n            ],\n            \"AccptncDtTm\": \"2021-12-03T15:36:16.000Z\",\n            \"InstgAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp001\"\n                  }\n               }\n            },\n            \"InstdAgt\": {\n               \"FinInstnId\": {\n                  \"ClrSysMmbId\": {\n                     \"MmbId\": \"dfsp002\"\n                  }\n               }\n            }\n         }\n      }\n   },\n   \"networkMap\": {\n      \"_key\": \"26345403\",\n      \"_id\": \"networkConfiguration/26345403\",\n      \"_rev\": \"_cxc-1vO---\",\n      \"messages\": [\n      {\n         \"id\": \"999_025@1.0.0\",\n         \"host\": \"{{ofUrl}}function/off-transaction-aggregation-decisioning-processor-rel-1-1-0\",\n         \"cfg\": \"1.0.0\",\n         \"txTp\": \"pacs.002.001.12\",\n         \"channels\": [\n            {\n               \"id\": \"001@1.0.0\",\n               \"host\": \"{{baseUrl}}function/off-channel-aggregation-decisioning-processor-rel-1-0-0\",\n               \"cfg\": \"1.0.0\",\n               \"typologies\": [\n                  {\n                     \"id\": \"999_025@1.0.0\",\n                     \"host\": \"{{ofUrl}}function/off-typology-processor-rel-1-0-0\",\n                     \"cfg\": \"1.0.0\",\n                     \"rules\": [\n                        {\n                           \"id\": \"025@1.0.0\",\n                           \"host\": \"{{ofUrl}}function/off-rule-025{{version}}\",\n                           \"cfg\": \"1.0.0\"\n                        }\n                     ]\n                  }\n               ]\n            }\n         ]\n      }\n     ]\n   }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3612,12 +3611,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/function/off-rule-025{{version}}/execute",
+					"raw": "{{ofUrl}}function/off-rule-025{{version}}/execute",
 					"host": [
-						"{{baseUrl}}"
+						"{{ofUrl}}function"
 					],
 					"path": [
-						"function",
 						"off-rule-025{{version}}",
 						"execute"
 					]
