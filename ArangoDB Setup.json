@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "28609cc3-d674-42b5-b2ce-964f8a96037b",
+		"_postman_id": "8c54d6ac-039c-4c2b-880f-4284f102f92d",
 		"name": "ArangoDB Setup",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -283,7 +283,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"TxTp\",\r\n        \"TxSts\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": true,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"CommonGroup\"\r\n}",
+							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"TxTp\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": true,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"CommonGroup\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
