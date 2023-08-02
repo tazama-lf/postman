@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7e9b7582-f286-4304-995d-ac85bc1ba7b8",
+		"_postman_id": "8688a9b6-0799-4627-ade5-1341bd8d8894",
 		"name": "ArangoDB",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1323032"
 	},
 	"item": [
 		{
@@ -228,7 +229,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"pseudonyms\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"pseudonyms\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"accounts\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"accounts\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -304,7 +305,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"account_holder\",\r\n    \"type\": 3\r\n}",
+							"raw": "{\r\n    \"name\": \"account_holder\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -342,7 +343,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"entities\"\r\n}",
+							"raw": "{\r\n    \"name\": \"entities\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -380,7 +381,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"transactionRelationship\",\r\n    \"type\": 3\r\n}",
+							"raw": "{\r\n    \"name\": \"transactionRelationship\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -418,7 +419,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"_graphs/transactionGraph\",\r\n    \"_key\": \"transactionGraph\",\r\n    \"_rev\": \"_dO1fHCu---\",\r\n    \"edgeDefinitions\": [\r\n        {\r\n            \"collection\": \"transactionRelationship\",\r\n            \"from\": [\r\n                \"accounts\"\r\n            ],\r\n            \"to\": [\r\n                \"accounts\"\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"transactionGraph\"\r\n}",
+							"raw": "{\r\n    \"_id\": \"_graphs/transactionGraph\",\r\n    \"_key\": \"transactionGraph\",\r\n    \"_rev\": \"_dO1fHCu---\",\r\n    \"edgeDefinitions\": [\r\n        {\r\n            \"collection\": \"transactionRelationship\",\r\n            \"from\": [\r\n                \"accounts\"\r\n            ],\r\n            \"to\": [\r\n                \"accounts\"\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"transactionGraph\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -456,7 +457,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"configuration\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"configuration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -494,7 +495,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"typologyExpression\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"typologyExpression\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -532,7 +533,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"channelExpression\" \r\n}",
+							"raw": "{ \r\n  \"name\" : \"channelExpression\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -570,7 +571,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -608,7 +609,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"networkConfiguration\" \r\n}",
+							"raw": "{ \r\n  \"name\" : \"networkConfiguration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -660,7 +661,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs002\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs002\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -712,7 +713,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs008\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs008\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -764,7 +765,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain001\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain001\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -816,7 +817,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain013\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain013\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -854,7 +855,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactions\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"transactions\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -892,7 +893,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"watchlist\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"watchlist\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -930,7 +931,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"list\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"list\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -968,7 +969,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"Individuals\"\r\n}",
+							"raw": "{ \r\n  \"name\" : \"Individuals\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1776,6 +1777,36 @@
 									"key": "collection",
 									"value": "transactionRelationship"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{arangoUrl}}_db/_system/_admin/metrics/v2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/_system/_admin/metrics/v2",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"_system",
+								"_admin",
+								"metrics",
+								"v2"
 							]
 						}
 					},
