@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f3f69bcc-87ae-4b3c-8dc9-ac321818e849",
+		"_postman_id": "06ab3130-91db-4471-b255-f8829109c04b",
 		"name": "ArangoDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8089578"
+		"_exporter_id": "27083427",
+		"_collection_link": "https://red-space-860997.postman.co/workspace/frmscoe~d27a4005-57b9-4f72-88a8-6d14a92b11fd/collection/27083427-06ab3130-91db-4471-b255-f8829109c04b?action=share&source=collection_link&creator=27083427"
 	},
 	"item": [
 		{
@@ -2063,6 +2064,275 @@
 								"pseudonyms",
 								"_api",
 								"cursor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ArangoIndexes",
+			"item": [
+				{
+					"name": "pi_endtoend_to_TransactionRelationship",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"EndToEndId\",\r\n    \"_to\"\r\n  ],\r\n  \"name\": \"pi_endtoend_to\",\r\n  \"unique\": false,\r\n  \"sparse\": true,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/pseudonyms/_api/index?collection=transactionRelationship",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionRelationship"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pi_endtoend_from_TransactionRelationship",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"EndToEndId\",\r\n    \"_from\"\r\n  ],\r\n  \"name\": \"pi_endtoend_from\",\r\n  \"unique\": false,\r\n  \"sparse\": false,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/pseudonyms/_api/index?collection=transactionRelationship",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionRelationship"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pi_id_Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"id\"\r\n  ],\r\n  \"name\": \"pi_id\",\r\n  \"unique\": true,\r\n  \"sparse\": true,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/Configuration/_api/index?collection=configuration",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"Configuration",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "configuration"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pi_endtoend_Pacs008",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId\"\r\n  ],\r\n  \"name\": \"pi_endtoend2\",\r\n  \"unique\": false,\r\n  \"sparse\": false,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPacs008"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pi_accountdebtor_txtp_Pain001",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id\",\r\n    \" TxTp\"\r\n  ],\r\n  \"name\": \"pi_txtp_accountid\",\r\n  \"unique\": false,\r\n  \"sparse\": false,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPain001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pi_endtoend_Pain001",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"persistent\",\r\n  \"fields\": [\r\n    \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId\"\r\n  ],\r\n  \"name\": \"pi_endtoend\",\r\n  \"unique\": false,\r\n  \"sparse\": false,\r\n  \"deduplicate\": false,\r\n  \"estimates\": true,\r\n  \"cacheEnabled\": false,\r\n  \"inBackground\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangourl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+							"host": [
+								"{{arangourl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPain001"
+								}
 							]
 						}
 					},
