@@ -1837,15 +1837,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmarango-sandbox-2.sybrin.com/_db/Configuration/_api/index?collection=transactionConfiguration",
-							"protocol": "https",
+							"raw": "{{arangoUrl}}_db/Configuration/_api/index?collection=transactionConfiguration",
 							"host": [
-								"frmarango-sandbox-2",
-								"sybrin",
-								"com"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
 								"Configuration",
 								"_api",
 								"index"
@@ -1885,15 +1881,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmarango-sandbox-2.sybrin.com/_db/Configuration/_api/index?collection=channelExpression",
-							"protocol": "https",
+							"raw": "{{arangoUrl}}_db/Configuration/_api/index?collection=channelExpression",
 							"host": [
-								"frmarango-sandbox-2",
-								"sybrin",
-								"com"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
 								"Configuration",
 								"_api",
 								"index"
@@ -1933,15 +1925,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmarango-sandbox-2.sybrin.com/_db/Configuration/_api/index?collection=configuration",
-							"protocol": "https",
+							"raw": "{{arangoUrl}}_db/Configuration/_api/index?collection=configuration",
 							"host": [
-								"frmarango-sandbox-2",
-								"sybrin",
-								"com"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
 								"Configuration",
 								"_api",
 								"index"
@@ -1981,15 +1969,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://frmarango-sandbox-2.sybrin.com/_db/Configuration/_api/index?collection=typologyExpression",
-							"protocol": "https",
+							"raw": "{{arangoUrl}}_db/Configuration/_api/index?collection=typologyExpression",
 							"host": [
-								"frmarango-sandbox-2",
-								"sybrin",
-								"com"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
 								"Configuration",
 								"_api",
 								"index"
