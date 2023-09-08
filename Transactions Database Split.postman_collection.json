@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "225aef6c-c8fd-4963-bea9-3e43629e7232",
+		"name": "Transactions Database Split",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13829196"
+	},
+	"item": [
+		{
+			"name": "Create Transactions Database",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BEARERTOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"name\" : \"transactions\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangourl}}/_api/database",
+					"host": [
+						"{{arangourl}}"
+					],
+					"path": [
+						"_api",
+						"database"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create transactions Collection",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BEARERTOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"name\" : \"transactions\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangourl}}/_db/transactions/_api/collection",
+					"host": [
+						"{{arangourl}}"
+					],
+					"path": [
+						"_db",
+						"transactions",
+						"_api",
+						"collection"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
