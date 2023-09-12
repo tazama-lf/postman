@@ -23,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n  \"name\" : \"transactions\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+					"raw": "{ \r\n  \"name\" : \"evaluationResults\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,13 +68,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{arangourl}}/_db/transactions/_api/collection",
+					"raw": "{{arangourl}}/_db/evaluationResults/_api/collection",
 					"host": [
 						"{{arangourl}}"
 					],
 					"path": [
 						"_db",
-						"transactions",
+						"evaluationResults",
 						"_api",
 						"collection"
 					]
