@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "98d1d86e-662c-442d-8260-dd5168356dcd",
+		"_postman_id": "7d160458-a183-4cae-bdbe-aa9e2611a7b5",
 		"name": "ArangoDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1323032"
+		"_exporter_id": "1323032",
+		"_collection_link": "https://gold-flare-458244.postman.co/workspace/ACTIO-Team-Workspace~33d09e62-e454-445d-94e3-f06c936f26ab/collection/1323032-7d160458-a183-4cae-bdbe-aa9e2611a7b5?action=share&source=collection_link&creator=1323032"
 	},
 	"item": [
 		{
@@ -1989,6 +1990,999 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Indexes",
+			"item": [
+				{
+					"name": "IndexQuery_transactionHistoryPain001",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPain001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_transactionHistoryPain013",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain013",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPain013"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_transactionHistoryPacs008",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPacs008"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_transactionHistoryPacs002",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs002",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPacs002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_transactions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactions",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactions"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_account_holder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/pseudonyms/_api/index?collection=account_holder",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "account_holder"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_accounts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/pseudonyms/_api/index?collection=accounts",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "accounts"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_entities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/pseudonyms/_api/index?collection=entities",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "entities"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_pseudonyms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(indexes);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/pseudonyms/_api/index?collection=pseudonyms",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "pseudonyms"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IndexQuery_transactionRelationship",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respJson = pm.response.json();\r",
+									"let indexes = pm.globals.get(\"Indexes\");\r",
+									"let toAdd = respJson.indexes.filter(i => i.fields[0] != \"_key\");\r",
+									"\r",
+									"for (let i = 0; i < toAdd.length; i++) {\r",
+									"    toAdd[i][\"URL\"] = pm.request.url.toString();\r",
+									"}\r",
+									"\r",
+									"if (!indexes)\r",
+									"    indexes = toAdd;\r",
+									"else\r",
+									"    indexes.push(...toAdd);\r",
+									"\r",
+									"pm.globals.set(\"Indexes\", indexes);\r",
+									"console.log(JSON.stringify(indexes));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/pseudonyms/_api/index?collection=transactionRelationship",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"pseudonyms",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionRelationship"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create All Indexes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const indexes = JSON.parse(`[\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/30644517\",\r",
+									"        \"name\": \"EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"DebtorAcctId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/38718811\",\r",
+									"        \"name\": \"DebtorAcctId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CreditorAcctId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/38718829\",\r",
+									"        \"name\": \"CreditorAcctId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CreDtTm\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/38718847\",\r",
+									"        \"name\": \"CreDtTm\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id\",\r",
+									"            \"TxTp\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/548238503\",\r",
+									"        \"name\": \"PI_DbtrAcct_Id_Othr_Id-TxTp\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain001/548238614\",\r",
+									"        \"name\": \"PIpmtId_EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain001\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain013/146121329\",\r",
+									"        \"name\": \"CustomRoot\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain013\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": true,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPain013/474657816\",\r",
+									"        \"name\": \"EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": true,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPain013\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/30638824\",\r",
+									"        \"name\": \"EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"DebtorAcctId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/38718889\",\r",
+									"        \"name\": \"DebtorAcctId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CreditorAcctId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/38718907\",\r",
+									"        \"name\": \"CreditorAcctId\",\r",
+									"        \"selectivityEstimate\": 0.9997559189650964,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CreDtTm\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/38718925\",\r",
+									"        \"name\": \"CreDtTm\",\r",
+									"        \"selectivityEstimate\": 0.32987033905130064,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/548237695\",\r",
+									"        \"name\": \"PI_EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\",\r",
+									"            \"TxTp\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs008/1351248956\",\r",
+									"        \"name\": \"DbtrAcct_ID-TxTp\",\r",
+									"        \"selectivityEstimate\": 0.9998779445868424,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": true,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionHistoryPacs002/474657878\",\r",
+									"        \"name\": \"EndToEndId\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": true,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs002\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fields\": [\r",
+									"            \"_from\",\r",
+									"            \"_to\"\r",
+									"        ],\r",
+									"        \"id\": \"account_holder/2\",\r",
+									"        \"name\": \"edge\",\r",
+									"        \"selectivityEstimate\": 0.9998779594825482,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"edge\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=account_holder\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"Id\"\r",
+									"        ],\r",
+									"        \"id\": \"entities/38718657\",\r",
+									"        \"name\": \"Id\",\r",
+									"        \"selectivityEstimate\": 0.999633923123856,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=entities\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": true,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"pseudonym\"\r",
+									"        ],\r",
+									"        \"id\": \"pseudonyms/29467429\",\r",
+									"        \"name\": \"pi_pseudonym\",\r",
+									"        \"selectivityEstimate\": 1,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": true,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=pseudonyms\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fields\": [\r",
+									"            \"_from\",\r",
+									"            \"_to\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionRelationship/2\",\r",
+									"        \"name\": \"edge\",\r",
+									"        \"selectivityEstimate\": 0.9997559338553492,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"edge\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=transactionRelationship\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": true,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"EndToEndId\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionRelationship/14297019\",\r",
+									"        \"name\": \"EndToEndId\",\r",
+									"        \"selectivityEstimate\": 0.5018685290694113,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=transactionRelationship\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"cacheEnabled\": false,\r",
+									"        \"deduplicate\": false,\r",
+									"        \"estimates\": true,\r",
+									"        \"fields\": [\r",
+									"            \"CreDtTm\"\r",
+									"        ],\r",
+									"        \"id\": \"transactionRelationship/38718700\",\r",
+									"        \"name\": \"CreDtTm\",\r",
+									"        \"selectivityEstimate\": 0.1627722142743602,\r",
+									"        \"sparse\": false,\r",
+									"        \"type\": \"persistent\",\r",
+									"        \"unique\": false,\r",
+									"        \"URL\": \"{{arangoUrl}}_db/pseudonyms/_api/index?collection=transactionRelationship\"\r",
+									"    }\r",
+									"]`);\r",
+									"\r",
+									"for (let i = 0; i < indexes.length; i++) {\r",
+									"    let index = indexes[1];\r",
+									"    console.log(index);\r",
+									"    const postRequest = {\r",
+									"        url: index.URL.replace(\"{{arangoUrl}}\", pm.environment.get('arangoUrl')),\r",
+									"        method: 'POST',\r",
+									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                cacheEnabled: index.cacheEnabled,\r",
+									"                deduplicate: index.deduplicate,\r",
+									"                estimates: index.estimates,\r",
+									"                \r",
+									"            })\r",
+									"        }\r",
+									"    };\r",
+									"\r",
+									"    (async () =>\r",
+									"        await pm.sendRequest(postRequest, (error, response) => {\r",
+									"            console.log(error ? error : response.json());\r",
+									"        })\r",
+									"    )();\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arangoUrl}}_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+							"host": [
+								"{{arangoUrl}}_db"
+							],
+							"path": [
+								"transactionHistory",
+								"_api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "transactionHistoryPacs008"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The \"Create All Indexes\" requests has a JSON representation of all the indexes this request will create.\n\nIf you wish to modify the indexes to be created, all the GET requests can be used to generate a JSON string of all the indexes on a \"Source\" system."
 		}
 	]
 }
