@@ -57,8 +57,6 @@
 							"const requestDestination = `pub-rule-001@1.0.0`;\r",
 							"const responseDestination = `typology-001@1.0.0`;\r",
 							"\r",
-							"// ## Set up body variables\r",
-							"\r",
 							"let pacs002Body = pm.globals.get('pacs002');\r",
 							"pm.variables.set('pacs002Body', pacs002Body);\r",
 							"\r",
