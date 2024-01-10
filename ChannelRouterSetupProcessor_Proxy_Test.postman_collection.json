@@ -1,14 +1,14 @@
 {
 	"info": {
 		"_postman_id": "c459af1c-bee4-4160-a7c1-93fe87c5b1d1",
-		"name": "NATS_RES_CRSP_TEST",
+		"name": "ChannelRouterSetupProcessor_Proxy_Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "27083427",
 		"_collection_link": "https://red-space-860997.postman.co/workspace/frmscoe~d27a4005-57b9-4f72-88a8-6d14a92b11fd/collection/27083427-c459af1c-bee4-4160-a7c1-93fe87c5b1d1?action=share&source=collection_link&creator=27083427"
 	},
 	"item": [
 		{
-			"name": "CRSP",
+			"name": "ChannelRouterSetupProcessor_happypath",
 			"event": [
 				{
 					"listen": "test",
