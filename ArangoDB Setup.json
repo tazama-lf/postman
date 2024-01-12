@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7d160458-a183-4cae-bdbe-aa9e2611a7b5",
+		"_postman_id": "cb8625a5-172e-46bc-ada7-3152bbe33797",
 		"name": "ArangoDB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1323032"
+		"_exporter_id": "28250551"
 	},
 	"item": [
 		{
@@ -2932,7 +2932,8 @@
 									"            \"selectivityEstimate\": 1,\r",
 									"            \"sparse\": false,\r",
 									"            \"storedValues\": [\r",
-									"                \"CreDtTm\"\r",
+									"                \"CreDtTm\",\r",
+									"                \"Amt\"\r",
 									"            ],\r",
 									"            \"type\": \"persistent\",\r",
 									"            \"unique\": false\r",
