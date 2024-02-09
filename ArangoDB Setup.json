@@ -3018,7 +3018,7 @@
 									"    let index = indexes[i];\r",
 									"    //console.log(` ${pm.globals.get(\"arangoToken\")}   ` + index);\r",
 									"    const postRequest = {\r",
-									"        url: index.URL.replace(\"{{arangoUrl}}/\", pm.environment.get('arangoUrl')),\r",
+									"        url: index.URL.replace(\"{{arangoUrl}}\", pm.environment.get('arangoUrl')),\r",
 									"        method: 'POST',\r",
 									"        header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },\r",
 									"        body: {\r",
