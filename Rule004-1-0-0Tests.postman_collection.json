@@ -3,9 +3,8 @@
 		"_postman_id": "95e5af81-09b3-4cdc-b269-b219b321a9f7",
 		"name": "Rule004 Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27083427",
-		"_collection_link": "https://red-space-860997.postman.co/workspace/frmscoe~d27a4005-57b9-4f72-88a8-6d14a92b11fd/collection/27083427-95e5af81-09b3-4cdc-b269-b219b321a9f7?action=share&creator=27083427&source=collection_link"
-	},
+		"_exporter_id": "27083427"
+  },
 	"item": [
 		{
 			"name": "e2e pain 001",

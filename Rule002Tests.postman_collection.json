@@ -3,9 +3,8 @@
 		"_postman_id": "9cdbe0a1-46ca-465a-acb8-3c67696e39de",
 		"name": "Rule002 Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27083427",
-		"_collection_link": "https://red-space-860997.postman.co/workspace/frmscoe~d27a4005-57b9-4f72-88a8-6d14a92b11fd/collection/27083427-9cdbe0a1-46ca-465a-acb8-3c67696e39de?action=share&creator=27083427&source=collection_link"
-	},
+		"_exporter_id": "27083427"
+  },
 	"item": [
 		{
 			"name": "e2e pacs 002 Copy",

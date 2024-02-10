@@ -3,9 +3,8 @@
 		"_postman_id": "7ce22f21-d2af-42c9-863e-98552becd66c",
 		"name": "TransactionAggregationDecisioningProcessor_Proxt_Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27083427",
-		"_collection_link": "https://red-space-860997.postman.co/workspace/frmscoe~d27a4005-57b9-4f72-88a8-6d14a92b11fd/collection/27083427-7ce22f21-d2af-42c9-863e-98552becd66c?action=share&source=collection_link&creator=27083427"
-	},
+		"_exporter_id": "27083427"
+  },
 	"item": [
 		{
 			"name": "TransactionAggregationDecisioningProcessor_happypath",

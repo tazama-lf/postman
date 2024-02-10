@@ -4,9 +4,8 @@
 		"name": "Rule 901 Quick-Check",
 		"description": "This test collections performs a basic 'wellness\" check against a deployed rule 901 processor",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25521465",
-		"_collection_link": "https://gold-flare-458244.postman.co/workspace/ACTIO-Team-Workspace~33d09e62-e454-445d-94e3-f06c936f26ab/collection/25521465-1c3d3d75-c8e9-4fc3-a09d-cd12fd273ff3?action=share&source=collection_link&creator=25521465"
-	},
+		"_exporter_id": "25521465"
+  },
 	"item": [
 		{
 			"name": "Rule 901",
