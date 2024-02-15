@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "34df133e-0c0d-4897-980a-046ae9a29b32",
+		"_postman_id": "eee62321-e53f-45f8-92ed-5ed55aecaaa6",
 		"name": "ArangoDB",
 		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n- TO DO: scrub configuration of redundant databases and collections and test impact",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25521465"
+		"_exporter_id": "8089578"
 	},
 	"item": [
 		{
@@ -214,6 +214,42 @@
 							],
 							"path": [
 								"_api",
+								"database"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create evaluationResults Database",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\": \"evaluationResults\", \r\n  \"options\": { \r\n    \"sharding\": \"flexible\",  // This can be \"flexible\" or \"single\" for OneShard databases\r\n    \"replicationFactor\": {{replicationFactor}},  // Determines how many copies of each shard will be kept across different servers in the cluster\r\n    \"writeConcern\": 1 // Default value\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangoUrl}}_api/database",
+							"host": [
+								"{{arangoUrl}}_api"
+							],
+							"path": [
 								"database"
 							]
 						}
@@ -886,13 +922,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}_db/evaluationResults/_api/collection",
 							"host": [
-								"{{arangoUrl}}"
+								"{{arangoUrl}}_db"
 							],
 							"path": [
-								"_db",
-								"transactionHistory",
+								"evaluationResults",
 								"_api",
 								"collection"
 							]
