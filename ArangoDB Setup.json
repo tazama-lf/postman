@@ -237,7 +237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\": \"evaluationResults\", \r\n  \"options\": { \r\n    \"sharding\": \"flexible\",  // This can be \"flexible\" or \"single\" for OneShard databases\r\n    \"replicationFactor\": {{replicationFactor}},  // Determines how many copies of each shard will be kept across different servers in the cluster\r\n    \"writeConcern\": 1 // Default value\r\n  }\r\n}",
+							"raw": "{ \r\n  \"name\" : \"evaluationResults\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -245,11 +245,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}_api/database",
+							"raw": "{{arangoUrl}}/_api/database",
 							"host": [
-								"{{arangoUrl}}_api"
+								"{{arangoUrl}}"
 							],
 							"path": [
+								"_api",
 								"database"
 							]
 						}
@@ -922,11 +923,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}_db/evaluationResults/_api/collection",
+							"raw": "{{arangoUrl}}/_db/evaluationResults/_api/collection",
 							"host": [
-								"{{arangoUrl}}_db"
+								"{{arangoUrl}}"
 							],
 							"path": [
+								"_db",
 								"evaluationResults",
 								"_api",
 								"collection"
@@ -2373,13 +2375,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactions",
+							"raw": "{{arangoUrl}}/_db/evaluationResults/_api/index?collection=transactions",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"evaluationResults",
 								"_api",
 								"index"
 							],
