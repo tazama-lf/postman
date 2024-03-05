@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "562ef026-75cc-4896-902e-9e9f36ed5dc1",
+		"_postman_id": "47d2dc1a-f4a5-4a59-b04b-9e024bc13e6a",
 		"name": "ArangoDB",
 		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n- TO DO: scrub configuration of redundant databases and collections and test impact",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -1179,634 +1179,989 @@
 			"name": "2-Create-Indexes",
 			"item": [
 				{
-					"name": "Create transactionRelationship Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
+					"name": "pseudonyms",
+					"item": [
+						{
+							"name": "transactionRelationship.EndToEndId-TxTp",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							]
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"TxTp\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": true,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"EndToEndId-TxTp\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"pseudonyms",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionRelationship"
+										}
+									]
+								}
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"EndToEndId\",\r\n        \"TxTp\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": true,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"CommonGroup\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "transactionRelationship.CreDtTm (Inverted)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"pseudonyms",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionRelationship"
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"inverted\",\r\n    \"fields\": [\r\n        \"CreDtTm\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"pseudonyms",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionRelationship"
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"description": "Requests to create indexes in the `pseudonyms` database"
 				},
 				{
-					"name": "Create transactionRelationship CreDtTm Inverted Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
+					"name": "Configuration",
+					"item": [
+						{
+							"name": "transactionConfiguration.id-cfg",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=transactionConfiguration",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"Configuration",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionConfiguration"
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"inverted\",\r\n    \"fields\": [\r\n        \"CreDtTm\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "channelExpression.id-cfg",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=channelExpression",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"Configuration",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "channelExpression"
+										}
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"pseudonyms",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionRelationship"
+						{
+							"name": "configuration.id-cfg",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=configuration",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"Configuration",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "configuration"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "typologyExpression.id-cfg",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyExpression",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"Configuration",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "typologyExpression"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"description": "Requests to create indexes in the `Configuration` database"
 				},
 				{
-					"name": "CreateIndexOnCFGTransactionConfiguration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
+					"name": "transactionHistory",
+					"item": [
+						{
+							"name": "transactionHistoryPacs002.OrgnlEndToEndId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							]
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"FIToFIPmtSts.TxInfAndSts.OrgnlEndToEndId\"\r\n    ],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"OrgnlEndToEndId\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs002",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs002"
+										}
+									]
+								}
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"PI_ID_CFG\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "transactionHistoryPacs008.EndToEndId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs008"
+										}
+									]
+								}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=transactionConfiguration",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionConfiguration"
+						{
+							"name": "transactionHistoryPain013.EndToEndId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							]
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain013",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain013"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPain001.EndToEndId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPain001.DbtrAcct_ID-TxTp",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPain001.CreDtTm",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPain001.CreditorAccountId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreditorAcctId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPain001.DebtorAccountId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DebtorAcctId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPain001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPacs008.DebtorAccountId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcctId\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs008"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPacs008.CreditorAccountId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CdtrAcctId\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs008"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPacs008.DbtrAcct_ID-TxTp",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs008"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactionHistoryPacs008.CreDtTm",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARERTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"host": [
+										"{{arangoUrl}}"
+									],
+									"path": [
+										"_db",
+										"transactionHistory",
+										"_api",
+										"index"
+									],
+									"query": [
+										{
+											"key": "collection",
+											"value": "transactionHistoryPacs008"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateIndexOnCFGChannelExpression",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"PI_ID_CFG\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=channelExpression",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "channelExpression"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateIndexOnCFGConfiguration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"PI_ID_CFG\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=configuration",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "configuration"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateIndexOnCFGTypologyExpression",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"PI_ID_CFG\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyExpression",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "typologyExpression"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs002 Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"FIToFIPmtSts.TxInfAndSts.OrgnlEndToEndId\"\r\n    ],\r\n    \"unique\": false,\r\n    \"sparse\": true,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"inBackground\": true,\r\n    \"name\": \"EndToEndId\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs002",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs002"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs008 EndToEndId Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs008 fiti_dbtr Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"name\": \"fiti_dbtr\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs008 fiti_cdtr Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"name\": \"fiti_cdtr\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs008 DbtrAcct_ID-TxTp Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionHistoryPacs008 CreDtTm Index",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdt.GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": true,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"transactionHistory",
-								"_api",
-								"index"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "transactionHistoryPacs008"
-								}
-							]
-						}
-					},
-					"response": []
+					],
+					"description": "Requests to create indexes in `transactionHistory` database"
 				}
-			]
+			],
+			"description": "Contains requests for creating indexes in the database. The collections are grouped into database subfolders. For example, the `pseudonyms` subfolder will contain indexes to collections in the `pseudonyms` database."
 		},
 		{
 			"name": "3-ArangoDB-Default-Configuration",
