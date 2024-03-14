@@ -16,7 +16,7 @@
 							"let jsonData = pm.response.json();\r",
 							"console.log(jsonData.revision.clientId);\r",
 							"\r",
-							"pm.environment.set(\"clientId\", jsonData.revision.clientId);\r",
+							"pm.globals.set(\"clientId\", jsonData.revision.clientId);\r",
 							""
 						],
 						"type": "text/javascript"

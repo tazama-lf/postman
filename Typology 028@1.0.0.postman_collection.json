@@ -74,7 +74,7 @@
 						"exec": [
 							"const now = new Date().getTime();\r",
 							"var moment = require('moment');\r",
-							"pm.environment.set('date', moment().format((\"YYYY-MM-DD\")));\r",
+							"pm.globals.set('date', moment().format((\"YYYY-MM-DD\")));\r",
 							"const arangourl = pm.environment.get(\"arangoUrl\");\r",
 							"const baseUrl = pm.environment.get(\"ofUrl\");\r",
 							"const version = pm.environment.get(\"version\");\r",

@@ -303,7 +303,7 @@
 									"pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
 									"console.log(\"received end to end id for above request \", pm.collectionVariables.get(\"EndToEndId\"));\r",
 									"\r",
-									"pm.environment.set(\"query\", JSON.stringify(\r",
+									"pm.globals.set(\"query\", JSON.stringify(\r",
 									"    `\r",
 									"      for transaction In transactions\r",
 									"       FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == \r",
