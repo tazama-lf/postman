@@ -684,7 +684,7 @@
 									"setTimeout(() => {\r",
 									"    var Header = require('postman-collection').Header;\r",
 									"    pm.request.headers.append(Header.create(`Bearer ${pm.globals.get(\"arangoToken\")}`, 'Authorization'));\r",
-									"    pm.environment.set(\"query\", JSON.stringify(\r",
+									"    pm.globals.set(\"query\", JSON.stringify(\r",
 									"        `\r",
 									"      for transaction In transactions\r",
 									"       FILTER transaction.transaction.FIToFIPmtSts.GrpHdr.MsgId == \r",

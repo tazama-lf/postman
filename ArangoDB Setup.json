@@ -20,7 +20,7 @@
 									"let jsonData = pm.response.json();",
 									"//console.log(jsonData[\"jwt\"])",
 									"",
-									"pm.environment.set(\"BEARERTOKEN\", jsonData[\"jwt\"])",
+									"pm.globals.set(\"BEARERTOKEN\", jsonData[\"jwt\"])",
 									"",
 									"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])"
 								],
@@ -696,7 +696,7 @@
 									"let jsonData = pm.response.json();\r",
 									"//console.log(jsonData[\"jwt\"])\r",
 									"\r",
-									"pm.environment.set(\"id002\", jsonData[\"id\"])"
+									"pm.globals.set(\"id002\", jsonData[\"id\"])"
 								],
 								"type": "text/javascript"
 							}
@@ -749,7 +749,7 @@
 									"let jsonData = pm.response.json();\r",
 									"//console.log(jsonData[\"jwt\"])\r",
 									"\r",
-									"pm.environment.set(\"id008\", jsonData[\"id\"])"
+									"pm.globals.set(\"id008\", jsonData[\"id\"])"
 								],
 								"type": "text/javascript"
 							}
@@ -802,7 +802,7 @@
 									"let jsonData = pm.response.json();\r",
 									"//console.log(jsonData[\"jwt\"])\r",
 									"\r",
-									"pm.environment.set(\"id001\", jsonData[\"id\"])"
+									"pm.globals.set(\"id001\", jsonData[\"id\"])"
 								],
 								"type": "text/javascript"
 							}
@@ -855,7 +855,7 @@
 									"let jsonData = pm.response.json();\r",
 									"//console.log(jsonData[\"jwt\"])\r",
 									"\r",
-									"pm.environment.set(\"id013\", jsonData[\"id\"])"
+									"pm.globals.set(\"id013\", jsonData[\"id\"])"
 								],
 								"type": "text/javascript"
 							}

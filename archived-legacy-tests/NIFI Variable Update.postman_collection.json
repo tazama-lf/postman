@@ -15,7 +15,7 @@
 						"exec": [
 							"let jsonData = pm.response.json();",
 							"",
-							"pm.environment.set(\"arangoToken\", jsonData[\"jwt\"])",
+							"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])",
 							""
 						],
 						"type": "text/javascript"
@@ -75,8 +75,8 @@
 							"let jsonData = pm.response.json();\r",
 							"\r",
 							"/*setting variables from response*/\r",
-							"pm.environment.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
-							"pm.environment.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
+							"pm.globals.set(\"clientID\", jsonData.processGroupRevision.clientId);\r",
+							"pm.globals.set(\"groupVersion\", jsonData.processGroupRevision.version);\r",
 							"\r",
 							"console.log(jsonData.processGroupRevision.clientId);\r",
 							"console.log(jsonData.processGroupRevision.version);\r",
