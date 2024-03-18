@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "4847f114-60c7-403e-9411-918f770fbb76",
+		"name": "Configuration - Rule 901",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25521465"
+	},
+	"item": [
+		{
+			"name": "Get Arango Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"//console.log(jsonData[\"jwt\"])\r",
+							"\r",
+							"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{arangoUsername}}\",\r\n    \"password\": \"{{arangoPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_open/auth",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_open",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove all rule configurations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"FOR doc in configuration REMOVE doc in configuration\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove all typology configurations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"FOR doc in typologyExpression REMOVE doc in typologyExpression\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove all transaction configurations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"FOR doc in transactionConfiguration REMOVE doc in transactionConfiguration\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Active Network Map Identifier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = JSON.parse(responseBody);\r",
+							"\r",
+							"if (resp.result.length != 1) {\r",
+							"    console.log(\"Either zero or multiple active network maps: \" + resp.result);\r",
+							"} else {\r",
+							"    pm.environment.set(\"activeNetworkMap\", resp.result[0])\r",
+							"    console.log(\"Active network map ID: \" + resp.result[0]);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"FOR doc in networkConfiguration FILTER doc.active == true RETURN doc._key\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_route}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Network Map by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"UPDATE { _key: '{{activeNetworkMap}}', active: false } IN networkConfiguration\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_route}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert rule configurations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"outcome\": false,\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_rules}}",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"document",
+						"{{db_config_rules}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert typology configurations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"_key\": \"999@1.0.0\",\r\n    \"desc\": \"Rule-901 Typology\",\r\n    \"id\": \"typology-processor@1.0.0\",\r\n    \"cfg\": \"999@1.0.0\",\r\n    \"workflow\": {\r\n      \"alertThreshold\": 200,\r\n      \"interdictionThreshold\": 400\r\n    },\r\n    \"rules\": [\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".err\",\r\n        \"true\": 0,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".x01\",\r\n        \"true\": 100,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".01\",\r\n        \"true\": 100,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".02\",\r\n        \"true\": 200,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".03\",\r\n        \"true\": 400,\r\n        \"false\": 0\r\n      }\r\n    ],\r\n    \"expression\": {\r\n      \"operator\": \"+\",\r\n      \"terms\": [\r\n        {\r\n          \"id\": \"901@1.0.0\",\r\n          \"cfg\": \"1.0.0\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_typologies}}",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"document",
+						"{{db_config_typologies}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert routing configuration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"active\": true,\r\n    \"cfg\": \"1.0.0\",\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"typology-processor@1.0.0\",\r\n                \"cfg\": \"999@1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"901@1.0.0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/document/{{db_config_networkConfiguration}}",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_route}}",
+						"_api",
+						"document",
+						"{{db_config_networkConfiguration}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
