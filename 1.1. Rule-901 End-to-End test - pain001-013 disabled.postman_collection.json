@@ -3,8 +3,7 @@
 		"_postman_id": "14667efe-18de-42ac-84ea-d889baffc9c2",
 		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25521465",
-		"_collection_link": "https://gold-flare-458244.postman.co/workspace/Tazama-Team-Workspace~33d09e62-e454-445d-94e3-f06c936f26ab/collection/25521465-14667efe-18de-42ac-84ea-d889baffc9c2?action=share&source=collection_link&creator=25521465"
+		"_exporter_id": "25521465"
 	},
 	"item": [
 		{
@@ -294,180 +293,6 @@
 							"path": [
 								"_open",
 								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch created pain.001 from transactionHistoryPain001",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"let qryString = \"\";\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    console.log(`Fetching pain.001 from transactionHistoryPain001 using msgId: ${pm.globals.get('messageIdPain001')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.GrpHdr.MsgId == '${pm.globals.get('messageIdPain001')}' RETURN doc`\r",
-									"} else {\r",
-									"    console.log(`Pain.001/013 disabled: Checking that no pain.001 exists in transactionHistoryPain001 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
-									"}\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const resJson = pm.response.json();\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    let memPain001MsgId = pm.globals.get('messageIdPain001')\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages activated and pain.001 with msgId ${memPain001MsgId} found`, function () {\r",
-									"        pm.expect(resJson.result[0].CstmrCdtTrfInitn.GrpHdr.MsgId).to.be.equal(memPain001MsgId);\r",
-									"    });\r",
-									"} else {\r",
-									"\r",
-									"    let endToEndId = pm.globals.get('endToEndId');\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages deactivated and no pain.001 with endToEndId ${endToEndId} found`, function () {\r",
-									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch created pain.013 from transactionHistoryPain013",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"let qryString = \"\";\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    console.log(`Fetching pain.013 from transactionHistoryPain013 using msgId: ${pm.globals.get('messageIdPain013')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.GrpHdr.MsgId == '${pm.globals.get('messageIdPain013')}' RETURN doc`\r",
-									"} else {\r",
-									"    console.log(`Pain.001/013 disabled: Checking that no pain.013 exists in transactionHistoryPain013 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
-									"}\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const resJson = pm.response.json();\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    let memPain013MsgId = pm.globals.get('messageIdPain013')\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages activated and pain.013 with msgId ${memPain013MsgId} found`, function () {\r",
-									"        pm.expect(resJson.result[0].CdtrPmtActvtnReq.GrpHdr.MsgId).to.be.equal(memPain013MsgId);\r",
-									"    });\r",
-									"} else {\r",
-									"\r",
-									"    let endToEndId = pm.globals.get('endToEndId');\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages deactivated and no pain.013 with endToEndId ${endToEndId} found`, function () {\r",
-									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
 							]
 						}
 					},
@@ -771,7 +596,7 @@
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId - Viable Network Map Only",
+					"name": "Fetch evaluation results with msgId - Rule 901 Network Map Only",
 					"event": [
 						{
 							"listen": "prerequest",
