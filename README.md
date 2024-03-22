@@ -276,7 +276,7 @@ if (pm.environment.get("preconfigured") == "false") {
 }
 ```
 
-The `recreateRuleConfig()` function is a function in the `utils` library. Unfortunately Postman will not render the function's DocString in the Pre-Request Script tab and you'll have to view the function in the `utils` library directly. To view the `utils` library, you have to open the Pre-Request Script for the root test collection folder:
+The `recreateRuleConfig()` function is a function in the `utils` library. Unfortunately Postman will not render the function's DocString in the test's Pre-Request Script tab, and you'll have to view the function in the `utils` library directly. To view the `utils` library, you have to open the Pre-Request Script for the root test collection folder:
 
 ![View the utils library](./images/view-utils-library.png)
 
@@ -294,7 +294,7 @@ You can browse or search the utils library to find the DocString for the `recrea
 
 > [!NOTE]
 >
-> Something to bear in mind here is a rule processor in Tazama is set up by default to cache a new rule configuration in Node-Cache for 300 seconds to prevent excessive database reads at the expense of system performance. A test that replaces a rule configuration might not render predictable results if the tests are run in an automated fashion with a suitable delay between the tests, or if the node-cache Time-To-Live (TTL) is set to a much lower value. This is one of the reasons why we perform our functionality tests with a "pre-configured" rule configuration and set the `preconfigured` environment variable to `true`.
+> Something to bear in mind here is a rule processor in Tazama is set up by default to cache a new rule configuration in node-cache for 300 seconds to prevent excessive database reads at the expense of system performance. A test that replaces a rule configuration might not render predictable results if the tests are run in an automated fashion without a suitable delay between the tests, or if the node-cache Time-To-Live (TTL) is set to a much lower value. This is one of the reasons why we perform our functionality tests with a "pre-configured" rule configuration and set the `preconfigured` environment variable to `true`.
 
 #### Set up the test transaction message set
 
@@ -356,6 +356,8 @@ pm.variables.set('configVer', configVer);
 ```
 If you look at the message body in the "Body" tab, you'll see how these variables are used to compose the message body.
 
+### 
+
 ---
 **Footnotes:**
-###### 1. A public user not a "member" of the Tazama GitHub organization and does not have access to private repositories that contain hidden rule processors
+###### 1. A public user is not a "member" of the Tazama GitHub organization and does not have access to private repositories that contain hidden rule processors
