@@ -614,8 +614,6 @@
 								"exec": [
 									"const resJson = pm.response.json();\r",
 									"\r",
-									"console.log(resJson);\r",
-									"\r",
 									"const rulesPerTypologyCount = [1];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
