@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "d176cd9f-1077-46fc-b23b-f6477c5a627c",
-		"name": "CRSP-Tests",
+		"name": "Event-Director-Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1323032"
 	},
@@ -162,7 +162,7 @@
 									"\r",
 									"pm.test(\"check that there is actual data received back \", function () {\r",
 									"    pm.expect(jsonData.result).to.eql([]);\r",
-									"    // CRSP should only process PACS.002 messages\r",
+									"    // Event-Director should only process PACS.002 messages\r",
 									"    //pm.expect(jsonData.result).to.not.eql([]);\r",
 									"    //pm.expect(jsonData.result[0].networkMap.cfg).to.eql('1.0.0');\r",
 									"});"
@@ -360,7 +360,7 @@
 									" \r",
 									"pm.test(\"check that there is actual data received back \", function () {\r",
 									"    pm.expect(jsonData.result).to.eql([]);\r",
-									"    // CRSP should only process PACS.002 messages\r",
+									"    // Event-Director should only process PACS.002 messages\r",
 									"    //pm.expect(jsonData.result).to.not.eql([]);\r",
 									"});"
 								],
@@ -1458,7 +1458,7 @@
 			"response": []
 		},
 		{
-			"name": "CRSP Pain001",
+			"name": "Event-Director Pain001",
 			"event": [
 				{
 					"listen": "test",
@@ -1570,7 +1570,7 @@
 			"response": []
 		},
 		{
-			"name": "CRSP Pain 013",
+			"name": "Event-Director Pain 013",
 			"event": [
 				{
 					"listen": "test",
@@ -1681,7 +1681,7 @@
 			"response": []
 		},
 		{
-			"name": "CRSP Pacs 002",
+			"name": "Event-Director Pacs 002",
 			"event": [
 				{
 					"listen": "test",
@@ -1820,7 +1820,7 @@
 			"response": []
 		},
 		{
-			"name": "CRSP Pacs 008",
+			"name": "Event-Director Pacs 008",
 			"event": [
 				{
 					"listen": "test",
@@ -1932,7 +1932,7 @@
 			"response": []
 		},
 		{
-			"name": "CRSP Unknown Transaction type",
+			"name": "Event-Director Unknown Transaction type",
 			"event": [
 				{
 					"listen": "test",
