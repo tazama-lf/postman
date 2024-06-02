@@ -20,7 +20,7 @@
 							"let networkMap = EveoutgoingEventDirectorResult.networkMap\r",
 							"let dataCache = EveoutgoingEventDirectorResult.DataCache\r",
 							"let metaData = EveoutgoingEventDirectorResult.metaData;\r",
-							"let prcgTm = EveoutgoingEventDirectorResult.metaData.prcgTmEventDirector;\r",
+							"let prcgTm = EveoutgoingEventDirectorResult.metaData.prcgTmED;\r",
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
