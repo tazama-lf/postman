@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "4847f114-60c7-403e-9411-918f770fbb76",
+		"_postman_id": "4bacb34e-8b49-40d2-b9da-430c54e4136b",
 		"name": "Configuration - Rule 901",
-		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute",
+		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25521465",
-		"_collection_link": "https://gold-flare-458244.postman.co/workspace/Tazama-Team-Workspace~33d09e62-e454-445d-94e3-f06c936f26ab/collection/25521465-4847f114-60c7-403e-9411-918f770fbb76?action=share&source=collection_link&creator=25521465"
+		"_exporter_id": "36352170"
 	},
 	"item": [
 		{
@@ -168,22 +167,44 @@
 			"response": []
 		},
 		{
-			"name": "Fetch Active Network Map Identifier",
+			"name": "Deactivate Active Network Maps",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const resp = JSON.parse(responseBody);\r",
-							"\r",
-							"if (resp.result.length != 1) {\r",
-							"    console.log(\"Either zero or multiple active network maps: \" + resp.result);\r",
-							"} else {\r",
-							"    pm.environment.set(\"activeNetworkMap\", resp.result[0])\r",
-							"    console.log(\"Active network map ID: \" + resp.result[0]);\r",
+							"const resp = pm.response.json();",
+							"",
+							"if (resp.result.length < 1) {",
+							"    console.log(`No active network maps found.`);",
+							"} else {",
+							"    console.log(`Deactivating network map _ids: ${resp.result}`);",
+							"",
+							"    for (let i = 0; i < resp.result.length; i++) {",
+							"        const queryString = `UPDATE { _key: '${resp.result[i]}', active: false } IN ${pm.environment.get('db_config_networkConfiguration')}`;",
+							"        const configPostRequest = {",
+							"            url: `${pm.environment.get('arangoUrl')}/_db/${pm.environment.get('db_config_route')}/_api/cursor`,",
+							"            method: 'POST',",
+							"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
+							"            body: {",
+							"                mode: 'raw',",
+							"                raw: JSON.stringify({",
+							"                    query: queryString",
+							"                })",
+							"            }",
+							"        };",
+							"",
+							"        (async () => {",
+							"            await pm.sendRequest(configPostRequest, (error, response) => {",
+							"                console.log(error ? error : response.json());",
+							"            });",
+							"        }",
+							"        )();",
+							"    }",
 							"}"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -203,56 +224,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"query\": \"FOR doc in networkConfiguration FILTER doc.active == true RETURN doc._key\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
-					"host": [
-						"{{arangoUrl}}"
-					],
-					"path": [
-						"_db",
-						"{{db_config_route}}",
-						"_api",
-						"cursor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Deactivate Network Map by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{arangoToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"UPDATE { _key: '{{activeNetworkMap}}', active: false } IN networkConfiguration\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
