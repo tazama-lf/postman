@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "46f61e7a-d7a6-42bd-bba4-5ce9a77c4195",
+		"_postman_id": "8905fa82-43bb-4243-8d18-81997d9475f4",
 		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
+		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29185806"
+		"_exporter_id": "36352170"
 	},
 	"item": [
 		{
@@ -163,7 +164,8 @@
 									"let messageBody = pm.globals.get('pacs008');\r",
 									"pm.globals.set('messageBody', messageBody);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -174,7 +176,8 @@
 									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -191,11 +194,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/{{path-pacs008}}",
+							"raw": "{{ofUrl}}/{{path-api-version}}/{{path-pacs008}}",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
+								"{{path-api-version}}",
 								"{{path-pacs008}}"
 							]
 						}
@@ -212,7 +216,8 @@
 									"let messageBody = pm.globals.get('pacs002');\r",
 									"pm.globals.set('messageBody', messageBody);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -223,7 +228,8 @@
 									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -240,11 +246,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/{{path-pacs002}}",
+							"raw": "{{ofUrl}}/{{path-api-version}}/{{path-pacs002}}",
 							"host": [
 								"{{ofUrl}}"
 							],
 							"path": [
+								"{{path-api-version}}",
 								"{{path-pacs002}}"
 							]
 						}
