@@ -531,7 +531,7 @@
 					"response": []
 				},
 				{
-					"name": "Create typologyExpression Collection",
+					"name": "Create typologyConfiguration Collection",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -547,7 +547,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"typologyExpression\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"typologyConfiguration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1351,7 +1351,7 @@
 							"response": []
 						},
 						{
-							"name": "typologyExpression.id-cfg",
+							"name": "typologyConfiguration.id-cfg",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1375,7 +1375,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyExpression",
+									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyConfiguration",
 									"host": [
 										"{{arangoUrl}}"
 									],
@@ -1388,7 +1388,7 @@
 									"query": [
 										{
 											"key": "collection",
-											"value": "typologyExpression"
+											"value": "typologyConfiguration"
 										}
 									]
 								}
@@ -2123,7 +2123,7 @@
 					"response": []
 				},
 				{
-					"name": "Insert typologyExpression",
+					"name": "Insert typologyConfiguration",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2147,7 +2147,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/typologyExpression",
+							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/typologyConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
@@ -2156,7 +2156,7 @@
 								"Configuration",
 								"_api",
 								"document",
-								"typologyExpression"
+								"typologyConfiguration"
 							]
 						}
 					},
