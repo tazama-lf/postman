@@ -163,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"Configuration\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"configuration\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -516,13 +516,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -555,13 +555,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -594,13 +594,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -1246,13 +1246,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=ruleConfiguration",
+									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=ruleConfiguration",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"Configuration",
+										"configuration",
 										"_api",
 										"index"
 									],
@@ -1291,13 +1291,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyConfiguration",
+									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=typologyConfiguration",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"Configuration",
+										"configuration",
 										"_api",
 										"index"
 									],
@@ -2023,13 +2023,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/ruleConfiguration",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/ruleConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"document",
 								"ruleConfiguration"
@@ -2063,13 +2063,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/typologyConfiguration",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/typologyConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"document",
 								"typologyConfiguration"
@@ -2103,13 +2103,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/networkmap/_api/document/networkConfiguration",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/networkConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"networkmap",
+								"configuration",
 								"_api",
 								"document",
 								"networkConfiguration"
