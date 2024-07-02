@@ -54,10 +54,11 @@ A functioning Tazama environment file for Postman will contain the following att
 | `arangoUsername` | The ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `arangoPassword` | The password associated with the ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `activePain001` | This attribute reflects whether the platform has been configured to include or exclude a quoting phase via pain.001 and pain.013 messages as part of a transaction set | `true` - quoting is included</br> `false` - quoting is excluded |
-| `path-pain001` | The API path to receive a pain.001 request. Do not update this value unless the paths in your deployment are different. | `execute` |
-| `path-pain013` | The API path to receive a pain.013 request. Do not update this value unless the paths in your deployment are different. | `quoteReply` |
-| `path-pacs008` | The API path to receive a pacs.008 request. Do not update this value unless the paths in your deployment are different. | `transfer` |
-| `path-pacs002` | The API path to receive a pacs.002 request. Do not update this value unless the paths in your deployment are different. | `transfer-response` |
+| `path-api-version` | The API path element for the current version of the API. Do not update this value unless the API version in your deployment is different. | `v1` |
+| `path-pain001` | The API path to receive a pain.001 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pain.001.001.11` |
+| `path-pain013` | The API path to receive a pain.013 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pain.013.001.09` |
+| `path-pacs008` | The API path to receive a pacs.008 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pacs.008.001.10` |
+| `path-pacs002` | The API path to receive a pacs.002 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pacs.002.001.12` |
 
 **NATS REST proxy-specific attributes:**
 
@@ -65,7 +66,7 @@ The attributes below are only required if you are interacting with a specific pr
 
 | Attribute(s) | Description | Example(s)
 |:---:|---|---|
-| `path-channel-router-setup-processor` | The folder path to the Channel Router & Setup Processor | natsPublish - since all  |
+| `path-event-director` | The folder path to the Channel Router & Setup Processor | natsPublish - no processors behind the TMS APR are REST-accessible; internal processors can only be accessed directly through the [NATS Utilities](https://github.com/frmscoe/nats-utilities) |
 | `path-rule-001-rel-1-0-0` </br> to </br> `path-rule-901-rel-1-0-0` | The folder/path to the specific rule processor | natsPublish |
 | `path-typology-processor` | The folder/path to the typology processor | natsPublish |
 | `path-tadproc` | The folder/path to the Transaction Aggregation & Decisioning processor | natsPublish |
@@ -92,8 +93,6 @@ The attributes below host a variety of ArangoDB variables for database and colle
 | `db_config_route` | The database name where routing configuration data is stored | `networkmap` |
 | `db_config_rules` | The collection name where the rule configurations will be stored in the processor configuration database | `configuration` |
 | `db_config_typologies` | The collection name where the typology configurations will be stored in the processor configuration database | `typologyExpression` |
-| `db_config_channel` | The collection name where the channel configurations will be stored in the processor configuration database. This is not currently in use. | `channelExpression` |
-| `db_config_transactions` | The collection name where the channel configurations will be stored in the processor configuration database. This is no longer in use. | `transactionConfiguration` |
 | `db_config_networkConfiguration` | The collection name where the routing configuration will be stored in the routing configuration database. | `networkConfiguration` |
 
 **Postman testing-specific attributes:**
