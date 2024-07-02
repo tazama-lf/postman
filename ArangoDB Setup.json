@@ -594,13 +594,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/networkmap/_api/collection",
+							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"networkmap",
+								"Configuration",
 								"_api",
 								"collection"
 							]
