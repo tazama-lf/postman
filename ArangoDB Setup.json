@@ -570,45 +570,6 @@
 					"response": []
 				},
 				{
-					"name": "Create transactionConfiguration Collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\",\r\n  \"waitForSync\":false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create networkConfiguration Collection",
 					"request": {
 						"auth": {
@@ -1260,51 +1221,6 @@
 				{
 					"name": "Configuration",
 					"item": [
-						{
-							"name": "transactionConfiguration.id-cfg",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{BEARERTOKEN}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=transactionConfiguration",
-									"host": [
-										"{{arangoUrl}}"
-									],
-									"path": [
-										"_db",
-										"Configuration",
-										"_api",
-										"index"
-									],
-									"query": [
-										{
-											"key": "collection",
-											"value": "transactionConfiguration"
-										}
-									]
-								}
-							},
-							"response": []
-						},
 						{
 							"name": "ruleConfiguration.id-cfg",
 							"request": {
@@ -2157,46 +2073,6 @@
 								"_api",
 								"document",
 								"typologyConfiguration"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Insert transactionConfiguration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "[]",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/transactionConfiguration",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"document",
-								"transactionConfiguration"
 							]
 						}
 					},
