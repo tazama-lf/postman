@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47d2dc1a-f4a5-4a59-b04b-9e024bc13e6a",
+		"_postman_id": "eb3c83ce-71f0-4f9b-85e2-b0e3687352e1",
 		"name": "ArangoDB",
 		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n- TO DO: scrub configuration of redundant databases and collections and test impact",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -548,45 +548,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{ \r\n  \"name\" : \"typologyExpression\",\r\n  \"waitForSync\":false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create channelExpression Collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"channelExpression\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1338,51 +1299,6 @@
 										{
 											"key": "collection",
 											"value": "transactionConfiguration"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "channelExpression.id-cfg",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{BEARERTOKEN}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=channelExpression",
-									"host": [
-										"{{arangoUrl}}"
-									],
-									"path": [
-										"_db",
-										"Configuration",
-										"_api",
-										"index"
-									],
-									"query": [
-										{
-											"key": "collection",
-											"value": "channelExpression"
 										}
 									]
 								}
