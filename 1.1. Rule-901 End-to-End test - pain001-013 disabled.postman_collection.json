@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fdd9d161-60c9-468d-a593-ad2e6ee2b08a",
+		"_postman_id": "8d895561-883f-4e9c-a29c-5e981c99a4de",
 		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -194,12 +194,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/{{path-api-version}}/{{path-pacs008}}",
+							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
 							"host": [
-								"{{ofUrl}}"
+								"{{ofUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"{{path-api-version}}",
 								"{{path-pacs008}}"
 							]
 						}
@@ -246,12 +245,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}/{{path-api-version}}/{{path-pacs002}}",
+							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
 							"host": [
-								"{{ofUrl}}"
+								"{{ofUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"{{path-api-version}}",
 								"{{path-pacs002}}"
 							]
 						}

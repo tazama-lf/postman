@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "4bacb34e-8b49-40d2-b9da-430c54e4136b",
+		"_postman_id": "6b1c2880-e235-497a-8eb2-92bdc5fc6bee",
 		"name": "Configuration - Rule 901",
 		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36352170"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -66,7 +66,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in configuration REMOVE doc in configuration\"\r\n}",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_rules}} REMOVE doc in {{db_config_rules}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,46 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in typologyExpression REMOVE doc in typologyExpression\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
-					"host": [
-						"{{arangoUrl}}"
-					],
-					"path": [
-						"_db",
-						"{{db_config_all}}",
-						"_api",
-						"cursor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove all transaction configurations",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{arangoToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in transactionConfiguration REMOVE doc in transactionConfiguration\"\r\n}",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_typologies}} REMOVE doc in {{db_config_typologies}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -223,7 +184,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in networkConfiguration FILTER doc.active == true RETURN doc._key\"\r\n}",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_route}} FILTER doc.active == true RETURN doc._key\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -231,13 +192,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
 					"host": [
 						"{{arangoUrl}}"
 					],
 					"path": [
 						"_db",
-						"{{db_config_route}}",
+						"{{db_config_all}}",
 						"_api",
 						"cursor"
 					]
@@ -350,16 +311,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/document/{{db_config_networkConfiguration}}",
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_route}}",
 					"host": [
 						"{{arangoUrl}}"
 					],
 					"path": [
 						"_db",
-						"{{db_config_route}}",
+						"{{db_config_all}}",
 						"_api",
 						"document",
-						"{{db_config_networkConfiguration}}"
+						"{{db_config_route}}"
 					]
 				}
 			},
