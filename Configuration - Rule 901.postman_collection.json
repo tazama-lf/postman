@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6b1c2880-e235-497a-8eb2-92bdc5fc6bee",
+		"_postman_id": "b548a39f-4806-4975-9185-d8b5fa734926",
 		"name": "Configuration - Rule 901",
 		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36724395"
+		"_exporter_id": "36352170"
 	},
 	"item": [
 		{
@@ -51,6 +51,20 @@
 		},
 		{
 			"name": "Remove all rule configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Query successful\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -90,6 +104,20 @@
 		},
 		{
 			"name": "Remove all typology configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Query successful\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -142,9 +170,9 @@
 							"    console.log(`Deactivating network map _ids: ${resp.result}`);",
 							"",
 							"    for (let i = 0; i < resp.result.length; i++) {",
-							"        const queryString = `UPDATE { _key: '${resp.result[i]}', active: false } IN ${pm.environment.get('db_config_networkConfiguration')}`;",
+							"        const queryString = `UPDATE { _key: '${resp.result[i]}', active: false } IN ${pm.environment.get('db_config_route')}`;",
 							"        const configPostRequest = {",
-							"            url: `${pm.environment.get('arangoUrl')}/_db/${pm.environment.get('db_config_route')}/_api/cursor`,",
+							"            url: `${pm.environment.get('arangoUrl')}/_db/${pm.environment.get('db_config_all')}/_api/cursor`,",
 							"            method: 'POST',",
 							"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
 							"            body: {",
@@ -158,6 +186,10 @@
 							"        (async () => {",
 							"            await pm.sendRequest(configPostRequest, (error, response) => {",
 							"                console.log(error ? error : response.json());",
+							"",
+							"                pm.test(\"Network map deactivation successful\", function () {",
+							"                    pm.expect(response.code).to.equal(201);",
+							"                });",
 							"            });",
 							"        }",
 							"        )();",
@@ -208,6 +240,20 @@
 		},
 		{
 			"name": "Insert rule configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -248,6 +294,20 @@
 		},
 		{
 			"name": "Insert typology configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -288,6 +348,20 @@
 		},
 		{
 			"name": "Insert routing configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
