@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b548a39f-4806-4975-9185-d8b5fa734926",
+		"_postman_id": "df5d3035-619f-4c16-a03a-d8e083c7fcc8",
 		"name": "Configuration - Rule 901",
 		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",

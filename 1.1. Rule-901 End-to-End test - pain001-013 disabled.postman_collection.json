@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "11a841f1-a07d-4a41-b999-17c5a9ecfb48",
+		"_postman_id": "d82f80f2-3304-474a-ae0c-ec544e76f89b",
 		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
