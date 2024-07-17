@@ -34,7 +34,6 @@ jobs:
     - name: Scan the src directory and upload dependency results
       uses: anchore/sbom-action@v0
       with:
-        path: ./src/
+        path: ../..
         artifact-name: src.spdx.json
         dependency-snapshot: true
-
