@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
 ## Introduction
 
 Tazama is prefaced with the Transaction Monitoring Service (TMS) API which makes [Postman](https://www.postman.com/) a useful tool to test platform functionality. In days gone by, Tazama was also composed out of a series of forward-chaining microservices that all had their own RESTful interfaces to receive incoming requests, but we have since replaced our inter-services communication protocol with [NATS](http://nats.io) that connects all our internal processors via its pub/sub interface. While we still use Postman to test the internal processors, we now have to access the NATS pub/sub interface via a NATS REST Proxy that we also built. (You can read more about the NATS REST proxy in the [nats-utilities](https://github.com/frmscoe/nats-utilities)) repository.
@@ -52,10 +54,11 @@ A functioning Tazama environment file for Postman will contain the following att
 | `arangoUsername` | The ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `arangoPassword` | The password associated with the ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `activePain001` | This attribute reflects whether the platform has been configured to include or exclude a quoting phase via pain.001 and pain.013 messages as part of a transaction set | `true` - quoting is included</br> `false` - quoting is excluded |
-| `path-pain001` | The API path to receive a pain.001 request. Do not update this value unless the paths in your deployment are different. | `execute` |
-| `path-pain013` | The API path to receive a pain.013 request. Do not update this value unless the paths in your deployment are different. | `quoteReply` |
-| `path-pacs008` | The API path to receive a pacs.008 request. Do not update this value unless the paths in your deployment are different. | `transfer` |
-| `path-pacs002` | The API path to receive a pacs.002 request. Do not update this value unless the paths in your deployment are different. | `transfer-response` |
+| `path-api-version` | The API path element for the current version of the API. Do not update this value unless the API version in your deployment is different. | `/v1` |
+| `path-pain001` | The API path to receive a pain.001 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pain.001.001.11` |
+| `path-pain013` | The API path to receive a pain.013 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pain.013.001.09` |
+| `path-pacs008` | The API path to receive a pacs.008 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pacs.008.001.10` |
+| `path-pacs002` | The API path to receive a pacs.002 request. Do not update this value unless the paths in your deployment are different. | `evaluate/iso20022/pacs.002.001.12` |
 
 **NATS REST proxy-specific attributes:**
 
@@ -63,7 +66,7 @@ The attributes below are only required if you are interacting with a specific pr
 
 | Attribute(s) | Description | Example(s)
 |:---:|---|---|
-| `path-channel-router-setup-processor` | The folder path to the Channel Router & Setup Processor | natsPublish - since all  |
+| `path-event-director` | The folder path to the Channel Router & Setup Processor | natsPublish - no processors behind the TMS APR are REST-accessible; internal processors can only be accessed directly through the [NATS Utilities](https://github.com/frmscoe/nats-utilities) |
 | `path-rule-001-rel-1-0-0` </br> to </br> `path-rule-901-rel-1-0-0` | The folder/path to the specific rule processor | natsPublish |
 | `path-typology-processor` | The folder/path to the typology processor | natsPublish |
 | `path-tadproc` | The folder/path to the Transaction Aggregation & Decisioning processor | natsPublish |
@@ -86,13 +89,10 @@ The attributes below host a variety of ArangoDB variables for database and colle
 | `db_coll_graph_account_holders` | The edge collection name where the debtor and creditor account relationship information is stored in the transaction history graph database | `account_holder` |
 | `db_coll_graph_accounts` | The collection name where the debtor and creditor account information in a transaction is stored in the transaction history graph database | `accounts` |
 | `db_coll_graph_transactions` | The collection name where the debtor and creditor information in a transaction is stored in the transaction history graph database | `transactionRelationship` |
-| `db_config_all` | The database name where processor configuration data is stored | `Configuration` |
-| `db_config_route` | The database name where routing configuration data is stored | `networkmap` |
-| `db_config_rules` | The collection name where the rule configurations will be stored in the processor configuration database | `configuration` |
-| `db_config_typologies` | The collection name where the typology configurations will be stored in the processor configuration database | `typologyExpression` |
-| `db_config_channel` | The collection name where the channel configurations will be stored in the processor configuration database. This is not currently in use. | `channelExpression` |
-| `db_config_transactions` | The collection name where the channel configurations will be stored in the processor configuration database. This is no longer in use. | `transactionConfiguration` |
-| `db_config_networkConfiguration` | The collection name where the routing configuration will be stored in the routing configuration database. | `networkConfiguration` |
+| `db_config_all` | The database name where processor configuration data is stored | `configuration` |
+| `db_config_route` | The database name where routing configuration data is stored | `networkmapConfiguration` |
+| `db_config_rules` | The collection name where the rule configurations will be stored in the processor configuration database | `ruleConfiguration` |
+| `db_config_typologies` | The collection name where the typology configurations will be stored in the processor configuration database | `typologyConfiguration` |
 
 **Postman testing-specific attributes:**
 
@@ -131,7 +131,7 @@ The paragraphs below will provide a brief overview of each of the requests and t
 
  - Post pacs.008 to TMS API
 
-    The pacs.008 message is sent to the TMS API. The TMS API validates the incoming message and updates the database with the pacs.008 data. If the database update is successful, the message is routed to the Channel Router & Setup Processor (CRSP) and a response is generated by the API confirming that the message was successfully received. This response is not the result of the evaluation though, but only the successful receipt and ingestion of the message. The platform still has to do all the work to evaluate the message and the evaluation result will be posted to the results database once the evaluation is complete. The TMS API should respond with:
+    The pacs.008 message is sent to the TMS API. The TMS API validates the incoming message and updates the database with the pacs.008 data. If the database update is successful, the message is routed to the Event Director and a response is generated by the API confirming that the message was successfully received. This response is not the result of the evaluation though, but only the successful receipt and ingestion of the message. The platform still has to do all the work to evaluate the message and the evaluation result will be posted to the results database once the evaluation is complete. The TMS API should respond with:
 
     ```json
     {
@@ -144,7 +144,7 @@ The paragraphs below will provide a brief overview of each of the requests and t
 
  - Post pacs.002 to TMS API
 
-    The pacs.002 message is sent to the TMS API. The TMS API validates the incoming message and updates the database with the pacs.008 data. If the database update is successful, the message is routed to the Channel Router & Setup Processor (CRSP) and a response is generated by the API confirming that the message was successfully received. This response is not the result of the evaluation though, but only the successful receipt and ingestion of the message. The platform still has to do all the work to evaluate the message and the evaluation result will be posted to the results database once the evaluation is complete. The TMS API should respond with:
+    The pacs.002 message is sent to the TMS API. The TMS API validates the incoming message and updates the database with the pacs.008 data. If the database update is successful, the message is routed to the Event Director and a response is generated by the API confirming that the message was successfully received. This response is not the result of the evaluation though, but only the successful receipt and ingestion of the message. The platform still has to do all the work to evaluate the message and the evaluation result will be posted to the results database once the evaluation is complete. The TMS API should respond with:
 
     ```json
     {

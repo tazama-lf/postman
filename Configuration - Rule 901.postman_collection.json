@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "4847f114-60c7-403e-9411-918f770fbb76",
+		"_postman_id": "df5d3035-619f-4c16-a03a-d8e083c7fcc8",
 		"name": "Configuration - Rule 901",
+		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25521465"
+		"_exporter_id": "36352170"
 	},
 	"item": [
 		{
@@ -50,6 +51,20 @@
 		},
 		{
 			"name": "Remove all rule configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Query successful\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -65,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in configuration REMOVE doc in configuration\"\r\n}",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_rules}} REMOVE doc in {{db_config_rules}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,99 +104,100 @@
 		},
 		{
 			"name": "Remove all typology configurations",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{arangoToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in typologyExpression REMOVE doc in typologyExpression\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
-					"host": [
-						"{{arangoUrl}}"
-					],
-					"path": [
-						"_db",
-						"{{db_config_all}}",
-						"_api",
-						"cursor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove all transaction configurations",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{arangoToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in transactionConfiguration REMOVE doc in transactionConfiguration\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
-					"host": [
-						"{{arangoUrl}}"
-					],
-					"path": [
-						"_db",
-						"{{db_config_all}}",
-						"_api",
-						"cursor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch Active Network Map Identifier",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const resp = JSON.parse(responseBody);\r",
-							"\r",
-							"if (resp.result.length != 1) {\r",
-							"    console.log(\"Either zero or multiple active network maps: \" + resp.result);\r",
-							"} else {\r",
-							"    pm.environment.set(\"activeNetworkMap\", resp.result[0])\r",
-							"    console.log(\"Active network map ID: \" + resp.result[0]);\r",
+							"pm.test(\"Query successful\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{arangoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_typologies}} REMOVE doc in {{db_config_typologies}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
+					"host": [
+						"{{arangoUrl}}"
+					],
+					"path": [
+						"_db",
+						"{{db_config_all}}",
+						"_api",
+						"cursor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Active Network Maps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = pm.response.json();",
+							"",
+							"if (resp.result.length < 1) {",
+							"    console.log(`No active network maps found.`);",
+							"} else {",
+							"    console.log(`Deactivating network map _ids: ${resp.result}`);",
+							"",
+							"    for (let i = 0; i < resp.result.length; i++) {",
+							"        const queryString = `UPDATE { _key: '${resp.result[i]}', active: false } IN ${pm.environment.get('db_config_route')}`;",
+							"        const configPostRequest = {",
+							"            url: `${pm.environment.get('arangoUrl')}/_db/${pm.environment.get('db_config_all')}/_api/cursor`,",
+							"            method: 'POST',",
+							"            header: { 'Authorization': `Bearer ${pm.globals.get(\"arangoToken\")}` },",
+							"            body: {",
+							"                mode: 'raw',",
+							"                raw: JSON.stringify({",
+							"                    query: queryString",
+							"                })",
+							"            }",
+							"        };",
+							"",
+							"        (async () => {",
+							"            await pm.sendRequest(configPostRequest, (error, response) => {",
+							"                console.log(error ? error : response.json());",
+							"",
+							"                pm.test(\"Network map deactivation successful\", function () {",
+							"                    pm.expect(response.code).to.equal(201);",
+							"                });",
+							"            });",
+							"        }",
+							"        )();",
+							"    }",
 							"}"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -200,7 +216,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"FOR doc in networkConfiguration FILTER doc.active == true RETURN doc._key\"\r\n}",
+					"raw": "{\r\n    \"query\": \"FOR doc in {{db_config_route}} FILTER doc.active == true RETURN doc._key\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -208,63 +224,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/cursor",
 					"host": [
 						"{{arangoUrl}}"
 					],
 					"path": [
 						"_db",
-						"{{db_config_route}}",
-						"_api",
-						"cursor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Deactivate Network Map by ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{arangoToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"query\": \"UPDATE { _key: '{{activeNetworkMap}}', active: false } IN networkConfiguration\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/cursor",
-					"host": [
-						"{{arangoUrl}}"
-					],
-					"path": [
-						"_db",
-						"{{db_config_route}}",
+						"{{db_config_all}}",
 						"_api",
 						"cursor"
 					]
@@ -274,6 +240,20 @@
 		},
 		{
 			"name": "Insert rule configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -289,7 +269,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"outcome\": false,\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -314,6 +294,20 @@
 		},
 		{
 			"name": "Insert typology configurations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -329,7 +323,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n  {\r\n    \"_key\": \"999@1.0.0\",\r\n    \"desc\": \"Rule-901 Typology\",\r\n    \"id\": \"typology-processor@1.0.0\",\r\n    \"cfg\": \"999@1.0.0\",\r\n    \"workflow\": {\r\n      \"alertThreshold\": 200,\r\n      \"interdictionThreshold\": 400\r\n    },\r\n    \"rules\": [\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".err\",\r\n        \"true\": 0,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".x01\",\r\n        \"true\": 100,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".01\",\r\n        \"true\": 100,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".02\",\r\n        \"true\": 200,\r\n        \"false\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".03\",\r\n        \"true\": 400,\r\n        \"false\": 0\r\n      }\r\n    ],\r\n    \"expression\": {\r\n      \"operator\": \"+\",\r\n      \"terms\": [\r\n        {\r\n          \"id\": \"901@1.0.0\",\r\n          \"cfg\": \"1.0.0\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+					"raw": "[\r\n  {\r\n    \"_key\": \"999@1.0.0\",\r\n    \"desc\": \"Rule-901 Typology\",\r\n    \"id\": \"typology-processor@1.0.0\",\r\n    \"cfg\": \"999@1.0.0\",\r\n    \"workflow\": {\r\n      \"alertThreshold\": 200,\r\n      \"interdictionThreshold\": 400\r\n    },\r\n    \"rules\": [\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".err\",\r\n        \"wght\": 0\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".x01\",\r\n        \"wght\": 100\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".01\",\r\n        \"wght\": 100\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".02\",\r\n        \"wght\": 200\r\n      },\r\n      {\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"ref\": \".03\",\r\n        \"wght\": 400\r\n      }\r\n    ],\r\n    \"expression\": {\r\n      \"operator\": \"+\",\r\n      \"terms\": [\r\n        {\r\n          \"id\": \"901@1.0.0\",\r\n          \"cfg\": \"1.0.0\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -354,6 +348,20 @@
 		},
 		{
 			"name": "Insert routing configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update successful\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -369,7 +377,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n  {\r\n    \"active\": true,\r\n    \"cfg\": \"1.0.0\",\r\n    \"messages\": [\r\n      {\r\n        \"id\": \"004@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"txTp\": \"pacs.002.001.12\",\r\n        \"channels\": [\r\n          {\r\n            \"id\": \"001@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"typologies\": [\r\n              {\r\n                \"id\": \"typology-processor@1.0.0\",\r\n                \"cfg\": \"999@1.0.0\",\r\n                \"rules\": [\r\n                  {\r\n                    \"id\": \"901@1.0.0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n]",
+					"raw": "[\r\n    {\r\n        \"active\": true,\r\n        \"cfg\": \"1.0.0\",\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"typologies\": [\r\n                    {\r\n                        \"id\": \"typology-processor@1.0.0\",\r\n                        \"cfg\": \"999@1.0.0\",\r\n                        \"rules\": [\r\n                            {\r\n                                \"id\": \"901@1.0.0\",\r\n                                \"cfg\": \"1.0.0\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -377,16 +385,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{arangoUrl}}/_db/{{db_config_route}}/_api/document/{{db_config_networkConfiguration}}",
+					"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_route}}",
 					"host": [
 						"{{arangoUrl}}"
 					],
 					"path": [
 						"_db",
-						"{{db_config_route}}",
+						"{{db_config_all}}",
 						"_api",
 						"document",
-						"{{db_config_networkConfiguration}}"
+						"{{db_config_route}}"
 					]
 				}
 			},

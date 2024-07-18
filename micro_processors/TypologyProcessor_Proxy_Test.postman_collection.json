@@ -14,26 +14,26 @@
 					"script": {
 						"exec": [
 							"responseJSON = pm.response.json();\r",
-							"let outgoingCRSPResult = responseJSON.data;\r",
-							"let transaction = outgoingCRSPResult.transaction\r",
-							"let networkMap = outgoingCRSPResult.networkMap\r",
-							"let metaData = outgoingCRSPResult.metaData;\r",
-							"let prcgTm = outgoingCRSPResult.metaData.prcgTmCRSP;\r",
+							"let outgoingEventDirectorResult = responseJSON.data;\r",
+							"let transaction = outgoingEventDirectorResult.transaction\r",
+							"let networkMap = outgoingEventDirectorResult.networkMap\r",
+							"let metaData = outgoingEventDirectorResult.metaData;\r",
+							"let prcgTm = outgoingEventDirectorResult.metaData.prcgTmED;\r",
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
 							"pm.test('Has a transaction object', function() {\r",
-							"  pm.expect(outgoingCRSPResult).to.have.property('transaction');\r",
+							"  pm.expect(outgoingEventDirectorResult).to.have.property('transaction');\r",
 							"});\r",
 							"\r",
 							"pm.test('Has a networkMap object', function() {\r",
-							"  pm.expect(outgoingCRSPResult).to.have.property('networkMap');\r",
+							"  pm.expect(outgoingEventDirectorResult).to.have.property('networkMap');\r",
 							"});\r",
 							"\r",
 							"pm.test('Has a metaData object', function() {\r",
-							"  pm.expect(outgoingCRSPResult).to.have.property('metaData');\r",
+							"  pm.expect(outgoingEventDirectorResult).to.have.property('metaData');\r",
 							"});\r",
 							"\r",
 							"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"destination\": \"{{requestDestination}}\",\r\n    \"consumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"message\": {\r\n        \"transaction\": {\"TxTp\":\"pacs.002.001.12\",\"FIToFIPmtSts\":{\"GrpHdr\":{\"MsgId\":\"c410d8e707f948689891cd250fff0918\",\"CreDtTm\":\"2023-09-21T12:41:57.949Z\"},\"TxInfAndSts\":{\"OrgnlInstrId\":\"5ab4fc7355de4ef8a75b78b00a681ed2\",\"OrgnlEndToEndId\":\"963902be53f741318b5f7c90972021d2\",\"TxSts\":\"ACCC\",\"ChrgsInf\":[{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}}},{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}}},{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp002\"}}}}],\"AccptncDtTm\":\"2023-06-02T07:52:31.000Z\",\"InstgAgt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}},\"InstdAgt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp002\"}}}}}},\r\n        \"networkMap\": {\r\n            \"name\": \"Step-by-step processor testing - rule output to mock API\",\r\n            \"active\": true,\r\n            \"cfg\": \"1.0.0\",\r\n            \"messages\": [\r\n                {\r\n                    \"id\": \"004@1.0.0\",\r\n                    \"host\": \"NATS Server\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"txTp\": \"pacs.002.001.12\",\r\n                    \"channels\": [\r\n                        {\r\n                            \"id\": \"channel_i@1.0.0\",\r\n                            \"host\": \"NATS Server\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"typologies\": [\r\n                                {\r\n                                    \"id\": \"typology-processor@1.0.0\",\r\n                                    \"host\": \"NATS Server\",\r\n                                    \"cfg\": \"001@1.0.0\",\r\n                                    \"rules\": [\r\n                                        {\r\n                                            \"id\": \"001@1.0.0\",\r\n                                            \"host\": \"rule-pub-001\",\r\n                                            \"cfg\": \"1.0.0\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"metaData\": {\r\n            \"prcgTmDP\": 5829672,\r\n            \"prcgTmCRSP\": 3375241\r\n        },\r\n        \"ruleResult\": {\r\n            \"id\": \"001@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"result\": true,\r\n            \"subRuleRef\": \".02\",\r\n            \"reason\": \"Creditor account is less than 1 day old\",\r\n            \"desc\": \"Derived account age - creditor\",\r\n            \"prcgTm\": 11024622\r\n        }    \r\n    }\r\n}",
+					"raw": "{\r\n    \"destination\": \"{{requestDestination}}\",\r\n    \"consumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"message\": {\r\n        \"transaction\": {\"TxTp\":\"pacs.002.001.12\",\"FIToFIPmtSts\":{\"GrpHdr\":{\"MsgId\":\"c410d8e707f948689891cd250fff0918\",\"CreDtTm\":\"2023-09-21T12:41:57.949Z\"},\"TxInfAndSts\":{\"OrgnlInstrId\":\"5ab4fc7355de4ef8a75b78b00a681ed2\",\"OrgnlEndToEndId\":\"963902be53f741318b5f7c90972021d2\",\"TxSts\":\"ACCC\",\"ChrgsInf\":[{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}}},{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}}},{\"Amt\":{\"Amt\":0,\"Ccy\":\"USD\"},\"Agt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp002\"}}}}],\"AccptncDtTm\":\"2023-06-02T07:52:31.000Z\",\"InstgAgt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp001\"}}},\"InstdAgt\":{\"FinInstnId\":{\"ClrSysMmbId\":{\"MmbId\":\"dfsp002\"}}}}}},\r\n        \"networkMap\": {\r\n            \"name\": \"Step-by-step processor testing - rule output to mock API\",\r\n            \"active\": true,\r\n            \"cfg\": \"1.0.0\",\r\n            \"messages\": [\r\n                {\r\n                    \"id\": \"004@1.0.0\",\r\n                    \"host\": \"NATS Server\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"txTp\": \"pacs.002.001.12\",\r\n                    \"channels\": [\r\n                        {\r\n                            \"id\": \"channel_i@1.0.0\",\r\n                            \"host\": \"NATS Server\",\r\n                            \"cfg\": \"1.0.0\",\r\n                            \"typologies\": [\r\n                                {\r\n                                    \"id\": \"typology-processor@1.0.0\",\r\n                                    \"host\": \"NATS Server\",\r\n                                    \"cfg\": \"001@1.0.0\",\r\n                                    \"rules\": [\r\n                                        {\r\n                                            \"id\": \"001@1.0.0\",\r\n                                            \"host\": \"rule-pub-001\",\r\n                                            \"cfg\": \"1.0.0\"\r\n                                        }\r\n                                    ]\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        \"metaData\": {\r\n            \"prcgTmDP\": 5829672,\r\n            \"prcgTmED\": 3375241\r\n        },\r\n        \"ruleResult\": {\r\n            \"id\": \"001@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"result\": true,\r\n            \"subRuleRef\": \".02\",\r\n            \"reason\": \"Creditor account is less than 1 day old\",\r\n            \"desc\": \"Derived account age - creditor\",\r\n            \"prcgTm\": 11024622\r\n        }    \r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
