@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "47d2dc1a-f4a5-4a59-b04b-9e024bc13e6a",
+		"_postman_id": "ee980119-188c-47fb-9da4-41d037454d16",
 		"name": "ArangoDB",
 		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n- TO DO: scrub configuration of redundant databases and collections and test impact",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28250551"
+		"_exporter_id": "8089578"
 	},
 	"item": [
 		{
@@ -73,43 +73,6 @@
 					"response": []
 				},
 				{
-					"name": "Create networkmap Database",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"networkmap\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_api/database",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_api",
-								"database"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create pseudonyms Database",
 					"request": {
 						"auth": {
@@ -147,7 +110,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Configuration Database",
+					"name": "Create configuration Database",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -163,7 +126,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"Configuration\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"configuration\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -492,7 +455,7 @@
 					"response": []
 				},
 				{
-					"name": "Create configuration Collection",
+					"name": "Create ruleConfiguration Collection",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -508,7 +471,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"configuration\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"ruleConfiguration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -516,13 +479,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -531,7 +494,7 @@
 					"response": []
 				},
 				{
-					"name": "Create typologyExpression Collection",
+					"name": "Create typologyConfiguration Collection",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -547,7 +510,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"typologyExpression\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"typologyConfiguration\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -555,91 +518,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
-								"_api",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create channelExpression Collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"channelExpression\",\r\n  \"waitForSync\":false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create transactionConfiguration Collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionConfiguration\",\r\n  \"waitForSync\":false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/collection",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -672,13 +557,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/networkmap/_api/collection",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"networkmap",
+								"configuration",
 								"_api",
 								"collection"
 							]
@@ -1016,45 +901,6 @@
 					"response": []
 				},
 				{
-					"name": "Create individual Collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"Individuals\",\r\n  \"waitForSync\":false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/sanctionData/_api/collection",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"sanctionData",
-								"_api",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create vTransactions View",
 					"request": {
 						"auth": {
@@ -1297,10 +1143,10 @@
 					"description": "Requests to create indexes in the `pseudonyms` database"
 				},
 				{
-					"name": "Configuration",
+					"name": "configuration",
 					"item": [
 						{
-							"name": "transactionConfiguration.id-cfg",
+							"name": "ruleConfiguration.id-cfg",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1324,20 +1170,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=transactionConfiguration",
+									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=ruleConfiguration",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"Configuration",
+										"configuration",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionConfiguration"
+											"value": "ruleConfiguration"
 										}
 									]
 								}
@@ -1345,7 +1191,7 @@
 							"response": []
 						},
 						{
-							"name": "channelExpression.id-cfg",
+							"name": "typologyConfiguration.id-cfg",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1369,110 +1215,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=channelExpression",
+									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=typologyConfiguration",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"Configuration",
+										"configuration",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "channelExpression"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "configuration.id-cfg",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{BEARERTOKEN}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=configuration",
-									"host": [
-										"{{arangoUrl}}"
-									],
-									"path": [
-										"_db",
-										"Configuration",
-										"_api",
-										"index"
-									],
-									"query": [
-										{
-											"key": "collection",
-											"value": "configuration"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "typologyExpression.id-cfg",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{BEARERTOKEN}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\r\n        \"id\",\r\n        \"cfg\"\r\n    ],\r\n    \"name\": \"id-cfg\",\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"inBackground\": false\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{arangoUrl}}/_db/Configuration/_api/index?collection=typologyExpression",
-									"host": [
-										"{{arangoUrl}}"
-									],
-									"path": [
-										"_db",
-										"Configuration",
-										"_api",
-										"index"
-									],
-									"query": [
-										{
-											"key": "collection",
-											"value": "typologyExpression"
+											"value": "typologyConfiguration"
 										}
 									]
 								}
@@ -2167,7 +1923,7 @@
 			"name": "3-ArangoDB-Default-Configuration",
 			"item": [
 				{
-					"name": "Insert configuration",
+					"name": "Insert ruleConfiguration",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2191,23 +1947,23 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/configuration",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/ruleConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"document",
-								"configuration"
+								"ruleConfiguration"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Insert typologyExpression",
+					"name": "Insert typologyConfiguration",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2231,56 +1987,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/typologyExpression",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/typologyConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"Configuration",
+								"configuration",
 								"_api",
 								"document",
-								"typologyExpression"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Insert transactionConfiguration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{BEARERTOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "[]",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/Configuration/_api/document/transactionConfiguration",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"Configuration",
-								"_api",
-								"document",
-								"transactionConfiguration"
+								"typologyConfiguration"
 							]
 						}
 					},
@@ -2311,13 +2027,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/networkmap/_api/document/networkConfiguration",
+							"raw": "{{arangoUrl}}/_db/configuration/_api/document/networkConfiguration",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"networkmap",
+								"configuration",
 								"_api",
 								"document",
 								"networkConfiguration"
