@@ -89,7 +89,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"pseudonyms\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_historygraph}}\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +126,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"configuration\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_config_all}}\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  } \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistory\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  }\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_messagehistory}}\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -200,7 +200,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"evaluationResults\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  }\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_results}}/\", \r\n  \"options\" : { \r\n    \"sharding\" : \"flexible\", \r\n    \"replicationFactor\" : 3 \r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -237,7 +237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"pseudonyms\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_historygraph}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -245,13 +245,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"collection"
 							]
@@ -276,7 +276,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"accounts\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_coll_graph_accounts}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -284,13 +284,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"collection"
 							]
@@ -315,7 +315,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"account_holder\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{\r\n    \"name\": \"{{db_coll_graph_account_holders}}\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -323,13 +323,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"collection"
 							]
@@ -354,7 +354,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"entities\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{\r\n    \"name\": \"{{db_coll_graph_entities}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -362,13 +362,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"collection"
 							]
@@ -393,7 +393,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"transactionRelationship\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{\r\n    \"name\": \"{{db_coll_graph_transactions}}\",\r\n    \"type\": 3,\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -401,13 +401,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"collection"
 							]
@@ -432,7 +432,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"_graphs/transactionGraph\",\r\n    \"_key\": \"transactionGraph\",\r\n    \"_rev\": \"_dO1fHCu---\",\r\n    \"edgeDefinitions\": [\r\n        {\r\n            \"collection\": \"transactionRelationship\",\r\n            \"from\": [\r\n                \"accounts\"\r\n            ],\r\n            \"to\": [\r\n                \"accounts\"\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"transactionGraph\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{\r\n    \"_id\": \"_graphs/transactionGraph\",\r\n    \"_key\": \"transactionGraph\",\r\n    \"_rev\": \"_dO1fHCu---\",\r\n    \"edgeDefinitions\": [\r\n        {\r\n            \"collection\": \"{{db_coll_graph_transactions}}\",\r\n            \"from\": [\r\n                \"accounts\"\r\n            ],\r\n            \"to\": [\r\n                \"accounts\"\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"transactionGraph\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,13 +440,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/pseudonyms/_api/gharial",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/gharial",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"pseudonyms",
+								"{{db_historygraph}}",
 								"_api",
 								"gharial"
 							]
@@ -471,7 +471,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"ruleConfiguration\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_config_rules}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -479,13 +479,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"collection"
 							]
@@ -510,7 +510,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"typologyConfiguration\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_config_typologies}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -518,13 +518,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"collection"
 							]
@@ -549,7 +549,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"networkConfiguration\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_config_route}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -557,13 +557,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"collection"
 							]
@@ -583,7 +583,8 @@
 									"\r",
 									"pm.globals.set(\"id002\", jsonData[\"id\"])"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -602,7 +603,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs002\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_coll_msg_transactionHistoryPacs002}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -610,13 +611,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -636,7 +637,8 @@
 									"\r",
 									"pm.globals.set(\"id008\", jsonData[\"id\"])"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -655,7 +657,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPacs008\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_coll_msg_transactionHistoryPacs008}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -663,13 +665,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -689,7 +691,8 @@
 									"\r",
 									"pm.globals.set(\"id001\", jsonData[\"id\"])"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -708,7 +711,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain001\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_coll_msg_transactionHistoryPain001}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -716,13 +719,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -742,7 +745,8 @@
 									"\r",
 									"pm.globals.set(\"id013\", jsonData[\"id\"])"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -761,7 +765,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"name\" : \"transactionHistoryPain013\",\r\n  \"waitForSync\":false\r\n}",
+							"raw": "{ \r\n  \"name\" : \"{{db_coll_msg_transactionHistoryPain013}}\",\r\n  \"waitForSync\":false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -769,13 +773,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -808,13 +812,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/evaluationResults/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_results}}//_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"evaluationResults",
+								"{{db_results}}",
+								"",
 								"_api",
 								"collection"
 							]
@@ -847,13 +852,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -886,13 +891,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/collection",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/collection",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"collection"
 							]
@@ -925,13 +930,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/view#arangosearch",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/view#arangosearch",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"view"
 							],
@@ -965,13 +970,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/analyzer",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/analyzer",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"analyzer"
 							]
@@ -1004,13 +1009,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/transactionHistory/_api/view#arangosearch",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/view#arangosearch",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"transactionHistory",
+								"{{db_messagehistory}}",
 								"_api",
 								"view"
 							],
@@ -1063,20 +1068,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
+									"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/index?collection={{db_coll_graph_transactions}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"pseudonyms",
+										"{{db_historygraph}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionRelationship"
+											"value": "{{db_coll_graph_transactions}}"
 										}
 									]
 								}
@@ -1119,20 +1124,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/pseudonyms/_api/index?collection=transactionRelationship",
+									"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/index?collection={{db_coll_graph_transactions}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"pseudonyms",
+										"{{db_historygraph}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionRelationship"
+											"value": "{{db_coll_graph_transactions}}"
 										}
 									]
 								}
@@ -1170,20 +1175,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=ruleConfiguration",
+									"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/index?collection={{db_config_rules}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"configuration",
+										"{{db_config_all}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "ruleConfiguration"
+											"value": "{{db_config_rules}}"
 										}
 									]
 								}
@@ -1215,20 +1220,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/configuration/_api/index?collection=typologyConfiguration",
+									"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/index?collection={{db_config_typologies}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"configuration",
+										"{{db_config_all}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "typologyConfiguration"
+											"value": "{{db_config_typologies}}"
 										}
 									]
 								}
@@ -1277,20 +1282,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs002",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs002}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs002"
+											"value": "{{db_coll_msg_transactionHistoryPacs002}}"
 										}
 									]
 								}
@@ -1333,20 +1338,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs008}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs008"
+											"value": "{{db_coll_msg_transactionHistoryPacs008}}"
 										}
 									]
 								}
@@ -1389,20 +1394,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain013",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain013}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain013"
+											"value": "{{db_coll_msg_transactionHistoryPain013}}"
 										}
 									]
 								}
@@ -1445,20 +1450,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain001}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain001"
+											"value": "{{db_coll_msg_transactionHistoryPain001}}"
 										}
 									]
 								}
@@ -1501,20 +1506,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain001}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain001"
+											"value": "{{db_coll_msg_transactionHistoryPain001}}"
 										}
 									]
 								}
@@ -1557,20 +1562,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain001}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain001"
+											"value": "{{db_coll_msg_transactionHistoryPain001}}"
 										}
 									]
 								}
@@ -1613,20 +1618,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain001}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain001"
+											"value": "{{db_coll_msg_transactionHistoryPain001}}"
 										}
 									]
 								}
@@ -1669,20 +1674,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPain001",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPain001}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPain001"
+											"value": "{{db_coll_msg_transactionHistoryPain001}}"
 										}
 									]
 								}
@@ -1725,20 +1730,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs008}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs008"
+											"value": "{{db_coll_msg_transactionHistoryPacs008}}"
 										}
 									]
 								}
@@ -1781,20 +1786,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs008}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs008"
+											"value": "{{db_coll_msg_transactionHistoryPacs008}}"
 										}
 									]
 								}
@@ -1837,20 +1842,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs008}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs008"
+											"value": "{{db_coll_msg_transactionHistoryPacs008}}"
 										}
 									]
 								}
@@ -1893,20 +1898,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{arangoUrl}}/_db/transactionHistory/_api/index?collection=transactionHistoryPacs008",
+									"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/index?collection={{db_coll_msg_transactionHistoryPacs008}}",
 									"host": [
 										"{{arangoUrl}}"
 									],
 									"path": [
 										"_db",
-										"transactionHistory",
+										"{{db_messagehistory}}",
 										"_api",
 										"index"
 									],
 									"query": [
 										{
 											"key": "collection",
-											"value": "transactionHistoryPacs008"
+											"value": "{{db_coll_msg_transactionHistoryPacs008}}"
 										}
 									]
 								}
@@ -1947,16 +1952,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/document/ruleConfiguration",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_rules}}",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"document",
-								"ruleConfiguration"
+								"{{db_config_rules}}"
 							]
 						}
 					},
@@ -1987,16 +1992,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/document/typologyConfiguration",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_typologies}}",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"document",
-								"typologyConfiguration"
+								"{{db_config_typologies}}"
 							]
 						}
 					},
@@ -2027,16 +2032,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/configuration/_api/document/networkConfiguration",
+							"raw": "{{arangoUrl}}/_db/{{db_config_all}}/_api/document/{{db_config_route}}",
 							"host": [
 								"{{arangoUrl}}"
 							],
 							"path": [
 								"_db",
-								"configuration",
+								"{{db_config_all}}",
 								"_api",
 								"document",
-								"networkConfiguration"
+								"{{db_config_route}}"
 							]
 						}
 					},
