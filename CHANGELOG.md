@@ -1,5 +1,29 @@
 # SPDX-License-Identifier: Apache-2.0
 
+## v3.0.0
+
+## Milestone: Release v2.0.1
+Date: 2024-07-30T07:00:00Z
+Description: Create Release v2.0.1: Updated the postman collection for arango setup to reflect the channel removal.
+
+### 🐞 Bug Fixes
+
+- refactor: Update hardcoded values to variables and updated arango setup (#81) (Linked Issues: c98d612b2cb838251b4689a65fdcbc07817cd45a)
+
+### ⭐️ New Features
+
+- refactor: Update hardcoded values to variables and updated arango setup (#81) (Linked Issues: c98d612b2cb838251b4689a65fdcbc07817cd45a)
+
+### 🔨 Refactorings
+
+- refactor: Update hardcoded values to variables and updated arango setup (#81) (Linked Issues: c98d612b2cb838251b4689a65fdcbc07817cd45a)
+
+### ⚙️ Chores
+
+- refactor: Update hardcoded values to variables and updated arango setup (#81) (Linked Issues: c98d612b2cb838251b4689a65fdcbc07817cd45a)
+- chore: Update VERSION to v2.0.0 (Linked Issues: ff305a53b567283b8a5212270c65db8a7d6bc3e7)
+- chore: Update CHANGELOG.md for v2.0.0 (Linked Issues: b5a45446cf7498102be01afce586803bd89ab3c6)
+
 ## v2.0.0
 
 ## Milestone: Release v2.0.0
