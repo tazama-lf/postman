@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "dcbe583f-4851-4003-aa03-bc775aa862ec",
-		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
+		"_postman_id": "5831c1bc-7d68-4ef2-8b33-f5287ec87693",
+		"name": "1.1. (NO-AUTH) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29185806"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -43,7 +43,8 @@
 									"let messageBody = pm.globals.get('pain001');\r",
 									"pm.globals.set('messageBody', messageBody);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -126,7 +127,8 @@
 									"    });\r",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -146,16 +148,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}",
+							"raw": "{{tazamaTMSUrl}}",
 							"host": [
-								"{{ofUrl}}"
+								"{{tazamaTMSUrl}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post pacs.008 to TMS API",
+					"name": "Post pacs.008 to TMS API - unauthenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -194,9 +196,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs008}}"
@@ -206,7 +208,7 @@
 					"response": []
 				},
 				{
-					"name": "Post pacs.002 to TMS API",
+					"name": "Post pacs.002 to TMS API - unauthenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -245,9 +247,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs002}}"

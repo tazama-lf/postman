@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "afca2f5b-fdab-496c-a584-8e68e165cd34",
+		"_postman_id": "798784f3-662f-4b9c-a888-c07a376ed713",
 		"name": "1.2. (AUTH) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29185806"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -158,16 +158,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}",
+							"raw": "{{tazamaTMSUrl}}",
 							"host": [
-								"{{ofUrl}}"
+								"{{tazamaTMSUrl}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post pacs.008 to TMS API before auth",
+					"name": "Post pacs.008 to TMS API - unauthenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -205,14 +205,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth-token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
@@ -226,9 +219,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs008}}"
@@ -238,7 +231,7 @@
 					"response": []
 				},
 				{
-					"name": "Post pacs.002 to TMS API before auth",
+					"name": "Post pacs.002 to TMS API - unauthenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -276,14 +269,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth-token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
@@ -297,9 +283,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs002}}"
@@ -309,7 +295,70 @@
 					"response": []
 				},
 				{
-					"name": "Set Auth Token Copy",
+					"name": "Fetch Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(pm.response.text())\r",
+									"pm.globals.set(\"keycloak-token\", jsonData.access_token);\r",
+									"\r",
+									"pm.test(\"Access token successfully set\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloakUrl}}/realms/master/protocol/openid-connect/token",
+							"host": [
+								"{{keycloakUrl}}"
+							],
+							"path": [
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Authorization Token",
 					"event": [
 						{
 							"listen": "test",
@@ -347,7 +396,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJUYndSVW03djdSYksyaE42VU9fNGgwSEV0U2JJd2tmbGFpc2pkai1vWmZjIn0.eyJleHAiOjE3MjcyNjY1MDUsImlhdCI6MTcyNzI2NjQ0NSwianRpIjoiZGVlZDY5MWEtZjc5Mi00ZjI3LWI5NDgtNzYwZTdkODUyZTE2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiI1ZjMzNGNiNS04NWM3LTQ4NzYtYWEzYi00MzI0MGUzMDA2NDQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiNDU4Yzc0NGMtNGRhYi00ZWY0LWJhMGYtMTQ3YjI5Njc0NjY3IiwiYWNyIjoiMSIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ1OGM3NDRjLTRkYWItNGVmNC1iYTBmLTE0N2IyOTY3NDY2NyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.iH8AYCQyUcQZRb8hazV8yR6ncCQZSJOwvceEKgbK168SeW-bLfcV2YbpQzyaz7EbkShIHOcKmOWzOQOr0DTOyEpu-cOvoNAa_XtnAhh4VAfe2SxNlv9HXDlcv4NM2xLddg4SmyuKCzO-e7Kf7bTq2DA359pQXp4WMXWPbwkCDQxZHZRUYqOQ3MJjJhnZj-Hlg0cY07JPs1_wJRUDywSMWHZrl6KQUnFNIF1CwSk3_hTJLe_OMs6vtvccatXv-S1-E4pCM_dTp_xMaPRX1ILBh7AM3ZntKED3lZwy-F204kLXPtiVirSAT4Iqy65z7_YdZjDD6S_rZZk3prirgcm2RQ",
+									"value": "{{keycloak-token}}",
 									"type": "string"
 								}
 							]
@@ -364,14 +413,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3020/v1/auth/login",
-							"protocol": "http",
+							"raw": "{{tazamaAuthUrl}}{{path-auth-api-version}}/auth/login",
 							"host": [
-								"localhost"
+								"{{tazamaAuthUrl}}{{path-auth-api-version}}"
 							],
-							"port": "3020",
 							"path": [
-								"v1",
 								"auth",
 								"login"
 							]
@@ -380,7 +426,7 @@
 					"response": []
 				},
 				{
-					"name": "Post pacs.008 to TMS API after auth",
+					"name": "Post pacs.008 to TMS API - authenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -429,9 +475,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs008}}"
@@ -441,7 +487,7 @@
 					"response": []
 				},
 				{
-					"name": "Post pacs.002 to TMS API after auth",
+					"name": "Post pacs.002 to TMS API - authenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -490,9 +536,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs002}}"

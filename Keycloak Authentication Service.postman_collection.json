@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f53714ce-f996-45b4-aca7-05b1a5f2f63e",
-		"name": "Keycloak",
+		"_postman_id": "68552b2a-8fa1-4ffb-888b-3670a96791d7",
+		"name": "Keycloak Authentication Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28250551"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -14,7 +14,7 @@
 					"script": {
 						"exec": [
 							"const jsonData = JSON.parse(pm.response.text())\r",
-							"pm.environment.set(\"keycloak-token\", jsonData.access_token);"
+							"pm.globals.set(\"keycloak-token\", jsonData.access_token);"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -50,12 +50,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/realms/master/protocol/openid-connect/token",
-					"protocol": "http",
+					"raw": "{{keycloakUrl}}/realms/master/protocol/openid-connect/token",
 					"host": [
-						"localhost"
+						"{{keycloakUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"realms",
 						"master",
@@ -83,12 +81,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/admin/realms",
-					"protocol": "http",
+					"raw": "{{keycloakUrl}}/admin/realms",
 					"host": [
-						"localhost"
+						"{{keycloakUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"admin",
 						"realms"
@@ -122,12 +118,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/admin/realms",
-					"protocol": "http",
+					"raw": "{{keycloakUrl}}/admin/realms",
 					"host": [
-						"localhost"
+						"{{keycloakUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"admin",
 						"realms"
@@ -156,7 +150,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJUYndSVW03djdSYksyaE42VU9fNGgwSEV0U2JJd2tmbGFpc2pkai1vWmZjIn0.eyJleHAiOjE3MjcyNjY1MDUsImlhdCI6MTcyNzI2NjQ0NSwianRpIjoiZGVlZDY5MWEtZjc5Mi00ZjI3LWI5NDgtNzYwZTdkODUyZTE2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiI1ZjMzNGNiNS04NWM3LTQ4NzYtYWEzYi00MzI0MGUzMDA2NDQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiNDU4Yzc0NGMtNGRhYi00ZWY0LWJhMGYtMTQ3YjI5Njc0NjY3IiwiYWNyIjoiMSIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ1OGM3NDRjLTRkYWItNGVmNC1iYTBmLTE0N2IyOTY3NDY2NyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4ifQ.iH8AYCQyUcQZRb8hazV8yR6ncCQZSJOwvceEKgbK168SeW-bLfcV2YbpQzyaz7EbkShIHOcKmOWzOQOr0DTOyEpu-cOvoNAa_XtnAhh4VAfe2SxNlv9HXDlcv4NM2xLddg4SmyuKCzO-e7Kf7bTq2DA359pQXp4WMXWPbwkCDQxZHZRUYqOQ3MJjJhnZj-Hlg0cY07JPs1_wJRUDywSMWHZrl6KQUnFNIF1CwSk3_hTJLe_OMs6vtvccatXv-S1-E4pCM_dTp_xMaPRX1ILBh7AM3ZntKED3lZwy-F204kLXPtiVirSAT4Iqy65z7_YdZjDD6S_rZZk3prirgcm2RQ",
+							"value": "{{keycloak-token}}",
 							"type": "string"
 						}
 					]
@@ -173,14 +167,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3020/v1/auth/login",
-					"protocol": "http",
+					"raw": "{{tazamaAuthUrl}}{{path-auth-api-version}}/auth/login",
 					"host": [
-						"localhost"
+						"{{tazamaAuthUrl}}{{path-auth-api-version}}"
 					],
-					"port": "3020",
 					"path": [
-						"v1",
 						"auth",
 						"login"
 					]
@@ -189,10 +180,26 @@
 			"response": []
 		}
 	],
-	"variable": [
+	"event": [
 		{
-			"key": "keycloak-token",
-			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKRDdaZ0FEVlhQTjQ5QXRPd2tWNmw5cHRFTnRTUlVvZHRiX0ZBd0JOR3ZjIn0.eyJleHAiOjE3MjcyNjE2NTYsImlhdCI6MTcyNzI2MTU5NiwianRpIjoiYmIzNWEwNWUtN2E1Yy00MzM4LWE0ZDMtZWI2Y2FiZmY2MWMyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiJjMGY3ZTZiYi04M2FhLTRkOTgtOWE1Yi1kYWE2Zjg1ZWZmMjQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzaWQiOiI1NmZhYTcxYi05NTcxLTRmOWEtYTMxZi1lNGViMzVhMWI4MzEiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.nMaiTXh5RDw55WR_h5i2KyPP9zc4FRXQI_khrCfjqoldr8R7Kck-DxeDqcDGQTVEyZO3BrOvI1UdUIrjSe8A7KvAoiGnUPyhwMZ9MVDHLIWsvGWuzfHsagsdAt-jvJJ7Zhx4-wlFBNY7AUFyh3NZtDiaRUXNZzkk-Jvo88oIIHZekkpwyrMFf3aw00C1m2d1Cl04Dc5WznNuGypHCARMLTe8S_cQF3gjpgy9U1MeeXkdRnWTDy0yhCItTNk-0MUXjr9qvQ5EzUq2mnhTF3hrYgQ5HZ_N2KCp-l9kyUyvzoYtvXp22iFoUvN2M6om1Y5rma4JTSEHWxNy6m20SmhhzQ"
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
