@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "cc38edd6-5db1-4e2d-942e-976889830aeb",
+		"_postman_id": "dcbe583f-4851-4003-aa03-bc775aa862ec",
 		"name": "1.1. Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36724395"
+		"_exporter_id": "29185806"
 	},
 	"item": [
 		{
@@ -623,7 +623,7 @@
 								"exec": [
 									"const resJson = pm.response.json();\r",
 									"\r",
-									"const rulesPerTypologyCount = [1];\r",
+									"const rulesPerTypologyCount = [2];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
