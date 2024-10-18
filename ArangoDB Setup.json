@@ -1330,7 +1330,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1722,7 +1722,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcctId\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcctId\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1778,7 +1778,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CdtrAcctId\"\r\n}",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CdtrAcctId\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1834,7 +1834,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1890,7 +1890,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
