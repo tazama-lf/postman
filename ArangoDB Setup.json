@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "71363e46-d0b4-4cad-b794-5f6e76b7db33",
 		"name": "ArangoDB",
-		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n    \n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n    \n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n    \n- TO DO: scrub configuration of redundant databases and collections and test impact\n    \n\n##20241105 (SL)\n\n- Removed channel from default configuration/ insert networkConfiguration\n\n- Removed true/false from typologyConfiguration; added expression and weights\n    \n- Removed the creation of the pseudonyms collection from the pseudonyms database\n    \n- Removed the creation of redundant collections from the database (transactions, watchlist and list collections)\n    \n- Removed the space from the index setup for the EndToEndId in transactionHistoryPacs008\n    \n- Removed the space from the index creation for the debtorAccountId for transactionHistoryPacs008\n    \n- Removed the space from the index creation for the CreditorAccountId in transactionHistoryPacs008\n    \n- Removed the space for the DebtorAccountId and TXTP in transactionHistoryPacs008\n    \n- Removed the space from the index for the CreDtTm in the transactionHistoryPacs008",
+		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n    \n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n    \n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n    \n- TO DO: scrub configuration of redundant databases and collections and test impact\n    \n\n##20241105 (SL)\n\n- Removed channel from default configuration/ insert networkConfiguration\n    \n- Removed true/false from typologyConfiguration; added expression and weights\n    \n- Removed the creation of the pseudonyms collection from the pseudonyms database\n    \n- Removed the creation of redundant collections from the database (watchlist and list collections)\n    \n- Removed the space from the index setup for the EndToEndId in transactionHistoryPacs008\n    \n- Removed the space from the index creation for the debtorAccountId for transactionHistoryPacs008\n    \n- Removed the space from the index creation for the CreditorAccountId in transactionHistoryPacs008\n    \n- Removed the space for the DebtorAccountId and TXTP in transactionHistoryPacs008\n    \n- Removed the space from the index for the CreDtTm in the transactionHistoryPacs008",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29185806"
 	},
@@ -741,6 +741,45 @@
 							"path": [
 								"_db",
 								"{{db_messagehistory}}",
+								"_api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transactions Collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEARERTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\" : \"transactions\",\r\n  \"waitForSync\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangoUrl}}/_db/evaluationResults/_api/collection",
+							"host": [
+								"{{arangoUrl}}"
+							],
+							"path": [
+								"_db",
+								"evaluationResults",
 								"_api",
 								"collection"
 							]
