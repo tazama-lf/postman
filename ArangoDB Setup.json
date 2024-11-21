@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "ee980119-188c-47fb-9da4-41d037454d16",
+		"_postman_id": "794d7c7c-6295-49bf-a29b-c45161a36185",
 		"name": "ArangoDB",
-		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n- TO DO: scrub configuration of redundant databases and collections and test impact",
+		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n    \n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n    \n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n    \n- TO DO: scrub configuration of redundant databases and collections and test impact\n    \n\n## 20241115 (JO)\n\n- Fixed a bug in the creation of indexes\n    \n- Updated the default configuration for Rule-901 and EFRuP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8089578"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -1330,7 +1330,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.PmtId.EndToEndId\"],\r\n    \"unique\": true,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"EndToEndId\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1722,7 +1722,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcctId\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcctId\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1778,7 +1778,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CdtrAcctId\"\r\n}",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.CdtrAcct.Id.Othr.Id\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CdtrAcctId\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1834,7 +1834,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.CdtTrfTxInf.DbtrAcct.Id.Othr.Id\", \"TxTp\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"DbtrAcct_ID-TxTp\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1890,7 +1890,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf .GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
+									"raw": "{\r\n    \"type\": \"persistent\",\r\n    \"fields\": [\"FIToFICstmrCdtTrf.GrpHdr.CreDtTm\"],\r\n    \"unique\": false,\r\n    \"sparse\": false,\r\n    \"deduplicate\": false,\r\n    \"estimates\": true,\r\n    \"cacheEnabled\": false,\r\n    \"name\": \"CreDtTm\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1944,7 +1944,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"timeframe\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"outcome\": false,\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"Debtor made less than two transactions\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 3,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"Debtor made two transactions\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 3,\r\n                    \"outcome\": true,\r\n                    \"reason\": \"Debtor made three or more transactions\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1984,7 +1984,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"_key\": \"000@1.0.0\",\r\n        \"desc\": \"Typology for rule 901\",\r\n        \"id\": \"typology-processor@1.0.0\",\r\n        \"cfg\": \"000@1.0.0\",\r\n        \"workflow\": {\r\n            \"alertThreshold\": 100,\r\n            \"interdictionThreshold\": 200\r\n        },\r\n        \"rules\": [\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"ref\": \".err\",\r\n                \"true\": 0,\r\n                \"false\": 0\r\n            },\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"ref\": \".x00\",\r\n                \"true\": 100,\r\n                \"false\": 0\r\n            },\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"ref\": \".01\",\r\n                \"true\": 0,\r\n                \"false\": 0\r\n            },\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"ref\": \".02\",\r\n                \"true\": 100,\r\n                \"false\": 0\r\n            },\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"ref\": \".03\",\r\n                \"true\": 200,\r\n                \"false\": 0\r\n            }\r\n        ],\r\n        \"expression\": {\r\n            \"operator\": \"+\",\r\n            \"terms\": [\r\n                {\r\n                    \"id\": \"901@1.0.0\",\r\n                    \"cfg\": \"1.0.0\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"_key\": \"999@1.0.0\",\r\n        \"desc\": \"Rule-901 Typology\",\r\n        \"id\": \"typology-processor@1.0.0\",\r\n        \"cfg\": \"999@1.0.0\",\r\n        \"workflow\": {\r\n            \"alertThreshold\": 200,\r\n            \"interdictionThreshold\": 400\r\n        },\r\n        \"rules\": [\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"termId\": \"v901at100at100\",\r\n                \"wghts\": [\r\n                    {\r\n                        \"ref\": \".err\",\r\n                        \"wght\": 0\r\n                    },\r\n                    {\r\n                        \"ref\": \".x01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".02\",\r\n                        \"wght\": 200\r\n                    },\r\n                    {\r\n                        \"ref\": \".03\",\r\n                        \"wght\": 400\r\n                    }\r\n                ]\r\n            }\r\n        ],\r\n        \"expression\": [\r\n            \"Add\",\r\n            \"v901at100at100\"\r\n        ]\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2024,7 +2024,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"active\": true,\r\n        \"cfg\": \"1.0.0\",\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"channels\": [\r\n                    {\r\n                        \"id\": \"001@1.0.0\",\r\n                        \"cfg\": \"1.0.0\",\r\n                        \"typologies\": [\r\n                            {\r\n                                \"id\": \"typology-processor@1.0.0\",\r\n                                \"cfg\": \"000@1.0.0\",\r\n                                \"rules\": [\r\n                                    {\r\n                                        \"id\": \"001@1.0.0\",\r\n                                        \"cfg\": \"1.0.0\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"active\": true,\r\n        \"cfg\": \"1.0.0\",\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"typologies\": [\r\n                    {\r\n                        \"id\": \"typology-processor@1.0.0\",\r\n                        \"cfg\": \"999@1.0.0\",\r\n                        \"rules\": [\r\n                            {\r\n                                \"id\": \"901@1.0.0\",\r\n                                \"cfg\": \"1.0.0\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
