@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Tazama is prefaced with the Transaction Monitoring Service (TMS) API which makes [Postman](https://www.postman.com/) a useful tool to test platform functionality. In days gone by, Tazama was also composed out of a series of forward-chaining microservices that all had their own RESTful interfaces to receive incoming requests, but we have since replaced our inter-services communication protocol with [NATS](http://nats.io) that connects all our internal processors via its pub/sub interface. While we still use Postman to test the internal processors, we now have to access the NATS pub/sub interface via a NATS REST Proxy that we also built. (You can read more about the NATS REST proxy in the [nats-utilities](https://github.com/frmscoe/nats-utilities)) repository.
+Tazama is prefaced with the Transaction Monitoring Service (TMS) API which makes [Postman](https://www.postman.com/) a useful tool to test platform functionality. In days gone by, Tazama was also composed out of a series of forward-chaining microservices that all had their own RESTful interfaces to receive incoming requests, but we have since replaced our inter-services communication protocol with [NATS](http://nats.io) that connects all our internal processors via its pub/sub interface. While we still use Postman to test the internal processors, we now have to access the NATS pub/sub interface via a NATS REST Proxy that we also built. (You can read more about the NATS REST proxy in the [nats-utilities](https://github.com/tazama-lf/nats-utilities/tree/main)) repository.
 
 The files and folders you see here can be used to test Tazama via both the TMS API and, as an example, rule processor 901, our sample template rule processor.
 
-When you are deploying Tazama as a public user<sup>1</sup> you will be able to use the tests here to validate your deployment. The instructions to set up Tazama via Docker Compose into a Full Stack containerized implementation can be found in the [Full-Stack-Docker-Tazama](https://github.com/frmscoe/Full-Stack-Docker-Tazama) repository. The instructions there will provide specific guidance on how to test a deployment using the end-to-end test above.
+When you are deploying Tazama as a public user<sup>1</sup> you will be able to use the tests here to validate your deployment. The instructions to set up Tazama via Docker Compose into a Full Stack containerized implementation can be found in the [Full-Stack-Docker-Tazama](https://github.com/tazamma-lf/Full-Stack-Docker-Tazama/tree/main) repository. The instructions there will provide specific guidance on how to test a deployment using the end-to-end test above.
 
-If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/frmscoe/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
+If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/tazama-lf/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
 
 To use any of these tests, you can clone this repository onto your local machine and either import the tests you want to run or work on into Postman, or you can run the tests from a command line via [Newman](https://learning.postman.com/docs/collections/using-newman-cli/installing-running-newman/#installing-newman).
 
@@ -54,6 +54,7 @@ A functioning Tazama environment file for Postman will contain the following att
 | `tazamaAuthUrl` | The URL of the Tazama Authentication Service API | localhost:5020 </br> https://tazama-auth.yourcompany.com |
 | `natsUrl` | The URL of the NATS REST proxy for testing a specific processor directly. | localhost:3000 </br> https://tazama-tms.yourcompany.com:3000 |
 | `arangoUrl` | The URL of the deployed instance of ArangoDB | localhost:18529 </br> https://tazama-arangodb.yourcompany.com:3000 |
+| `keycloakUrl` | The URL of the deployed instance of KeyCloak | localhost:8080 </br> https://tazama-keycloak.yourcompany.com:8080 |
 | `arangoUsername` | The ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `arangoPassword` | The password associated with the ArangoDB username for retrieving an Arango token to interact with ArangoDB via its native API | This value will depend on the implementation of Arango. Typically this value is blank for local deployments. |
 | `activePain001` | This attribute reflects whether the platform has been configured to include or exclude a quoting phase via pain.001 and pain.013 messages as part of a transaction set | `true` - quoting is included</br> `false` - quoting is excluded |
@@ -94,6 +95,11 @@ The attributes below host a variety of ArangoDB variables for database and colle
 | `db_coll_graph_account_holders` | The edge collection name where the debtor and creditor account relationship information is stored in the transaction history graph database | `account_holder` |
 | `db_coll_graph_accounts` | The collection name where the debtor and creditor account information in a transaction is stored in the transaction history graph database | `accounts` |
 | `db_coll_graph_transactions` | The collection name where the debtor and creditor information in a transaction is stored in the transaction history graph database | `transactionRelationship` |
+| `db_coll_graph_conditions` | The collection name where the condition information that governs transation blocking resides | `conditions` |
+| `db_coll_graph_governed_as_debtor_by` | The collection name where the condition information that governs transation blocking by debtors resides | `governed_as_debtor_by` |
+| `db_coll_graph_governed_as_debtor_account_by` | The collection name where the condition information that governs transation blocking by debtor accounts resides | `governed_as_debtor_account_by` |
+| `db_coll_graph_governed_as_creditor_by` | The collection name where the condition information that governs transation blocking by creditors resides | `governed_as_creditor_by` |
+| `db_coll_graph_governed_as_creditor_account_by` | The collection name where the condition information that governs transation blocking by creditor accounts resides | `governed_as_creditor_account_by` |
 | `db_config_all` | The database name where processor configuration data is stored | `configuration` |
 | `db_config_route` | The database name where routing configuration data is stored | `networkmapConfiguration` |
 | `db_config_rules` | The collection name where the rule configurations will be stored in the processor configuration database | `ruleConfiguration` |
@@ -110,13 +116,18 @@ These attributes have an impact on how Postman tests are interpreted for testing
 ## The files
 
 ### 1.1. (NO-AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
-### 1.2. (AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
+### 1.2. (AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
+### 1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
 
-This test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database.
+These test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database.
 
-The Postman repository contains two different versions of this test collection:
+The Postman repository contains three different versions of this test collection:
  - 1.1. (NO-AUTH)... does not require the deployment of the API authentication components
+    This test is to be used for a basic public deployment of Tazama where no KeyCloak authentication services are deployed.
  - 1.2. (AUTH)... does rely on the deployment of the API authentication component
+    This test is to be used for a basic public deployment of Tazama where KeyCloak authentication services are deployed.
+ - 1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
+    This test is to be used for a basic public deployment of Tazama where the Tazama Demo UI is deployed. The demo does not currently cater for authentication services, and also does not cater for List Management which is now deployed by default in a public deployment and when the demo UI is deployed, these components should not be deployed.
 
 Tazama has created a Javascript utility library to assist with the creation of valid pain.001, pain.013, pacs.008 and pacs.002 messages, one-by-one or in bulk. You can find the documentation for this utility further down in this page, or you can view the docstrings for each of the functions in the code in the test collection's Pre-Request Script tab.
 
@@ -283,51 +294,96 @@ There was an error in evaluating the Pre-request Script:TypeError: Cannot read p
 The next set of instructions are aimed resetting the data perhaps already in memory, just to make sure that we don't produce any unexpected results:
 
 ```js
-pm.globals.set("dataCache", undefined);
-pm.globals.set("endToEndId", undefined);
-pm.globals.set("messageIdPain001", undefined);
-pm.globals.set("messageIdPain013", undefined);
-pm.globals.set("messageIdPacs008", undefined);
-pm.globals.set("messageIdPacs002", undefined);
-pm.globals.set("pain001", undefined);
-pm.globals.set("pain013", undefined);
-pm.globals.set("pacs008", undefined);
-pm.globals.set("pacs002", undefined);
+pm.globals.unset("dataCache");
+pm.globals.unset("endToEndId");
+pm.globals.unset("messageIdPain001");
+pm.globals.unset("messageIdPain013");
+pm.globals.unset("messageIdPacs008");
+pm.globals.unset("messageIdPacs002");
+pm.globals.unset("pain001");
+pm.globals.unset("pain013");
+pm.globals.unset("pacs008");
+pm.globals.unset("pacs002");
+```
+
+The statements above will clear specific global variables, but you can also clear all global variables with the follwing instruction:
+
+```js
+pm.globals.clear();
 ```
 
 #### Creating a new message set in memory
 
-The primary purpose of the `utils` function is to help testers to create valid incoming ISO20022 message sets to help facilitate the tests they are trying to perform. The `utils` library contains a number of different functions to create test messages. One of these functions is the `createNewTransactionSetInMemory()` function, which can be invoked simply as follows:
+The primary purpose of the `utils` function is to help testers to create valid incoming ISO20022 message sets to help facilitate the tests they are trying to perform.
+
+Unfortunately Postman will not render a function's DocString in the test's Pre-Request Script tab, and you'll have to view the function in the `utils` library directly. To view the `utils` library, you have to open the Pre-Request Script for the root test collection folder:
+
+![View the utils library](./images/view-utils-library.png)
+
+You can browse or search the utils library to find the DocString for any function:
 
 ```js
-utils.createNewTransactionSetInMemory();
+/**
+ * Converts a time unit to its equivalent in milliseconds.
+ * 
+ * Example: `weekInMilliseconds = 7 * utils.timeframe('d');`
+ *
+ * @param {string} unit - The time unit to convert. Supported units are 'd'/'days', 'h'/'hours', 'm'/'minutes', and 's'/'seconds'.
+ * @returns {number} The number of milliseconds corresponding to the given time unit.
+ */
+
+timeframe: function (unit) {...}
 ```
 
-This function will create a new transaction set containing pain.001, pain.013, pacs.008 and pacs.002 messages linked via a new and unique common EndToEndId identifier. The debtor, creditor and debtor and creditor account identifiers will also be newly generated and unique. The transaction set will contain a randomly generated amount for the "XTS" test currency between 10 and 1000. The remaining "deterministic" values of the ISO20022 messages will be defaulted to specific values.
+The `utils` library contains a number of different functions to create test messages. One of these functions is the `createTransactionSetInMemory()` function, which can be invoked simply as follows:
+
+```js
+createdMessageSet = utils.createNewTransactionSetInMemory();
+```
+
+This function will create a new transaction set containing pain.001, pain.013, pacs.008 and pacs.002 messages linked via a new and unique common `EndToEndId` identifier. The debtor, creditor and debtor and creditor account identifiers will also be newly generated and unique. The transaction set will contain a randomly generated amount for the "XTS" test currency between 10 and 1000. The remaining "deterministic" values of the ISO20022 messages will be defaulted to specific values.
+
+The result of the message creation is stashed in a variety of Postman global variables, for later retrieval, but is also returned from the utility function as an object and the individual created messages can be accessed as follows:
+
+```js
+createPacs008 = createdMessageSet.pacs008;
+createPacs002 = createdMessageSet.pacs002;
+```
 
 > [!NOTE]
 >
 > The pain.001 and pain.013 messages will only be created if the Postman environment variable `activepain001` is set to `true`.
 
-Another way of writing the `createNewTransactionSetInMemory()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
+Another way of writing the `createTransactionSetInMemory()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
 
 ```js
-utils.createNewTransactionSetInMemory(
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Currency */ null,                                // null defaults 'XTS' - test currency'
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults 'Generic payment description'
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
+createdMessageSet = utils.createTransactionSetInMemory(
+    /* Quoting Enabled - null defaults false ------------------------ */ null,
+    /* Timestamp Offset - null defaults 0 --------------------------- */ null,
+    /* Timestamp Interval - null defaults 300000 -------------------- */ null,
+    /* Debtor ID - null defaults random UUID ------------------------ */ null,
+    /* Debtor Account ID - null defaults random UUID ---------------- */ null,
+    /* Creditor ID - null defaults random UUID ---------------------- */ null,
+    /* Creditor Account ID - null defaults random UUID -------------- */ null,
+    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,
+    /* Instructed Amount - null defaults to random amount ----------- */ null,
+    /* Settlement Currency - null defaults to Instructed Currency --- */ null,
+    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,
+    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,
+    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,
+    /* Description - null defaults random UUID ---------------------- */ null,
+    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,
+    /* Debtor Age - null defaults 25 -------------------------------- */ null,
+    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,
+    /* Latitude - null defaults -3.1609 ----------------------------- */ null,
+    /* Longitude - null defaults 38.3588 ---------------------------- */ null
+    );
 );
 ```
 
-This templated layout allows you to easily update a specific attribute in the set creation process to test the impact of changing that single attribute of a message on the rule processor's behaviour. Most of the values are self-explanatory, but some are worth calling out.
+This templated layout allows you to easily update a specific attribute in the set creation process to test the impact of changing that single attribute of a message on the system's behaviour. Most of the values are self-explanatory, but some are worth calling out.
 
- - **The Time-Stamp Epoch**: The time-stamp epoch defines a specific time before `now()` when you want the final message in the set (i.e. pacs.002) to appear to be created. The value here is typically provided in milliseconds and will modify the function's default time-stamp for the final message in the set to be further in the past by that number of milliseconds. The function then distributes the remaining message evenly with one message time-stamp set 300 seconds before the other. In other words, if you pass an epoch parameter of 300000 (5 minutes), your transactions will be distributed on a time-stamp timeline as follows:
+ - **The Time-Stamp Epoch**: The time-stamp epoch defines a specific time before `now()` when you want the final message in the set (i.e. pacs.002) to appear to be created. The value here is provided in milliseconds and will modify the function's default time-stamp for the final message in the set to be further in the past by that number of milliseconds. The function then distributes the remaining messages evenly with one message time-stamp set "Timestamp Interval" milliseconds (default 300000 - 5 minutes) before the other. In other words, if you pass an epoch parameter of 300000 (5 minutes), your transactions will be distributed on a time-stamp timeline as follows:
 
     ![Time-Stamp Time-Line](./images/time-stamp-time-line.svg)
 
@@ -337,7 +393,7 @@ This templated layout allows you to easily update a specific attribute in the se
 
  - **Geolocation data**: ISO20022 does not natively provide for the transmission of geolocation data; however Tazama does provide for the collection of geolocation data that is passed in an ISO20022 message's supplementary data envelope.
 
-When the `createNewTransactionSetInMemory()` function is called, the function will create the required messages and stash the messages, and other variables required for testing, as global variables in Postman. If you want to see all the variables that are set, you can browse through the function's source code. When you execute the function in a test, you will also see all the created data logged to the console.
+When the `createTransactionSetInMemory()` function is called, the function will create the required messages and stash the messages, and other variables required for testing, as global variables in Postman. If you want to see all the variables that are set, you can browse through the function's source code. When you execute the function in a test, you will also see all the created data logged to the console.
 
 ### 4. Rule Functionality Testing - Rule 901.postman_collection.json
 
@@ -366,135 +422,88 @@ const rule = '901';
 const ruleVer = '1.0.0'
 const configVer = '1.0.0'
 const ruleId = `${rule}@${ruleVer}`;
-const requestDestination = `sub-rule-${ruleId}`;
-const responseDestination = `pub-rule-${ruleId}`;
 ```
 
 The first three statements identify the rule "number", the version of the rule processor and the configuration version that we expect to use. You can read more about the meaning of these attributes on the [Configuration Management](https://github.com/frmscoe/docs/blob/main/Product/configuration-management.md#21-rule-processor-configuration) page.
 
-Out of this initial values, the rule processor calculates the rule identifier string and also the NATS publishing and subscription subjects for the rule processor, to be used by the NATS REST proxy to appropriately route the test request to the right input destination (`requestDestination`) and listen for the result at the right output destination (`responseDestination`).
-
-#### OPTIONAL: Recreate the rule configuration
-
-The next set of instructions will define a replacement rule configuration object that may be required for a specific test. This step is usually optional and these instructions will only be invoked if the `preconfigured` Postman environment variable is set to `false`.
-
-```js
-if (pm.environment.get("preconfigured") == "false") {
-    const ruleConfig = {
-        "_key": "901@1.0.0@1.0.0",
-        "id": "901@1.0.0",
-        "cfg": "1.0.0",
-        "desc": "Number of outgoing transactions - debtor",
-        "config": {
-            "parameters": {
-                "maxQueryRange": 86400000
-            },
-            "exitConditions": [
-                {
-                    "subRuleRef": ".x00",
-                    "outcome": false,
-                    "reason": "Incoming transaction is unsuccessful"
-                }
-            ],
-            "bands": [
-                {
-                    "subRuleRef": ".01",
-                    "upperLimit": 2,
-                    "outcome": true,
-                    "reason": "The debtor has performed one transaction to date"
-                },
-                {
-                    "subRuleRef": ".02",
-                    "lowerLimit": 2,
-                    "upperLimit": 4,
-                    "outcome": true,
-                    "reason": "The debtor has performed two or three transactions to date"
-                },
-                {
-                    "subRuleRef": ".03",
-                    "lowerLimit": 4,
-                    "outcome": true,
-                    "reason": "The debtor has performed 4 or more transactions to date"
-                }
-            ]
-        }
-    };
-    utils.recreateRuleConfig(ruleId, configVer, ruleConfig);
-    console.log('Rule configuration refreshed');
-}
-```
-
-The `recreateRuleConfig()` function is a function in the `utils` library. Unfortunately Postman will not render the function's DocString in the test's Pre-Request Script tab, and you'll have to view the function in the `utils` library directly. To view the `utils` library, you have to open the Pre-Request Script for the root test collection folder:
-
-![View the utils library](./images/view-utils-library.png)
-
-You can browse or search the utils library to find the DocString for the `recreateRuleConfig()` function:
-
-```js
-/**
- * Asynchronously recreates a rule configuration by removing the existing configuration and creating a new one.
- *
- * @param {string} ruleId - Mandatory. The identifier of the rule whose configuration is to be recreated.
- * @param {string} ruleConfigVersion - Mandatory. The version of the rule configuration.
- * @param {object} ruleConfig - Mandatory. The new configuration object for the rule.
- */
-```
-
-> [!NOTE]
->
-> Something to bear in mind here is a rule processor in Tazama is set up by default to cache a new rule configuration in node-cache for 300 seconds to prevent excessive database reads at the expense of system performance. A test that replaces a rule configuration might not render predictable results if the tests are run in an automated fashion without a suitable delay between the tests, or if the node-cache Time-To-Live (TTL) is set to a much lower value. This is one of the reasons why we perform our functionality tests with a "pre-configured" rule configuration and set the `preconfigured` environment variable to `true`.
+Out of this initial values, the rule processor calculates the rule identifier string and also the NATS publishing and subscription subjects for the rule processor, to be used by the NATS REST proxy to appropriately route the test request to the right input destination and listen for the result at the right output destination.
 
 #### Set up the test transaction message set
 
-The primary purpose of the `utils` function is to help testers to create valid incoming ISO20022 message sets to help facilitate the tests they are trying to perform. The `utils` library contains a number of different functions to create test messages. The most basic function is the `createNewTransactionSet()` function, which can be invoked simply as follows:
+The primary purpose of the `utils` function is to help testers to create valid incoming ISO20022 message sets to help facilitate the tests they are trying to perform. The `utils` library contains a number of different functions to create test messages. The most basic function is the `createTransactionSetsInDatabase()` function, which can be invoked simply as follows:
 
 ```js
-utils.createNewTransactionSet();
+historicalMessageSets = utils.createTransactionSetsInDatabase();
 ```
 
-This function will create a new transaction set containing pain.001, pain.013, pacs.008 and pacs.002 messages linked via a new and unique common EndToEndId identifier. The debtor, creditor and debtor and creditor account identifiers will also be newly generated and unique. The transaction set will contain a randomly generated amount for the "XTS" test currency between 10 and 1000. The remaining "deterministic" values of the ISO20022 messages will be defaulted to specific values.
+This function will create a new transaction set containing pain.001, pain.013, pacs.008 and pacs.002 messages linked via a new and unique common `EndToEndId` identifier. The debtor, creditor and debtor and creditor account identifiers will also be newly generated and unique. The transaction set will contain a randomly generated amount for the "XTS" test currency between 10 and 1000. The remaining "deterministic" values of the ISO20022 messages will be defaulted to specific values.
+
+Unlike creating the transaction set in memory, the transactions that are created straight to the database are not stashed as Postman global variables. Instead an array containing all the created messages is returned from the utility function as an object and the individual created messages can be accessed as follows, for example for the first (or the only) created messages in a set:
+
+```js
+aPacs008 = createdMessageSet[0].pacs008;
+aPacs002 = createdMessageSet[0].pacs002;
+```
 
 > [!NOTE]
 >
 > The pain.001 and pain.013 messages will only be created if the Postman environment variable `activepain001` is set to `true`.
 
-As with the `createNewTransactionSetInMemory()` function above, another way of writing the `createNewTransactionSet()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
+As with the `createTransactionSetInMemory()` function above, another way of writing the `createNewTransactionSet()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
 
 ```js
-utils.createNewTransactionSetInMemory(
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Currency */ null,                                // null defaults 'XTS' - test currency'
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults 'Generic payment description'
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-);
+historicalMessageSets = utils.createTransactionSetsInDatabase(
+    /* Number of Sets - null defaults 1 ----------------------------- */ null,
+    /* Quoting Enabled - null defaults false ------------------------ */ null,
+    /* Timestamp Epoch - null defaults 0 ---------------------------- */ null,
+    /* Timestamp Interval - null defaults 300000 -------------------- */ null,
+    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,
+    /* Debtor ID - null defaults random UUID ------------------------ */ null,
+    /* Debtor Account ID - null defaults random UUID ---------------- */ null,
+    /* Creditor ID - null defaults random UUID ---------------------- */ null,
+    /* Creditor Account ID - null defaults random UUID -------------- */ null,
+    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,
+    /* Instructed Amount - null defaults to random amount ----------- */ null,
+    /* Settlement Currency - null defaults to Instructed Currency --- */ null,
+    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,
+    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,
+    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,
+    /* Description - null defaults random UUID ---------------------- */ null,
+    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,
+    /* Debtor Age - null defaults 25 -------------------------------- */ null,
+    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,
+    /* Latitude - null defaults -3.1609 ----------------------------- */ null,
+    /* Longitude - null defaults 38.3588 ---------------------------- */ null
+    );
 ```
 
-Because the test that we are performing here is picking up the workflow baton after a transaction would have been submitted to the Tazama TMS API, and therefore missed all the Data Preparation steps, this particular function also populates all the information in the database as if the transaction had been submitted to the TMS API and the Data Preparation was successful.
+Because the test that we are performing here is picking up the workflow baton after a transaction would have been submitted to the Tazama TMS API, and therefore missed all the data preparation steps performed by the Tazama Transaction Monitoring Service, this particular function also populates all the information in the database as if the transactions had been submitted to the TMS API and the data preparation was successful.
 
 > ![NOTE]
 >
-> The parameters of the `createNewTransactionSet` function is identical to the `createNewTransactionSetInMemory` function shown above.
+> The parameters of the `createTransactionSetsInDatabase` function is identical to the `createTransactionSetInMemory` function shown above, with a couple of notable exceptions:
+> The `Number of Sets` parameter defines the number of historical transactions to create in the database by the function when it is called.
+> The `Timestamp Iteration Leap` defines an explicit time difference (in milliseconds) between multiple transaction sets. If no value is specified, the number of requested transactions will be evenly spaced across the timeframe defined by the `Timestamp Epoch`.
 >
-> The functionality of the two functions is similar, with one notable exception: the `createNewTransactionSet` function will create data in the `transactionHistory` and `pseudonyms` databases to simulate a transaction that had already been submitted to the TMS API and the `createNewTransactionSetInMemory` function will create messages in memory _so that_ they can be submitted to the TMS API.
+> The functionality of the two functions is similar, with one notable exception: the `createTransactionSetsInDatabase` function will create data in the `transactionHistory` and `pseudonyms` databases to simulate a transaction that had already been submitted to the TMS API and the `createTransactionSetInMemory` function will create messages in memory _so that_ they can be submitted to the TMS API.
 
 #### Set up the remaining request body variables
 
-The final instructions in a typical test are to set up the variables used in the message body.
+The final instruction utilises another utility function that will prepare the rule processor request body in the right format with the provision of the correct parameters.
 
 ```js
-let pacs002Body = pm.globals.get('pacs002');
-pm.variables.set('pacs002Body', pacs002Body);
-pm.variables.set('requestDestination', requestDestination);
-pm.variables.set('responseDestination', responseDestination);
-pm.variables.set('ruleId', ruleId);
-pm.variables.set('configVer', configVer);
+pm.variables.set('messageBody', utils.getRuleBody(ruleId, configVer, messageSets[0].pacs002, messageSets[0].pacs002.DataCache));
 ```
-If you look at the message body in the "Body" tab, you'll see how these variables are used to compose the message body.
+
+The `getRuleProcessorBody` function takes in the following parameters:
+
+ - `Rule Id` - The Rule Processor identifier for which the payload is being prepared, e.g. 901@1.0.0 (this is the `ruleId` we prepared above).
+ - `Rule Config version` - The version of the rule configuration that will determine the rule execution parameters and results, e.g. 1.0.0 (this is the `configVer` we prepared above).
+ - `Message Body` - This is the transaction payload that we are sending into the rule processor. It is typically a pacs.002 message object and one we created earlier in the pre-request script.
+ - `Data Cache` - The Data Cache is a data object that is created by the TMS API and populated with information in an earlier linked message in a set (such as the pacs.008) to keep track of data that may not be available in a later message in the set (such as the pacs.002). The Data Cache object protects overall system performance by preventing unnecessary database reads to look up information that the system usually handled recently and could reasonably cache. Data caches are created as part of the messages during the message creation process by the utility functions.
+ - `Collect From` - When using the NATS REST Proxy, it is possible to direct the collection of the result of a request from a specific NATS subject further downstream from the target processor. To override the default destination for the rule processor, an alternative collection subject can be specified here.
+
+The message body in the "Body" tab of the test request only contains the variable reference to the `messageBody` and will be automatically populated from the stashed global `messageBody` variable when the request is executed.
 
 ### ArangoDB Setup.json
 
@@ -520,7 +529,7 @@ To link your test's Postman `pm` object to the `utils` library, you must place t
 utils.setPm(pm);
 ```
 
-If you do not, any attempt to invoke one of the `utils` function will result in a fatal error, such as:
+If you do not, any attempt to invoke one of the `utils` functions will result in a fatal error, such as:
 
 ```
 There was an error in evaluating the Pre-request Script:TypeError: Cannot read properties of...
@@ -529,7 +538,7 @@ There was an error in evaluating the Pre-request Script:TypeError: Cannot read p
 Once the `pm` object has been loaded, you will have access to the `utils` library functions. A function from the library must be prefaced with `utils.` in your test to invoke it, for example:
 
 ```js
-utils.createNewTransactionSet();
+functionResponse = utils.createTransactionSetInMemory();
 ```
 
 Some of the most common functions from that library that you might use are:
@@ -542,132 +551,15 @@ This function converts a string representing a unit of time into a number of mil
 
 This function will return a UUIDv4 string, but with the dashes ("-") removed. The ISO20022 standard for identifiers specifies a maximum string length of 35 characters, but the UUID standard produces strings that are 36 characters long. In our testing, UUIDs provide a convenient way to generate unique identifiers and with this function we can create a new UUID that conforms to the ISO20022 requirements.
 
-### utils.createNewTransactionSet();
-
-This function is described in some detail above, and you can use it in its simple, short form or the more verbose templated layout.
-
-The function will create a new transaction set that can be used to test internal rule processors directly and also updates the databases as if the transaction was submitted via the TMS API.
-
-```js
-utils.createNewTransactionSet(
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Currency */ null,                                // null defaults 'XTS' - test currency'
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults 'Generic payment description'
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-);
-```
-
-### utils.createNewTransactionSetWithoutPacs002();
-
-This function creates the pain.001, pain.013 and pacs.008 messages and posts them to the databases directly, and then creates the pacs.002 messages in memory only. The pacs.002 message is typically the "trigger" transaction for an evaluation in the default configuration of Tazama and this function will give the tester the ability to prime the databases with the dependencies for the message and then send the trigger transaction into the TMS API to trigger an evaluation.
-
-### utils.createMoreTransactionSets();
-
-This function provides the capability to create bulk transactions directly into the database. We often want to set up complex transaction ecosystems to test some of our rules and this function makes it easier to set up a large number of transactions. All the transactions and their identifiers are logged to the console, but no transaction set is specifically stashed for use in a test.
-
-If the identifiers in the bulk set are to be used in a test, other creation functions such as `createNewTransactionSet` is run first and then the identifiers from that stashed message set are passed into the `createMoreTransactionSets` function to create messages that are linked to the stashed message set through various identifiers.
-
-The verbose templated layout for this function is as follows:
-
-```js
-utils.createMoreTransactionSets(
-    /* Number of sets = */ null,                        // null defaults 1
-    /* Debtor ID */ null,                               // null defaults random UUID
-    /* Debtor Account ID */ null,                       // null defaults random UUID
-    /* Creditor ID */ null,                             // null defaults random UUID
-    /* Creditor Account ID */ null,                     // null defaults random UUID
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Time between sets */ null,                       // null defaults timestampEpoch/NumberOfSets
-    /* Currency */ null,                                // null defaults 'XTS' - test currency
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults random UUID
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-    );
-```
-
-Most of these parameters are self-explanatory, or had been explained previously, but the following are worth mentioning:
-
- - The parameters for identifiers such as **Debtor ID, Debtor Account ID, Creditor ID** and **Creditor Account ID** allow you to create a message set prior to calling the `createMoreTransactionSets` function and then create bulk message sets specifically linked to one or more of those identifiers (usually in debtor/debtor account and creditor/creditor account pairs). There are other functions, described below, that will allow you to create a debtor and then any number of accounts for that debtor, and combined with any of the other create functions, a series of `createMoreTransactionSets` functions can create a vast eco-system of related transactions.
-
- - **Time between sets**: This parameter will allow you to evenly spread out your transaction sets over a period of time specified in milliseconds. If no parameter is provided, all the sets are spread out evenly between the Time-Stamp Epoch and `now()`. If the Time-Stamp Epoch is also not provided, the transactions are all created so that the pacs.002 message in each set appears to have been delivered at `now()`. It is more common in our testing to only provide the Time-Stamp Epoch to define the time at which the pacs.002 in the oldest set should arrive, and then evenly distribute all the other transactions from that time until one set short of `now()`.
-
-### createQuickerTransactionSets();
-
-This function is similar to the `createMoreTransactionSets` and accepts an additional parameter (time between message sets) to shorten the default time of 300000 milliseconds (5 minutes) between transactions. This test is used to test particularly time-sensitive behaviours.
-
-```js
-utils.createQuickerTransactionSets(
-    /* Number of sets = */ null,                        // null defaults 1
-    /* Debtor ID */ null,                               // null defaults random UUID
-    /* Debtor Account ID */ null,                       // null defaults random UUID
-    /* Creditor ID */ null,                             // null defaults random UUID
-    /* Creditor Account ID */ null,                     // null defaults random UUID
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Time between sets */ null,                       // null defaults timestampEpoch/NumberOfSets
-    /* Time between messages */ null,                   // null defaults 300000
-    /* Currency */ null,                                // null defaults 'XTS' - test currency
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults random UUID
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-    );
-```
-
 ### createTransactionSetInMemory();
 
 This function is able to create a transaction set in memory. The results of this function are stashed in memory only so that the transaction messages can be sent to the TMS API.
 
-```js
-utils.createAdditionalTransactionSetInMemory(
-    /* Debtor ID */ null,                               // null defaults random UUID
-    /* Debtor Account ID */ null,                       // null defaults random UUID
-    /* Creditor ID */ null,                             // null defaults random UUID
-    /* Creditor Account ID */ null,                     // null defaults random UUID
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Currency */ null,                                // null defaults 'XTS' - test currency
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults random UUID
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-    );
-```
+### utils.createTransactionSetsInDatabase();
 
-### createAdditionalTransactionSetInMemory();
+This function is described in some detail above, and you can use it in its simple, short form or the more verbose templated layout.
 
-As the name implies, this function is an extension of the `createTransactionSetInMemory` and is able to create an additional transaction in memory that is linked to one or more of the identifiers for a transaction set previously created. The results of this function are also stashed in memory only so that the transaction messages can be sent to the TMS API.
-
-```js
-utils.createAdditionalTransactionSetInMemory(
-    /* Debtor ID */ null,                               // null defaults random UUID
-    /* Debtor Account ID */ null,                       // null defaults random UUID
-    /* Creditor ID */ null,                             // null defaults random UUID
-    /* Creditor Account ID */ null,                     // null defaults random UUID
-    /* Time-stamp Epoch */ null,                        // null defaults 0
-    /* Currency */ null,                                // null defaults 'XTS' - test currency
-    /* Amount */ null,                                  // null defaults random up to 1000.00
-    /* Description */ null,                             // null defaults random UUID
-    /* Status */ null,                                  // null defaults 'ACCC' (successful)
-    /* Debtor Age */ null,                              // null defaults 25
-    /* Transaction Type */ null,                        // null defaults 'TRANSFER' or 'MP2P'
-    /* Latitude */ null,                                // null defaults -3.1609
-    /* Longitude */ null                                // null defaults 38.3588
-    );
-```
+The function will create one or more new transaction sets that can be used to test internal rule processors directly and also updates the databases as if the transactions were submitted via the TMS API.
 
 ### createEntity(entityId);
 
@@ -676,6 +568,18 @@ With this function you are able to create the data for a new entity directly in 
 ### createSingleAccount(entityId, accountId, optionalTimestamp);
 
 With this function you are able to create the data for a new account linked to the provided entity directly in the database. You must provide an entity identifier and an account identifier. If the timestamp is not provided, the timestamp will default to `now()` You can then use this account in other creation functions.
+
+### getRuleProcessorBody(ruleId, ruleCfgVer, messageBody, dataCache, collectFrom);
+
+This function will return a valid and complete JSON object that can be submitted to a rule processor directly.
+
+### getTypologyProcessorBody(ruleResult, typologyCfg, messageBody, dataCache, collectFrom, awaitReply)
+
+This function will return a valid and complete JSON object that can be submitted to a typology processor directly.
+
+### getTADProcBody(typologyResult, messageBody, dataCache, awaitReply)
+
+This function will return a valid and complete JSON object that can be submitted to a transaction aggregation and decisioning processor (TADProc) directly.
 
 ---
 **Footnotes:**
