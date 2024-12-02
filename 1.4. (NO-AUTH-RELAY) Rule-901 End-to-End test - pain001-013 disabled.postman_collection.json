@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b08d9c8a-6486-411f-b839-88d9b4ab4bcf",
+		"_postman_id": "56b970e5-3ac1-453d-84f8-6c39b764bcb5",
 		"name": "1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20241129\n\n- Implemented test for relay service\n    \n- Relies on the deployment of the nats-utilities",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -4264,7 +4264,7 @@
 					"        exchangeRateCurrency = exchangeRateCurrency ? exchangeRateCurrency : instructedCurrency;",
 					"        exchangeRate = exchangeRate ? exchangeRate : 1.0;",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",
@@ -4488,7 +4488,7 @@
 					"        creditorAgentId = creditorAgentId ? creditorAgentId : 'fsp002';",
 					"",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",

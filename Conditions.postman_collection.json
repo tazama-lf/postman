@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eb9f263e-9351-426f-aa2f-0933450730cd",
+		"_postman_id": "9dcfbdef-d4a1-4353-87e2-4af4972e8bdb",
 		"name": "Conditions",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
@@ -18320,7 +18320,7 @@
 					"        exchangeRateCurrency = exchangeRateCurrency ? exchangeRateCurrency : instructedCurrency;\r",
 					"        exchangeRate = exchangeRate ? exchangeRate : 1.0;\r",
 					"        // Metadata\r",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';\r",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();\r",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';\r",
 					"        debtorAge = debtorAge ? debtorAge : 25;\r",
 					"        if (activePain001) {\r",
@@ -18544,7 +18544,7 @@
 					"        creditorAgentId = creditorAgentId ? creditorAgentId : 'fsp002';\r",
 					"\r",
 					"        // Metadata\r",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';\r",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();\r",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';\r",
 					"        debtorAge = debtorAge ? debtorAge : 25;\r",
 					"        if (activePain001) {\r",

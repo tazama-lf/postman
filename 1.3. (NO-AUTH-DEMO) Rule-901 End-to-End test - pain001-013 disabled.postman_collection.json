@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a5332ccc-79b7-4b16-9408-5452dcdb898f",
+		"_postman_id": "e62fed77-fd4f-4cc4-adcf-e31562577420",
 		"name": "1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -2265,7 +2265,7 @@
 					"        exchangeRateCurrency = exchangeRateCurrency ? exchangeRateCurrency : instructedCurrency;",
 					"        exchangeRate = exchangeRate ? exchangeRate : 1.0;",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",
@@ -2489,7 +2489,7 @@
 					"        creditorAgentId = creditorAgentId ? creditorAgentId : 'fsp002';",
 					"",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
+					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",
