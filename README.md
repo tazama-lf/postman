@@ -118,6 +118,7 @@ These attributes have an impact on how Postman tests are interpreted for testing
 ### 1.1. (NO-AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
 ### 1.2. (AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
 ### 1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
+### 1.4. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
 
 These test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database.
 
@@ -128,6 +129,8 @@ The Postman repository contains three different versions of this test collection
     This test is to be used for a basic public deployment of Tazama where KeyCloak authentication services are deployed.
  - 1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
     This test is to be used for a basic public deployment of Tazama where the Tazama Demo UI is deployed. The demo does not currently cater for authentication services, and also does not cater for List Management which is now deployed by default in a public deployment and when the demo UI is deployed, these components should not be deployed.
+ - 1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
+    This test is to be used for a basic public deployment of Tazama where the relay services that will handle interdiction and egress to a case management system will be deployed. The test utilises the NATS REST Proxy to collect outgoing messages routed, via the `interdiction-service` and `cms` NATS subjects, from the `tazama-egress` NATS subject.
 
 Tazama has created a Javascript utility library to assist with the creation of valid pain.001, pain.013, pacs.008 and pacs.002 messages, one-by-one or in bulk. You can find the documentation for this utility further down in this page, or you can view the docstrings for each of the functions in the code in the test collection's Pre-Request Script tab.
 
@@ -449,7 +452,7 @@ aPacs002 = createdMessageSet[0].pacs002;
 >
 > The pain.001 and pain.013 messages will only be created if the Postman environment variable `activepain001` is set to `true`.
 
-As with the `createTransactionSetInMemory()` function above, another way of writing the `createNewTransactionSet()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
+As with the `createTransactionSetInMemory()` function above, another way of writing the `createTransactionSetsInDatabase()` function is a little more verbose, but perhaps also a bit more understandable and descriptive:
 
 ```js
 historicalMessageSets = utils.createTransactionSetsInDatabase(
