@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "db7fc255-ecd8-4650-8ac2-74cff7071abc",
+		"_postman_id": "60e2ce47-a439-42e6-a3f3-063e503e405b",
 		"name": "Configuration - Rule 901",
 		"description": "## 20240507\n\nUpdated network map to remove the channel branching\n\nUpdate the rule configs to remove the \"outcome\" attribute\n\nUpdate the typology configs to replace the true/false weighting attributes with a weighting attribute\n\n## 20240621\n\nBug: Removed the activation of the network map step since it was causing two active network maps.\n\nUpdated the fetch of the network map ID to also deactive ALL active network maps\n\nRemoved the step to deactivate a specific network map by ID\n\n## 20240730\n\nUpdated the typology configuration for the MathJSON implementation\n\n## 20241008\n\nIntegrated EFRuP functionality",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29185806"
+		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
@@ -269,7 +269,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 3,\r\n                    \"reason\": \"The debtor has performed two transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 3,\r\n                    \"reason\": \"The debtor has performed 3 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
