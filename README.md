@@ -118,7 +118,7 @@ These attributes have an impact on how Postman tests are interpreted for testing
 ### 1.1. (NO-AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
 ### 1.2. (AUTH) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json, and
 ### 1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
-### 1.4. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
+### 1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001-013 disabled.postman_collection.json
 ### 2. Full-service-test.postman_collection.json
 
 These test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database.
