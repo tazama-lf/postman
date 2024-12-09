@@ -1,14 +1,270 @@
 {
 	"info": {
-		"_postman_id": "c4263cfc-7baf-427b-9c5b-18e7577f653e",
-		"name": "4. Rule Functionality Testing - Rule 901",
-		"description": "This test collections performs comprehensive functionality testing against every deployed rule processor to test every possible outcome.\n\n## 2023/10/23\n\nUpdated testing of the rule result description to test for undefined\n\nUpdated testing of the rule result reason to test for undefined\n\n## 2024/02/26\n\nUpdated test utility library to handle the update to the DataCache to include the amount and the create date-time attributes.\n\nUpdated the utility library functions to take in a \"currency\" parameter that would default to \"XTS\" if specified as null.\n\nUpdated all rule tests to call the updated library functions with the currency parameter (null).\n\n## 2024/03/19\n\nCreated a set of tests for rule 901 exclusively",
+		"_postman_id": "62523dd6-ed90-4317-86e1-fc7ad38b5e9a",
+		"name": "2. Full-service-test",
+		"description": "# 20241207\n\n- Implemented tests for the full-service DockerHub deployment",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
 	},
 	"item": [
 		{
-			"name": "Setup",
+			"name": "Message Creation sans pain.001/013",
+			"item": [
+				{
+					"name": "Create messages in memory",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"utils.setPm(pm); // set the utils _pm to the pre-request script pm\r",
+									"let moment = require('moment');\r",
+									"// ## Set up rule config\r",
+									"\r",
+									"pm.globals.clear();\r",
+									"messageSet = utils.createTransactionSetInMemory(\r",
+									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
+									"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
+									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
+									"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
+									"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
+									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
+									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
+									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
+									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
+									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
+									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
+									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
+									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
+									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
+									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
+									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
+									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
+									"    );"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let dataCache = JSON.parse(pm.globals.get(\"dataCache\"));\r",
+									"let endToEndId = pm.globals.get(\"endToEndId\");\r",
+									"let messageIdPacs008 = pm.globals.get(\"messageIdPacs008\");\r",
+									"let messageIdPacs002 = pm.globals.get(\"messageIdPacs002\");\r",
+									"let pacs008 = pm.globals.get(\"pacs008\");\r",
+									"let pacs002 = pm.globals.get(\"pacs002\");\r",
+									"\r",
+									"pm.test(`Has a new dataCache:dbtrId value: ${dataCache.dbtrId}`, function() {\r",
+									"  pm.expect(dataCache.dbtrId, `${dataCache.dbtrId}`).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new dataCache:cdtrId value: ${dataCache.cdtrId}`, function() {\r",
+									"  pm.expect(dataCache.cdtrId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a dataCache:dbtrAcctId value: ${dataCache.dbtrAcctId}`, function() {\r",
+									"  pm.expect(dataCache.dbtrAcctId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a dataCache:cdtrAcctId value: ${dataCache.cdtrAcctId}`, function() {\r",
+									"  pm.expect(dataCache.cdtrAcctId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new endToEndId value: ${endToEndId}`, function() {\r",
+									"  pm.expect(endToEndId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(`Has a new pacs.008 msgId value: ${messageIdPacs008}`, function() {\r",
+									"  pm.expect(messageIdPacs008).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.002 msgId value: ${messageIdPacs002}`, function() {\r",
+									"  pm.expect(messageIdPacs002).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.008 body for TMS API`, function() {\r",
+									"  pm.expect(pacs008).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.002 body for Data Preparation`, function() {\r",
+									"  pm.expect(pacs002).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"if (activePain001) {\r",
+									"    let messageIdPain001 = pm.globals.get(\"messageIdPain001\");\r",
+									"    let messageIdPain013 = pm.globals.get(\"messageIdPain013\");\r",
+									"    let pain001 = pm.globals.get(\"pain001\");\r",
+									"    let pain013 = pm.globals.get(\"pain013\");\r",
+									"    pm.test(`Has a new pain.001 msgId value: ${messageIdPain001}`, function() {\r",
+									"    pm.expect(messageIdPain001).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.013 msgId value: ${messageIdPain013}`, function() {\r",
+									"    pm.expect(messageIdPain013).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.001 body for TMS API`, function() {\r",
+									"    pm.expect(pain001).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.013 body for TMS API`, function() {\r",
+									"    pm.expect(pain013).to.be.a('string');\r",
+									"    });\r",
+									"} else {\r",
+									"    pm.test(`pain.001/013 messages disabled`, function() {\r",
+									"    pm.expect(activePain001).to.be.false;\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ofUrl}}",
+							"host": [
+								"{{ofUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post pacs.008 to TMS API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs008');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{messageBody}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"host": [
+								"{{ofUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs008}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post pacs.002 to TMS API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs002');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{pacs002}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"host": [
+								"{{ofUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs002}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DB update tests",
 			"item": [
 				{
 					"name": "Get Arango Token",
@@ -51,114 +307,73 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Rule 901",
-			"item": [
+				},
 				{
-					"name": "1. Single transaction now -  sucessful",
+					"name": "Fetch created pain.001 from transactionHistoryPain001",
 					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".01\",\r",
-									"    \"reason\": \"The debtor has performed one transaction to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
+									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"let qryString = \"\";\r",
 									"\r",
-									"// Set up the rule identity\r",
+									"if (activePain001) {\r",
+									"    console.log(`Fetching pain.001 from transactionHistoryPain001 using msgId: ${pm.globals.get('messageIdPain001')}`);\r",
+									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.GrpHdr.MsgId == '${pm.globals.get('messageIdPain001')}' RETURN doc`\r",
+									"} else {\r",
+									"    console.log(`Pain.001/013 disabled: Checking that no pain.001 exists in transactionHistoryPain001 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
+									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
+									"}\r",
 									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"messageSets = utils.createTransactionSetsInDatabase();\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, messageSets[0].pacs002, messageSets[0].pacs002.DataCache));"
+									"pm.globals.set('qryString', qryString);\r",
+									""
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const resJson = pm.response.json();\r",
+									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"\r",
+									"if (activePain001) {\r",
+									"    let memPain001MsgId = pm.globals.get('messageIdPain001')\r",
+									"\r",
+									"    pm.test(`Pain.001/013 messages activated and pain.001 with msgId ${memPain001MsgId} found`, function () {\r",
+									"        pm.expect(resJson.result[0].CstmrCdtTrfInitn.GrpHdr.MsgId).to.be.equal(memPain001MsgId);\r",
+									"    });\r",
+									"} else {\r",
+									"\r",
+									"    let endToEndId = pm.globals.get('endToEndId');\r",
+									"\r",
+									"    pm.test(`Pain.001/013 messages deactivated and no pain.001 with endToEndId ${endToEndId} found`, function () {\r",
+									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{messageBody}}",
+							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -166,143 +381,86 @@
 							}
 						},
 						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
 							"host": [
-								"{{natsUrl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
+								"_db",
+								"{{db_messagehistory}}",
+								"_api",
+								"cursor"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "2. Single transaction now -  unsuccessful",
+					"name": "Fetch created pain.013 from transactionHistoryPain013",
 					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".x00\",\r",
-									"    \"reason\": \"Incoming transaction is unsuccessful\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
+									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"let qryString = \"\";\r",
 									"\r",
-									"// Set up the rule identity\r",
+									"if (activePain001) {\r",
+									"    console.log(`Fetching pain.013 from transactionHistoryPain013 using msgId: ${pm.globals.get('messageIdPain013')}`);\r",
+									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.GrpHdr.MsgId == '${pm.globals.get('messageIdPain013')}' RETURN doc`\r",
+									"} else {\r",
+									"    console.log(`Pain.001/013 disabled: Checking that no pain.013 exists in transactionHistoryPain013 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
+									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
+									"}\r",
 									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"messageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ null,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ 'ACSC',\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, messageSets[0].pacs002, messageSets[0].pacs002.DataCache));"
+									"pm.globals.set('qryString', qryString);\r",
+									""
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const resJson = pm.response.json();\r",
+									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"\r",
+									"if (activePain001) {\r",
+									"    let memPain013MsgId = pm.globals.get('messageIdPain013')\r",
+									"\r",
+									"    pm.test(`Pain.001/013 messages activated and pain.013 with msgId ${memPain013MsgId} found`, function () {\r",
+									"        pm.expect(resJson.result[0].CdtrPmtActvtnReq.GrpHdr.MsgId).to.be.equal(memPain013MsgId);\r",
+									"    });\r",
+									"} else {\r",
+									"\r",
+									"    let endToEndId = pm.globals.get('endToEndId');\r",
+									"\r",
+									"    pm.test(`Pain.001/013 messages deactivated and no pain.013 with endToEndId ${endToEndId} found`, function () {\r",
+									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{messageBody}}",
+							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -310,144 +468,44 @@
 							}
 						},
 						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
 							"host": [
-								"{{natsUrl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
+								"_db",
+								"{{db_messagehistory}}",
+								"_api",
+								"cursor"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "3. 2 total transactions - all successful",
+					"name": "Fetch created pacs.008 from transactionHistoryPacs008",
 					"event": [
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".02\",\r",
-									"    \"reason\": \"The debtor has performed two or three transactions to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
+									"console.log(`Fetching pacs.008 from transactionHistoryPacs008 using msgId: ${pm.globals.get('messageIdPacs008')}`);"
 								],
 								"type": "text/javascript",
 								"packages": {}
 							}
 						},
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
 								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
+									"const resJson = pm.response.json();\r",
 									"\r",
-									"// Set up the rule identity\r",
+									"let memPacs008MsgId = pm.globals.get('messageIdPacs008')\r",
 									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase();\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
-									"\r",
-									"// ## Create additional transaction history\r",
-									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
+									"pm.test(`pacs.008 with msgId ${memPacs008MsgId} found`, function () {\r",
+									"    pm.expect(resJson.result[0].FIToFICstmrCdtTrf.GrpHdr.MsgId).to.be.equal(memPacs008MsgId);\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -455,11 +513,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{messageBody}}",
+							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs008}} FILTER doc.FIToFICstmrCdtTrf.GrpHdr.MsgId == '{{messageIdPacs008}}' RETURN doc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -467,144 +535,211 @@
 							}
 						},
 						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
 							"host": [
-								"{{natsUrl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
+								"_db",
+								"{{db_messagehistory}}",
+								"_api",
+								"cursor"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "4. 3 total transactions - all successful",
+					"name": "Fetch created pacs.002 from transactionHistoryPacs002",
 					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(`Fetching pacs.002 from transactionHistoryPacs002 using msgId: ${pm.globals.get('messageIdPacs002')}`);"
+								],
+								"type": "text/javascript"
+							}
+						},
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".03\",\r",
-									"    \"reason\": \"The debtor has performed 4 or more transactions to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
+									"const resJson = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
+									"let memPacs002MsgId = pm.globals.get('messageIdPacs002')\r",
 									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"pm.test(`pacs.002 with msgId ${memPacs002MsgId} found`, function () {\r",
+									"    pm.expect(resJson.result[0].FIToFIPmtSts.GrpHdr.MsgId).to.be.equal(memPacs002MsgId);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs002}} FILTER doc.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
+							"host": [
+								"{{arangoUrl}}"
+							],
+							"path": [
+								"_db",
+								"{{db_messagehistory}}",
+								"_api",
+								"cursor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check graph creation",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(`Fetching graph from ${pm.environment.get('db_historygraph')} using creditorAccountKey : ${pm.globals.get('creditorAccountKey')}`);\r",
 									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
+									"let qryString = `LET vertices = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct v) LET edges = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct e) RETURN {v: vertices, e: edges}`\r",
 									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
+									"pm.globals.set('qryString', qryString);"
 								],
 								"type": "text/javascript",
 								"packages": {}
 							}
 						},
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
 								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
+									"const resJson = pm.response.json();\r",
 									"\r",
-									"// Set up the rule identity\r",
+									"let debtor = false;\r",
+									"let debtorAccount = false;\r",
+									"let debtorAccountHolder = false;\r",
+									"let creditor = false\r",
+									"let creditorAccountHolder = false;\r",
+									"let creditorAccount = false;\r",
+									"let pain001 = false;\r",
+									"let pain013 = false;\r",
+									"let pacs008 = false;\r",
+									"let pacs002 = false;\r",
 									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
+									"for (let i = 0; i < resJson.result[0].e.length; i++) {\r",
 									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
+									"    if (resJson.result[0].e[i]._id.search(\"account_holder\") >= 0) {\r",
+									"        if ((resJson.result[0].e[i]._from.search(pm.globals.get('debtorKey')) >= 0) && (resJson.result[0].e[i]._to.search(pm.globals.get('debtorAccountKey')) >= 0)) {\r",
+									"            debtorAccountHolder = true;\r",
+									"        } else if ((resJson.result[0].e[i]._from.search(pm.globals.get('creditorKey')) >= 0) && (resJson.result[0].e[i]._to.search(pm.globals.get('creditorAccountKey')) >= 0))\r",
+									"        {\r",
+									"            creditorAccountHolder = true;\r",
+									"        }\r",
+									"    }\r",
 									"\r",
-									"// Set up the transaction history ecosystem\r",
+									"    if (resJson.result[0].e[i]._id.search(\"transactionRelationship\") >= 0) {\r",
+									"        if (resJson.result[0].e[i].TxTp.search(\"pain.001.001.11\") >= 0) {\r",
+									"            pain001 = true;\r",
+									"        } else if (resJson.result[0].e[i].TxTp.search(\"pain.013.001.09\") >= 0) {\r",
+									"            pain013 = true;\r",
+									"        } else if (resJson.result[0].e[i].TxTp.search(\"pacs.008.001.10\") >= 0) {\r",
+									"            pacs008 = true;\r",
+									"        } else if (resJson.result[0].e[i].TxTp.search(\"pacs.002.001.12\") >= 0) {\r",
+									"            pacs002 = true;\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
 									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase();\r",
+									"for (let i = 0; i < resJson.result[0].v.length; i++) {\r",
 									"\r",
-									"// ## Set up body variables\r",
+									"    if (resJson.result[0].v[i]._id.search(\"entities\") >= 0) {\r",
+									"        if (resJson.result[0].v[i]._key == pm.globals.get('debtorKey')) {\r",
+									"            debtor = true;\r",
+									"        } else if (resJson.result[0].v[i]._key == pm.globals.get('creditorKey')) {\r",
+									"            creditor = true;\r",
+									"        }\r",
+									"    }\r",
 									"\r",
+									"    if (resJson.result[0].v[i]._id.search(\"accounts\") >= 0) {\r",
+									"        if (resJson.result[0].v[i]._key == pm.globals.get('debtorAccountKey')) {\r",
+									"            debtorAccount = true;\r",
+									"        } else if (resJson.result[0].v[i]._key == pm.globals.get('creditorAccountKey')) {\r",
+									"            creditorAccount = true;\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
 									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
+									"pm.test(`Graph contains an entity vertex for debtor entity with debtorKey ${pm.globals.get('debtorKey')}`, function () {\r",
+									"    pm.expect(debtor).to.be.true;\r",
+									"});\r",
 									"\r",
-									"// ## Create additional transaction history\r",
+									"pm.test(`Graph contains an entity vertex for creditor entity with creditorKey ${pm.globals.get('creditorKey')}`, function () {\r",
+									"    pm.expect(creditor).to.be.true;\r",
+									"});\r",
 									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
+									"pm.test(`Graph contains an account vertex for debtor account with debtorAccountKey ${pm.globals.get('debtorAccountKey')}`, function () {\r",
+									"    pm.expect(debtorAccount).to.be.true;\r",
+									"});\r",
 									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ 2,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
+									"pm.test(`Graph contains an account vertex for creditor account with creditorAccountKey ${pm.globals.get('creditorAccountKey')}`, function () {\r",
+									"    pm.expect(creditorAccount).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(`Graph contains an account_holder edge for debtor entity with debtorKey ${pm.globals.get('debtorKey')} and debtorAccountKey ${pm.globals.get('debtorAccountKey')}`, function () {\r",
+									"    pm.expect(debtorAccountHolder).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(`Graph contains an account_holder edge for creditor entity with creditorKey ${pm.globals.get('creditorKey')} and creditorAccountKey ${pm.globals.get('creditorAccountKey')}`, function () {\r",
+									"    pm.expect(creditorAccountHolder).to.be.true;\r",
+									"});\r",
+									"\r",
+									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"\r",
+									"if (activePain001) {\r",
+									"    pm.test(`Pain.001/013 is enabled and graph contains a pain.001 relationship`, function () {\r",
+									"        pm.expect(pain001).to.be.true;\r",
+									"    });\r",
+									"    pm.test(`Pain.001/013 is enabled and graph contains a pain.013 relationship`, function () {\r",
+									"        pm.expect(pain013).to.be.true;\r",
+									"    });\r",
+									"} else {\r",
+									"    pm.test(`Pain.001/013 is disabled and graph does not contain a pain.001 relationship`, function () {\r",
+									"        pm.expect(pain001).to.be.false;\r",
+									"    });\r",
+									"    pm.test(`Pain.001/013 is disabled and graph does not contain a pain.013 relationship`, function () {\r",
+									"        pm.expect(pain013).to.be.false;\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"pm.test(`Graph contains a pacs.008 relationship`, function () {\r",
+									"    pm.expect(pacs008).to.be.true;\r",
+									"});\r",
+									"pm.test(`Graph contains a pacs.002 relationship`, function () {\r",
+									"    pm.expect(pacs002).to.be.true;\r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -612,11 +747,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{messageBody}}",
+							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -624,167 +769,293 @@
 							}
 						},
 						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
+							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/cursor",
 							"host": [
-								"{{natsUrl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
+								"_db",
+								"{{db_historygraph}}",
+								"_api",
+								"cursor"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "5. 3 total transactions - incoming unsuccessful, history successful",
+					"name": "Fetch evaluation results with msgId - Viable Network Map Only",
 					"event": [
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".x00\",\r",
-									"    \"reason\": \"Incoming transaction is unsuccessful\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
+									"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
 								],
 								"type": "text/javascript",
 								"packages": {}
 							}
 						},
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
 								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
+									"const resJson = pm.response.json();\r",
+									"const rulesPerTypologyCount = [34];\r",
+									"const totalExpectedTypologies = 1;\r",
+									"const expectedAlertStatus = \"NALT\";\r",
+									"const interdictionTypologies = [\r",
+									"  \"000\"\r",
+									"];\r",
 									"\r",
-									"// Set up the rule identity\r",
+									"const ruleDescriptions = {\r",
+									"  \"EFRuP\": \"Event-Flow Rule Processor\",\r",
+									"  \"001\": \"Derived account age - creditor\",\r",
+									"  \"002\": \"Transaction convergence - debtor\",\r",
+									"  \"003\": \"Account dormancy - creditor\",\r",
+									"  \"004\": \"Account dormancy - debtor\",\r",
+									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
+									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+									"  \"008\": \"Outgoing transfer similarity - creditor\",\r",
+									"  \"010\": \"Increased account activity: volume - debtor\",\r",
+									"  \"011\": \"Increased account activity: volume - creditor\",\r",
+									"  \"016\": \"Transaction convergence - creditor\",\r",
+									"  \"017\": \"Transaction divergence - debtor\",\r",
+									"  \"018\": \"Exceptionally large outgoing transfer - debtor\",\r",
+									"  \"020\": \"Large transaction amount vs history - creditor\",\r",
+									"  \"021\": \"A large number of similar transaction amounts - creditor\",\r",
+									"  \"024\": \"Non-commissioned transaction mirroring - creditor\",\r",
+									"  \"025\": \"Non-commissioned transaction mirroring - debtor\",\r",
+									"  \"026\": \"Commissioned transaction mirroring - creditor\",\r",
+									"  \"027\": \"Commissioned transaction mirroring - debtor\",\r",
+									"  \"028\": \"Age classification - debtor\",\r",
+									"  \"030\": \"Transfer to unfamiliar creditor account - debtor\",\r",
+									"  \"044\": \"Successful transactions from the debtor, including the new transaction\",\r",
+									"  \"045\": \"Successful transactions to the creditor, including the new transaction\",\r",
+									"  \"048\": \"Large transaction amount vs history - debtor\",\r",
+									"  \"054\": \"Synthetic data check - Benford's Law - debtor\",\r",
+									"  \"063\": \"Synthetic data check - Benford's Law - creditor\",\r",
+									"  \"074\": \"Distance over time from last transaction location - debtor\",\r",
+									"  \"075\": \"Distance from habitual locations - debtor\",\r",
+									"  \"076\": \"Time since last transaction - debtor\",\r",
+									"  \"078\": \"Transaction type\",\r",
+									"  \"083\": \"Multiple accounts associated with a debtor\",\r",
+									"  \"084\": \"Multiple accounts associated with a creditor\",\r",
+									"  \"090\": \"Upstream transaction divergence - debtor\",\r",
+									"  \"091\": \"Transaction amount vs regulatory threshold\"\r",
+									"}\r",
+									"const typologyDescriptions = {\r",
+									"  \"000\": \"Complete rule coverage\"\r",
+									"}\r",
 									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
+									"let ruleCount = 0;\r",
+									"let typologyCount = 0;\r",
+									"let slowestRule = 0;\r",
+									"let fastestRule = 999999999;\r",
+									"let slowestTypology = 0;\r",
+									"let fastestTypology = 999999999;\r",
+									"let totalRule = 0;\r",
+									"let totalTypology = 0;\r",
+									"let pcrgTmDP = resJson.result[0].report.metaData.prcgTmDP;\r",
+									"let pcrgTmED = resJson.result[0].report.metaData.prcgTmED;\r",
+									"let tadpTime = resJson.result[0].report.tadpResult.prcgTm;\r",
+									"let whichTypologyIsSlowest = 0;\r",
+									"let whichTypologyIsFastest = 0;\r",
+									"let whichRuleIsSlowest = 0;\r",
 									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
+									"let typologyTimings = resJson.result[0].report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
 									"\r",
-									"// Set up the transaction history ecosystem\r",
+									"let timingsPerTypology = `Elapsed typology processor time per typology\r",
+									"====================================================\r",
+									"`;\r",
 									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ null,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ 'ACSC',\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );\r",
+									"let sortedTypologyTimings = typologyTimings.sort((e1, e2) => (e1.prcgTm < e2.prcgTm) ? 1 : (e1.prcgTm > e2.prcgTm) ? -1 : 0);\r",
 									"\r",
-									"// ## Set up body variables\r",
+									"for (let i = 0; i < sortedTypologyTimings.count(); i++) {\r",
+									"    timingsPerTypology = timingsPerTypology + `   ${sortedTypologyTimings[i].cfg}: ${(sortedTypologyTimings[i].prcgTm/1000000).toFixed(3)}\\n`;\r",
+									"}\r",
 									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
+									"typologyTimings = typologyTimings.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
 									"\r",
-									"// ## Create additional transaction history\r",
+									"ruleResults = [];\r",
+									"for (let i = 0; i < resJson.result[0].report.tadpResult.typologyResult.count(); i++) {\r",
+									"    ruleResultsPerTypology = resJson.result[0].report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
+									"    for (let j = 0; j < ruleResultsPerTypology.count(); j++) {\r",
+									"        ruleResults.push(ruleResultsPerTypology[j]);\r",
+									"    };\r",
+									"    ruleResultsPerTypology = [];\r",
+									"}\r",
 									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
+									"const ruleResultsUnique = [...new Map(ruleResults.map((e) => [e.id, e])).values()];\r",
+									"ruleTimings = ruleResultsUnique.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
 									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ 2,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
+									"ruleCount = ruleTimings.count();\r",
+									"typologyCount = typologyTimings.count();\r",
+									"\r",
+									"for (let i = 0; i < typologyCount; i++) {\r",
+									"    totalTypology += typologyTimings[i];\r",
+									"    if (typologyTimings[i] > slowestTypology) {\r",
+									"        slowestTypology = typologyTimings[i];\r",
+									"        whichTypologyIsSlowest = i;\r",
+									"    }\r",
+									"    if (typologyTimings[i] < fastestTypology) {\r",
+									"        fastestTypology = typologyTimings[i];\r",
+									"        whichTypologyIsFastest = i;\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"for (let i = 0; i < ruleCount; i++) {\r",
+									"    totalRule += ruleTimings[i];\r",
+									"    if (ruleTimings[i] > slowestRule) {\r",
+									"        slowestRule = ruleTimings[i];\r",
+									"    }\r",
+									"    if (ruleTimings[i] < fastestRule) {\r",
+									"        fastestRule = ruleTimings[i];\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"whichRuleIsSlowest = ruleResultsUnique.filter(e => e.prcgTm === slowestRule)[0].id;\r",
+									"whichRuleIsFastest = ruleResultsUnique.filter(e => e.prcgTm === fastestRule)[0].id;\r",
+									"\r",
+									"let totalEstimatedTime = pcrgTmDP + pcrgTmED + slowestRule + slowestTypology + tadpTime;\r",
+									"let averageRuleTime = totalRule / ruleCount;\r",
+									"let averageTypologyTime = totalTypology / typologyCount;\r",
+									"\r",
+									"console.log(`====================================================\r",
+									"Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
+									"====================================================\r",
+									"Data Preparation Service: ${(pcrgTmDP/1000000).toFixed(3)}ms\r",
+									"ED: ${(pcrgTmED/1000000).toFixed(3)}ms\r",
+									"====================================================\r",
+									"Number of Rules: ${ruleCount}\r",
+									"Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
+									"Fastest Rule: ${(fastestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsFastest})\r",
+									"Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
+									"====================================================\r",
+									"Number of Typologies: ${typologyCount}\r",
+									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
+									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
+									"Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
+									"====================================================\r",
+									"TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
+									"====================================================`);\r",
+									"\r",
+									"let timingsPerRule = `Elapsed time per rule\r",
+									"====================================================\r",
+									"`;\r",
+									"\r",
+									"let sortedRuleTimings = ruleResultsUnique.sort((e1, e2) => (e1.prcgTm < e2.prcgTm) ? 1 : (e1.prcgTm > e2.prcgTm) ? -1 : 0);\r",
+									"\r",
+									"for (let i = 0; i < sortedRuleTimings.count(); i++) {\r",
+									"    timingsPerRule = timingsPerRule + `   ${sortedRuleTimings[i].id}: ${(sortedRuleTimings[i].prcgTm/1000000).toFixed(3)} - ${ruleDescriptions[sortedRuleTimings[i].id.substring(0,3)]}\\n`;\r",
+									"}\r",
+									"\r",
+									"console.log(timingsPerRule);\r",
+									"console.log(timingsPerTypology);\r",
+									"\r",
+									"let sortedRuleTimingsById = ruleResultsUnique.sort((e1, e2) => (e1.id > e2.id) ? 1 : (e1.id < e2.id) ? -1 : 0);\r",
+									"\r",
+									"for (let i = 0; i < sortedRuleTimingsById.length; i++) {\r",
+									"    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.reason omitted`, function () {\r",
+									"        pm.expect(sortedRuleTimingsById[i].reason).to.be.eql(undefined);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.desc omitted`, function () {\r",
+									"        pm.expect(sortedRuleTimingsById[i].desc).to.be.eql(undefined);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"pm.test(`Total (estimated) processing time: ${(totalEstimatedTime / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(totalEstimatedTime).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Data preparation procesing time: ${(pcrgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmDP).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`ED procesing time: ${(pcrgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmED).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Slowest rule procesing time: ${(slowestRule / 1000000).toFixed(3)} milliseconds (Rule ${whichRuleIsSlowest})`, function () {\r",
+									"    pm.expect(slowestRule).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Fastest rule procesing time: ${(fastestRule / 1000000).toFixed(3)} milliseconds (Rule ${whichRuleIsFastest})`, function () {\r",
+									"    pm.expect(fastestRule).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Average rule procesing time: ${(averageRuleTime / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(averageRuleTime).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
+									"    pm.expect(slowestTypology).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
+									"    pm.expect(fastestTypology).to.be.lessThan(999999999);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Average typology processing time: ${(averageTypologyTime / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(averageTypologyTime).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`TADProc processing time: ${(tadpTime / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(tadpTime).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
+									"    pm.expect(resJson.result[0].report.status).to.equal(expectedAlertStatus);\r",
+									"});\r",
+									"\r",
+									"let sortedTypologiesById = resJson.result[0].report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
+									"\r",
+									"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
+									"    pm.expect(sortedTypologiesById.length).to.equal(totalExpectedTypologies);\r",
+									"});\r",
+									"\r",
+									"let ruleWeightingTotal = 0;\r",
+									"for (let i = 0; i < sortedTypologiesById.length; i++) {\r",
+									"    ruleWeightingTotal = 0;\r",
+									"    for (let j = 0; j < sortedTypologiesById[i].ruleResults.length; j++) {\r",
+									"        ruleWeightingTotal += sortedTypologiesById[i].ruleResults[j].wght;\r",
+									"    }\r",
+									"\r",
+									"    pm.test(`Typology ${sortedTypologiesById[i].cfg} contains ${rulesPerTypologyCount[i]} rule results`, function () {\r",
+									"        pm.expect(sortedTypologiesById[i].ruleResults.length).to.equal(rulesPerTypologyCount[i]);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
+									"        pm.expect(sortedTypologiesById[i].result).to.equal(ruleWeightingTotal);\r",
+									"    });\r",
+									"\r",
+									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\") {\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) breached threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].result).to.be.lessThan(sortedTypologiesById[i].workflow.alertThreshold);\r",
+									"        });\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is false`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].review).to.be.false;\r",
+									"        });\r",
+									"    } else {\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) did not breach threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].result).to.be.lessThan(sortedTypologiesById[i].workflow.alertThreshold);\r",
+									"        });\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is false`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].review).to.be.false;\r",
+									"        });\r",
+									"    }\r",
+									"\r",
+									"    if (interdictionTypologies.includes(sortedTypologiesById[i].cfg.substring(0,3))) {\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} interdictionThreshold is greater than zero if not omitted`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].workflow.interdictionThreshold).to.be.greaterThan(0);\r",
+									"        });\r",
+									"    } else {\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} interdictionThreshold is omitted`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].workflow.interdictionThreshold).to.be.eql(undefined);\r",
+									"        });\r",
+									"    }\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -792,11 +1063,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{arangoToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{messageBody}}",
+							"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -804,560 +1085,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
+							"raw": "{{arangoUrl}}/_db/{{db_results}}/_api/cursor",
 							"host": [
-								"{{natsUrl}}"
+								"{{arangoUrl}}"
 							],
 							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
+								"_db",
+								"{{db_results}}",
+								"_api",
+								"cursor"
 							]
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "6. 3 total transactions - incoming successful, all history unsuccessful",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".03\",\r",
-									"    \"reason\": \"The debtor has performed 4 or more transactions to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
-									"// Set up the rule identity\r",
-									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase();\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
-									"\r",
-									"// ## Create additional transaction history\r",
-									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ 2,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ 'ACSC',\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{{messageBody}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
-							"host": [
-								"{{natsUrl}}"
-							],
-							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "7. 3 total transactions - incoming successful, history successful, 1 transaction more than a day ago",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".02\",\r",
-									"    \"reason\": \"The debtor has performed two or three transactions to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
-									"// Set up the rule identity\r",
-									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase();\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
-									"\r",
-									"// ## Create additional transaction history\r",
-									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );\r",
-									"\r",
-									"timeOffset = (utils.timeframe('days') * 1) + (utils.timeframe('hours') * 1);\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{{messageBody}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
-							"host": [
-								"{{natsUrl}}"
-							],
-							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "8. 3 total transactions - incoming successful, history successful, 1 transaction more than a day in the future",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"responseJSON = pm.response.json();\r",
-									"let incomingRuleResult = responseJSON.data.ruleResult;\r",
-									"let prcgTm = incomingRuleResult.prcgTm;\r",
-									"targetRuleResult = {\r",
-									"    \"id\": \"901@1.0.0\",\r",
-									"    \"cfg\": \"1.0.0\",\r",
-									"    \"subRuleRef\": \".02\",\r",
-									"    \"reason\": \"The debtor has performed two or three transactions to date\",\r",
-									"    \"desc\": \"Number of outgoing transactions - debtor\"\r",
-									"};\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    pm.test(\"pain.001/013 is enabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.true;\r",
-									"    });\r",
-									"} else {\r",
-									"    pm.test(\"pain.001/013 is disabled\", function () {\r",
-									"        pm.expect(activePain001).to.be.false;\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"pm.test(\"ruleResult.id matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.id).to.be.eql(targetRuleResult.id);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.cfg matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.cfg).to.be.eql(targetRuleResult.cfg);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.result does not exist\", function () {\r",
-									"    pm.expect(incomingRuleResult).to.not.have.property('result');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.subRuleRef matches target rule result\", function () {\r",
-									"    pm.expect(incomingRuleResult.subRuleRef).to.be.eql(targetRuleResult.subRuleRef);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.reason is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.reason).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"ruleResult.desc is omitted\", function () {\r",
-									"    pm.expect(incomingRuleResult.desc).to.be.eql(undefined);\r",
-									"});\r",
-									"\r",
-									"pm.test(`Processing time: ${(prcgTm/1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTm).to.be.greaterThan(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
-									"// Set up the rule identity\r",
-									"\r",
-									"const rule = '901';\r",
-									"const ruleVer = '1.0.0'\r",
-									"const configVer = '1.0.0'\r",
-									"const ruleId = `${rule}@${ruleVer}`;\r",
-									"\r",
-									"console.log(`Rule: ${ruleId}@${configVer}\r",
-									"======================`);\r",
-									"\r",
-									"// Set up the transaction history ecosystem\r",
-									"\r",
-									"triggerMessageSet = utils.createTransactionSetsInDatabase();\r",
-									"\r",
-									"// ## Set up body variables\r",
-									"\r",
-									"\r",
-									"triggerDataCache = triggerMessageSet[0].pacs002.DataCache;\r",
-									"pm.variables.set('messageBody', utils.getRuleProcessorBody(ruleId, configVer, triggerMessageSet[0].pacs002, triggerDataCache));\r",
-									"\r",
-									"// ## Create additional transaction history\r",
-									"\r",
-									"triggerpacs008 = triggerMessageSet[0].pacs008;\r",
-									"triggerDbtrId = utils.getDebtorIdFromPacs008(triggerpacs008);\r",
-									"triggerDbtrAcctId = utils.getDebtorAccountIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrId = utils.getCreditorIdFromPacs008(triggerpacs008);\r",
-									"triggerCdtrAcctId = utils.getCreditorAccountIdFromPacs008(triggerpacs008);\r",
-									"timeOffset = utils.timeframe('hours') * 4;\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ triggerDbtrAcctId.agt.finInstnId.clrSysMmbId.mmbId,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );\r",
-									"\r",
-									"timeOffset = (utils.timeframe('days') * 1) + (utils.timeframe('hours') * 1);\r",
-									"\r",
-									"historicalMessageSets = utils.createTransactionSetsInDatabase(\r",
-									"    /* Number of Sets - null defaults 1 ----------------------------- */ null,\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Epoch - null defaults 0 ---------------------------- */ -timeOffset,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Timestamp Iteration Leap - null defaults even spread --------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ triggerDbtrId.id,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ triggerDbtrAcctId.id,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{{messageBody}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{natsUrl}}/{{path-rule-901-rel-1-0-0}}",
-							"host": [
-								"{{natsUrl}}"
-							],
-							"path": [
-								"{{path-rule-901-rel-1-0-0}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"description": "## Number of outgoing transactions - debtor\n\nThis rule determines how many transactions the debtor has performed from their account in the last day.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				}
 			]
 		}
@@ -2643,7 +2383,7 @@
 					"        exchangeRateCurrency = exchangeRateCurrency ? exchangeRateCurrency : instructedCurrency;",
 					"        exchangeRate = exchangeRate ? exchangeRate : 1.0;",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
+					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",
@@ -2867,7 +2607,7 @@
 					"        creditorAgentId = creditorAgentId ? creditorAgentId : 'fsp002';",
 					"",
 					"        // Metadata",
-					"        transactionDescription = transactionDescription ? transactionDescription : uuid.v4();",
+					"        transactionDescription = transactionDescription ? transactionDescription : 'Generic payment description';",
 					"        pacs002Sts = pacs002Sts ? pacs002Sts : 'ACCC';",
 					"        debtorAge = debtorAge ? debtorAge : 25;",
 					"        if (activePain001) {",
