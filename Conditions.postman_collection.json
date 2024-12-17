@@ -11472,7 +11472,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -11788,7 +11788,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -12104,7 +12104,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -12777,7 +12777,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -13093,7 +13093,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -13409,7 +13409,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -14516,7 +14516,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -14846,7 +14846,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -15176,7 +15176,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+													"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 													"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 													"const awaitReply = true; // Hold the phone for a callback\r",
 													"\r",
@@ -16121,7 +16121,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+															"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 															"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 															"const awaitReply = true; // Hold the phone for a callback\r",
 															"\r",
@@ -16783,7 +16783,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"const endpoint = `http://${pm.environment.get(\"tazamaTMSUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
+															"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
 															"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
 															"const awaitReply = true; // Hold the phone for a callback\r",
 															"\r",
