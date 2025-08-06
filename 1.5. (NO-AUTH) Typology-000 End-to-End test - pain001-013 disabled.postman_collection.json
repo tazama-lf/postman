@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "160d26d4-3b0b-43ff-82db-ca1a8a6e40bc",
-		"name": "1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001/013 disabled",
-		"description": "# 20241129\n\n- Implemented test for relay service\n    \n- Relies on the deployment of the nats-utilities",
+		"_postman_id": "a62bb45c-cb3a-4a02-b543-8ee3bb77bdf0",
+		"name": "1.5. (NO-AUTH) Typology-000 End-to-End test - pain001/013 disabled",
+		"description": "# 20250805\n\n- Implemented test for typology 000 deployment.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
 	},
@@ -11,2938 +11,236 @@
 			"name": "Message Creation sans pain.001/013",
 			"item": [
 				{
-					"name": "Alert-and-interdiction-service-output",
-					"item": [
+					"name": "Create messages in memory",
+					"event": [
 						{
-							"name": "Transaction 1 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"utils.setPm(pm); // set the utils _pm to the pre-request script pm\r",
+									"\r",
+									"pm.globals.clear();\r",
+									"\r",
+									"console.log(`Data Preparation Service - Public Network Map`);\r",
+									"\r",
+									"// ## Set up transaction eco-system\r",
+									"\r",
+									"messageSet = utils.createTransactionSetInMemory();"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						},
 						{
-							"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = false; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 1 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"NALT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = false;\r",
-											"const expectedTypologyAlert = false;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"const typologyCount = typologyResultsUnique.length;\r",
-											"const ruleCount = ruleResultsUnique.length;\r",
-											"\r",
-											"let foundEFRuP = false;\r",
-											"let blockingOutcome = null;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"let ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
-											"pm.globals.set('responseTimedOut', true);\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002\r",
-											"pm.globals.set('responseTimedOut', false);\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.report.status).to.eq(\"ALRT\");\r",
-											"});\r",
-											"\r",
-											"pm.test(`Request does not complete within specified timeout of ${pm.globals.get('timeoutLimit')}`, function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.above(4000);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"const expectedResponseTimedOut = true;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											"    \r",
-											"pm.test(`No response received at interdiction-service before timeout`, function () {\r",
-											"        pm.expect(pm.globals.get('responseTimedOut')).to.be.eql(expectedResponseTimedOut);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002\r",
-											"pm.globals.set('responseTimedOut', false);\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.typologyResult.review).to.be.true;\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = true;\r",
-											"const expectedResponseTimedOut = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											"        \r",
-											"pm.test(`Response received at interdiction-service before timeout`, function () {\r",
-											"        pm.expect(pm.globals.get('responseTimedOut')).to.be.eql(expectedResponseTimedOut);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let dataCache = JSON.parse(pm.globals.get(\"dataCache\"));\r",
+									"let endToEndId = pm.globals.get(\"endToEndId\");\r",
+									"let messageIdPacs008 = pm.globals.get(\"messageIdPacs008\");\r",
+									"let messageIdPacs002 = pm.globals.get(\"messageIdPacs002\");\r",
+									"let pacs008 = pm.globals.get(\"pacs008\");\r",
+									"let pacs002 = pm.globals.get(\"pacs002\");\r",
+									"\r",
+									"pm.test(`Has a new dataCache:dbtrId value: ${dataCache.dbtrId}`, function() {\r",
+									"  pm.expect(dataCache.dbtrId, `${dataCache.dbtrId}`).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new dataCache:cdtrId value: ${dataCache.cdtrId}`, function() {\r",
+									"  pm.expect(dataCache.cdtrId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a dataCache:dbtrAcctId value: ${dataCache.dbtrAcctId}`, function() {\r",
+									"  pm.expect(dataCache.dbtrAcctId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a dataCache:cdtrAcctId value: ${dataCache.cdtrAcctId}`, function() {\r",
+									"  pm.expect(dataCache.cdtrAcctId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new endToEndId value: ${endToEndId}`, function() {\r",
+									"  pm.expect(endToEndId).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(`Has a new pacs.008 msgId value: ${messageIdPacs008}`, function() {\r",
+									"  pm.expect(messageIdPacs008).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.002 msgId value: ${messageIdPacs002}`, function() {\r",
+									"  pm.expect(messageIdPacs002).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.008 body for TMS API`, function() {\r",
+									"  pm.expect(pacs008).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(`Has a new pacs.002 body for Data Preparation`, function() {\r",
+									"  pm.expect(pacs002).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"if (activePain001) {\r",
+									"    let messageIdPain001 = pm.globals.get(\"messageIdPain001\");\r",
+									"    let messageIdPain013 = pm.globals.get(\"messageIdPain013\");\r",
+									"    let pain001 = pm.globals.get(\"pain001\");\r",
+									"    let pain013 = pm.globals.get(\"pain013\");\r",
+									"    pm.test(`Has a new pain.001 msgId value: ${messageIdPain001}`, function() {\r",
+									"    pm.expect(messageIdPain001).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.013 msgId value: ${messageIdPain013}`, function() {\r",
+									"    pm.expect(messageIdPain013).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.001 body for TMS API`, function() {\r",
+									"    pm.expect(pain001).to.be.a('string');\r",
+									"    });\r",
+									"\r",
+									"    pm.test(`Has a new pain.013 body for TMS API`, function() {\r",
+									"    pm.expect(pain013).to.be.a('string');\r",
+									"    });\r",
+									"} else {\r",
+									"    pm.test(`pain.001/013 messages disabled`, function() {\r",
+									"    pm.expect(activePain001).to.be.false;\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaTMSUrl}}",
+							"host": [
+								"{{tazamaTMSUrl}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "Relay-service-output-NATS",
-					"item": [
+					"name": "Post pacs.008 to TMS API - unauthenticated",
+					"event": [
 						{
-							"name": "Transaction 1 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs008');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						},
 						{
-							"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `interdiction-service`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = false; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 1 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"NALT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = false;\r",
-											"const expectedTypologyAlert = false;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"const typologyCount = typologyResultsUnique.length;\r",
-											"const ruleCount = ruleResultsUnique.length;\r",
-											"\r",
-											"let foundEFRuP = false;\r",
-											"let blockingOutcome = null;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"let ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
-											"pm.globals.set('responseTimedOut', true);\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `relay-service-nats-tp`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002\r",
-											"pm.globals.set('responseTimedOut', false);\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.report.status).to.eq(\"ALRT\");\r",
-											"});\r",
-											"\r",
-											"pm.test(`Request does not complete within specified timeout of ${pm.globals.get('timeoutLimit')}`, function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.above(4000);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"const expectedResponseTimedOut = true;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											"    \r",
-											"pm.test(`No response received at interdiction-service before timeout`, function () {\r",
-											"        pm.expect(pm.globals.get('responseTimedOut')).to.be.eql(expectedResponseTimedOut);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `relay-service-nats-tp`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"// Hacky workaround for testing the timeout of the submission of the pacs002\r",
-											"pm.globals.set('responseTimedOut', false);\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.typologyResult.review).to.be.true;\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = true;\r",
-											"const expectedResponseTimedOut = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });\r",
-											"        \r",
-											"pm.test(`Response received at interdiction-service before timeout`, function () {\r",
-											"        pm.expect(pm.globals.get('responseTimedOut')).to.be.eql(expectedResponseTimedOut);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{messageBody}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"host": [
+								"{{tazamaTMSUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs008}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "Relay-service-output-NATS-old",
-					"item": [
+					"name": "Post pacs.002 to TMS API - unauthenticated",
+					"event": [
 						{
-							"name": "Transaction 1 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs002');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						},
 						{
-							"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `tazama-egress`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = false; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 1 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"NALT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = false;\r",
-											"const expectedTypologyAlert = false;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `tazama-egress`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.report.status).to.eq(\"ALRT\");\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 2 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = false;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.008 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-											"\r",
-											"let dbtrId = pm.globals.get('debtorId');\r",
-											"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-											"let cdtrId = pm.globals.get('creditorId');\r",
-											"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
-											"\r",
-											"// ## Set up transaction eco-system\r",
-											"\r",
-											"messageSet = utils.createTransactionSetInMemory(\r",
-											"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-											"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-											"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-											"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-											"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-											"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-											"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-											"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-											"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-											"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-											"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-											"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-											"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-											"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-											"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-											"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-											"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-											"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-											"    );\r",
-											"\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs008');\r",
-											"pm.globals.set('messageBody', messageBody);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"pacs.008 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{{messageBody}}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
-									"host": [
-										"{{tazamaTMSUrl}}{{path-api-version}}"
-									],
-									"path": [
-										"{{path-pacs008}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"const endpoint = `http://${pm.environment.get(\"tazamaTMSContainerUrl\")}${pm.environment.get(\"path-api-version\")}/${pm.environment.get(\"path-pacs002\")}`; // The TMS API endpoint to invoke\r",
-											"const responseDestination = `tazama-egress`; // The NATS subject for the output retrieval\r",
-											"const awaitReply = true; // Hold the phone for a callback\r",
-											"\r",
-											"let messageBody = pm.globals.get('pacs002');\r",
-											"pm.globals.set('messageBody', messageBody);\r",
-											"pm.globals.set('endpoint', endpoint);\r",
-											"pm.globals.set('responseDestination', responseDestination);\r",
-											"pm.globals.set('awaitReply', awaitReply);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"console.log(resJson);\r",
-											"\r",
-											"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.typologyResult.review).to.be.true;\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"transaction\": {{messageBody}},\r\n    \"endpoint\": \"{{endpoint}}\",\r\n    \"natsConsumer\": \"{{responseDestination}}\",\r\n    \"functionName\": \"{{messageIdPacs002}}\",\r\n    \"awaitReply\": {{awaitReply}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{natsUrl}}/{{nats-path-tms-api}}",
-									"host": [
-										"{{natsUrl}}"
-									],
-									"path": [
-										"{{nats-path-tms-api}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Transaction 3 - Fetch evaluation results with msgId from admin-service - Rule 901 Network Map",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const resJson = pm.response.json();\r",
-											"\r",
-											"const rulesPerTypologyCount = [2];\r",
-											"const totalExpectedTypologies = 1;\r",
-											"const expectedAlertStatus = \"ALRT\";\r",
-											"const expectedBlockingOutcome = \"none\";\r",
-											"const expectedReviewFlag = true;\r",
-											"const expectedTypologyAlert = true;\r",
-											"const expectedTypologyInterdiction = true;\r",
-											"\r",
-											"const interdictionTypologies = [\r",
-											"  \"999\"\r",
-											"];\r",
-											"const ruleDescriptions = {\r",
-											"  \"901\": \"Number of outgoing transactions - debtor\",\r",
-											"  \"EFRuP\": \"Event-Flow Rule Processor\"\r",
-											"}\r",
-											"const typologyDescriptions = {\r",
-											"  \"999\": \"Rule-901-Typology-999\"\r",
-											"}\r",
-											"\r",
-											"const typologyResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult.map((e) => [e.id, e])).values()];\r",
-											"const ruleResultsUnique = [...new Map(resJson.data.report.tadpResult.typologyResult[0].ruleResults.map((e) => [e.id, e])).values()];\r",
-											"\r",
-											"typologyCount = typologyResultsUnique.count();\r",
-											"ruleCount = ruleResultsUnique.count();\r",
-											"\r",
-											"foundEFRuP = false;\r",
-											"for (let i = 0; i < ruleResultsUnique.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id == \"EFRuP@1.0.0\") {\r",
-											"        blockingOutcome = ruleResultsUnique[i].subRuleRef;\r",
-											"        foundEFRuP = true;\r",
-											"    }\r",
-											"}\r",
-											"\r",
-											"ruleWeightingTotal = 0;\r",
-											"for (let i = 0; i < typologyResultsUnique[0].ruleResults.length; i++) {\r",
-											"    if (ruleResultsUnique[i].id != \"EFRuP@1.0.0\") {\r",
-											"        ruleWeightingTotal += typologyResultsUnique[0].ruleResults[i].wght;\r",
-											"    }    \r",
-											"}\r",
-											"\r",
-											"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-											"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
-											"    pm.expect(typologyCount).to.equal(totalExpectedTypologies);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains ${rulesPerTypologyCount[0]} rule results`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].ruleResults.length).to.equal(rulesPerTypologyCount[0]);\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} contains Event Flow Rule Processor rule results`, function () {\r",
-											"    pm.expect(foundEFRuP).to.be.true;\r",
-											"});\r",
-											"\r",
-											"pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) matches rule weighting total (${ruleWeightingTotal})`, function () {\r",
-											"    pm.expect(typologyResultsUnique[0].result).to.equal(ruleWeightingTotal);\r",
-											"});\r",
-											"\r",
-											"if (!expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && !expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) did not breach interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.lessThan(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedTypologyAlert && expectedTypologyInterdiction) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached alert threshold (${typologyResultsUnique[0].workflow.alertThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.alertThreshold);\r",
-											"    });\r",
-											"\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} result (${typologyResultsUnique[0].result}) breached interdiction threshold (${typologyResultsUnique[0].workflow.interdictionThreshold})`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].result).to.be.greaterThanOrEqual(typologyResultsUnique[0].workflow.interdictionThreshold);\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"if (expectedReviewFlag) {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is true`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.true;\r",
-											"    });\r",
-											"} else {\r",
-											"    pm.test(`Typology ${typologyResultsUnique[0].cfg} review flag is false`, function () {\r",
-											"        pm.expect(typologyResultsUnique[0].review).to.be.false;\r",
-											"    });\r",
-											"}\r",
-											"\r",
-											"pm.test(`Event Flow Rule Processor result is \"${expectedBlockingOutcome}\"`, function () {\r",
-											"        pm.expect(blockingOutcome).to.be.eql(expectedBlockingOutcome);\r",
-											"    });"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{arangoToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
-									"host": [
-										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
-									],
-									"path": [
-										"admin",
-										"reports",
-										"getreportbymsgid"
-									],
-									"query": [
-										{
-											"key": "msgid",
-											"value": "{{messageIdPacs002}}"
-										}
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"pacs.002 successfully submitted to TMS API\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{pacs002}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"host": [
+								"{{tazamaTMSUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs002}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -3293,7 +591,7 @@
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId - Rule 901 Network Map Only",
+					"name": "Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -3310,31 +608,22 @@
 							"script": {
 								"exec": [
 									"const resJson = pm.response.json();\r",
-									"\r",
-									"const rulesPerTypologyCount = [2];\r",
+									"const rulesPerTypologyCount = [34];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
-									"  \"000\",\r",
-									"  \"028\",\r",
-									"  \"037\",\r",
-									"  \"044\",\r",
-									"  \"045\",\r",
-									"  \"047\",\r",
-									"  \"095\",\r",
-									"  \"179\",\r",
-									"  \"185\",\r",
-									"  \"999\"\r",
+									"  \"000\"\r",
 									"];\r",
 									"const ruleDescriptions = {\r",
-									"  \"001\": \"Derived account age - creditor\",\r",
-									"  \"002\": \"Transaction convergence - debtor\",\r",
-									"  \"003\": \"Account dormancy - creditor\",\r",
-									"  \"004\": \"Account dormancy - debtor\",\r",
-									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
-									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+									"  \"EFRuP\": \"Event-Flow Rule Processor\",\r",
+									"  \"001\": \"Derived account age - creditor\",\r",
+									"  \"002\": \"Transaction convergence - debtor\",\r",
+									"  \"003\": \"Account dormancy - creditor\",\r",
+									"  \"004\": \"Account dormancy - debtor\",\r",
+									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
+									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
 									"  \"008\": \"Outgoing transfer similarity - creditor\",\r",
-									"  \"010\": \"Increased account activity: volume - debtor\",\r",
+									"  \"010\": \"Increased account activity: volume - debtor\",\r",
 									"  \"011\": \"Increased account activity: volume - creditor\",\r",
 									"  \"016\": \"Transaction convergence - creditor\",\r",
 									"  \"017\": \"Transaction divergence - debtor\",\r",
@@ -3363,6 +652,7 @@
 									"}\r",
 									"const typologyDescriptions = {\r",
 									"  \"000\": \"Complete rule coverage\",\r",
+									"  \"EFTyp\": \"Event-Flow Control Typology\",\r",
 									"  \"001\": \"Use of several currencies, structured transactions, with a great number of persons involved, large number of transactions related to each other during a short time period.\",\r",
 									"  \"002\": \"Receiving funds from high number of senders over a short period of time, large sum transactions compared to person's living standard.\",\r",
 									"  \"003\": \"Large volume of transactions for the same customer with multiple instances of using different name spellings, false addresses or identification that evolves i.e. some parts of the identification change, while other parts remains the same, such as a person whose last name changes while his first name, date of birth, identification number and address remain the same.\",\r",
@@ -3404,14 +694,14 @@
 									"let fastestTypology = 999999999;\r",
 									"let totalRule = 0;\r",
 									"let totalTypology = 0;\r",
-									"let prcgTmDP = resJson.result[0].report.metaData.prcgTmDP;\r",
-									"let prcgTmED = resJson.result[0].report.metaData.prcgTmED;\r",
-									"let tadpTime = resJson.result[0].report.tadpResult.prcgTm;\r",
+									"let pcrgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
+									"let pcrgTmED = resJson.data.report.metaData.prcgTmED;\r",
+									"let tadpTime = resJson.data.report.tadpResult.prcgTm;\r",
 									"let whichTypologyIsSlowest = 0;\r",
 									"let whichTypologyIsFastest = 0;\r",
 									"let whichRuleIsSlowest = 0;\r",
 									"\r",
-									"let typologyTimings = resJson.result[0].report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
+									"let typologyTimings = resJson.data.report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
 									"\r",
 									"let timingsPerTypology = `Elapsed typology processor time per typology\r",
 									"====================================================\r",
@@ -3426,8 +716,8 @@
 									"typologyTimings = typologyTimings.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
 									"\r",
 									"ruleResults = [];\r",
-									"for (let i = 0; i < resJson.result[0].report.tadpResult.typologyResult.count(); i++) {\r",
-									"    ruleResultsPerTypology = resJson.result[0].report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
+									"for (let i = 0; i < resJson.data.report.tadpResult.typologyResult.count(); i++) {\r",
+									"    ruleResultsPerTypology = resJson.data.report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
 									"    for (let j = 0; j < ruleResultsPerTypology.count(); j++) {\r",
 									"        ruleResults.push(ruleResultsPerTypology[j]);\r",
 									"    };\r",
@@ -3465,15 +755,15 @@
 									"whichRuleIsSlowest = ruleResultsUnique.filter(e => e.prcgTm === slowestRule)[0].id;\r",
 									"whichRuleIsFastest = ruleResultsUnique.filter(e => e.prcgTm === fastestRule)[0].id;\r",
 									"\r",
-									"let totalEstimatedTime = prcgTmDP + prcgTmED + slowestRule + slowestTypology + tadpTime;\r",
+									"let totalEstimatedTime = pcrgTmDP + pcrgTmED + slowestRule + slowestTypology + tadpTime;\r",
 									"let averageRuleTime = totalRule / ruleCount;\r",
 									"let averageTypologyTime = totalTypology / typologyCount;\r",
 									"\r",
 									"console.log(`====================================================\r",
 									"Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
 									"====================================================\r",
-									"Data Preparation Service: ${(prcgTmDP/1000000).toFixed(3)}ms\r",
-									"ED: ${(prcgTmED/1000000).toFixed(3)}ms\r",
+									"Data Preparation Service: ${(pcrgTmDP/1000000).toFixed(3)}ms\r",
+									"ED: ${(pcrgTmED/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Rules: ${ruleCount}\r",
 									"Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
@@ -3481,9 +771,8 @@
 									"Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Typologies: ${typologyCount}\r",
-									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
-									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
-									"\r",
+									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
+									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
 									"Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
@@ -3551,12 +840,12 @@
 									"    pm.expect(totalEstimatedTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Data preparation procesing time: ${(prcgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTmDP).to.be.greaterThan(0);\r",
+									"pm.test(`Data preparation procesing time: ${(pcrgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmDP).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`ED procesing time: ${(prcgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTmED).to.be.greaterThan(0);\r",
+									"pm.test(`ED procesing time: ${(pcrgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmED).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
 									"pm.test(`Slowest rule procesing time: ${(slowestRule / 1000000).toFixed(3)} milliseconds (Rule ${whichRuleIsSlowest})`, function () {\r",
@@ -3571,11 +860,11 @@
 									"    pm.expect(averageRuleTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
+									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
 									"    pm.expect(slowestTypology).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
+									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
 									"    pm.expect(fastestTypology).to.be.lessThan(999999999);\r",
 									"});\r",
 									"\r",
@@ -3588,10 +877,10 @@
 									"});\r",
 									"\r",
 									"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-									"    pm.expect(resJson.result[0].report.status).to.equal(expectedAlertStatus);\r",
+									"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
 									"});\r",
 									"\r",
-									"let sortedTypologiesById = resJson.result[0].report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
+									"let sortedTypologiesById = resJson.data.report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
 									"\r",
 									"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
 									"    pm.expect(sortedTypologiesById.length).to.equal(totalExpectedTypologies);\r",
@@ -3612,12 +901,12 @@
 									"        pm.expect(sortedTypologiesById[i].result).to.equal(ruleWeightingTotal);\r",
 									"    });\r",
 									"\r",
-									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\" && expectedAlertStatus == \"ALRT\") {\r",
+									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\") {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) breached threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].result).to.be.greaterThanOrEqual(sortedTypologiesById[i].workflow.alertThreshold);\r",
+									"            pm.expect(sortedTypologiesById[i].result).to.be.lessThan(sortedTypologiesById[i].workflow.alertThreshold);\r",
 									"        });\r",
-									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is true`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].review).to.be.true;\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is false`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].review).to.be.false;\r",
 									"        });\r",
 									"    } else {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) did not breach threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
@@ -3644,6 +933,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -3655,7 +947,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -3667,15 +959,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_results}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-admin-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_results}}",
-								"_api",
-								"cursor"
+								"admin",
+								"reports",
+								"getreportbymsgid"
+							],
+							"query": [
+								{
+									"key": "msgid",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
