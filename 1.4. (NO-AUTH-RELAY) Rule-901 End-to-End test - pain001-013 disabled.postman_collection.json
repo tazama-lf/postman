@@ -1120,7 +1120,7 @@
 											"});\r",
 											"\r",
 											"pm.test(`Alert trapped at response destination ${pm.globals.get('responseDestination')}`, function () {\r",
-											"    pm.expect(resJson.edResponse.typologyResult.review).to.be.true;\r",
+											"    pm.expect(resJson.edResponse.report.status).to.eql(\"ALRT\");\r",
 											"});"
 										],
 										"type": "text/javascript",
