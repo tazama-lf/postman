@@ -1240,7 +1240,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{arangoToken}}",
+									"value": "{{auth-token}}",
 									"type": "string"
 								}
 							]
