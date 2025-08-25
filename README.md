@@ -8,7 +8,7 @@ The files and folders you see here can be used to test Tazama via both the TMS A
 
 When you are deploying Tazama as a public user<sup>1</sup> you will be able to use the tests here to validate your deployment. The instructions to set up Tazama via Docker Compose into a Full Stack containerized implementation can be found in the [Full-Stack-Docker-Tazama](https://github.com/tazamma-lf/Full-Stack-Docker-Tazama/tree/main) repository. The instructions there will provide specific guidance on how to test a deployment using the end-to-end test above.
 
-If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/tazama-lf/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
+If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/tazama-lf/docs/blob/dev/Guides/dev-set-up-environment.md#setting-up-the-development-environment-), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
 
 To use any of these tests, you can clone this repository onto your local machine and either import the tests you want to run or work on into Postman, or you can run the tests from a command line via [Newman](https://learning.postman.com/docs/collections/using-newman-cli/installing-running-newman/#installing-newman).
 
@@ -513,7 +513,7 @@ The message body in the "Body" tab of the test request only contains the variabl
 
 ### ArangoDB Setup.json
 
-This test collection is used during a deployment to configure the ArangoDB databases and collections via the ArangoDB API. This collection is typically executed automatically via Jenkins, but can also be executed manually if you are setting up ArangoDB from scratch as described in our [Contribution Guide](https://github.com/frmscoe/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment).
+This test collection is used during a deployment to configure the ArangoDB databases and collections via the ArangoDB API. This collection is typically executed automatically via Jenkins, but can also be executed manually if you are setting up ArangoDB from scratch as described in our [Contribution Guide](https://github.com/tazama-lf/docs/blob/dev/Guides/dev-set-up-environment.md#312-step-2-set-up-core-services).
 
 The collection also sets up the indexes recommended for optimal performance of our database queries. You can read more about the indexes on our [Tazama Database Indexes](https://github.com/frmscoe/docs/blob/main/Technical/Database/arango-db-deployment-indexes.md) page.
 
