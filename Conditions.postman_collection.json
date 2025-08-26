@@ -17768,7 +17768,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -18098,7 +18098,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -18428,7 +18428,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -19373,7 +19373,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -20035,7 +20035,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -20726,7 +20726,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -21042,7 +21042,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -21358,7 +21358,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -22031,7 +22031,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -22347,7 +22347,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -22663,7 +22663,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -23770,7 +23770,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -24100,7 +24100,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -24430,7 +24430,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -25375,7 +25375,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -26037,7 +26037,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -26597,7 +26597,7 @@
 													"  \"evtTp\":[\"pain.001.001.11\",\"pain.013.001.09\",\"pacs.008.001.10\",\"pacs.002.001.12\"],\r",
 													"  \"condTp\":\"non-overridable-block\",\r",
 													"  \"prsptv\":\"creditor\",\r",
-													"  \"condRsn\":\"Blocking payments by debtor only\",\r",
+													"  \"condRsn\":\"Blocking payments to debtor only\",\r",
 													"  \"ntty\":\r",
 													"  {\r",
 													"    \"id\": `${dbtrNttyId.id}`,\r",
@@ -26652,10 +26652,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -26663,12 +26663,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ dbtrId,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ dbtrAcctId,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -26728,7 +26728,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -26815,9 +26815,9 @@
 													"\r",
 													"const rulesPerTypologyCount = [2];\r",
 													"const totalExpectedTypologies = 1;\r",
-													"const expectedAlertStatus = \"NALT\";\r",
-													"const expectedBlockingOutcome = \"none\";\r",
-													"const expectedReviewFlag = false;\r",
+													"const expectedAlertStatus = \"ALRT\";\r",
+													"const expectedBlockingOutcome = \"block\";\r",
+													"const expectedReviewFlag = true;\r",
 													"const expectedTypologyAlert = false;\r",
 													"const expectedTypologyInterdiction = false;\r",
 													"\r",
@@ -26968,10 +26968,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -26979,12 +26979,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ dbtrId,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ dbtrAcctId,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -27044,7 +27044,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -27131,9 +27131,9 @@
 													"\r",
 													"const rulesPerTypologyCount = [2];\r",
 													"const totalExpectedTypologies = 1;\r",
-													"const expectedAlertStatus = \"NALT\";\r",
-													"const expectedBlockingOutcome = \"none\";\r",
-													"const expectedReviewFlag = false;\r",
+													"const expectedAlertStatus = \"ALRT\";\r",
+													"const expectedBlockingOutcome = \"block\";\r",
+													"const expectedReviewFlag = true;\r",
 													"const expectedTypologyAlert = false;\r",
 													"const expectedTypologyInterdiction = false;\r",
 													"\r",
@@ -27284,10 +27284,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -27295,12 +27295,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ dbtrId,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ dbtrAcctId,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -27448,10 +27448,10 @@
 													"const rulesPerTypologyCount = [2];\r",
 													"const totalExpectedTypologies = 1;\r",
 													"const expectedAlertStatus = \"ALRT\";\r",
-													"const expectedBlockingOutcome = \"none\";\r",
+													"const expectedBlockingOutcome = \"block\";\r",
 													"const expectedReviewFlag = true;\r",
-													"const expectedTypologyAlert = true;\r",
-													"const expectedTypologyInterdiction = true;\r",
+													"const expectedTypologyAlert = false;\r",
+													"const expectedTypologyInterdiction = false;\r",
 													"\r",
 													"const interdictionTypologies = [\r",
 													"  \"999\"\r",
@@ -29772,7 +29772,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - EXPECTED TIMEOUT",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -30102,7 +30102,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - EXPECTED TIMEOUT",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -30432,7 +30432,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - EXPECTED TIMEOUT",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -31377,7 +31377,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO EXPECTED TIMEOUT",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -32039,7 +32039,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated - EXPECTED TIMEOUT",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -32654,10 +32654,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -32730,7 +32730,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -32970,10 +32970,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -33046,7 +33046,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO EXPECTED TIMEOUT",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -33136,7 +33136,7 @@
 													"const expectedAlertStatus = \"ALRT\";\r",
 													"const expectedBlockingOutcome = \"block\";\r",
 													"const expectedReviewFlag = true;\r",
-													"const expectedTypologyAlert = true;\r",
+													"const expectedTypologyAlert = false;\r",
 													"const expectedTypologyInterdiction = false;\r",
 													"\r",
 													"const interdictionTypologies = [\r",
@@ -33286,10 +33286,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -33452,8 +33452,8 @@
 													"const expectedAlertStatus = \"ALRT\";\r",
 													"const expectedBlockingOutcome = \"block\";\r",
 													"const expectedReviewFlag = true;\r",
-													"const expectedTypologyAlert = true;\r",
-													"const expectedTypologyInterdiction = true;\r",
+													"const expectedTypologyAlert = false;\r",
+													"const expectedTypologyInterdiction = false;\r",
 													"\r",
 													"const interdictionTypologies = [\r",
 													"  \"999\"\r",
@@ -34441,7 +34441,7 @@
 													"const expectedAlertStatus = \"ALRT\";\r",
 													"const expectedBlockingOutcome = \"block\";\r",
 													"const expectedReviewFlag = true;\r",
-													"const expectedTypologyAlert = true;\r",
+													"const expectedTypologyAlert = false;\r",
 													"const expectedTypologyInterdiction = false;\r",
 													"\r",
 													"const interdictionTypologies = [\r",
@@ -34757,8 +34757,8 @@
 													"const expectedAlertStatus = \"ALRT\";\r",
 													"const expectedBlockingOutcome = \"block\";\r",
 													"const expectedReviewFlag = true;\r",
-													"const expectedTypologyAlert = true;\r",
-													"const expectedTypologyInterdiction = true;\r",
+													"const expectedTypologyAlert = false;\r",
+													"const expectedTypologyInterdiction = false;\r",
 													"\r",
 													"const interdictionTypologies = [\r",
 													"  \"999\"\r",
@@ -38656,10 +38656,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -38667,12 +38667,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -38972,10 +38972,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -38983,12 +38983,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -39048,7 +39048,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -39288,10 +39288,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -39299,12 +39299,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -39364,7 +39364,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -39961,10 +39961,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -39972,13 +39972,13 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
-													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+													"   /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
 													"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
@@ -40277,10 +40277,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -40288,12 +40288,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -40353,7 +40353,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -40593,10 +40593,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// ## Set up transaction eco-system\r",
 													"\r",
@@ -40604,12 +40604,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -40669,7 +40669,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -41711,12 +41711,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -41776,7 +41776,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 1 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -42027,10 +42027,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
 													"pm.globals.set('responseTimedOut', true);\r",
@@ -42041,12 +42041,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -42106,7 +42106,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 2 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -42357,10 +42357,10 @@
 												"exec": [
 													"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 													"\r",
-													"let dbtrId = pm.globals.get('debtorId');\r",
-													"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
-													"let cdtrId = pm.globals.get('creditorId');\r",
-													"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
+													"let dbtrId = pm.globals.get('dbtrNttyId');\r",
+													"let dbtrAcctId = pm.globals.get('dbtrAcctId');\r",
+													"let cdtrId = pm.globals.get('cdtrNttyId');\r",
+													"let cdtrAcctId = pm.globals.get('cdtrAcctId');\r",
 													"\r",
 													"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
 													"pm.globals.set('responseTimedOut', true);\r",
@@ -42371,12 +42371,12 @@
 													"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 													"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 													"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-													"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-													"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-													"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-													"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+													"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+													"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+													"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+													"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+													"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+													"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 													"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 													"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 													"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -42436,7 +42436,7 @@
 									"response": []
 								},
 								{
-									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+									"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -42695,23 +42695,23 @@
 														"exec": [
 															"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
 															"\r",
+															"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
+															"pm.globals.set('responseTimedOut', true);\r",
+															"\r",
+															"// ## Set up transaction eco-system\r",
+															"messageSet = utils.createTransactionSetInMemory();\r",
 															"let dbtrId = pm.globals.get('debtorId');\r",
 															"let dbtrAcctId = pm.globals.get('debtorAccountId');\r",
 															"let cdtrId = pm.globals.get('creditorId');\r",
 															"let cdtrAcctId = pm.globals.get('creditorAccountId');\r",
 															"\r",
-															"// Hacky workaround for testing the timeout of the submission of the pacs002 after this test\r",
-															"pm.globals.set('responseTimedOut', true);\r",
-															"\r",
-															"// ## Set up transaction eco-system\r",
-															"\r",
 															"messageSet = utils.createTransactionSetInMemory(\r",
 															"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 															"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 															"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-															"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-															"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+															"    /* Debtor ID - null defaults random UUID ------------------------ */ cdtrId,\r",
+															"    /* Debtor Account ID - null defaults random UUID ---------------- */ cdtrAcctId,\r",
+															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
 															"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
 															"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
 															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
@@ -43013,12 +43013,12 @@
 															"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 															"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 															"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-															"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-															"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-															"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-															"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+															"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
+															"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
+															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+															"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+															"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 															"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 															"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 															"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -43316,12 +43316,12 @@
 															"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 															"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 															"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-															"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-															"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-															"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-															"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+															"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
+															"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
+															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+															"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+															"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 															"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 															"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 															"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -43381,7 +43381,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 3 - Post pacs.002 to TMS API - unauthenticated - NO TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -43636,8 +43636,8 @@
 															"let conditionEntity = responseJSON.result.ntty;\r",
 															"let requestMessage = responseJSON.message;\r",
 															"console.log(`Response condition: ${JSON.stringify(responseJSON)}`);\r",
-															"let nttyId = pm.globals.get(\"cdtrNttyId\");\r",
-															"let nttyIdSchme = pm.globals.get(\"cdtrNttyIdSchmeNm\");\r",
+															"let nttyId = pm.globals.get(\"dbtrNttyId\");\r",
+															"let nttyIdSchme = pm.globals.get(\"dbtrNttyIdSchmeNm\");\r",
 															"let targetEntityId = nttyId + nttyIdSchme;\r",
 															"\r",
 															"targetConditionResult = JSON.parse(pm.globals.get('messageBody'));\r",
@@ -43912,7 +43912,7 @@
 															"  \"condRsn\":\"Default Test Condition\",\r",
 															"  \"ntty\":\r",
 															"  {\r",
-															"    \"id\": `${cdtrNttyId.id}`,\r",
+															"    \"id\": `${dbtrNttyId.id}`,\r",
 															"    \"schmeNm\":\r",
 															"    {\r",
 															"      \"prtry\":\"TAZAMA_EID\"\r",
@@ -43978,12 +43978,12 @@
 															"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
 															"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
 															"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-															"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-															"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-															"    /* Creditor ID - null defaults random UUID ---------------------- */ cdtrId,\r",
-															"    /* Creditor Account ID - null defaults random UUID -------------- */ cdtrAcctId,\r",
-															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ 'fsp001',\r",
+															"    /* Debtor ID - null defaults random UUID ------------------------ */ dbtrId,\r",
+															"    /* Debtor Account ID - null defaults random UUID ---------------- */ dbtrAcctId,\r",
+															"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ 'fsp001',\r",
+															"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+															"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+															"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
 															"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
 															"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
 															"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
@@ -44043,7 +44043,7 @@
 											"response": []
 										},
 										{
-											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated",
+											"name": "Transaction 4 - Post pacs.002 to TMS API - unauthenticated - TIMEOUT EXPECTED",
 											"event": [
 												{
 													"listen": "prerequest",

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "02104fad-90bd-4cf1-b686-9740b1b4d160",
+		"_postman_id": "accc6738-7ea6-411f-b549-6bae1eb6bb46",
 		"name": "1.1. (NO-AUTH) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -591,7 +591,7 @@
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId - Rule 901 Network Map Only",
+					"name": "Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -702,14 +702,14 @@
 									"let fastestTypology = 999999999;\r",
 									"let totalRule = 0;\r",
 									"let totalTypology = 0;\r",
-									"let prcgTmDP = resJson.result[0].report.metaData.prcgTmDP;\r",
-									"let prcgTmED = resJson.result[0].report.metaData.prcgTmED;\r",
-									"let tadpTime = resJson.result[0].report.tadpResult.prcgTm;\r",
+									"let prcgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
+									"let prcgTmED = resJson.data.report.metaData.prcgTmED;\r",
+									"let tadpTime = resJson.data.report.tadpResult.prcgTm;\r",
 									"let whichTypologyIsSlowest = 0;\r",
 									"let whichTypologyIsFastest = 0;\r",
 									"let whichRuleIsSlowest = 0;\r",
 									"\r",
-									"let typologyTimings = resJson.result[0].report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
+									"let typologyTimings = resJson.data.report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
 									"\r",
 									"let timingsPerTypology = `Elapsed typology processor time per typology\r",
 									"====================================================\r",
@@ -724,8 +724,8 @@
 									"typologyTimings = typologyTimings.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
 									"\r",
 									"ruleResults = [];\r",
-									"for (let i = 0; i < resJson.result[0].report.tadpResult.typologyResult.count(); i++) {\r",
-									"    ruleResultsPerTypology = resJson.result[0].report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
+									"for (let i = 0; i < resJson.data.report.tadpResult.typologyResult.count(); i++) {\r",
+									"    ruleResultsPerTypology = resJson.data.report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
 									"    for (let j = 0; j < ruleResultsPerTypology.count(); j++) {\r",
 									"        ruleResults.push(ruleResultsPerTypology[j]);\r",
 									"    };\r",
@@ -779,8 +779,8 @@
 									"Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Typologies: ${typologyCount}\r",
-									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
-									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
+									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
+									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
 									"\r",
 									"Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
@@ -869,11 +869,11 @@
 									"    pm.expect(averageRuleTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
+									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
 									"    pm.expect(slowestTypology).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
+									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
 									"    pm.expect(fastestTypology).to.be.lessThan(999999999);\r",
 									"});\r",
 									"\r",
@@ -886,10 +886,10 @@
 									"});\r",
 									"\r",
 									"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-									"    pm.expect(resJson.result[0].report.status).to.equal(expectedAlertStatus);\r",
+									"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
 									"});\r",
 									"\r",
-									"let sortedTypologiesById = resJson.result[0].report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
+									"let sortedTypologiesById = resJson.data.report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
 									"\r",
 									"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
 									"    pm.expect(sortedTypologiesById.length).to.equal(totalExpectedTypologies);\r",
@@ -942,6 +942,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -953,7 +956,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -965,15 +968,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_results}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-admin-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_results}}",
-								"_api",
-								"cursor"
+								"admin",
+								"reports",
+								"getreportbymsgid"
+							],
+							"query": [
+								{
+									"key": "msgid",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
