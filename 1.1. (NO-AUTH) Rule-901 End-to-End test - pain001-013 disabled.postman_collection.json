@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "accc6738-7ea6-411f-b549-6bae1eb6bb46",
+		"_postman_id": "89a3cef1-5715-4a6b-8eb4-3db1732f5471",
 		"name": "1.1. (NO-AUTH) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36724395"
+		"_exporter_id": "27083427",
+		"_collection_link": "https://red-space-860997.postman.co/workspace/Tazama-Postgres~1a229aea-0b26-431a-8e30-94a20ccf9678/collection/27083427-89a3cef1-5715-4a6b-8eb4-3db1732f5471?action=share&source=collection_link&creator=27083427"
 	},
 	"item": [
 		{
@@ -248,48 +249,6 @@
 			"name": "DB update tests",
 			"item": [
 				{
-					"name": "Get Arango Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"let jsonData = pm.response.json();\r",
-									"//console.log(jsonData[\"jwt\"])\r",
-									"\r",
-									"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"{{arangoUsername}}\",\r\n    \"password\": \"{{arangoPassword}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_open/auth",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_open",
-								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Fetch created pacs.008 from transactionHistoryPacs008",
 					"event": [
 						{
@@ -319,22 +278,18 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs008}} FILTER doc.FIToFICstmrCdtTrf.GrpHdr.MsgId == '{{messageIdPacs008}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -342,15 +297,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/admin/raw_history/pacs008/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
+								"admin",
+								"raw_history",
+								"pacs008",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs008}}"
+								}
 							]
 						}
 					},
@@ -365,7 +326,8 @@
 								"exec": [
 									"console.log(`Fetching pacs.002 from transactionHistoryPacs002 using msgId: ${pm.globals.get('messageIdPacs002')}`);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -380,10 +342,14 @@
 									"    pm.expect(resJson.result[0].FIToFIPmtSts.GrpHdr.MsgId).to.be.equal(memPacs002MsgId);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -395,11 +361,11 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs002}} FILTER doc.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,15 +373,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/admin/raw_history/pacs002/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
+								"admin",
+								"raw_history",
+								"pacs002",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
@@ -428,11 +400,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"console.log(`Fetching graph from ${pm.environment.get('db_historygraph')} using creditorAccountKey : ${pm.globals.get('creditorAccountKey')}`);\r",
-									"\r",
-									"let qryString = `LET vertices = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct v) LET edges = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct e) RETURN {v: vertices, e: edges}`\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -553,22 +521,18 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -576,15 +540,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/v1/admin/event_history/transaction/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_historygraph}}",
-								"_api",
-								"cursor"
+								"v1",
+								"admin",
+								"event_history",
+								"transaction",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
@@ -960,7 +931,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -968,18 +939,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/v1/admin/evaluation/evaluation/:id",
 							"host": [
-								"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
+								"v1",
 								"admin",
-								"reports",
-								"getreportbymsgid"
+								"evaluation",
+								"evaluation",
+								":id"
 							],
-							"query": [
+							"variable": [
 								{
-									"key": "msgid",
+									"key": "id",
 									"value": "{{messageIdPacs002}}"
 								}
 							]
@@ -995,9 +968,14 @@
 			"listen": "prerequest",
 			"script": {
 				"type": "text/javascript",
+				"packages": {},
 				"exec": [
+					"",
+					"",
 					"const uuid = require('uuid');",
 					"const lodash = require('lodash');",
+					"",
+					"",
 					"",
 					"const logLevel = \"INFO\";",
 					"",
@@ -1011,7 +989,7 @@
 					"const entitiesPrefix = 'entities/';",
 					"",
 					"// Postman environment variables",
-					"const arangoUrl = pm.environment.get('arangoUrl');",
+					"const databaseUrl = pm.environment.get('databaseUrl');",
 					"const db_messagehistory = pm.environment.get('db_messagehistory');",
 					"const db_historygraph = pm.environment.get('db_historygraph');",
 					"const db_coll_graph_entities = pm.environment.get('db_coll_graph_entities');",
@@ -1806,14 +1784,14 @@
 					"    prepGraphAccountHolders: function (entitiesPrefix, accountsPrefix, debtorId, debtorAccountId, creditorId, creditorAccountId, timestamp) {",
 					"        return [{",
 					"            \"_key\": `${debtorId}` + `${debtorAccountId}`,",
-					"            \"_from\": `${entitiesPrefix}` + `${debtorId}`,",
-					"            \"_to\": `${accountsPrefix}` + `${debtorAccountId}`,",
+					"            \"source\": `${entitiesPrefix}` + `${debtorId}`,",
+					"            \"destination\": `${accountsPrefix}` + `${debtorAccountId}`,",
 					"            \"CreDtTm\": `${timestamp}`",
 					"        },",
 					"        {",
 					"            \"_key\": `${creditorId}` + `${creditorAccountId}`,",
-					"            \"_from\": `${entitiesPrefix}` + `${creditorId}`,",
-					"            \"_to\": `${accountsPrefix}` + `${creditorAccountId}`,",
+					"            \"source\": `${entitiesPrefix}` + `${creditorId}`,",
+					"            \"destination\": `${accountsPrefix}` + `${creditorAccountId}`,",
 					"            \"CreDtTm\": `${timestamp}`",
 					"        }]",
 					"    },",
@@ -1863,8 +1841,8 @@
 					"",
 					"        if (timestampPain001 !== undefined) {",
 					"            transactions.push({",
-					"                \"_from\": `${accountsPrefix}` + `${debtorAccountId}`,",
-					"                \"_to\": `${accountsPrefix}` + `${creditorAccountId}`,",
+					"                \"source\": `${accountsPrefix}` + `${debtorAccountId}`,",
+					"                \"destination\": `${accountsPrefix}` + `${creditorAccountId}`,",
 					"                \"TxTp\": \"pain.001.001.11\",",
 					"                \"CreDtTm\": `${timestampPain001}`,",
 					"                \"Amt\": instructedAmount,",
@@ -1883,8 +1861,8 @@
 					"",
 					"            });",
 					"            transactions.push({",
-					"                \"_from\": `${accountsPrefix}` + `${creditorAccountId}`,",
-					"                \"_to\": `${accountsPrefix}` + `${debtorAccountId}`,",
+					"                \"source\": `${accountsPrefix}` + `${creditorAccountId}`,",
+					"                \"destination\": `${accountsPrefix}` + `${debtorAccountId}`,",
 					"                \"TxTp\": \"pain.013.001.09\",",
 					"                \"CreDtTm\": `${timestampPain013}`,",
 					"                \"Amt\": instructedAmount,",
@@ -1905,8 +1883,8 @@
 					"        }",
 					"",
 					"        transactions.push({",
-					"            \"_from\": `${accountsPrefix}` + `${debtorAccountId}`,",
-					"            \"_to\": `${accountsPrefix}` + `${creditorAccountId}`,",
+					"            \"source\": `${accountsPrefix}` + `${debtorAccountId}`,",
+					"            \"destination\": `${accountsPrefix}` + `${creditorAccountId}`,",
 					"            \"TxTp\": \"pacs.008.001.10\",",
 					"            \"CreDtTm\": `${timestampPacs008}`,",
 					"            \"Amt\": instructedAmount,",
@@ -1927,8 +1905,8 @@
 					"",
 					"        if (typeof timestampPacs002 !== \"undefined\") {",
 					"            transactions.push({",
-					"                \"_from\": `${accountsPrefix}` + `${creditorAccountId}`,",
-					"                \"_to\": `${accountsPrefix}` + `${debtorAccountId}`,",
+					"                \"source\": `${accountsPrefix}` + `${creditorAccountId}`,",
+					"                \"destination\": `${accountsPrefix}` + `${debtorAccountId}`,",
 					"                \"TxTp\": \"pacs.002.001.12\",",
 					"                \"TxSts\": `${pacs002Sts}`,",
 					"                \"CreDtTm\": `${timestampPacs002}`,",
@@ -2096,14 +2074,14 @@
 					"        const account_holders = [];",
 					"        for (let step = 0; step < numberOfAccounts; step++) {",
 					"            account_holders.push({",
-					"                \"_from\": `${entitiesPrefix}` + `${entityId}`,",
-					"                \"_to\": `${accountsPrefix}` + `${accountIds[step]}`,",
+					"                \"source\": `${entitiesPrefix}` + `${entityId}`,",
+					"                \"destination\": `${accountsPrefix}` + `${accountIds[step]}`,",
 					"                \"CreDtTm\": `${timestamp}`",
 					"            });",
 					"        }",
 					"",
 					"        postRequests = [{",
-					"            url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_accounts}`,",
+					"            url: `${databaseUrl}/${db_historygraph}/${db_coll_graph_accounts}`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -2111,7 +2089,7 @@
 					"                raw: JSON.stringify(accounts)",
 					"            }",
 					"        }, {",
-					"            url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_account_holders}`,",
+					"            url: `${databaseUrl}/${db_historygraph}/${db_coll_graph_account_holders}`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -2122,6 +2100,7 @@
 					"",
 					"        postRequests.forEach((postRequest) => {",
 					"            _pm.sendRequest(postRequest, (error, response) => {",
+					"                console.log('++++++++++++++++++++++++++++++++++++++++++++')",
 					"                console.log(error ? error : response.json());",
 					"            });",
 					"        });",
@@ -2155,14 +2134,14 @@
 					"        for (let step = 0; step < numberOfAccounts; step++) {",
 					"            account_holders.push({",
 					"                \"_key\": `${entityId}+${accountIds[step]}`,",
-					"                \"_from\": `${entitiesPrefix}` + `${entityId}`,",
-					"                \"_to\": `${accountsPrefix}` + `${accountIds[step]}`,",
+					"                \"source\": `${entitiesPrefix}` + `${entityId}`,",
+					"                \"destination\": `${accountsPrefix}` + `${accountIds[step]}`,",
 					"                \"CreDtTm\": timestamp",
 					"            });",
 					"        }",
 					"",
 					"        postRequests = [{",
-					"            url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_accounts}`,",
+					"            url: `${databaseUrl}/${db_historygraph}/${db_coll_graph_accounts}`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -2170,7 +2149,7 @@
 					"                raw: JSON.stringify(accounts)",
 					"            }",
 					"        }, {",
-					"            url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_account_holders}`,",
+					"            url: `${databaseUrl}/${db_historygraph}/${db_coll_graph_account_holders}`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -2204,7 +2183,7 @@
 					"        }];",
 					"",
 					"        postRequests = [{",
-					"            url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_entities}`,",
+					"            url: `${databaseUrl}/${db_historygraph}/${db_coll_graph_entities}`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -2672,7 +2651,7 @@
 					"                transactions = prep.prepGraphTransactions(accountsPrefix, debtorAccountKey, creditorAccountKey, stepInstructedCurrency, stepInstructedAmount, stepInterbankSettlementCurrency, stepInterbankSettlementAmount, stepExchangeRateCurrency, stepExchangeRate, endToEndId, timestampPacs008, messageIdPacs008, timestampPacs002, messageIdPacs002, pacs002Sts, timestampPain001, messageIdPain001, timestampPain013, messageIdPain013);",
 					"",
 					"                postRequests = [{",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPain001}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPain001}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2680,7 +2659,7 @@
 					"                        raw: JSON.stringify(pain001)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPain013}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPain013}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2688,7 +2667,7 @@
 					"                        raw: JSON.stringify(pain013)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs008}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs008}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2696,7 +2675,7 @@
 					"                        raw: JSON.stringify(pacs008)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs002}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs002}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2704,7 +2683,7 @@
 					"                        raw: JSON.stringify(pacs002)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_transactions}`,",
+					"                    url: `${databaseUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_transactions}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2716,7 +2695,7 @@
 					"                transactions = prep.prepGraphTransactions(accountsPrefix, debtorAccountKey, creditorAccountKey, stepInstructedCurrency, stepInstructedAmount, stepInterbankSettlementCurrency, stepInterbankSettlementAmount, stepExchangeRateCurrency, stepExchangeRate, endToEndId, timestampPacs008, messageIdPacs008, timestampPacs002, messageIdPacs002, pacs002Sts);",
 					"",
 					"                postRequests = [{",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs008}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs008}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2724,7 +2703,7 @@
 					"                        raw: JSON.stringify(pacs008)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs002}`,",
+					"                    url: `${databaseUrl}/_db/${db_messagehistory}/_api/document/${db_coll_msg_transactionHistoryPacs002}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -2732,7 +2711,7 @@
 					"                        raw: JSON.stringify(pacs002)",
 					"                    }",
 					"                }, {",
-					"                    url: `${arangoUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_transactions}`,",
+					"                    url: `${databaseUrl}/_db/${db_historygraph}/_api/document/${db_coll_graph_transactions}`,",
 					"                    method: 'POST',",
 					"                    header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"                    body: {",
@@ -3086,7 +3065,7 @@
 					"        const qryGraphString = `LET vertices = (FOR v,e,p IN 1..2 ANY '${source}/${id}' governed_as_debtor_by, governed_as_debtor_account_by, governed_as_creditor_by, governed_as_creditor_account_by RETURN distinct v) LET edges = (FOR v,e,p IN 1..2 ANY '${source}/${id}' governed_as_debtor_by, governed_as_debtor_account_by, governed_as_creditor_by, governed_as_creditor_account_by RETURN distinct e) RETURN {v: vertices, e: edges}`",
 					"",
 					"        return {",
-					"            url: `${_pm.environment.get('arangoUrl')}/_db/${_pm.environment.get('db_historygraph')}/_api/cursor`,",
+					"            url: `${_pm.environment.get('databaseUrl')}/_db/${_pm.environment.get('db_historygraph')}/_api/cursor`,",
 					"            method: 'POST',",
 					"            header: { 'Authorization': `Bearer ${_pm.globals.get(\"arangoToken\")}` },",
 					"            body: {",
@@ -3110,25 +3089,25 @@
 					"    getConditionPerspectivesFromGraph: function (graph, condition, all) {",
 					"",
 					"        if (all) {",
-					"            return graph.e.filter(edge => edge._to === \"conditions/\" + condition);   // filter to get the condition's perspectives",
+					"            return graph.e.filter(edge => edge.destination === \"conditions/\" + condition);   // filter to get the condition's perspectives",
 					"        } else {",
-					"            return graph.e.filter(edge => edge._to === \"conditions/\" + condition).map(({ _id }) => _id.substring(0, _id.search('/')));    // filter to get the condition's perspectives, map to only get the _id up to the '/'",
+					"            return graph.e.filter(edge => edge.destination === \"conditions/\" + condition).map(({ _id }) => _id.substring(0, _id.search('/')));    // filter to get the condition's perspectives, map to only get the _id up to the '/'",
 					"        }",
 					"    },",
 					"",
 					"    getConditionPerspectiveEventTypesFromGraph: function (graph, condition, perspective) {",
 					"",
-					"        return graph.e.filter(edge => edge._to === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ evtTp }) => evtTp);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the evtTp",
+					"        return graph.e.filter(edge => edge.destination === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ evtTp }) => evtTp);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the evtTp",
 					"    },",
 					"",
 					"    getConditionPerspectiveInceptionDateFromGraph: function (graph, condition, perspective) {",
 					"",
-					"        return graph.e.filter(edge => edge._to === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ incptnDtTm }) => incptnDtTm);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the incptnDtTm",
+					"        return graph.e.filter(edge => edge.destination === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ incptnDtTm }) => incptnDtTm);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the incptnDtTm",
 					"    },",
 					"",
 					"    getConditionPerspectiveExpirationDateFromGraph: function (graph, condition, perspective) {",
 					"",
-					"        return graph.e.filter(edge => edge._to === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ xprtnDtTm }) => xprtnDtTm);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the incptnDtTm",
+					"        return graph.e.filter(edge => edge.destination === \"conditions/\" + condition).filter(eventType => eventType._id.substring(0, eventType._id.search('/')) === perspective).map(({ xprtnDtTm }) => xprtnDtTm);    // filter to get the condition's perspectives, filter to get the specific perspective, map to only get the incptnDtTm",
 					"    }",
 					"",
 					"}"

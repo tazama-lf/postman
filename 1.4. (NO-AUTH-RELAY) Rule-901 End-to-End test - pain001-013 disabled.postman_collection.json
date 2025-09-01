@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "160d26d4-3b0b-43ff-82db-ca1a8a6e40bc",
+		"_postman_id": "a9d7ae9f-f980-4b8e-bb12-299f09f4d193",
 		"name": "1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001/013 disabled",
 		"description": "# 20241129\n\n- Implemented test for relay service\n    \n- Relies on the deployment of the nats-utilities",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36724395"
+		"_exporter_id": "27083427",
+		"_collection_link": "https://red-space-860997.postman.co/workspace/Tazama-Postgres~1a229aea-0b26-431a-8e30-94a20ccf9678/collection/27083427-a9d7ae9f-f980-4b8e-bb12-299f09f4d193?action=share&source=collection_link&creator=27083427"
 	},
 	"item": [
 		{

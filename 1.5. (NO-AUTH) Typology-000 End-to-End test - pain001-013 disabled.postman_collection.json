@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "a62bb45c-cb3a-4a02-b543-8ee3bb77bdf0",
+		"_postman_id": "861935d9-5f4e-40f4-9ddf-6f9200b06a21",
 		"name": "1.5. (NO-AUTH) Typology-000 End-to-End test - pain001/013 disabled",
 		"description": "# 20250805\n\n- Implemented test for typology 000 deployment.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36724395"
+		"_exporter_id": "27083427",
+		"_collection_link": "https://red-space-860997.postman.co/workspace/Tazama-Postgres~1a229aea-0b26-431a-8e30-94a20ccf9678/collection/27083427-861935d9-5f4e-40f4-9ddf-6f9200b06a21?action=share&source=collection_link&creator=27083427"
 	},
 	"item": [
 		{
@@ -248,48 +249,6 @@
 			"name": "DB update tests",
 			"item": [
 				{
-					"name": "Get Arango Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"let jsonData = pm.response.json();\r",
-									"//console.log(jsonData[\"jwt\"])\r",
-									"\r",
-									"pm.globals.set(\"arangoToken\", jsonData[\"jwt\"])\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"{{arangoUsername}}\",\r\n    \"password\": \"{{arangoPassword}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_open/auth",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_open",
-								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Fetch created pacs.008 from transactionHistoryPacs008",
 					"event": [
 						{
@@ -319,22 +278,18 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs008}} FILTER doc.FIToFICstmrCdtTrf.GrpHdr.MsgId == '{{messageIdPacs008}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -342,15 +297,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/admin/raw_history/pacs008/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
+								"admin",
+								"raw_history",
+								"pacs008",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs008}}"
+								}
 							]
 						}
 					},
@@ -365,7 +326,8 @@
 								"exec": [
 									"console.log(`Fetching pacs.002 from transactionHistoryPacs002 using msgId: ${pm.globals.get('messageIdPacs002')}`);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -380,10 +342,14 @@
 									"    pm.expect(resJson.result[0].FIToFIPmtSts.GrpHdr.MsgId).to.be.equal(memPacs002MsgId);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -395,11 +361,11 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in {{db_coll_msg_transactionHistoryPacs002}} FILTER doc.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,15 +373,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/admin/raw_history/pacs002/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
+								"admin",
+								"raw_history",
+								"pacs002",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
@@ -428,11 +400,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"console.log(`Fetching graph from ${pm.environment.get('db_historygraph')} using creditorAccountKey : ${pm.globals.get('creditorAccountKey')}`);\r",
-									"\r",
-									"let qryString = `LET vertices = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct v) LET edges = (FOR v,e,p IN 1..2 ANY 'accounts/${pm.globals.get('creditorAccountKey')}' transactionRelationship, account_holder RETURN distinct e) RETURN {v: vertices, e: edges}`\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -553,22 +521,18 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -576,22 +540,29 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_historygraph}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/v1/admin/event_history/transaction/:id",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_historygraph}}",
-								"_api",
-								"cursor"
+								"v1",
+								"admin",
+								"event_history",
+								"transaction",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId from admin-service - Typology 000 Only",
+					"name": "Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -608,22 +579,31 @@
 							"script": {
 								"exec": [
 									"const resJson = pm.response.json();\r",
-									"const rulesPerTypologyCount = [34];\r",
+									"\r",
+									"const rulesPerTypologyCount = [2];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
-									"  \"000\"\r",
+									"  \"000\",\r",
+									"  \"028\",\r",
+									"  \"037\",\r",
+									"  \"044\",\r",
+									"  \"045\",\r",
+									"  \"047\",\r",
+									"  \"095\",\r",
+									"  \"179\",\r",
+									"  \"185\",\r",
+									"  \"999\"\r",
 									"];\r",
 									"const ruleDescriptions = {\r",
-									"  \"EFRuP\": \"Event-Flow Rule Processor\",\r",
-									"  \"001\": \"Derived account age - creditor\",\r",
-									"  \"002\": \"Transaction convergence - debtor\",\r",
-									"  \"003\": \"Account dormancy - creditor\",\r",
-									"  \"004\": \"Account dormancy - debtor\",\r",
-									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
-									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+									"  \"001\": \"Derived account age - creditor\",\r",
+									"  \"002\": \"Transaction convergence - debtor\",\r",
+									"  \"003\": \"Account dormancy - creditor\",\r",
+									"  \"004\": \"Account dormancy - debtor\",\r",
+									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
+									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
 									"  \"008\": \"Outgoing transfer similarity - creditor\",\r",
-									"  \"010\": \"Increased account activity: volume - debtor\",\r",
+									"  \"010\": \"Increased account activity: volume - debtor\",\r",
 									"  \"011\": \"Increased account activity: volume - creditor\",\r",
 									"  \"016\": \"Transaction convergence - creditor\",\r",
 									"  \"017\": \"Transaction divergence - debtor\",\r",
@@ -652,7 +632,6 @@
 									"}\r",
 									"const typologyDescriptions = {\r",
 									"  \"000\": \"Complete rule coverage\",\r",
-									"  \"EFTyp\": \"Event-Flow Control Typology\",\r",
 									"  \"001\": \"Use of several currencies, structured transactions, with a great number of persons involved, large number of transactions related to each other during a short time period.\",\r",
 									"  \"002\": \"Receiving funds from high number of senders over a short period of time, large sum transactions compared to person's living standard.\",\r",
 									"  \"003\": \"Large volume of transactions for the same customer with multiple instances of using different name spellings, false addresses or identification that evolves i.e. some parts of the identification change, while other parts remains the same, such as a person whose last name changes while his first name, date of birth, identification number and address remain the same.\",\r",
@@ -694,8 +673,8 @@
 									"let fastestTypology = 999999999;\r",
 									"let totalRule = 0;\r",
 									"let totalTypology = 0;\r",
-									"let pcrgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
-									"let pcrgTmED = resJson.data.report.metaData.prcgTmED;\r",
+									"let prcgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
+									"let prcgTmED = resJson.data.report.metaData.prcgTmED;\r",
 									"let tadpTime = resJson.data.report.tadpResult.prcgTm;\r",
 									"let whichTypologyIsSlowest = 0;\r",
 									"let whichTypologyIsFastest = 0;\r",
@@ -755,15 +734,15 @@
 									"whichRuleIsSlowest = ruleResultsUnique.filter(e => e.prcgTm === slowestRule)[0].id;\r",
 									"whichRuleIsFastest = ruleResultsUnique.filter(e => e.prcgTm === fastestRule)[0].id;\r",
 									"\r",
-									"let totalEstimatedTime = pcrgTmDP + pcrgTmED + slowestRule + slowestTypology + tadpTime;\r",
+									"let totalEstimatedTime = prcgTmDP + prcgTmED + slowestRule + slowestTypology + tadpTime;\r",
 									"let averageRuleTime = totalRule / ruleCount;\r",
 									"let averageTypologyTime = totalTypology / typologyCount;\r",
 									"\r",
 									"console.log(`====================================================\r",
 									"Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
 									"====================================================\r",
-									"Data Preparation Service: ${(pcrgTmDP/1000000).toFixed(3)}ms\r",
-									"ED: ${(pcrgTmED/1000000).toFixed(3)}ms\r",
+									"Data Preparation Service: ${(prcgTmDP/1000000).toFixed(3)}ms\r",
+									"ED: ${(prcgTmED/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Rules: ${ruleCount}\r",
 									"Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
@@ -773,6 +752,7 @@
 									"Number of Typologies: ${typologyCount}\r",
 									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
 									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
+									"\r",
 									"Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
@@ -840,12 +820,12 @@
 									"    pm.expect(totalEstimatedTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Data preparation procesing time: ${(pcrgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(pcrgTmDP).to.be.greaterThan(0);\r",
+									"pm.test(`Data preparation procesing time: ${(prcgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(prcgTmDP).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`ED procesing time: ${(pcrgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(pcrgTmED).to.be.greaterThan(0);\r",
+									"pm.test(`ED procesing time: ${(prcgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(prcgTmED).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
 									"pm.test(`Slowest rule procesing time: ${(slowestRule / 1000000).toFixed(3)} milliseconds (Rule ${whichRuleIsSlowest})`, function () {\r",
@@ -901,12 +881,12 @@
 									"        pm.expect(sortedTypologiesById[i].result).to.equal(ruleWeightingTotal);\r",
 									"    });\r",
 									"\r",
-									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\") {\r",
+									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\" && expectedAlertStatus == \"ALRT\") {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) breached threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].result).to.be.lessThan(sortedTypologiesById[i].workflow.alertThreshold);\r",
+									"            pm.expect(sortedTypologiesById[i].result).to.be.greaterThanOrEqual(sortedTypologiesById[i].workflow.alertThreshold);\r",
 									"        });\r",
-									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is false`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].review).to.be.false;\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is true`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].review).to.be.true;\r",
 									"        });\r",
 									"    } else {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) did not breach threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
@@ -951,7 +931,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -959,18 +939,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
+							"raw": "{{tazamaAdminUrl}}{{path-api-version}}/v1/admin/evaluation/evaluation/:id",
 							"host": [
-								"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+								"{{tazamaAdminUrl}}{{path-api-version}}"
 							],
 							"path": [
+								"v1",
 								"admin",
-								"reports",
-								"getreportbymsgid"
+								"evaluation",
+								"evaluation",
+								":id"
 							],
-							"query": [
+							"variable": [
 								{
-									"key": "msgid",
+									"key": "id",
 									"value": "{{messageIdPacs002}}"
 								}
 							]
