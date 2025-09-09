@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "e62fed77-fd4f-4cc4-adcf-e31562577420",
-		"name": "1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001/013 disabled",
-		"description": "# 20240622\n\n- Implemented new TMS API path",
+		"_postman_id": "a62bb45c-cb3a-4a02-b543-8ee3bb77bdf0",
+		"name": "1.5. (NO-AUTH) Typology-000 End-to-End test - pain001/013 disabled",
+		"description": "# 20250805\n\n- Implemented test for typology 000 deployment.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
 	},
@@ -18,12 +18,10 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm\r",
-									"let moment = require('moment');\r",
-									"// ## Set up rule config\r",
 									"\r",
 									"pm.globals.clear();\r",
 									"\r",
-									"console.log(`Data Preparation Service - Full Network Map`);\r",
+									"console.log(`Data Preparation Service - Public Network Map`);\r",
 									"\r",
 									"// ## Set up transaction eco-system\r",
 									"\r",
@@ -593,7 +591,7 @@
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId - Rule 901 Network Map Only",
+					"name": "Fetch evaluation results with msgId from admin-service - Typology 000 Only",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -610,31 +608,22 @@
 							"script": {
 								"exec": [
 									"const resJson = pm.response.json();\r",
-									"\r",
-									"const rulesPerTypologyCount = [1];\r",
+									"const rulesPerTypologyCount = [34];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
-									"  \"000\",\r",
-									"  \"028\",\r",
-									"  \"037\",\r",
-									"  \"044\",\r",
-									"  \"045\",\r",
-									"  \"047\",\r",
-									"  \"095\",\r",
-									"  \"179\",\r",
-									"  \"185\",\r",
-									"  \"999\"\r",
+									"  \"000\"\r",
 									"];\r",
 									"const ruleDescriptions = {\r",
-									"  \"001\": \"Derived account age - creditor\",\r",
-									"  \"002\": \"Transaction convergence - debtor\",\r",
-									"  \"003\": \"Account dormancy - creditor\",\r",
-									"  \"004\": \"Account dormancy - debtor\",\r",
-									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
-									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+									"  \"EFRuP\": \"Event-Flow Rule Processor\",\r",
+									"  \"001\": \"Derived account age - creditor\",\r",
+									"  \"002\": \"Transaction convergence - debtor\",\r",
+									"  \"003\": \"Account dormancy - creditor\",\r",
+									"  \"004\": \"Account dormancy - debtor\",\r",
+									"  \"006\": \"Outgoing transfer similarity - amounts\",\r",
+									"  \"007\": \"Outgoing transfer similarity - descriptions\",\r",
 									"  \"008\": \"Outgoing transfer similarity - creditor\",\r",
-									"  \"010\": \"Increased account activity: volume - debtor\",\r",
+									"  \"010\": \"Increased account activity: volume - debtor\",\r",
 									"  \"011\": \"Increased account activity: volume - creditor\",\r",
 									"  \"016\": \"Transaction convergence - creditor\",\r",
 									"  \"017\": \"Transaction divergence - debtor\",\r",
@@ -663,6 +652,7 @@
 									"}\r",
 									"const typologyDescriptions = {\r",
 									"  \"000\": \"Complete rule coverage\",\r",
+									"  \"EFTyp\": \"Event-Flow Control Typology\",\r",
 									"  \"001\": \"Use of several currencies, structured transactions, with a great number of persons involved, large number of transactions related to each other during a short time period.\",\r",
 									"  \"002\": \"Receiving funds from high number of senders over a short period of time, large sum transactions compared to person's living standard.\",\r",
 									"  \"003\": \"Large volume of transactions for the same customer with multiple instances of using different name spellings, false addresses or identification that evolves i.e. some parts of the identification change, while other parts remains the same, such as a person whose last name changes while his first name, date of birth, identification number and address remain the same.\",\r",
@@ -704,14 +694,14 @@
 									"let fastestTypology = 999999999;\r",
 									"let totalRule = 0;\r",
 									"let totalTypology = 0;\r",
-									"let prcgTmDP = resJson.result[0].report.metaData.prcgTmDP;\r",
-									"let prcgTmED = resJson.result[0].report.metaData.prcgTmED;\r",
-									"let tadpTime = resJson.result[0].report.tadpResult.prcgTm;\r",
+									"let pcrgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
+									"let pcrgTmED = resJson.data.report.metaData.prcgTmED;\r",
+									"let tadpTime = resJson.data.report.tadpResult.prcgTm;\r",
 									"let whichTypologyIsSlowest = 0;\r",
 									"let whichTypologyIsFastest = 0;\r",
 									"let whichRuleIsSlowest = 0;\r",
 									"\r",
-									"let typologyTimings = resJson.result[0].report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
+									"let typologyTimings = resJson.data.report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
 									"\r",
 									"let timingsPerTypology = `Elapsed typology processor time per typology\r",
 									"====================================================\r",
@@ -726,8 +716,8 @@
 									"typologyTimings = typologyTimings.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
 									"\r",
 									"ruleResults = [];\r",
-									"for (let i = 0; i < resJson.result[0].report.tadpResult.typologyResult.count(); i++) {\r",
-									"    ruleResultsPerTypology = resJson.result[0].report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
+									"for (let i = 0; i < resJson.data.report.tadpResult.typologyResult.count(); i++) {\r",
+									"    ruleResultsPerTypology = resJson.data.report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
 									"    for (let j = 0; j < ruleResultsPerTypology.count(); j++) {\r",
 									"        ruleResults.push(ruleResultsPerTypology[j]);\r",
 									"    };\r",
@@ -765,15 +755,15 @@
 									"whichRuleIsSlowest = ruleResultsUnique.filter(e => e.prcgTm === slowestRule)[0].id;\r",
 									"whichRuleIsFastest = ruleResultsUnique.filter(e => e.prcgTm === fastestRule)[0].id;\r",
 									"\r",
-									"let totalEstimatedTime = prcgTmDP + prcgTmED + slowestRule + slowestTypology + tadpTime;\r",
+									"let totalEstimatedTime = pcrgTmDP + pcrgTmED + slowestRule + slowestTypology + tadpTime;\r",
 									"let averageRuleTime = totalRule / ruleCount;\r",
 									"let averageTypologyTime = totalTypology / typologyCount;\r",
 									"\r",
 									"console.log(`====================================================\r",
 									"Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
 									"====================================================\r",
-									"Data Preparation Service: ${(prcgTmDP/1000000).toFixed(3)}ms\r",
-									"ED: ${(prcgTmED/1000000).toFixed(3)}ms\r",
+									"Data Preparation Service: ${(pcrgTmDP/1000000).toFixed(3)}ms\r",
+									"ED: ${(pcrgTmED/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Rules: ${ruleCount}\r",
 									"Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
@@ -781,9 +771,8 @@
 									"Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"Number of Typologies: ${typologyCount}\r",
-									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
-									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
-									"\r",
+									"Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
+									"Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
 									"Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
 									"====================================================\r",
 									"TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
@@ -851,12 +840,12 @@
 									"    pm.expect(totalEstimatedTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Data preparation procesing time: ${(prcgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTmDP).to.be.greaterThan(0);\r",
+									"pm.test(`Data preparation procesing time: ${(pcrgTmDP / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmDP).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`ED procesing time: ${(prcgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
-									"    pm.expect(prcgTmED).to.be.greaterThan(0);\r",
+									"pm.test(`ED procesing time: ${(pcrgTmED / 1000000).toFixed(3)} milliseconds`, function () {\r",
+									"    pm.expect(pcrgTmED).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
 									"pm.test(`Slowest rule procesing time: ${(slowestRule / 1000000).toFixed(3)} milliseconds (Rule ${whichRuleIsSlowest})`, function () {\r",
@@ -871,11 +860,11 @@
 									"    pm.expect(averageRuleTime).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
+									"pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
 									"    pm.expect(slowestTypology).to.be.greaterThan(0);\r",
 									"});\r",
 									"\r",
-									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.result[0].report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
+									"pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
 									"    pm.expect(fastestTypology).to.be.lessThan(999999999);\r",
 									"});\r",
 									"\r",
@@ -888,10 +877,10 @@
 									"});\r",
 									"\r",
 									"pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-									"    pm.expect(resJson.result[0].report.status).to.equal(expectedAlertStatus);\r",
+									"    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
 									"});\r",
 									"\r",
-									"let sortedTypologiesById = resJson.result[0].report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
+									"let sortedTypologiesById = resJson.data.report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
 									"\r",
 									"pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
 									"    pm.expect(sortedTypologiesById.length).to.equal(totalExpectedTypologies);\r",
@@ -912,12 +901,12 @@
 									"        pm.expect(sortedTypologiesById[i].result).to.equal(ruleWeightingTotal);\r",
 									"    });\r",
 									"\r",
-									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\" && expectedAlertStatus == \"ALRT\") {\r",
+									"    if (sortedTypologiesById[i].cfg == \"105@1.0.0\") {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) breached threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].result).to.be.greaterThanOrEqual(sortedTypologiesById[i].workflow.alertThreshold);\r",
+									"            pm.expect(sortedTypologiesById[i].result).to.be.lessThan(sortedTypologiesById[i].workflow.alertThreshold);\r",
 									"        });\r",
-									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is true`, function () {\r",
-									"            pm.expect(sortedTypologiesById[i].review).to.be.true;\r",
+									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} review flag is false`, function () {\r",
+									"            pm.expect(sortedTypologiesById[i].review).to.be.false;\r",
 									"        });\r",
 									"    } else {\r",
 									"        pm.test(`Typology ${sortedTypologiesById[i].cfg} result (${sortedTypologiesById[i].result}) did not breach threshold (${sortedTypologiesById[i].workflow.alertThreshold})`, function () {\r",
@@ -944,6 +933,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -955,7 +947,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -967,15 +959,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_results}}/_api/cursor",
+							"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/reports/getreportbymsgid?msgid={{messageIdPacs002}}",
 							"host": [
-								"{{arangoUrl}}"
+								"{{tazamaAdminUrl}}{{path-admin-api-version}}"
 							],
 							"path": [
-								"_db",
-								"{{db_results}}",
-								"_api",
-								"cursor"
+								"admin",
+								"reports",
+								"getreportbymsgid"
+							],
+							"query": [
+								{
+									"key": "msgid",
+									"value": "{{messageIdPacs002}}"
+								}
 							]
 						}
 					},
