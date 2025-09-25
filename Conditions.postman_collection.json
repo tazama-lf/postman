@@ -5084,7 +5084,10 @@
 									"});\r",
 									"\r",
 									"let newElement = conditionResult[conditionResult.length - 1];  // the last element is the newly submitted condition\r",
-									"console.log(`conditionResult.length`, conditionResult[0] )\r",
+									"let filteredNewElement = conditionResult.filter(eachCondition => eachCondition.condTp === 'override')\r",
+									"if (filteredNewElement.length < 1) throw \"no override condition found\";\r",
+									"newElement = filteredNewElement[filteredNewElement.length - 1];\r",
+									"\r",
 									"pm.test(\"Result condition has a non-empty condId\", function () {\r",
 									"    pm.expect(newElement.condId).to.exist.and.not.be.empty;\r",
 									"});\r",
@@ -6317,7 +6320,7 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
+									"await utils.delayRequestWithOneSecondAsync();\r",
 									"// Obliterate the current contents of the pacs008 global variable\r",
 									"pm.globals.unset(\"dbtrNttyId\");\r",
 									"pm.globals.unset(\"dbtrNttyIdSchmeNm\");\r",
@@ -7196,7 +7199,7 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
+									"await utils.delayRequestWithOneSecondAsync();\r",
 									"// Obliterate the current contents of the pacs008 global variable\r",
 									"pm.globals.unset(\"dbtrNttyId\");\r",
 									"pm.globals.unset(\"dbtrNttyIdSchmeNm\");\r",
@@ -11798,7 +11801,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -11855,7 +11859,8 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -11895,7 +11900,7 @@
 									"let conditionResult = responseJSON.result.conditions;\r",
 									"let conditionEntity = responseJSON.result.ntty;\r",
 									"let requestMessage = responseJSON.message;\r",
-									"console.log(`Response condition: ${JSON.stringify(responseJSON)}`);\r",
+									"\r",
 									"let nttyId = pm.globals.get(\"dbtrNttyId\");\r",
 									"let nttyIdSchme = pm.globals.get(\"dbtrNttyIdSchmeNm\");\r",
 									"let targetEntityId = nttyId + nttyIdSchme;\r",
@@ -11920,6 +11925,9 @@
 									"});\r",
 									"\r",
 									"let newElement = conditionResult[conditionResult.length - 1];  // the last element is the newly submitted condition\r",
+									"let filteredNewElement = conditionResult.filter(eachCondition => eachCondition.condTp === 'override')\r",
+									"if (filteredNewElement.length < 1) throw \"no override condition found\";\r",
+									"newElement = filteredNewElement[filteredNewElement.length - 1];\r",
 									"\r",
 									"pm.test(\"Result condition has a non-empty condId\", function () {\r",
 									"    pm.expect(newElement.condId).to.exist.and.not.be.empty;\r",
@@ -12227,7 +12235,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -12235,7 +12244,7 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
+									"await utils.delayRequestWithOneSecondAsync();\r",
 									"// Retrieve the created pacs.008 message\r",
 									"const submittedPacs008Message = JSON.parse(pm.globals.get(\"pacs008\"));\r",
 									"\r",
@@ -12275,7 +12284,8 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -12888,7 +12898,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -12896,7 +12907,7 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
+									"await utils.delayRequestWithOneSecondAsync();\r",
 									"// Retrieve the created pacs.008 message\r",
 									"const submittedPacs008Message = JSON.parse(pm.globals.get(\"pacs008\"));\r",
 									"\r",
@@ -12920,7 +12931,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -13156,7 +13168,7 @@
 									"pm.globals.set(\"conditions\", undefined); // obliterate current stashed conditions\r",
 									"pm.globals.set(\"conditions\", JSON.stringify(conditionResult)); // stash response for future retrieval\r",
 									"let conditionEntity = responseJSON.ntty;\r",
-									"console.log(`Response condition: ${JSON.stringify(responseJSON)}`);\r",
+									"\r",
 									"let nttyId = pm.globals.get(\"dbtrNttyId\");\r",
 									"let nttyIdSchme = pm.globals.get(\"dbtrNttyIdSchmeNm\");\r",
 									"let targetEntityId = nttyId + nttyIdSchme;\r",
@@ -13285,7 +13297,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -13317,7 +13330,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -13505,7 +13519,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -13513,7 +13528,7 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm to access the utils functions\r",
-									"\r",
+									"await utils.delayRequestWithOneSecondAsync();\r",
 									"// Retrieve the created pacs.008 message\r",
 									"const submittedPacs008Message = JSON.parse(pm.globals.get(\"pacs008\"));\r",
 									"\r",
@@ -13537,7 +13552,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -50355,16 +50371,6 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6ImVhZDQyMmVmLTI3ZTktNDE1NC1iNDU2LTViNDg0NDVhZGY3MyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9yZWFsbXMvdGF6YW1hIiwic2lkIjoiNzM3NTVmY2MtNzZmZS00Mzc3LTgyOGMtZTQyZjY5YjI4YWViIiwiZXhwIjoxNzI4MDcwODI0LCJ0b2tlblN0cmluZyI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSWdPaUFpU2xkVUlpd2lhMmxrSWlBNklDSXRiM1JTT1ZWaFJFcFhhMjF0ZDNaMFNWWnZkMHAyVUVGcGFGcFBOMWx0VEZOWFZXZFRUek00ZEZOdkluMC5leUpsZUhBaU9qRTNNamd3TnpBNE1qUXNJbWxoZENJNk1UY3lPREEwTURneU5Dd2lhblJwSWpvaU5qRmtaVEE1Tm1VdE1tWmpOaTAwT1RKa0xUa3lZalF0TXpNek9HSmpOMkV3TW1GbUlpd2lhWE56SWpvaWFIUjBjRG92TDJ4dlkyRnNhRzl6ZERvNE1EZ3dMM0psWVd4dGN5OTBZWHBoYldFaUxDSmhkV1FpT2lKaFkyTnZkVzUwSWl3aWMzVmlJam9pWldGa05ESXlaV1l0TWpkbE9TMDBNVFUwTFdJME5UWXROV0kwT0RRME5XRmtaamN6SWl3aWRIbHdJam9pUW1WaGNtVnlJaXdpWVhwd0lqb2lZWFYwYUMxc2FXSXRZMnhwWlc1MElpd2ljMlZ6YzJsdmJsOXpkR0YwWlNJNklqY3pOelUxWm1OakxUYzJabVV0TkRNM055MDRNamhqTFdVME1tWTJPV0l5T0dGbFlpSXNJbUZqY2lJNklqRWlMQ0poYkd4dmQyVmtMVzl5YVdkcGJuTWlPbHNpTHlvaVhTd2ljbVZoYkcxZllXTmpaWE56SWpwN0luSnZiR1Z6SWpwYklsQlBVMVJmVmpGZlJWWkJURlZCVkVWZlNWTlBNakF3TWpKZlVFRkpUbDh3TURGZk1EQXhYekV4SWl3aVVFOVRWRjlXTVY5RlZrRk1WVUZVUlY5SlUwOHlNREF5TWw5UVFVTlRYekF3T0Y4d01ERmZNVEFpTENKUVQxTlVYMVl4WDBWV1FVeFZRVlJGWDBsVFR6SXdNREl5WDFCQlNVNWZNREV6WHpBd01WOHdPU0lzSWxCVlZGOVdNVjlGVmtWT1ZGOUdURTlYWDBOUFRsUlNUMHhmUVVORFQxVk9WQ0lzSWtkRlZGOVdNVjlIUlZSU1JWQlBVbFJDV1UxVFIwbEVJaXdpUjBWVVgxWXhYMFZXUlU1VVgwWk1UMWRmUTA5T1ZGSlBURjlCUTBOUFZVNVVJaXdpVUU5VFZGOVdNVjlGVmtWT1ZGOUdURTlYWDBOUFRsUlNUMHhmUVVORFQxVk9WQ0lzSWxCUFUxUmZWakZmUlZaQlRGVkJWRVZmU1ZOUE1qQXdNakpmVUVGRFUxOHdNREpmTURBeFh6RXlJaXdpWkdWbVlYVnNkQzF5YjJ4bGN5MTBZWHBoYldFaUxDSlFWVlJmVmpGZlJWWkZUbFJmUmt4UFYxOURUMDVVVWs5TVgwVk9WRWxVV1NJc0ltOW1abXhwYm1WZllXTmpaWE56SWl3aVVGVlVYMVl4WDBWV1JVNVVYMFpNVDFkZlEwOU9WRkpQVEY5RFFVTklSU0lzSWtkRlZGOVdNVjlGVmtWT1ZGOUdURTlYWDBOUFRsUlNUMHhmUlU1VVNWUlpJaXdpZFcxaFgyRjFkR2h2Y21sNllYUnBiMjRpTENKUVQxTlVYMVl4WDBWV1JVNVVYMFpNVDFkZlEwOU9WRkpQVEY5RlRsUkpWRmtpWFgwc0luSmxjMjkxY21ObFgyRmpZMlZ6Y3lJNmV5SmhZMk52ZFc1MElqcDdJbkp2YkdWeklqcGJJbTFoYm1GblpTMWhZMk52ZFc1MElpd2liV0Z1WVdkbExXRmpZMjkxYm5RdGJHbHVhM01pTENKMmFXVjNMWEJ5YjJacGJHVWlYWDE5TENKelkyOXdaU0k2SW1WdFlXbHNJSEJ5YjJacGJHVWlMQ0p6YVdRaU9pSTNNemMxTldaall5MDNObVpsTFRRek56Y3RPREk0WXkxbE5ESm1OamxpTWpoaFpXSWlMQ0psYldGcGJGOTJaWEpwWm1sbFpDSTZabUZzYzJVc0luQnlaV1psY25KbFpGOTFjMlZ5Ym1GdFpTSTZJblJoZW1GdFlTMTFjMlZ5SW4wLmlpQ3U2dl9UR1ZncTktT1lfRWp1WVdhNFNmbkl5MnE0bVJtRm9WZ3lYeXVCM0VoS2NGWHpHQll0ek9qOTJfWDlWNm5lUUN5SEtZamFuUDFCRHpubkgwLVNNSF9JTlFuQXdlcUlGWmlneGR0bEJVQy02dGxSQU84cjlyQVdKaUpUTGh2QWx3NXNZa1ZGaUJ0VjBrR3ZwZkItdElmY3JTaW5fai0yVTdjampnV0lWUVpwc1EwUERleW5NODBndENxeEM0UExHOXFxYmdra2FmYlhNamlnUmJXN1JDRFFlMmtUWDRqRUhfWXY5Zy1YLUxLRlJzMFZieDJYUnRGOHNjSEpTRmlKbi16UGlOLXA1cDZFTVdqSHdKT25VRGNWb3VVWU5hZTFLb3cwOWpDY2ZjbWttdzFlekh5UjQ1MW1hTlNScjg1ZEQwZTRKNmE1ZVlMYnBUSldCdyIsImNsYWltcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIiwiUE9TVF9WMV9FVkFMVUFURV9JU08yMDAyMl9QQUlOXzAwMV8wMDFfMTEiLCJQT1NUX1YxX0VWQUxVQVRFX0lTTzIwMDIyX1BBQ1NfMDA4XzAwMV8xMCIsIlBPU1RfVjFfRVZBTFVBVEVfSVNPMjAwMjJfUEFJTl8wMTNfMDAxXzA5IiwiUFVUX1YxX0VWRU5UX0ZMT1dfQ09OVFJPTF9BQ0NPVU5UIiwiR0VUX1YxX0dFVFJFUE9SVEJZTVNHSUQiLCJHRVRfVjFfRVZFTlRfRkxPV19DT05UUk9MX0FDQ09VTlQiLCJQT1NUX1YxX0VWRU5UX0ZMT1dfQ09OVFJPTF9BQ0NPVU5UIiwiUE9TVF9WMV9FVkFMVUFURV9JU08yMDAyMl9QQUNTXzAwMl8wMDFfMTIiLCJkZWZhdWx0LXJvbGVzLXRhemFtYSIsIlBVVF9WMV9FVkVOVF9GTE9XX0NPTlRST0xfRU5USVRZIiwib2ZmbGluZV9hY2Nlc3MiLCJQVVRfVjFfRVZFTlRfRkxPV19DT05UUk9MX0NBQ0hFIiwiR0VUX1YxX0VWRU5UX0ZMT1dfQ09OVFJPTF9FTlRJVFkiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIlBPU1RfVjFfRVZFTlRfRkxPV19DT05UUk9MX0VOVElUWSJdLCJpYXQiOjE3MjgwNDA4MjR9.KnZvLQhmO4NdGYaeI9VGge14VKgib0ooWNs_NSF7_g3i4tr75jzTxxlQjvPVskBtE1C4-zrdJ_8Rtj4AoQMSKCm7THXS7XO5O8n0BMBbHN-_0THOqE6DdvyubwTyBTGXgYc1BhqNaUAqjcajg9gcPkUzQTvakq4axmlpHIB-lVJgzd4mI2EH5Oi04Nlyd3Hh8LHhCq26x6L9DXQm8xsr25NC_JNN9e7qTgGrKV8RiNeLgj1uFPRlf7wvnnOZZyXBRbrzW8lFmmU_0TLLx83VvdQkBFQOshGs_uGeJXU8LURrKPJ7nxvD3DKa7MkBrnvMYDgXQqNqAUkrWWlUCimwSg",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
