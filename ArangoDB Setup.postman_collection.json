@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "794d7c7c-6295-49bf-a29b-c45161a36185",
-		"name": "ArangoDB",
-		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n    \n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n    \n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n    \n- TO DO: scrub configuration of redundant databases and collections and test impact\n    \n\n## 20241115 (JO)\n\n- Fixed a bug in the creation of indexes\n    \n- Updated the default configuration for Rule-901 and EFRuP",
+		"_postman_id": "e89ce44d-e007-4e63-b8ef-8c126d03913b",
+		"name": "ArangoDB Setup",
+		"description": "## 20240209 (JO)\n\n- Updated collection to limit configuration to rule 901 only (based on access to public-only repositories by default)\n    \n- Updated {{arangourl}} to {{arangoUrl}}/ in all test paths to match current environment file variable used for QA testing\n    \n- Created a new Tazama-LOCAL environment file based on more complete QA environment files\n    \n- Renamed ArangoDB to 1-ArangoDB-setup\n    \n- Moved indexes to a separate folder: 2-Create-Indexes\n    \n- Moved config POSTs to a new folder: 3-ArangoDB-Default-Config\n    \n- Moved \"tests\" to a separate folder: 4-ArangoDB-Setup-Tests\n    \n- Updated existing Indexes folder name to 5-Fetch-Indexes\n    \n- TO DO: update indexes to reflect current benchmark indexes\n    \n- TO DO: scrub configuration of redundant databases and collections and test impact\n    \n\n## 20241115 (JO)\n\n- Fixed a bug in the creation of indexes\n    \n- Updated the default configuration for Rule-901 and EFRuP\n    \n\n## 20250926 (JO)\n\n- Updated configurations for multitenancy (DEFAULT tenant only)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
 	},
@@ -1925,7 +1925,11 @@
 			"description": "Contains requests for creating indexes in the database. The collections are grouped into database subfolders. For example, the `pseudonyms` subfolder will contain indexes to collections in the `pseudonyms` database."
 		},
 		{
-			"name": "3-ArangoDB-Default-Configuration",
+			"name": "3-Reset-Configurations",
+			"item": []
+		},
+		{
+			"name": "4-ArangoDB-Basic-Configuration",
 			"item": [
 				{
 					"name": "Insert ruleConfiguration",
@@ -1944,7 +1948,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"_key\": \"901@1.0.0@1.0.0\",\r\n        \"id\": \"901@1.0.0\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"desc\": \"Number of outgoing transactions - debtor\",\r\n        \"config\": {\r\n            \"parameters\": {\r\n                \"maxQueryRange\": 86400000\r\n            },\r\n            \"exitConditions\": [\r\n                {\r\n                    \"subRuleRef\": \".x00\",\r\n                    \"reason\": \"Incoming transaction is unsuccessful\"\r\n                }\r\n            ],\r\n            \"bands\": [\r\n                {\r\n                    \"subRuleRef\": \".01\",\r\n                    \"upperLimit\": 2,\r\n                    \"reason\": \"The debtor has performed one transaction to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".02\",\r\n                    \"lowerLimit\": 2,\r\n                    \"upperLimit\": 4,\r\n                    \"reason\": \"The debtor has performed two or three transactions to date\"\r\n                },\r\n                {\r\n                    \"subRuleRef\": \".03\",\r\n                    \"lowerLimit\": 4,\r\n                    \"reason\": \"The debtor has performed 4 or more transactions to date\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n]",
+							"raw": "[\r\n  {\r\n    \"_key\": \"DEFAULT@901@1.0.0@1.0.0\",\r\n    \"_id\": \"DEFAULT@901@1.0.0@1.0.0\",\r\n    \"tenantId\": \"DEFAULT\",\r\n    \"id\": \"901@1.0.0\",\r\n    \"cfg\": \"1.0.0\",\r\n    \"desc\": \"Number of outgoing transactions - debtor\",\r\n    \"config\": {\r\n      \"parameters\": {\r\n        \"maxQueryRange\": 86400000\r\n      },\r\n      \"exitConditions\": [\r\n        {\r\n          \"subRuleRef\": \".x00\",\r\n          \"reason\": \"Incoming transaction is unsuccessful\"\r\n        }\r\n      ],\r\n      \"bands\": [\r\n        {\r\n          \"subRuleRef\": \".01\",\r\n          \"upperLimit\": 2,\r\n          \"reason\": \"The debtor has performed one transaction to date\"\r\n        },\r\n        {\r\n          \"subRuleRef\": \".02\",\r\n          \"lowerLimit\": 2,\r\n          \"upperLimit\": 3,\r\n          \"reason\": \"The debtor has performed two transactions to date\"\r\n        },\r\n        {\r\n          \"subRuleRef\": \".03\",\r\n          \"lowerLimit\": 3,\r\n          \"reason\": \"The debtor has performed three or more transactions to date\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1984,7 +1988,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"_key\": \"999@1.0.0\",\r\n        \"desc\": \"Rule-901 Typology\",\r\n        \"id\": \"typology-processor@1.0.0\",\r\n        \"cfg\": \"999@1.0.0\",\r\n        \"workflow\": {\r\n            \"alertThreshold\": 200,\r\n            \"interdictionThreshold\": 400\r\n        },\r\n        \"rules\": [\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"termId\": \"v901at100at100\",\r\n                \"wghts\": [\r\n                    {\r\n                        \"ref\": \".err\",\r\n                        \"wght\": 0\r\n                    },\r\n                    {\r\n                        \"ref\": \".x01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".02\",\r\n                        \"wght\": 200\r\n                    },\r\n                    {\r\n                        \"ref\": \".03\",\r\n                        \"wght\": 400\r\n                    }\r\n                ]\r\n            }\r\n        ],\r\n        \"expression\": [\r\n            \"Add\",\r\n            \"v901at100at100\"\r\n        ]\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"_key\": \"DEFAULT@1.0.0@999@1.0.0\",\r\n        \"_id\": \"DEFAULT@1.0.0@999@1.0.0\",\r\n        \"tenantId\": \"DEFAULT\",\r\n        \"desc\": \"Rule-901-Typology-999\",\r\n        \"id\": \"typology-processor@1.0.0\",\r\n        \"cfg\": \"999@1.0.0\",\r\n        \"workflow\": {\r\n            \"alertThreshold\": 200,\r\n            \"interdictionThreshold\": 400\r\n        },\r\n        \"rules\": [\r\n            {\r\n                \"id\": \"901@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"termId\": \"v901at100at100\",\r\n                \"wghts\": [\r\n                    {\r\n                        \"ref\": \".err\",\r\n                        \"wght\": 0\r\n                    },\r\n                    {\r\n                        \"ref\": \".x01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".01\",\r\n                        \"wght\": 100\r\n                    },\r\n                    {\r\n                        \"ref\": \".02\",\r\n                        \"wght\": 200\r\n                    },\r\n                    {\r\n                        \"ref\": \".03\",\r\n                        \"wght\": 400\r\n                    }\r\n                ]\r\n            }\r\n        ],\r\n        \"expression\": [\r\n            \"Add\",\r\n            \"v901at100at100\"\r\n        ]\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2024,7 +2028,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"active\": true,\r\n        \"cfg\": \"1.0.0\",\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"typologies\": [\r\n                    {\r\n                        \"id\": \"typology-processor@1.0.0\",\r\n                        \"cfg\": \"999@1.0.0\",\r\n                        \"rules\": [\r\n                            {\r\n                                \"id\": \"901@1.0.0\",\r\n                                \"cfg\": \"1.0.0\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"active\": true,\r\n        \"tenantId\": \"DEFAULT\",\r\n        \"cfg\": \"1.0.0\",\r\n        \"messages\": [\r\n            {\r\n                \"id\": \"004@1.0.0\",\r\n                \"cfg\": \"1.0.0\",\r\n                \"txTp\": \"pacs.002.001.12\",\r\n                \"typologies\": [\r\n                    {\r\n                        \"tenantId\": \"DEFAULT\",\r\n                        \"id\": \"typology-processor@1.0.0\",\r\n                        \"cfg\": \"999@1.0.0\",\r\n                        \"rules\": [\r\n                            {\r\n                                \"id\": \"901@1.0.0\",\r\n                                \"cfg\": \"1.0.0\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2047,7 +2051,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Rule-901 only, single typology (999)."
 		}
 	]
 }
