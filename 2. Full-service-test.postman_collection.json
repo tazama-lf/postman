@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5b503d0-d829-453c-af48-bf28cc6fe4cf",
+		"_postman_id": "c36a6712-552d-4de1-a22c-39493057e3b0",
 		"name": "2. Full-service-test",
 		"description": "# 20241207\n\n- Implemented tests for the full-service DockerHub deployment",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -793,7 +793,8 @@
 									"console.log(`Fetching result for pacs.002 msgId: ${pm.globals.get('messageIdPacs002')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -802,7 +803,7 @@
 								"exec": [
 									"const resJson = pm.response.json();\r",
 									"\r",
-									"const rulesPerTypologyCount = [2];\r",
+									"const rulesPerTypologyCount = [34];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
@@ -1131,7 +1132,8 @@
 									"}"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],

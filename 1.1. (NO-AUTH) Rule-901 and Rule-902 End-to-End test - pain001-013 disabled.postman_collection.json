@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "accc6738-7ea6-411f-b549-6bae1eb6bb46",
+		"_postman_id": "2f13a1ea-1e43-43a4-995b-81517441579e",
 		"name": "1.1. (NO-AUTH) Rule-901 and Rule-902 End-to-End test - pain001/013 disabled",
 		"description": "# 20240622\n\n- Implemented new TMS API path\n    \n\n20250926\n\n- Implemented multi-tenancy testing for the DEFAULT tenant",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -280,10 +280,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Message Creation sans pain.001/013 Copy",
-			"item": []
 		},
 		{
 			"name": "DB update tests",
@@ -623,6 +619,7 @@
 									"const typologyDescriptions = {\r",
 									"  \"999\": \"Test typology 999 with rule 901, 902 and the EFRuP\"\r",
 									"}\r",
+									"const expectedIndependentVariable = [/* rule-901 */ 1, /* rule-902 */ 1, /* EFRuP */ 0];\r",
 									"\r",
 									"let ruleCount = 0;\r",
 									"let typologyCount = 0;\r",
@@ -740,6 +737,11 @@
 									"    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.desc omitted`, function () {\r",
 									"        pm.expect(sortedRuleTimingsById[i].desc).to.be.eql(undefined);\r",
 									"    });\r",
+									"\r",
+									"    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches target ${expectedIndependentVariable[i]}`, function () {\r",
+									"        pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(expectedIndependentVariable[i]);\r",
+									"    });\r",
+									"\r",
 									"}\r",
 									"\r",
 									"pm.test(`Total (estimated) processing time: ${(totalEstimatedTime / 1000000).toFixed(3)} milliseconds`, function () {\r",
