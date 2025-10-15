@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "c36a6712-552d-4de1-a22c-39493057e3b0",
-		"name": "2. Full-service-test",
-		"description": "# 20241207\n\n- Implemented tests for the full-service DockerHub deployment",
+		"_postman_id": "5313fd87-1f1d-4cbd-828b-b5893d615730",
+		"name": "1.2. (AUTH) Rule-901 End-to-End test - tenant-002-user",
+		"description": "# 20240622\n\n- Implemented new TMS API path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"
 	},
@@ -18,36 +18,18 @@
 							"script": {
 								"exec": [
 									"utils.setPm(pm); // set the utils _pm to the pre-request script pm\r",
-									"let moment = require('moment');\r",
-									"// ## Set up rule config\r",
 									"\r",
 									"pm.globals.clear();\r",
-									"messageSet = utils.createTransactionSetInMemory(\r",
-									"    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
-									"    /* Timestamp Offset - null defaults 0 --------------------------- */ null,\r",
-									"    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
-									"    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
-									"    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
-									"    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
-									"    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
-									"    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
-									"    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
-									"    /* Instructed Amount - null defaults to random amount ----------- */ null,\r",
-									"    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
-									"    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
-									"    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
-									"    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
-									"    /* Description - null defaults random UUID ---------------------- */ null,\r",
-									"    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
-									"    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
-									"    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
-									"    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
-									"    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
-									"    );"
+									"\r",
+									"console.log(`Data Preparation Service - Public Network Map`);\r",
+									"\r",
+									"// ## Set up transaction eco-system\r",
+									"\r",
+									"messageSet = utils.createTransactionSetInMemory();"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -131,7 +113,8 @@
 									"}"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -139,6 +122,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -151,16 +144,277 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}",
+							"raw": "{{tazamaTMSUrl}}",
 							"host": [
-								"{{ofUrl}}"
+								"{{tazamaTMSUrl}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post pacs.008 to TMS API",
+					"name": "Post pacs.008 to TMS API - unauthenticated",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs008');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"responseJSON = pm.response.json();\r",
+									"\r",
+									"targetConditionResult = {\r",
+									"    \"error\": \"Unauthorized\"\r",
+									"};\r",
+									"\r",
+									"pm.test(\"pacs.008 error unauthorized\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Result message matches target result message - ${targetConditionResult.message}`, function () {\r",
+									"    pm.expect(responseJSON.message).to.be.eql(targetConditionResult.message);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{messageBody}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"host": [
+								"{{tazamaTMSUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs008}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post pacs.002 to TMS API - unauthenticated",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let messageBody = pm.globals.get('pacs002');\r",
+									"pm.globals.set('messageBody', messageBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"responseJSON = pm.response.json();\r",
+									"\r",
+									"targetConditionResult = {\r",
+									"    \"error\": \"Unauthorized\"\r",
+									"};\r",
+									"\r",
+									"pm.test(\"pacs.008 error unauthorized\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Result message matches target result message - ${targetConditionResult.message}`, function () {\r",
+									"    pm.expect(responseJSON.message).to.be.eql(targetConditionResult.message);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{pacs002}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"host": [
+								"{{tazamaTMSUrl}}{{path-api-version}}"
+							],
+							"path": [
+								"{{path-pacs002}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(pm.response.text())\r",
+									"pm.globals.set(\"keycloak-token\", jsonData.access_token);\r",
+									"\r",
+									"pm.test(\"Access token successfully set\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloakUrl}}/realms/master/protocol/openid-connect/token",
+							"host": [
+								"{{keycloakUrl}}"
+							],
+							"path": [
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Authorization Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"auth-token\", pm.response.text());\r",
+									"\r",
+									"pm.test(\"Auth token successfully set\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Auth token is not null\", function () {\r",
+									"    pm.expect(pm.globals.get('auth-token')).to.not.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{keycloak-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"password\",\r\n  \"username\": \"tenant-002-user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tazamaAuthUrl}}{{path-auth-api-version}}/auth/login",
+							"host": [
+								"{{tazamaAuthUrl}}{{path-auth-api-version}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post pacs.008 to TMS API - authenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -187,6 +441,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -199,9 +463,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs008}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs008}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs008}}"
@@ -211,7 +475,7 @@
 					"response": []
 				},
 				{
-					"name": "Post pacs.002 to TMS API",
+					"name": "Post pacs.002 to TMS API - authenticated",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -238,6 +502,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -250,9 +524,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{ofUrl}}{{path-api-version}}/{{path-pacs002}}",
+							"raw": "{{tazamaTMSUrl}}{{path-api-version}}/{{path-pacs002}}",
 							"host": [
-								"{{ofUrl}}{{path-api-version}}"
+								"{{tazamaTMSUrl}}{{path-api-version}}"
 							],
 							"path": [
 								"{{path-pacs002}}"
@@ -303,180 +577,6 @@
 							"path": [
 								"_open",
 								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch created pain.001 from transactionHistoryPain001",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"let qryString = \"\";\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    console.log(`Fetching pain.001 from transactionHistoryPain001 using msgId: ${pm.globals.get('messageIdPain001')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.GrpHdr.MsgId == '${pm.globals.get('messageIdPain001')}' RETURN doc`\r",
-									"} else {\r",
-									"    console.log(`Pain.001/013 disabled: Checking that no pain.001 exists in transactionHistoryPain001 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain001')} FILTER doc.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
-									"}\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const resJson = pm.response.json();\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    let memPain001MsgId = pm.globals.get('messageIdPain001')\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages activated and pain.001 with msgId ${memPain001MsgId} found`, function () {\r",
-									"        pm.expect(resJson.result[0].CstmrCdtTrfInitn.GrpHdr.MsgId).to.be.equal(memPain001MsgId);\r",
-									"    });\r",
-									"} else {\r",
-									"\r",
-									"    let endToEndId = pm.globals.get('endToEndId');\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages deactivated and no pain.001 with endToEndId ${endToEndId} found`, function () {\r",
-									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch created pain.013 from transactionHistoryPain013",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"let qryString = \"\";\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    console.log(`Fetching pain.013 from transactionHistoryPain013 using msgId: ${pm.globals.get('messageIdPain013')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.GrpHdr.MsgId == '${pm.globals.get('messageIdPain013')}' RETURN doc`\r",
-									"} else {\r",
-									"    console.log(`Pain.001/013 disabled: Checking that no pain.013 exists in transactionHistoryPain013 using endToEndId: ${pm.globals.get('endToEndId')}`);\r",
-									"    qryString = `FOR doc in ${pm.environment.get('db_coll_msg_transactionHistoryPain013')} FILTER doc.CdtrPmtActvtnReq.PmtInf.CdtTrfTxInf.PmtId.EndToEndId == '${pm.globals.get('endToEndId')}' RETURN doc`\r",
-									"}\r",
-									"\r",
-									"pm.globals.set('qryString', qryString);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const resJson = pm.response.json();\r",
-									"let activePain001 = JSON.parse(pm.environment.get('activePain001'));\r",
-									"\r",
-									"if (activePain001) {\r",
-									"    let memPain013MsgId = pm.globals.get('messageIdPain013')\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages activated and pain.013 with msgId ${memPain013MsgId} found`, function () {\r",
-									"        pm.expect(resJson.result[0].CdtrPmtActvtnReq.GrpHdr.MsgId).to.be.equal(memPain013MsgId);\r",
-									"    });\r",
-									"} else {\r",
-									"\r",
-									"    let endToEndId = pm.globals.get('endToEndId');\r",
-									"\r",
-									"    pm.test(`Pain.001/013 messages deactivated and no pain.013 with endToEndId ${endToEndId} found`, function () {\r",
-									"        pm.expect(resJson.result.length).to.be.equal(0);\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{arangoToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"{{qryString}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{arangoUrl}}/_db/{{db_messagehistory}}/_api/cursor",
-							"host": [
-								"{{arangoUrl}}"
-							],
-							"path": [
-								"_db",
-								"{{db_messagehistory}}",
-								"_api",
-								"cursor"
 							]
 						}
 					},
@@ -784,7 +884,7 @@
 					"response": []
 				},
 				{
-					"name": "Fetch evaluation results with msgId from admin-service - Full Service Network Map",
+					"name": "Fetch evaluation results with msgId from admin-service - Rule 901 Network Map Only",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -803,7 +903,7 @@
 								"exec": [
 									"const resJson = pm.response.json();\r",
 									"\r",
-									"const rulesPerTypologyCount = [34];\r",
+									"const rulesPerTypologyCount = [2];\r",
 									"const totalExpectedTypologies = 1;\r",
 									"const expectedAlertStatus = \"NALT\";\r",
 									"const interdictionTypologies = [\r",
@@ -1146,7 +1246,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{arangoToken}}",
+									"value": "{{auth-token}}",
 									"type": "string"
 								}
 							]
@@ -1155,7 +1255,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
