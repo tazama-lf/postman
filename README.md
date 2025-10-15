@@ -8,7 +8,7 @@ The files and folders you see here can be used to test Tazama via both the TMS A
 
 When you are deploying Tazama as a public user<sup>1</sup> you will be able to use the tests here to validate your deployment. The instructions to set up Tazama via Docker Compose into a Full Stack containerized implementation can be found in the [Full-Stack-Docker-Tazama](https://github.com/tazamma-lf/Full-Stack-Docker-Tazama/tree/main) repository. The instructions there will provide specific guidance on how to test a deployment using the end-to-end test above.
 
-If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/tazama-lf/docs/blob/dev/Guides/dev-set-up-environment.md#setting-up-the-development-environment-), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
+If you are setting up your environment according to the instructions in the [Tazama Contribution Guide](https://github.com/tazama-lf/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment), those instructions will also guide you on how to use these Postman tests to test our sample rule processor 901 in isolation using the NATS REST proxy.
 
 To use any of these tests, you can clone this repository onto your local machine and either import the tests you want to run or work on into Postman, or you can run the tests from a command line via [Newman](https://learning.postman.com/docs/collections/using-newman-cli/installing-running-newman/#installing-newman).
 
@@ -511,15 +511,20 @@ The `getRuleProcessorBody` function takes in the following parameters:
 
 The message body in the "Body" tab of the test request only contains the variable reference to the `messageBody` and will be automatically populated from the stashed global `messageBody` variable when the request is executed.
 
-### ArangoDB Setup.json
+### ArangoDB Setup.postman_collection.json
 
-This test collection is used during a deployment to configure the ArangoDB databases and collections via the ArangoDB API. This collection is typically executed automatically via Jenkins, but can also be executed manually if you are setting up ArangoDB from scratch as described in our [Contribution Guide](https://github.com/tazama-lf/docs/blob/dev/Guides/dev-set-up-environment.md#312-step-2-set-up-core-services).
+This test collection is used during a deployment to configure the ArangoDB databases and collections via the ArangoDB API. This collection is typically executed automatically via Jenkins, but can also be executed manually if you are setting up ArangoDB from scratch as described in our [Contribution Guide](https://github.com/frmscoe/docs/blob/main/Community/Tazama-Contribution-Guide.md#32-setting-up-the-development-environment).
 
 The collection also sets up the indexes recommended for optimal performance of our database queries. You can read more about the indexes on our [Tazama Database Indexes](https://github.com/frmscoe/docs/blob/main/Technical/Database/arango-db-deployment-indexes.md) page.
 
+The collection provides for incremental deployment steps for various configuration options, as follows:
+ - Up to and including step: 4-ArangoDB-Basic-Configuration - only rule 901 and a single typology is deployed for a DEFAULT tenant.
+ - Up to and including step: 5-ArangoDB-Conditions-Configuration - the Event-Flow Rule Processor (EFRuP) is added to step 4.
+ - Up to and including step: 6-ArangoDB-Multi-Tenant-Configuration - rule 901 and the EFRuP is deployed for two tenants: tenant-001 and tenant-002.
+
 ### Configuration - Rule 901.postman_collection.json
 
-This collection sets up the configuration documents for setting up an instance of Tazama that runs our sample rule processor 901 in isolation. The configuration contains a network map with a single typology (999) that contains a single rule (901).
+This collection sets up the configuration documents for setting up an instance of Tazama that runs our sample rule processor 901 and the Event-Flow Rule Processor (EFRuP) to offer a view of the complete functionality of Tazama with a minimal footprint. The configuration contains a network map with a single typology (999) that contains a single rule (901) and the Event Flow Processor (EFRuP). The configuration has been defined for the DEFAULT tenantId which assumes that the system is deployed without authentication enabled.
 
 You can review the [Configuration Management](https://github.com/frmscoe/docs/blob/main/Product/configuration-management.md) page for more information on the components in this collection and how they relate to the processors in the platform.
 
