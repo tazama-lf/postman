@@ -155,7 +155,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/0 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -175,7 +175,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -243,7 +244,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -284,7 +286,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/1 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -304,7 +306,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -372,7 +375,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -413,7 +417,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/2 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -433,7 +437,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -501,7 +506,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -542,7 +548,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/3 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -562,7 +568,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -630,7 +637,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -3512,7 +3520,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -3551,7 +3560,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -3559,6 +3569,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -3705,7 +3725,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -3744,7 +3765,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -3752,6 +3774,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -4107,7 +4139,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -4161,11 +4194,22 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -4497,7 +4541,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -4565,11 +4610,22 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -4905,7 +4961,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -4962,11 +5019,22 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -5319,14 +5387,14 @@
 									"        pm.expect(previousConditionsFromDatabase.length).to.eql(1);\r",
 									"    });\r",
 									"\r",
-									"    console.log(`previousConditionsFromResponse`,previousConditionsFromResponse)\r",
+									"    console.log(`previousConditionsFromResponse`, previousConditionsFromResponse)\r",
 									"\r",
 									"    for (let j = 0; j < previousConditionsFromResponse.length; j++) {\r",
 									"\r",
 									"        let justOneConditionFromResponse = previousConditionsFromResponse.filter(condition => condition.id === conditionResult[j].condId);\r",
 									"        let sameConditionFromDatabase = previousConditionsFromDatabase.filter(condition => condition.id === conditionResult[j].condId);\r",
+									"        console.log(`Same and Prev -> Index: ${j} Key: ${conditionResult[j].condId}`, sameConditionFromDatabase, previousConditionsFromDatabase)\r",
 									"        for (let i = 0; i < sameConditionFromDatabase[0].condition.evtTp.length; i++) {\r",
-									"            console\r",
 									"            pm.test(`Database condition.evtTp contains ${sameConditionFromDatabase[0].condition.evtTp[i]}`, function () {\r",
 									"                pm.expect(justOneConditionFromResponse[0].condition.evtTp).to.include.members([sameConditionFromDatabase[0].condition.evtTp[i]]);\r",
 									"            });\r",
@@ -5686,7 +5754,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -5731,7 +5800,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -5739,6 +5809,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -5996,7 +6076,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -6041,7 +6122,8 @@
 									"pm.globals.set(\"synccache\", \"no\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -6049,6 +6131,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -7815,7 +7907,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/0 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must be equal to constant, body/evtTp/0 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -7835,7 +7927,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -7894,7 +7987,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -7935,7 +8029,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/1 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must be equal to constant, body/evtTp/1 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -7955,7 +8049,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -8014,7 +8109,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -8055,7 +8151,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/2 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must be equal to constant, body/evtTp/2 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -8075,7 +8171,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -8134,7 +8231,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -8175,7 +8273,7 @@
 											"    \"statusCode\": 400,\r",
 											"    \"code\": \"FST_ERR_VALIDATION\",\r",
 											"    \"error\": \"Bad Request\",\r",
-											"    \"message\": \"body/evtTp/3 must be equal to one of the allowed values\"\r",
+											"    \"message\": \"body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must be equal to constant, body/evtTp/3 must match a schema in anyOf\"\r",
 											"};\r",
 											"\r",
 											"pm.test(\"Status code is 400\", function () {\r",
@@ -8195,7 +8293,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -8254,7 +8353,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -10340,7 +10440,8 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -10383,7 +10484,7 @@
 											"    \"condTp\": \"override\",\r",
 											"    \"prsptv\": \"both\",\r",
 											"    \"condRsn\": \"Default Test Condition\",\r",
-											"    \"incptnDtTm\": \"2025-10-10T23:00:00.999Z\",\r",
+											"    \"incptnDtTm\": \"2027-10-10T23:00:00.999Z\",\r",
 											"    \"xprtnDtTm\": \"2022-03-03T23:00:00.999Z\",\r",
 											"    \"ntty\":\r",
 											"    {\r",
@@ -10402,7 +10503,8 @@
 											"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -11061,7 +11163,7 @@
 									"});\r",
 									"\r",
 									"const graphPostRequest = utils.getConditionsFromDBPostRequest('entity', targetEntityId);\r",
-									"console.log(graphPostRequest);\r",
+									"console.log(graphPostRequest); \r",
 									"await pm.sendRequest(graphPostRequest, (error, response) => {\r",
 									"    console.log(error ? error : response.json());\r",
 									"    graphConditionResult = response.json();\r",
@@ -11148,7 +11250,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -11202,11 +11305,15 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -11472,7 +11579,8 @@
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -11531,11 +11639,22 @@
 									"console.log(`Message body: ${pm.variables.get('messageBody')}`);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -51492,7 +51611,7 @@
 					"\r",
 					"        const accountIds = [];\r",
 					"        for (let step = 0; step < numberOfAccounts; step++) {\r",
-					"            accountIds.push(accountId);\r",
+					"            accountIds.push({\"id\": accountId});\r",
 					"        }\r",
 					"\r",
 					"        postRequests = {\r",
@@ -51503,7 +51622,7 @@
 					"                raw: accountIds[0],\r",
 					"                options: {\r",
 					"                    raw: {\r",
-					"                        language: 'text'\r",
+					"                        language: 'json'\r",
 					"                    }\r",
 					"                },\r",
 					"            }\r",
@@ -51566,7 +51685,7 @@
 					"\r",
 					"        const accountIds = [];\r",
 					"        for (let step = 0; step < numberOfAccounts; step++) {\r",
-					"            accountIds.push('acct_' + uuid.v4().replace(/-/g, ''));\r",
+					"            accountIds.push({id: 'acct_' + uuid.v4().replace(/-/g, '')});\r",
 					"        }\r",
 					"\r",
 					"        const account_holders = [];\r",
@@ -51584,7 +51703,7 @@
 					"            method: 'POST',\r",
 					"            body: {\r",
 					"                mode: 'raw',\r",
-					"                raw: accountIds[0],\r",
+					"                raw: JSON.stringify(accountIds[0]),\r",
 					"                options: {\r",
 					"                    raw: {\r",
 					"                        language: 'text'\r",
