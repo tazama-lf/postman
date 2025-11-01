@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "81ab3ac1-e5c1-4adb-94cc-967e0b3fbac0",
-		"name": "Conditions",
+		"_postman_id": "edffd24a-8947-4301-8e4b-02c235ba9d01",
+		"name": "0.2. Condition Management - All",
 		"description": "This test collection relies on the deployment of Tazama using the Full-Stack-Docker-Tazama with the following options enabled:\n\n1. \\[ - \\] Authentication\n    \n2. \\[ - \\] Basic Logs\n    \n3. \\[ - \\] \\[Elastic\\] Logging\n    \n4. \\[ - \\] \\[Elastic\\] APM\n    \n5. \\[ - \\] Demo UI\n    \n6. \\[ X \\] Relay\n    \n7. \\[ - \\] Config Service\n    \n\n99\\. \\[ X \\] NATS Utilities",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36724395"

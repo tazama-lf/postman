@@ -1,5 +1,24 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [The folders](#the-folders)
+   1. [archived-legacy-tests](#archived-legacy-tests)
+   2. [environments](#environments)
+3. [The files](#the-files)
+   1. [1.1. (NO-AUTH) Rule-901 End-to-End test - pain001-013 disabled](#11-no-auth-rule-901-end-to-end-test---pain001-013-disabledpostman_collectionjson-and)
+   2. [1.2. (AUTH) Rule-901 End-to-End test - pain001-013 disabled](#12-auth-rule-901-end-to-end-test---pain001-013-disabledpostman_collectionjson-and)
+   3. [1.3. (NO-AUTH-DEMO) Rule-901 End-to-End test - pain001-013 disabled](#13-no-auth-demo-rule-901-end-to-end-test---pain001-013-disabledpostman_collectionjson)
+   4. [1.4. (NO-AUTH-RELAY) Rule-901 End-to-End test - pain001-013 disabled](#14-no-auth-relay-rule-901-end-to-end-test---pain001-013-disabledpostman_collectionjson)
+   5. [2. Full-service-test](#2-full-service-testpostman_collectionjson)
+   6. [Creating messages in Memory](#creating-messages-in-memory)
+   7. [4. Rule Functionality Testing - Rule 901](#4-rule-functionality-testing---rule-901postman_collectionjson)
+   8. [ArangoDB Setup](#arangodb-setuppostman_collectionjson)
+   9. [Configuration - Rule 901](#configuration---rule-901postman_collectionjson)
+4. [The Tazama test `utils` library for Postman](#the-tazama-test-utils-library-for-postman)
+5. [Tazama regression testing checklist](#tazama-regression-testing-checklist)
+
 ## Introduction
 
 Tazama is prefaced with the Transaction Monitoring Service (TMS) API which makes [Postman](https://www.postman.com/) a useful tool to test platform functionality. In days gone by, Tazama was also composed out of a series of forward-chaining microservices that all had their own RESTful interfaces to receive incoming requests, but we have since replaced our inter-services communication protocol with [NATS](http://nats.io) that connects all our internal processors via its pub/sub interface. While we still use Postman to test the internal processors, we now have to access the NATS pub/sub interface via a NATS REST Proxy that we also built. (You can read more about the NATS REST proxy in the [nats-utilities](https://github.com/tazama-lf/nats-utilities/tree/main)) repository.
@@ -595,3 +614,258 @@ This function will return a valid and complete JSON object that can be submitted
 ---
 **Footnotes:**
 ###### 1. A public user is not a "member" of the Tazama GitHub organization and does not have access to private repositories that contain hidden rule processors
+
+## Tazama regression testing checklist
+
+In preparation for any merge of code to the Tazama `dev` or `main` branch, the following tests are expected to be executed and passed when run over an environment deployed from the [Tazama Docker Stack](https://github.com/tazama-lf/full-stack-docker-tazama):
+
+```text
+1. Public (GitHub)
+2. Public (DockerHub)
+3. Full-service (DockerHub)
+4. Multi-Tenant Public (DockerHub)
+5. Docker Utilities
+6. Database Utilities
+7. Consoles
+```
+
+### Option 1. Public (GitHub)
+
+This battery of tests are intended to test a feature branch from GitHub prior to merging code into the `dev` branch.
+
+#### End-to-End Test Without Authentication
+Add-ons required:
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [X] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 1.1. (NO-AUTH) Public GitHub End-to-End test
+
+#### Rule 901 Integration/Unit Testing
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 1.2. Rule Functionality Testing - Public GitHub
+
+#### End-to-End Test With Authentication
+
+```text
+CORE ADDONS:
+
+1. [X] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 0.1. Authentication Services - All
+
+#### Condition Management Testing
+Add-ons required:
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [X] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 0.2. Condition Management - All
+
+### Option 2. Public (DockerHub)
+
+This battery of tests are intended to test all release candidate images in Docker Hub built from the `dev` branch prior to merging code into the `main` branch (i.e. a Tazama release).
+
+#### End-to-End Test Without Authentication
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [X] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 2.1. (NO-AUTH) Public DockerHub End-to-End Test
+
+#### Rule 901 and 902 Integration/Unit Testing
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 2.2. Rule Functionality Testing - Public DockerHub
+
+#### End-to-End Test With Authentication
+
+```text
+CORE ADDONS:
+
+1. [X] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 0.1. Authentication Services - All
+
+#### Condition Management Testing
+Add-ons required:
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [X] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 0.2. Condition Management - All
+
+### Option 3. Full-service (DockerHub)
+
+This battery of tests is largely intended to test an end-to-end deployment with all the Tazama rules. Functional unit testing of the rules is preferred through the deployment of the private rules, documented below as well.
+
+#### End-to-End Test Without Authentication
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 3. (NO-AUTH) Public DockerHub End-to-End Test
+
+#### Private rule deployment
+
+The following steps will guide you to deploy the default configurations for the private rule processors.
+
+**Preparation**
+You can access the private configuration in the 
+[tms-config](https://github.com/frmscoe/tms-config) repository
+ - If you do not have access to this repository, contact the Tazama team.
+ - Clone down the `tms-config` repository and import the Postman collections from the `/default` folder into Postman.
+
+You can access the private rule functionality and unit tests that match this configuration in in the 
+[rule-tests](https://github.com/frmscoe/rule-tests) repository
+ - If you do not have access to this repository, contact the Tazama team.
+ - Clone down the `rule-tests` repository and import the `Rule Functionality Testing` Postman collection from the root folder into Postman.
+
+**Private Configuration Implementation**
+1. Execute the `tms-config` test collection.
+2. Restart the ED, TP, and TADP containers. You can find a convenient menu option in the full-stack start.bat/start.sh script under menu option `5. Docker Utilities`.
+3. Run the `tms-config-test` collection to confirm that the end-to-end is running.
+4. Run the `rule-tests` collection to test each of the rule processors.
+
+### Option 4. Multi-Tenant Public (DockerHub)
+
+#### End-to-End Test Without Authentication
+Add-ons required:
+
+```text
+CORE ADDONS:
+
+1. [x] Authentication
+2. [X] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collections:**
+4.1. (AUTH) Public GitHub End-to-End test - tenant-001
+4.2. (AUTH) Public GitHub End-to-End test - tenant-002
