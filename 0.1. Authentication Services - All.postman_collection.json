@@ -2780,7 +2780,7 @@
 					"name": "ADMIN API - CONFIGURATION",
 					"item": [
 						{
-							"name": "Network Map - LIST",
+							"name": "LIST Network Maps",
 							"event": [
 								{
 									"listen": "test",
@@ -2810,9 +2810,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
 								"method": "GET",
 								"header": [],
 								"body": {
@@ -2837,8 +2834,653 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "LIST Rule Configurations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LIST Typology Configurations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Network Map by cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Rule Configuration by id and cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule?id=\"901@1.0.0\"&cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "\"901@1.0.0\""
+										},
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Typology Configuration by id and cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology?id=\"typology-processor@1.0.0\"&cfg=\"999@1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "\"typology-processor@1.0.0\""
+										},
+										{
+											"key": "cfg",
+											"value": "\"999@1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Network Map",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": false,\r\n    \"cfg\": \"1.0.1\",\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"typologies\": [\r\n                {\r\n                    \"id\": \"typology-processor@1.0.0\",\r\n                    \"cfg\": \"999@1.0.1\",\r\n                    \"rules\": [\r\n                        {\r\n                            \"id\": \"EFRuP@1.0.0\",\r\n                            \"cfg\": \"none\"\r\n                        },\r\n                        {\r\n                            \"id\": \"901@1.0.0\",\r\n                            \"cfg\": \"1.0.1\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"Public Network Map\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Rule Configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"901@1.0.0\",\r\n    \"cfg\": \"1.0.1\",\r\n    \"config\": {\r\n        \"parameters\": {},\r\n        \"exitConditions\": [\r\n            {\r\n                \"subRuleRef\": \".x00\",\r\n                \"reason\": \"Incoming transaction is unsuccessful\"\r\n            }\r\n        ],\r\n        \"bands\": [\r\n            {\r\n                \"subRuleRef\": \".01\",\r\n                \"reason\": \"The debtor has performed one transaction to date\",\r\n                \"upperLimit\": 2\r\n            },\r\n            {\r\n                \"subRuleRef\": \".02\",\r\n                \"reason\": \"The debtor has performed two transactions to date\",\r\n                \"lowerLimit\": 2,\r\n                \"upperLimit\": 3\r\n            },\r\n            {\r\n                \"subRuleRef\": \".03\",\r\n                \"reason\": \"The debtor has performed four transactions to date\",\r\n                \"lowerLimit\": 3,\r\n                \"upperLimit\": 4\r\n            },\r\n            {\r\n                \"subRuleRef\": \".04\",\r\n                \"reason\": \"The debtor has performed four or more transactions to date\",\r\n                \"lowerLimit\": 4\r\n            }\r\n        ]\r\n    },\r\n    \"desc\": \"Number of outgoing transactions - debtor\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Typology Configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"typology-processor@1.0.0\",\r\n    \"cfg\": \"999@1.0.1\",\r\n    \"rules\": [\r\n        {\r\n            \"id\": \"901@1.0.0\",\r\n            \"cfg\": \"1.0.1\",\r\n            \"wghts\": [\r\n                {\r\n                    \"ref\": \".err\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \".x00\",\r\n                    \"wght\": 100\r\n                },\r\n                {\r\n                    \"ref\": \".01\",\r\n                    \"wght\": 100\r\n                },\r\n                {\r\n                    \"ref\": \".02\",\r\n                    \"wght\": 200\r\n                },\r\n                {\r\n                    \"ref\": \".03\",\r\n                    \"wght\": 400\r\n                },\r\n                {\r\n                    \"ref\": \".03\",\r\n                    \"wght\": 800\r\n                }\r\n            ],\r\n            \"termId\": \"v901at100at100\"\r\n        },\r\n        {\r\n            \"id\": \"EFRuP@1.0.0\",\r\n            \"cfg\": \"none\",\r\n            \"wghts\": [\r\n                {\r\n                    \"ref\": \".err\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"override\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"non-overridable-block\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"overridable-block\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"none\",\r\n                    \"wght\": 0\r\n                }\r\n            ],\r\n            \"termId\": \"vEFRuPat100atnone\"\r\n        }\r\n    ],\r\n    \"expression\": [\r\n        \"Add\",\r\n        \"v901at100at100\"\r\n    ],\r\n    \"workflow\": {\r\n        \"alertThreshold\": 300,\r\n        \"interdictionThreshold\": 500,\r\n        \"flowProcessor\": \"EFRuP@1.0.0\"\r\n    },\r\n    \"typology_name\": \"Typology-999-Rule-901-only\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE Network Map - current active",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"active\": false,\r\n            \"cfg\": \"1.0.0\",\r\n            \"messages\": [\r\n                {\r\n                    \"id\": \"004@1.0.0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"txTp\": \"pacs.002.001.12\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"typology-processor@1.0.0\",\r\n                            \"cfg\": \"999@1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"EFRuP@1.0.0\",\r\n                                    \"cfg\": \"none\"\r\n                                },\r\n                                {\r\n                                    \"id\": \"901@1.0.0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                },\r\n                                {\r\n                                    \"id\": \"902@1.0.0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ],\r\n                            \"tenantId\": \"DEFAULT\"\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"name\": \"Public Network Map\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE Network Map - new active",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Unauthorized access prevented\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response provided\", function () {\r",
+											"    pm.expect(response.error).to.exist;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Unauthorized access response message provided\", function () {\r",
+											"    pm.expect(response.error).to.equal(`Unauthorized`);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"cfg\": \"1.0.1\",\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"typologies\": [\r\n                {\r\n                    \"id\": \"typology-processor@1.0.0\",\r\n                    \"cfg\": \"999@1.0.1\",\r\n                    \"rules\": [\r\n                        {\r\n                            \"id\": \"EFRuP@1.0.0\",\r\n                            \"cfg\": \"none\"\r\n                        },\r\n                        {\r\n                            \"id\": \"901@1.0.0\",\r\n                            \"cfg\": \"1.0.1\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"Public Network Map\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.1\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.1\""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
 						}
 					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -5546,7 +6188,7 @@
 					"name": "ADMIN API - CONFIGURATION",
 					"item": [
 						{
-							"name": "Network Map - LIST",
+							"name": "LIST Network Maps",
 							"event": [
 								{
 									"listen": "test",
@@ -5586,6 +6228,500 @@
 										"admin",
 										"configuration",
 										"network_map"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LIST Rule Configurations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LIST Typology Configurations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Network Map by cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Rule Configuration by id and cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule?id=\"901@1.0.0\"&cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "\"901@1.0.0\""
+										},
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Typology Configuration by id and cfg",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology?id=\"typology-processor@1.0.0\"&cfg=\"999@1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "\"typology-processor@1.0.0\""
+										},
+										{
+											"key": "cfg",
+											"value": "\"999@1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Network Map",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": false,\r\n    \"cfg\": \"1.0.1\",\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"typologies\": [\r\n                {\r\n                    \"id\": \"typology-processor@1.0.0\",\r\n                    \"cfg\": \"999@1.0.1\",\r\n                    \"rules\": [\r\n                        {\r\n                            \"id\": \"EFRuP@1.0.0\",\r\n                            \"cfg\": \"none\"\r\n                        },\r\n                        {\r\n                            \"id\": \"901@1.0.0\",\r\n                            \"cfg\": \"1.0.1\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"Public Network Map\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Rule Configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"901@1.0.0\",\r\n    \"cfg\": \"1.0.1\",\r\n    \"config\": {\r\n        \"parameters\": {},\r\n        \"exitConditions\": [\r\n            {\r\n                \"subRuleRef\": \".x00\",\r\n                \"reason\": \"Incoming transaction is unsuccessful\"\r\n            }\r\n        ],\r\n        \"bands\": [\r\n            {\r\n                \"subRuleRef\": \".01\",\r\n                \"reason\": \"The debtor has performed one transaction to date\",\r\n                \"upperLimit\": 2\r\n            },\r\n            {\r\n                \"subRuleRef\": \".02\",\r\n                \"reason\": \"The debtor has performed two transactions to date\",\r\n                \"lowerLimit\": 2,\r\n                \"upperLimit\": 3\r\n            },\r\n            {\r\n                \"subRuleRef\": \".03\",\r\n                \"reason\": \"The debtor has performed four transactions to date\",\r\n                \"lowerLimit\": 3,\r\n                \"upperLimit\": 4\r\n            },\r\n            {\r\n                \"subRuleRef\": \".04\",\r\n                \"reason\": \"The debtor has performed four or more transactions to date\",\r\n                \"lowerLimit\": 4\r\n            }\r\n        ]\r\n    },\r\n    \"desc\": \"Number of outgoing transactions - debtor\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/rule",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"rule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Typology Configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"typology-processor@1.0.0\",\r\n    \"cfg\": \"999@1.0.1\",\r\n    \"rules\": [\r\n        {\r\n            \"id\": \"901@1.0.0\",\r\n            \"cfg\": \"1.0.1\",\r\n            \"wghts\": [\r\n                {\r\n                    \"ref\": \".err\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \".x00\",\r\n                    \"wght\": 100\r\n                },\r\n                {\r\n                    \"ref\": \".01\",\r\n                    \"wght\": 100\r\n                },\r\n                {\r\n                    \"ref\": \".02\",\r\n                    \"wght\": 200\r\n                },\r\n                {\r\n                    \"ref\": \".03\",\r\n                    \"wght\": 400\r\n                },\r\n                {\r\n                    \"ref\": \".03\",\r\n                    \"wght\": 800\r\n                }\r\n            ],\r\n            \"termId\": \"v901at100at100\"\r\n        },\r\n        {\r\n            \"id\": \"EFRuP@1.0.0\",\r\n            \"cfg\": \"none\",\r\n            \"wghts\": [\r\n                {\r\n                    \"ref\": \".err\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"override\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"non-overridable-block\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"overridable-block\",\r\n                    \"wght\": 0\r\n                },\r\n                {\r\n                    \"ref\": \"none\",\r\n                    \"wght\": 0\r\n                }\r\n            ],\r\n            \"termId\": \"vEFRuPat100atnone\"\r\n        }\r\n    ],\r\n    \"expression\": [\r\n        \"Add\",\r\n        \"v901at100at100\"\r\n    ],\r\n    \"workflow\": {\r\n        \"alertThreshold\": 300,\r\n        \"interdictionThreshold\": 500,\r\n        \"flowProcessor\": \"EFRuP@1.0.0\"\r\n    },\r\n    \"typology_name\": \"Typology-999-Rule-901-only\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/typology",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"typology"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE Network Map - current active",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"active\": false,\r\n            \"cfg\": \"1.0.0\",\r\n            \"messages\": [\r\n                {\r\n                    \"id\": \"004@1.0.0\",\r\n                    \"cfg\": \"1.0.0\",\r\n                    \"txTp\": \"pacs.002.001.12\",\r\n                    \"typologies\": [\r\n                        {\r\n                            \"id\": \"typology-processor@1.0.0\",\r\n                            \"cfg\": \"999@1.0.0\",\r\n                            \"rules\": [\r\n                                {\r\n                                    \"id\": \"EFRuP@1.0.0\",\r\n                                    \"cfg\": \"none\"\r\n                                },\r\n                                {\r\n                                    \"id\": \"901@1.0.0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                },\r\n                                {\r\n                                    \"id\": \"902@1.0.0\",\r\n                                    \"cfg\": \"1.0.0\"\r\n                                }\r\n                            ],\r\n                            \"tenantId\": \"DEFAULT\"\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"name\": \"Public Network Map\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.0\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.0\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE Network Map - new active",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Authorized access allowed\", function () {\r",
+											"    pm.response.to.not.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"cfg\": \"1.0.1\",\r\n    \"messages\": [\r\n        {\r\n            \"id\": \"004@1.0.0\",\r\n            \"cfg\": \"1.0.0\",\r\n            \"txTp\": \"pacs.002.001.12\",\r\n            \"typologies\": [\r\n                {\r\n                    \"id\": \"typology-processor@1.0.0\",\r\n                    \"cfg\": \"999@1.0.1\",\r\n                    \"rules\": [\r\n                        {\r\n                            \"id\": \"EFRuP@1.0.0\",\r\n                            \"cfg\": \"none\"\r\n                        },\r\n                        {\r\n                            \"id\": \"901@1.0.0\",\r\n                            \"cfg\": \"1.0.1\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"name\": \"Public Network Map\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{tazamaAdminUrl}}{{path-admin-api-version}}/admin/configuration/network_map?cfg=\"1.0.1\"",
+									"host": [
+										"{{tazamaAdminUrl}}{{path-admin-api-version}}"
+									],
+									"path": [
+										"admin",
+										"configuration",
+										"network_map"
+									],
+									"query": [
+										{
+											"key": "cfg",
+											"value": "\"1.0.1\""
+										}
 									]
 								}
 							},
