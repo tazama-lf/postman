@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 const lodash = require('lodash');
 
-const LOGLEVEL = "ERROR";
+const LOGLEVEL = "DEBUG";
 const TENANT_DEFAULT = "DEFAULT";
 
 // Message creation defaults
@@ -955,11 +955,12 @@ prep = {
        * 
        * @returns {Array} A DB-ready account object.
        */
-    prepAccount: function (tenantId, accountKey) {
+    prepAccount: function (tenantId, accountKey, timestamp) {
 
         account = {
             "id": accountKey,
-            "tenantid": tenantId
+            "tenantid": tenantId,
+            "credttm": timestamp
         };
 
         if (LOGLEVEL === 'DEBUG') {
@@ -999,9 +1000,9 @@ prep = {
        * 
        * @returns {Array} An array of graph nodes, each representing an account with a unique identifier.
        */
-    prepEventAccounts: function (tenantId, debtorAccountId, creditorAccountId) {
+    prepEventAccounts: function (tenantId, debtorAccountId, creditorAccountId, timestamp) {
 
-        accounts = [prep.prepAccount(tenantId, debtorAccountId), prep.prepAccount(tenantId, creditorAccountId)];
+        accounts = [prep.prepAccount(tenantId, debtorAccountId, timestamp), prep.prepAccount(tenantId, creditorAccountId, timestamp)];
 
         if (LOGLEVEL === 'DEBUG') {
             console.log("Account details:", JSON.stringify(accounts, null, 2));
@@ -1237,13 +1238,28 @@ utils = {
     },
 
     /**
-       * Converts a time unit to its equivalent in milliseconds.
-       * 
-       * Example: `weekInMilliseconds = 7 * utils.timeframe('d');`
-       *
-       * @param {string} unit - The time unit to convert. Supported units are 'd'/'days', 'h'/'hours', 'm'/'minutes', and 's'/'seconds'.
-       * @returns {number} The number of milliseconds corresponding to the given time unit.
-       */
+     * Calculates a timestamp in the past relative to the current time.
+     * 
+     * This function computes a timestamp by subtracting a specified duration 
+     * (quantum * unit) from the current time and returns it in ISO 8601 format.
+     * 
+     * Example: 
+     * ```javascript
+     * // Get timestamp from 7 days ago
+     * pastDate = utils.timestampAtTMinus(7, 'd');
+     * // Returns: "2025-10-26T20:30:00.000Z" (if current date is 2025-11-02)
+     * 
+     * // Get timestamp from 2 hours ago
+     * recentDate = utils.timestampAtTMinus(2, 'h');
+     * // Returns: "2025-11-02T18:30:00.000Z" (if current time is 20:30:00)
+     * ```
+     *
+     * @param {number} quantum - The quantity of time units to subtract from now.
+     * @param {string} unit - The time unit to use. Supported units are 'd'/'days', 
+     *                        'h'/'hours', 'm'/'minutes', and 's'/'seconds'.
+     * @returns {string} An ISO 8601 formatted timestamp string (e.g., "2025-11-02T20:30:00.000Z") 
+     *                   representing the calculated past time.
+     */
     timestampAtTMinus: function (quantum, unit) {
         elapsedTime = quantum * this.timeframe(unit);
         return new Date(new Date(Date.now()) - elapsedTime).toISOString();
@@ -1564,11 +1580,11 @@ utils = {
         if (accountKey === null || accountKey === undefined) {
             for (let step = 0; step < numberOfAccounts; step++) {
                 genAccountKey = `acct_${uuid.v4().replace(/-/g, '')}${DEBTOR_ACCOUNT_TYPE}`;
-                accounts.push(prep.prepAccount(tenantId, genAccountKey));
+                accounts.push(prep.prepAccount(tenantId, genAccountKey, timestamp));
                 account_holders.push(prep.prepAccountHolder(tenantId, entityKey, genAccountKey, timestamp));
             }
         } else {
-            accounts.push(prep.prepAccount(tenantId, accountKey));
+            accounts.push(prep.prepAccount(tenantId, accountKey, timestamp));
             account_holders.push(prep.prepAccountHolder(tenantId, entityKey, accountKey, timestamp));
         }
 
