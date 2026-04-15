@@ -149,7 +149,11 @@ _With authentication services enabled:_
 
 This test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database. This test accommodates a deployment out of Docker Hub that includes both the Rule-901 and Rule-902 rule processors.
 
-**2.2. Rule Functionality Testing - Public DockerHub.postman_collection.json**
+**2.2. (AUTH) Public DockerHub End-to-End Test.postman_collection.json**
+
+This test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, attempts to submit them to a secured TMS API unauthenticated, and then authenticates the user through the authentication service and Keycloak, before trying to then submit the transaction pair to the secure TMS API as an authenticated user. The collection finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database. This test accommodates a deployment out of Docker Hub that includes both the Rule-901 and Rule-902 rule processors.
+
+**2.3. Rule Functionality Testing - Public DockerHub.postman_collection.json**
 
 **0.2. Condition Management - All.postman_collection.json**
 
@@ -162,6 +166,10 @@ _With authentication services enabled:_
 **3.1. (NO-AUTH) Public DockerHub Full-Service Test.postman_collection.json**
 
 This test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, then submits the transaction pair to the TMS API, and finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database. This test accommodates a deployment out of Docker Hub that includes all available Tazama rule processors with non-descript configurations and composed into a single generic typology.
+
+**3.2. (AUTH) Public DockerHub Full-Service Test.postman_collection.json**
+
+This test collection contains a collection of API requests that set up a randomly generated set of pacs.008 and pacs.002 transactions, attempts to submit them to a secured TMS API unauthenticated, and then authenticates the user through the authentication service and Keycloak, before trying to then submit the transaction pair to the secure TMS API as an authenticated user. The collection finally performs a number of tests to make sure that the databases were properly updated and the transaction evaluated successfully to the point where a result was posted to the results database. This test accommodates a deployment out of Docker Hub that includes all available Tazama rule processors with non-descript configurations and composed into a single generic typology.
 
 #### 4. Multi-Tenant Public (DockerHub)
 
@@ -849,7 +857,7 @@ UTILITY ADDONS:
 8. [X] Hasura GraphQL API for PostgreSQL
 ```
 
-**Test Collection:** 2.2. Rule Functionality Testing - Public DockerHub
+**Test Collection:** 2.2. (AUTH) Public DockerHub End-to-End Test
 
 #### End-to-End Test With Authentication
 
@@ -864,6 +872,26 @@ CORE ADDONS:
 UTILITY ADDONS:
 
 5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 2.3. Rule Functionality Testing - Public DockerHub
+
+#### Individual rule unit tests through the NATS Utilities
+
+```text
+CORE ADDONS:
+
+1. [ ] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [X] NATS Utilities
 6. [ ] Batch PPA
 7. [X] pgAdmin for PostgreSQL
 8. [X] Hasura GraphQL API for PostgreSQL
@@ -908,13 +936,33 @@ CORE ADDONS:
 
 UTILITY ADDONS:
 
-5. [X] NATS Utilities
+5. [ ] NATS Utilities
 6. [ ] Batch PPA
 7. [X] pgAdmin for PostgreSQL
 8. [X] Hasura GraphQL API for PostgreSQL
 ```
 
-**Test Collection:** 3. (NO-AUTH) Public DockerHub End-to-End Test
+**Test Collection:** 3.1. (NO-AUTH) Public DockerHub End-to-End Test
+
+#### End-to-End Test With Authentication
+
+```text
+CORE ADDONS:
+
+1. [X] Authentication
+2. [ ] Relay services (NATS)
+3. [ ] Basic Logs
+4. [ ] Demo UI
+
+UTILITY ADDONS:
+
+5. [ ] NATS Utilities
+6. [ ] Batch PPA
+7. [X] pgAdmin for PostgreSQL
+8. [X] Hasura GraphQL API for PostgreSQL
+```
+
+**Test Collection:** 3.2. (AUTH) Public DockerHub End-to-End Test
 
 #### Private rule deployment
 
@@ -939,14 +987,14 @@ You can access the private rule functionality and unit tests that match this con
 
 ### Option 4. Multi-Tenant Public (DockerHub)
 
-#### End-to-End Test Without Authentication
+#### Individual Rule Unit Tests through NATS Utilities
 Add-ons required:
 
 ```text
 CORE ADDONS:
 
-1. [x] Authentication
-2. [X] Relay services (NATS)
+1. [ ] Authentication
+2. [ ] Relay services (NATS)
 3. [ ] Basic Logs
 4. [ ] Demo UI
 

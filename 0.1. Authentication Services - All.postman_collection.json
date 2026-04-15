@@ -6776,7 +6776,7 @@
           "const uuid = require('uuid');",
           "const lodash = require('lodash');",
           "",
-          "const LOGLEVEL = \"DEBUG\";",
+          "const LOGLEVEL = \"INFO\";   // DEBUG || INFO",
           "const TENANT_DEFAULT = \"DEFAULT\";",
           "",
           "// Message creation defaults",
