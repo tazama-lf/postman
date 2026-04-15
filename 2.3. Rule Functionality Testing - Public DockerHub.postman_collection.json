@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "01d419ec-cad0-41e1-884e-9c2bf0f6f757",
-    "name": "2.2. Rule Functionality Testing - Public DockerHub",
+    "name": "2.3. Rule Functionality Testing - Public DockerHub",
     "description": "This test collections performs comprehensive functionality testing against every deployed rule processor to test every possible outcome.\n\n## 2023/10/23\n\nUpdated testing of the rule result description to test for undefined\n\nUpdated testing of the rule result reason to test for undefined\n\n## 2024/02/26\n\nUpdated test utility library to handle the update to the DataCache to include the amount and the create date-time attributes.\n\nUpdated the utility library functions to take in a \"currency\" parameter that would default to \"XTS\" if specified as null.\n\nUpdated all rule tests to call the updated library functions with the currency parameter (null).\n\n## 2024/03/19\n\nCreated a set of tests for rule 901 exclusively",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "36724395"
@@ -3930,7 +3930,7 @@
           "const uuid = require('uuid');",
           "const lodash = require('lodash');",
           "",
-          "const LOGLEVEL = \"DEBUG\";",
+          "const LOGLEVEL = \"INFO\";   // DEBUG || INFO",
           "const TENANT_DEFAULT = \"DEFAULT\";",
           "",
           "// Message creation defaults",
