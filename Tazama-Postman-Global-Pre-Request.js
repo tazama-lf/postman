@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 const lodash = require('lodash');
 
-const LOGLEVEL = "ERROR";
+const LOGLEVEL = "INFO";   // DEBUG || INFO
 const TENANT_DEFAULT = "DEFAULT";
 
 // Message creation defaults
@@ -955,11 +955,12 @@ prep = {
        * 
        * @returns {Array} A DB-ready account object.
        */
-    prepAccount: function (tenantId, accountKey) {
+    prepAccount: function (tenantId, accountKey, timestamp) {
 
         account = {
             "id": accountKey,
-            "tenantid": tenantId
+            "tenantid": tenantId,
+            "credttm": timestamp
         };
 
         if (LOGLEVEL === 'DEBUG') {
@@ -999,9 +1000,9 @@ prep = {
        * 
        * @returns {Array} An array of graph nodes, each representing an account with a unique identifier.
        */
-    prepEventAccounts: function (tenantId, debtorAccountId, creditorAccountId) {
+    prepEventAccounts: function (tenantId, debtorAccountId, creditorAccountId, timestamp) {
 
-        accounts = [prep.prepAccount(tenantId, debtorAccountId), prep.prepAccount(tenantId, creditorAccountId)];
+        accounts = [prep.prepAccount(tenantId, debtorAccountId, timestamp), prep.prepAccount(tenantId, creditorAccountId, timestamp)];
 
         if (LOGLEVEL === 'DEBUG') {
             console.log("Account details:", JSON.stringify(accounts, null, 2));
@@ -1237,13 +1238,28 @@ utils = {
     },
 
     /**
-       * Converts a time unit to its equivalent in milliseconds.
-       * 
-       * Example: `weekInMilliseconds = 7 * utils.timeframe('d');`
-       *
-       * @param {string} unit - The time unit to convert. Supported units are 'd'/'days', 'h'/'hours', 'm'/'minutes', and 's'/'seconds'.
-       * @returns {number} The number of milliseconds corresponding to the given time unit.
-       */
+     * Calculates a timestamp in the past relative to the current time.
+     * 
+     * This function computes a timestamp by subtracting a specified duration 
+     * (quantum * unit) from the current time and returns it in ISO 8601 format.
+     * 
+     * Example: 
+     * ```javascript
+     * // Get timestamp from 7 days ago
+     * pastDate = utils.timestampAtTMinus(7, 'd');
+     * // Returns: "2025-10-26T20:30:00.000Z" (if current date is 2025-11-02)
+     * 
+     * // Get timestamp from 2 hours ago
+     * recentDate = utils.timestampAtTMinus(2, 'h');
+     * // Returns: "2025-11-02T18:30:00.000Z" (if current time is 20:30:00)
+     * ```
+     *
+     * @param {number} quantum - The quantity of time units to subtract from now.
+     * @param {string} unit - The time unit to use. Supported units are 'd'/'days', 
+     *                        'h'/'hours', 'm'/'minutes', and 's'/'seconds'.
+     * @returns {string} An ISO 8601 formatted timestamp string (e.g., "2025-11-02T20:30:00.000Z") 
+     *                   representing the calculated past time.
+     */
     timestampAtTMinus: function (quantum, unit) {
         elapsedTime = quantum * this.timeframe(unit);
         return new Date(new Date(Date.now()) - elapsedTime).toISOString();
@@ -1324,6 +1340,106 @@ utils = {
      */
     normalizeUTC: function (dateStr) {
         return dateStr ? dateStr.replace(/\+00:00$/, "Z") : dateStr;
+    },
+
+    /**
+     * Decodes a base64url-encoded string into a UTF-8 string.
+     *
+     * Helper for `unpackTazamaToken`. JWT segments are base64url encoded
+     * (`-` and `_` instead of `+` and `/`, and no `=` padding), so this
+     * function restores standard base64 before decoding via the Postman
+     * sandbox `Buffer`. UTF-8 safe (unlike a raw `atob`).
+     *
+     * @param {string} segment - A single base64url-encoded JWT segment.
+     * @returns {string} The decoded UTF-8 string.
+     */
+    base64UrlDecode: function (segment) {
+        const { Buffer } = require('buffer');
+        let b64 = String(segment).replace(/-/g, '+').replace(/_/g, '/');
+        const pad = b64.length % 4;
+        if (pad === 2) b64 += '==';
+        else if (pad === 3) b64 += '=';
+        else if (pad === 1) throw new Error('base64UrlDecode: invalid base64url segment length');
+        return Buffer.from(b64, 'base64').toString('utf8');
+    },
+
+    /**
+     * Decodes a Tazama JWT into its constituent parts for testing/review.
+     *
+     * A JWT is three base64url-encoded segments joined by dots:
+     * `header.payload.signature`. This DECODES only - it does NOT verify the
+     * signature (no CryptoJS / crypto required). A leading `Bearer ` prefix is
+     * tolerated so the raw `Authorization` header value can be passed directly.
+     *
+     * Standard time claims (`iat`, `exp`, `nbf`) are seconds since epoch and are
+     * surfaced as `Date` objects plus an `isExpired` convenience flag.
+     *
+     * Example (in a request's post-request / Tests script):
+     * ```javascript
+     * const token = pm.response.json().access_token; // or pm.globals.get('access_token')
+     * const jwt = utils.unpackTazamaToken(token);
+     * console.log(jwt.header);
+     * console.log(jwt.payload);
+     * pm.test('token not expired', () => pm.expect(jwt.isExpired).to.not.equal(true));
+     * ```
+     *
+     * @param {string} token - The raw JWT string (optionally prefixed with "Bearer ").
+     * @returns {{
+     *   header: object,
+     *   payload: object,
+     *   signature: string,
+     *   raw: { header: string, payload: string, signature: string },
+     *   issuedAt: (Date|null),
+     *   notBefore: (Date|null),
+     *   expiresAt: (Date|null),
+     *   isExpired: (boolean|null)
+     * }} The decoded token parts.
+     */
+    unpackTazamaToken: function (token) {
+        if (typeof token !== 'string' || token.trim() === '') {
+            throw new TypeError('unpackTazamaToken: token must be a non-empty string');
+        }
+
+        const clean = token.trim().replace(/^Bearer\s+/i, '');
+        const parts = clean.split('.');
+        if (parts.length !== 3) {
+            throw new Error(`unpackTazamaToken: expected 3 JWT segments (header.payload.signature) but got ${parts.length}`);
+        }
+
+        const [rawHeader, rawPayload, rawSignature] = parts;
+        const header = JSON.parse(this.base64UrlDecode(rawHeader));
+        const payload = JSON.parse(this.base64UrlDecode(rawPayload));
+
+        const issuedAt = typeof payload.iat === 'number' ? new Date(payload.iat * 1000) : null;
+        const notBefore = typeof payload.nbf === 'number' ? new Date(payload.nbf * 1000) : null;
+        const expiresAt = typeof payload.exp === 'number' ? new Date(payload.exp * 1000) : null;
+        const isExpired = expiresAt ? expiresAt.getTime() < Date.now() : null;
+
+        const decoded = {
+            header: header,
+            payload: payload,
+            signature: rawSignature,
+            raw: { header: rawHeader, payload: rawPayload, signature: rawSignature },
+            issuedAt: issuedAt,
+            notBefore: notBefore,
+            expiresAt: expiresAt,
+            isExpired: isExpired
+        };
+
+        if ((LOGLEVEL === 'DEBUG') || (LOGLEVEL === 'INFO')) {
+            logStatement = {
+                "header": header,
+                "payload": payload,
+                "issuedAt": issuedAt ? issuedAt.toISOString() : null,
+                "notBefore": notBefore ? notBefore.toISOString() : null,
+                "expiresAt": expiresAt ? expiresAt.toISOString() : null,
+                "isExpired": isExpired
+            };
+            console.log(`unpackTazamaToken() decoded JWT:`);
+            console.log(JSON.stringify(logStatement, null, 2));
+        }
+
+        return decoded;
     },
 
     /**
@@ -1564,11 +1680,11 @@ utils = {
         if (accountKey === null || accountKey === undefined) {
             for (let step = 0; step < numberOfAccounts; step++) {
                 genAccountKey = `acct_${uuid.v4().replace(/-/g, '')}${DEBTOR_ACCOUNT_TYPE}`;
-                accounts.push(prep.prepAccount(tenantId, genAccountKey));
+                accounts.push(prep.prepAccount(tenantId, genAccountKey, timestamp));
                 account_holders.push(prep.prepAccountHolder(tenantId, entityKey, genAccountKey, timestamp));
             }
         } else {
-            accounts.push(prep.prepAccount(tenantId, accountKey));
+            accounts.push(prep.prepAccount(tenantId, accountKey, timestamp));
             account_holders.push(prep.prepAccountHolder(tenantId, entityKey, accountKey, timestamp));
         }
 

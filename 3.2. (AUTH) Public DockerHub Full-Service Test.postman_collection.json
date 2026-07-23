@@ -1,8 +1,8 @@
 {
   "info": {
-    "_postman_id": "752c6328-1f52-4920-9c8c-570d0ba8adb1",
-    "name": "4.1. (AUTH) Public GitHub End-to-End test - tenant-001",
-    "description": "# 20240622\n\n- Implemented new TMS API path",
+    "_postman_id": "193afdf8-1af5-46f1-872a-fd4e4e1ddf92",
+    "name": "3.2. (AUTH) Public DockerHub Full-Service Test",
+    "description": "# 20240622\n\n- Implemented new TMS API path\n    \n\n20250926\n\n- Implemented multi-tenancy testing for the DEFAULT tenant",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "36724395"
   },
@@ -25,8 +25,33 @@
                   "\r",
                   "// ## Set up transaction eco-system\r",
                   "\r",
-                  "messageSet = utils.createTransactionSetInMemory();\r",
-                  "pm.globals.set(\"tenantId\", \"tenant-001\");"
+                  "// Recreate the transactions in memory to refresh the global variables for the transactions...\r",
+                  "messageSets = utils.createTransactionSetInMemory(\r",
+                  "    /* Tenant ID - null defaults DEFAULT ---------------------------- */ null,\r",
+                  "    /* Quoting Enabled - null defaults false ------------------------ */ null,\r",
+                  "    /* Timestamp Epoch - null defaults 0 ---------------------------- */ null,\r",
+                  "    /* Timestamp Interval - null defaults 300000 -------------------- */ null,\r",
+                  "    /* Debtor ID - null defaults random UUID ------------------------ */ null,\r",
+                  "    /* Debtor Account ID - null defaults random UUID ---------------- */ null,\r",
+                  "    /* Debtor Agent ID - null defaults to 'fsp001' ------------------ */ null,\r",
+                  "    /* Creditor ID - null defaults random UUID ---------------------- */ null,\r",
+                  "    /* Creditor Account ID - null defaults random UUID -------------- */ null,\r",
+                  "    /* Creditor Agent ID - null defaults to 'fsp002' ---------------- */ null,\r",
+                  "    /* Instructed Currency - null defaults to 'XTS' ----------------- */ null,\r",
+                  "    /* Instructed Amount - null defaults to random amount ----------- */ 1000,\r",
+                  "    /* Settlement Currency - null defaults to Instructed Currency --- */ null,\r",
+                  "    /* Settlement Amount - null defaults to Instructed Amount ------- */ null,\r",
+                  "    /* Exchange Rate Currency - null defaults to Instructed Currency  */ null,\r",
+                  "    /* Exchange Rate - null defaults to 1.0 ------------------------- */ null,\r",
+                  "    /* Description - null defaults random UUID ---------------------- */ null,\r",
+                  "    /* Status - null defaults 'ACCC' (successful) ------------------- */ null,\r",
+                  "    /* Debtor Age - null defaults 25 -------------------------------- */ null,\r",
+                  "    /* Transaction Type - null defaults 'MP2P' ---------------------- */ null,\r",
+                  "    /* Latitude - null defaults -3.1609 ----------------------------- */ null,\r",
+                  "    /* Longitude - null defaults 38.3588 ---------------------------- */ null\r",
+                  "    );\r",
+                  "\r",
+                  "pm.globals.set(\"tenantId\", \"DEFAULT\");"
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -329,7 +354,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"password\": \"password\",\r\n  \"username\": \"tenant-001-user\"\r\n}",
+              "raw": "{\r\n  \"username\": \"tazama-user@tazama.org\",\r\n  \"password\": \"password\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -352,7 +377,7 @@
       ]
     },
     {
-      "name": "Authenticated",
+      "name": "Message Creation sans pain.001/013",
       "item": [
         {
           "name": "Post pacs.008 to TMS API - authenticated",
@@ -365,7 +390,8 @@
                   "pm.globals.set('messageBody', messageBody);"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -377,7 +403,8 @@
                   "});"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -426,7 +453,8 @@
                   "pm.globals.set('messageBody', messageBody);"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -438,7 +466,8 @@
                   "});"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -457,7 +486,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{{pacs002}}",
+              "raw": "{{messageBody}}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -475,7 +504,12 @@
             }
           },
           "response": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "DB update tests",
+      "item": [
         {
           "name": "Fetch created pacs.008 from raw_history.pacs008",
           "event": [
@@ -504,7 +538,7 @@
                   "const resJson = utils.extractData(pm.response.json(), \"pacs008\")[0].document;\r",
                   "\r",
                   "let memPacs008MsgId = pm.globals.get('messageIdPacs008')\r",
-                  "let memTenantId = \"pm.globals.get('tenantId')\"\r",
+                  "let memTenantId = pm.globals.get('tenantId')\r",
                   "\r",
                   "pm.test(`pacs.008 for tenantId ${memTenantId} with msgId ${memPacs008MsgId} found`, function () {\r",
                   "    pm.expect(resJson.FIToFICstmrCdtTrf.GrpHdr.MsgId).to.be.equal(memPacs008MsgId);\r",
@@ -518,7 +552,14 @@
           ],
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth-token}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "POST",
             "header": [],
@@ -586,7 +627,14 @@
           ],
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth-token}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "POST",
             "header": [],
@@ -861,7 +909,14 @@
           ],
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth-token}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "POST",
             "header": [],
@@ -931,21 +986,85 @@
                   "const resJson = pm.response.json().data.evaluation[0].evaluation;\r",
                   "const logLevel = utils.getLogLevel();\r",
                   "\r",
-                  "const rulesPerTypologyCount = [3];\r",
                   "const totalExpectedTypologies = 1;\r",
+                  "const rulesPerTypologyCount = [34];\r",
                   "const expectedAlertStatus = \"NALT\";\r",
                   "const interdictionTypologies = [\r",
-                  "  \"999\"\r",
+                  "    \"000\"\r",
                   "];\r",
                   "const ruleDescriptions = {\r",
-                  "  \"901\": \"Number of outgoing transactions - debtor\",\r",
-                  "  \"902\": \"Number of incoming transactions - creditor\",\r",
-                  "  \"EFR\": \"Event-Flow Rule Processor\"\r",
+                  "    \"001\": \"Derived account age - creditor\",\r",
+                  "    \"002\": \"Transaction convergence - debtor\",\r",
+                  "    \"003\": \"Account dormancy - creditor\",\r",
+                  "    \"004\": \"Account dormancy - debtor\",\r",
+                  "    \"006\": \"Outgoing transfer similarity - amounts\",\r",
+                  "    \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+                  "    \"008\": \"Outgoing transfer similarity - creditor\",\r",
+                  "    \"010\": \"Increased account activity: volume - debtor\",\r",
+                  "    \"011\": \"Increased account activity: volume - creditor\",\r",
+                  "    \"016\": \"Transaction convergence - creditor\",\r",
+                  "    \"017\": \"Transaction divergence - debtor\",\r",
+                  "    \"018\": \"Exceptionally large outgoing transfer - debtor\",\r",
+                  "    \"020\": \"Large transaction amount vs history - creditor\",\r",
+                  "    \"021\": \"A large number of similar transaction amounts - creditor\",\r",
+                  "    \"024\": \"Non-commissioned transaction mirroring - creditor\",\r",
+                  "    \"025\": \"Non-commissioned transaction mirroring - debtor\",\r",
+                  "    \"026\": \"Commissioned transaction mirroring - creditor\",\r",
+                  "    \"027\": \"Commissioned transaction mirroring - debtor\",\r",
+                  "    \"028\": \"Age classification - debtor\",\r",
+                  "    \"030\": \"Transfer to unfamiliar creditor account - debtor\",\r",
+                  "    \"044\": \"Successful transactions from the debtor, including the new transaction\",\r",
+                  "    \"045\": \"Successful transactions to the creditor, including the new transaction\",\r",
+                  "    \"048\": \"Large transaction amount vs history - debtor\",\r",
+                  "    \"054\": \"Synthetic data check - Benford's Law - debtor\",\r",
+                  "    \"063\": \"Synthetic data check - Benford's Law - creditor\",\r",
+                  "    \"074\": \"Distance over time from last transaction location - debtor\",\r",
+                  "    \"075\": \"Distance from habitual locations - debtor\",\r",
+                  "    \"076\": \"Time since last transaction - debtor\",\r",
+                  "    \"078\": \"Transaction type\",\r",
+                  "    \"083\": \"Multiple accounts associated with a debtor\",\r",
+                  "    \"084\": \"Multiple accounts associated with a creditor\",\r",
+                  "    \"090\": \"Upstream transaction divergence - debtor\",\r",
+                  "    \"091\": \"Transaction amount vs regulatory threshold\"\r",
                   "}\r",
                   "const typologyDescriptions = {\r",
-                  "  \"999\": \"Test typology 999 with rule 901, 902 and the EFRuP\"\r",
+                  "    \"000\": \"Complete rule coverage\"\r",
                   "}\r",
-                  "const expectedIndependentVariable = [/* rule-901 */ 1, /* rule-902 */ 1, /* EFRuP */ 0];\r",
+                  "const expectedIndependentVariable = [\r",
+                  "    /* rule-001 */ 300000,\r",
+                  "    /* rule-002 */ 0,\r",
+                  "    /* rule-003 */ 0,\r",
+                  "    /* rule-004 */ 0,\r",
+                  "    /* rule-006 */ 0,\r",
+                  "    /* rule-007 */ 0,\r",
+                  "    /* rule-008 */ 0,\r",
+                  "    /* rule-010 */ 0,\r",
+                  "    /* rule-011 */ 0,\r",
+                  "    /* rule-016 */ 1,\r",
+                  "    /* rule-017 */ 1,\r",
+                  "    /* rule-018 */ 0,\r",
+                  "    /* rule-020 */ 0,\r",
+                  "    /* rule-021 */ 0,\r",
+                  "    /* rule-024 */ 0,\r",
+                  "    /* rule-025 */ 0,\r",
+                  "    /* rule-026 */ 0,\r",
+                  "    /* rule-027 */ 0,\r",
+                  "    /* rule-028 */ 25,\r",
+                  "    /* rule-030 */ 1,\r",
+                  "    /* rule-044 */ 1,\r",
+                  "    /* rule-045 */ 1,\r",
+                  "    /* rule-048 */ 0,\r",
+                  "    /* rule-054 */ 0,\r",
+                  "    /* rule-063 */ 0,\r",
+                  "    /* rule-074 */ 0,\r",
+                  "    /* rule-075 */ 0,\r",
+                  "    /* rule-076 */ 0,\r",
+                  "    /* rule-078 */ 0,\r",
+                  "    /* rule-083 */ 1,\r",
+                  "    /* rule-084 */ 1,\r",
+                  "    /* rule-090 */ 0,\r",
+                  "    /* rule-091 */ 1000,\r",
+                  "    /* EFRuP    */ 0];\r",
                   "\r",
                   "let ruleCount = 0;\r",
                   "let typologyCount = 0;\r",
@@ -1061,6 +1180,10 @@
                   "\r",
                   "let sortedRuleTimingsById = ruleResultsUnique.sort((e1, e2) => (e1.id > e2.id) ? 1 : (e1.id < e2.id) ? -1 : 0);\r",
                   "\r",
+                  "if (logLevel === \"DEBUG\") {\r",
+                  "    console.log(sortedRuleTimingsById);\r",
+                  "}\r",
+                  "\r",
                   "for (let i = 0; i < sortedRuleTimingsById.length; i++) {\r",
                   "    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.reason omitted`, function () {\r",
                   "        pm.expect(sortedRuleTimingsById[i].reason).to.be.eql(undefined);\r",
@@ -1070,9 +1193,16 @@
                   "        pm.expect(sortedRuleTimingsById[i].desc).to.be.eql(undefined);\r",
                   "    });\r",
                   "\r",
-                  "    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches target ${expectedIndependentVariable[i]}`, function () {\r",
-                  "        pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(expectedIndependentVariable[i]);\r",
-                  "    });\r",
+                  "    if (sortedRuleTimingsById[i].id === \"091@1.0.0\") { // rule-091\r",
+                  "        let instructedAmount = resJson.dataCache.instdAmt.amt;\r",
+                  "        pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches amount ${instructedAmount}`, function () {\r",
+                  "            pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(instructedAmount);\r",
+                  "        });\r",
+                  "    } else {\r",
+                  "        pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches target ${expectedIndependentVariable[i]}`, function () {\r",
+                  "            pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(expectedIndependentVariable[i]);\r",
+                  "        });\r",
+                  "    };\r",
                   "\r",
                   "}\r",
                   "\r",
@@ -1176,7 +1306,14 @@
           ],
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth-token}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "POST",
             "header": [],
@@ -1220,23 +1357,88 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const resJson = pm.response.json();\r",
+                  "const resJson = pm.response.json().data;\r",
+                  "const logLevel = utils.getLogLevel();\r",
                   "\r",
-                  "const rulesPerTypologyCount = [3];\r",
                   "const totalExpectedTypologies = 1;\r",
+                  "const rulesPerTypologyCount = [34];\r",
                   "const expectedAlertStatus = \"NALT\";\r",
                   "const interdictionTypologies = [\r",
-                  "  \"999\"\r",
+                  "    \"000\"\r",
                   "];\r",
                   "const ruleDescriptions = {\r",
-                  "  \"901\": \"Number of outgoing transactions - debtor\",\r",
-                  "  \"902\": \"Number of incoming transactions - creditor\",\r",
-                  "  \"EFR\": \"Event-Flow Rule Processor\"\r",
+                  "    \"001\": \"Derived account age - creditor\",\r",
+                  "    \"002\": \"Transaction convergence - debtor\",\r",
+                  "    \"003\": \"Account dormancy - creditor\",\r",
+                  "    \"004\": \"Account dormancy - debtor\",\r",
+                  "    \"006\": \"Outgoing transfer similarity - amounts\",\r",
+                  "    \"007\": \"Outgoing transfer similarity - descriptions\",\r",
+                  "    \"008\": \"Outgoing transfer similarity - creditor\",\r",
+                  "    \"010\": \"Increased account activity: volume - debtor\",\r",
+                  "    \"011\": \"Increased account activity: volume - creditor\",\r",
+                  "    \"016\": \"Transaction convergence - creditor\",\r",
+                  "    \"017\": \"Transaction divergence - debtor\",\r",
+                  "    \"018\": \"Exceptionally large outgoing transfer - debtor\",\r",
+                  "    \"020\": \"Large transaction amount vs history - creditor\",\r",
+                  "    \"021\": \"A large number of similar transaction amounts - creditor\",\r",
+                  "    \"024\": \"Non-commissioned transaction mirroring - creditor\",\r",
+                  "    \"025\": \"Non-commissioned transaction mirroring - debtor\",\r",
+                  "    \"026\": \"Commissioned transaction mirroring - creditor\",\r",
+                  "    \"027\": \"Commissioned transaction mirroring - debtor\",\r",
+                  "    \"028\": \"Age classification - debtor\",\r",
+                  "    \"030\": \"Transfer to unfamiliar creditor account - debtor\",\r",
+                  "    \"044\": \"Successful transactions from the debtor, including the new transaction\",\r",
+                  "    \"045\": \"Successful transactions to the creditor, including the new transaction\",\r",
+                  "    \"048\": \"Large transaction amount vs history - debtor\",\r",
+                  "    \"054\": \"Synthetic data check - Benford's Law - debtor\",\r",
+                  "    \"063\": \"Synthetic data check - Benford's Law - creditor\",\r",
+                  "    \"074\": \"Distance over time from last transaction location - debtor\",\r",
+                  "    \"075\": \"Distance from habitual locations - debtor\",\r",
+                  "    \"076\": \"Time since last transaction - debtor\",\r",
+                  "    \"078\": \"Transaction type\",\r",
+                  "    \"083\": \"Multiple accounts associated with a debtor\",\r",
+                  "    \"084\": \"Multiple accounts associated with a creditor\",\r",
+                  "    \"090\": \"Upstream transaction divergence - debtor\",\r",
+                  "    \"091\": \"Transaction amount vs regulatory threshold\"\r",
                   "}\r",
                   "const typologyDescriptions = {\r",
-                  "  \"999\": \"Test typology 999 with rule 901, 902 and the EFRuP\"\r",
+                  "    \"000\": \"Complete rule coverage\"\r",
                   "}\r",
-                  "const expectedIndependentVariable = [/* rule-901 */ 1, /* rule-902 */ 1, /* EFRuP */ 0];\r",
+                  "const expectedIndependentVariable = [\r",
+                  "    /* rule-001 */ 300000,\r",
+                  "    /* rule-002 */ 0,\r",
+                  "    /* rule-003 */ 0,\r",
+                  "    /* rule-004 */ 0,\r",
+                  "    /* rule-006 */ 0,\r",
+                  "    /* rule-007 */ 0,\r",
+                  "    /* rule-008 */ 0,\r",
+                  "    /* rule-010 */ 0,\r",
+                  "    /* rule-011 */ 0,\r",
+                  "    /* rule-016 */ 1,\r",
+                  "    /* rule-017 */ 1,\r",
+                  "    /* rule-018 */ 0,\r",
+                  "    /* rule-020 */ 0,\r",
+                  "    /* rule-021 */ 0,\r",
+                  "    /* rule-024 */ 0,\r",
+                  "    /* rule-025 */ 0,\r",
+                  "    /* rule-026 */ 0,\r",
+                  "    /* rule-027 */ 0,\r",
+                  "    /* rule-028 */ 25,\r",
+                  "    /* rule-030 */ 1,\r",
+                  "    /* rule-044 */ 1,\r",
+                  "    /* rule-045 */ 1,\r",
+                  "    /* rule-048 */ 0,\r",
+                  "    /* rule-054 */ 0,\r",
+                  "    /* rule-063 */ 0,\r",
+                  "    /* rule-074 */ 0,\r",
+                  "    /* rule-075 */ 0,\r",
+                  "    /* rule-076 */ 0,\r",
+                  "    /* rule-078 */ 0,\r",
+                  "    /* rule-083 */ 1,\r",
+                  "    /* rule-084 */ 1,\r",
+                  "    /* rule-090 */ 0,\r",
+                  "    /* rule-091 */ 1000,\r",
+                  "    /* EFRuP    */ 0];\r",
                   "\r",
                   "let ruleCount = 0;\r",
                   "let typologyCount = 0;\r",
@@ -1246,14 +1448,14 @@
                   "let fastestTypology = 999999999;\r",
                   "let totalRule = 0;\r",
                   "let totalTypology = 0;\r",
-                  "let prcgTmDP = resJson.data.report.metaData.prcgTmDP;\r",
-                  "let prcgTmED = resJson.data.report.metaData.prcgTmED;\r",
-                  "let tadpTime = resJson.data.report.tadpResult.prcgTm;\r",
+                  "let prcgTmDP = resJson.report.metaData.prcgTmDP;\r",
+                  "let prcgTmED = resJson.report.metaData.prcgTmED;\r",
+                  "let tadpTime = resJson.report.tadpResult.prcgTm;\r",
                   "let whichTypologyIsSlowest = 0;\r",
                   "let whichTypologyIsFastest = 0;\r",
                   "let whichRuleIsSlowest = 0;\r",
                   "\r",
-                  "let typologyTimings = resJson.data.report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
+                  "let typologyTimings = resJson.report.tadpResult.typologyResult.filter(e => e.prcgTm > 0);\r",
                   "\r",
                   "let timingsPerTypology = `Elapsed typology processor time per typology\r",
                   "====================================================\r",
@@ -1268,8 +1470,8 @@
                   "typologyTimings = typologyTimings.filter(e => e.prcgTm > 0).map(e => e.prcgTm);\r",
                   "\r",
                   "ruleResults = [];\r",
-                  "for (let i = 0; i < resJson.data.report.tadpResult.typologyResult.count(); i++) {\r",
-                  "    ruleResultsPerTypology = resJson.data.report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
+                  "for (let i = 0; i < resJson.report.tadpResult.typologyResult.count(); i++) {\r",
+                  "    ruleResultsPerTypology = resJson.report.tadpResult.typologyResult[i].ruleResults.filter(e => e.prcgTm > 0);\r",
                   "    for (let j = 0; j < ruleResultsPerTypology.count(); j++) {\r",
                   "        ruleResults.push(ruleResultsPerTypology[j]);\r",
                   "    };\r",
@@ -1311,40 +1513,50 @@
                   "let averageRuleTime = totalRule / ruleCount;\r",
                   "let averageTypologyTime = totalTypology / typologyCount;\r",
                   "\r",
-                  "console.log(`====================================================\r",
-                  "Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
-                  "====================================================\r",
-                  "Data Preparation Service: ${(prcgTmDP/1000000).toFixed(3)}ms\r",
-                  "ED: ${(prcgTmED/1000000).toFixed(3)}ms\r",
-                  "====================================================\r",
-                  "Number of Rules: ${ruleCount}\r",
-                  "Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
-                  "Fastest Rule: ${(fastestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsFastest})\r",
-                  "Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
-                  "====================================================\r",
-                  "Number of Typologies: ${typologyCount}\r",
-                  "Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
-                  "Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
+                  "if ((logLevel === \"DEBUG\") || (logLevel === \"INFO\")) {\r",
+                  "    console.log(`\r",
+                  "    ====================================================\r",
+                  "    Total Estimate Time: ${(totalEstimatedTime/1000000).toFixed(3)}ms;\r",
+                  "    ====================================================\r",
+                  "    Data Preparation Service: ${(prcgTmDP/1000000).toFixed(3)}ms\r",
+                  "    ED: ${(prcgTmED/1000000).toFixed(3)}ms\r",
+                  "    ====================================================\r",
+                  "    Number of Rules: ${ruleCount}\r",
+                  "    Slowest Rule: ${(slowestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsSlowest})\r",
+                  "    Fastest Rule: ${(fastestRule/1000000).toFixed(3)}ms (Rule ${whichRuleIsFastest})\r",
+                  "    Rule Average: ${(averageRuleTime/1000000).toFixed(3)}ms\r",
+                  "    ====================================================\r",
+                  "    Number of Typologies: ${typologyCount}\r",
+                  "    Slowest Typology: ${(slowestTypology/1000000).toFixed(3)}ms (Typology ${resJson.report.tadpResult.typologyResult[whichTypologyIsSlowest].cfg})\r",
+                  "    Fastest Typology: ${(fastestTypology/1000000).toFixed(3)}ms (Typology ${resJson.report.tadpResult.typologyResult[whichTypologyIsFastest].cfg})\r",
                   "\r",
-                  "Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
-                  "====================================================\r",
-                  "TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
-                  "====================================================`);\r",
+                  "    Typology Average: ${(averageTypologyTime/1000000).toFixed(3)}ms\r",
+                  "    ====================================================\r",
+                  "    TADP: ${(tadpTime/1000000).toFixed(3)}ms\r",
+                  "    ====================================================`);\r",
+                  "}\r",
                   "\r",
-                  "let timingsPerRule = `Elapsed time per rule\r",
-                  "====================================================\r",
+                  "let timingsPerRule = `\r",
+                  "    Elapsed time per rule\r",
+                  "    ====================================================\r",
                   "`;\r",
                   "\r",
                   "let sortedRuleTimings = ruleResultsUnique.sort((e1, e2) => (e1.prcgTm < e2.prcgTm) ? 1 : (e1.prcgTm > e2.prcgTm) ? -1 : 0);\r",
                   "\r",
                   "for (let i = 0; i < sortedRuleTimings.count(); i++) {\r",
-                  "    timingsPerRule = timingsPerRule + `   ${sortedRuleTimings[i].id}: ${(sortedRuleTimings[i].prcgTm/1000000).toFixed(3)} - ${ruleDescriptions[sortedRuleTimings[i].id.substring(0,3)]}\\n`;\r",
+                  "    timingsPerRule = timingsPerRule + `    ${sortedRuleTimings[i].id}: ${(sortedRuleTimings[i].prcgTm/1000000).toFixed(3)} - ${ruleDescriptions[sortedRuleTimings[i].id.substring(0,3)]}\\n`;\r",
                   "}\r",
                   "\r",
-                  "console.log(timingsPerRule);\r",
-                  "console.log(timingsPerTypology);\r",
+                  "if ((logLevel === \"DEBUG\") || (logLevel === \"INFO\")) {\r",
+                  "    console.log(timingsPerRule);\r",
+                  "    console.log(timingsPerTypology);\r",
+                  "}\r",
                   "\r",
                   "let sortedRuleTimingsById = ruleResultsUnique.sort((e1, e2) => (e1.id > e2.id) ? 1 : (e1.id < e2.id) ? -1 : 0);\r",
+                  "\r",
+                  "if (logLevel === \"DEBUG\") {\r",
+                  "    console.log(sortedRuleTimingsById);\r",
+                  "}\r",
                   "\r",
                   "for (let i = 0; i < sortedRuleTimingsById.length; i++) {\r",
                   "    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.reason omitted`, function () {\r",
@@ -1355,9 +1567,16 @@
                   "        pm.expect(sortedRuleTimingsById[i].desc).to.be.eql(undefined);\r",
                   "    });\r",
                   "\r",
-                  "    pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches target ${expectedIndependentVariable[i]}`, function () {\r",
-                  "        pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(expectedIndependentVariable[i]);\r",
-                  "    });\r",
+                  "    if (sortedRuleTimingsById[i].id === \"091@1.0.0\") { // rule-091\r",
+                  "        let instructedAmount = resJson.dataCache.instdAmt.amt;\r",
+                  "        pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches amount ${instructedAmount}`, function () {\r",
+                  "            pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(instructedAmount);\r",
+                  "        });\r",
+                  "    } else {\r",
+                  "        pm.test(`Rule ${sortedRuleTimingsById[i].id}@${sortedRuleTimingsById[i].cfg} result.indpdntVarbl ${sortedRuleTimingsById[i].indpdntVarbl} matches target ${expectedIndependentVariable[i]}`, function () {\r",
+                  "            pm.expect(sortedRuleTimingsById[i].indpdntVarbl).to.be.eql(expectedIndependentVariable[i]);\r",
+                  "        });\r",
+                  "    };\r",
                   "\r",
                   "}\r",
                   "\r",
@@ -1385,11 +1604,11 @@
                   "    pm.expect(averageRuleTime).to.be.greaterThan(0);\r",
                   "});\r",
                   "\r",
-                  "pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
+                  "pm.test(`Slowest typology processing time: ${(slowestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.report.tadpResult.typologyResult[whichTypologyIsSlowest].id})`, function () {\r",
                   "    pm.expect(slowestTypology).to.be.greaterThan(0);\r",
                   "});\r",
                   "\r",
-                  "pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.data.report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
+                  "pm.test(`Fastest typology processing time: ${(fastestTypology / 1000000).toFixed(3)} milliseconds (Typology ${resJson.report.tadpResult.typologyResult[whichTypologyIsFastest].id})`, function () {\r",
                   "    pm.expect(fastestTypology).to.be.lessThan(999999999);\r",
                   "});\r",
                   "\r",
@@ -1402,10 +1621,10 @@
                   "});\r",
                   "\r",
                   "pm.test(`Report status is ${expectedAlertStatus}`, function () {\r",
-                  "    pm.expect(resJson.data.report.status).to.equal(expectedAlertStatus);\r",
+                  "    pm.expect(resJson.report.status).to.equal(expectedAlertStatus);\r",
                   "});\r",
                   "\r",
-                  "let sortedTypologiesById = resJson.data.report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
+                  "let sortedTypologiesById = resJson.report.tadpResult.typologyResult.sort((e1, e2) => (e1.cfg > e2.cfg) ? 1 : (e1.cfg < e2.cfg) ? -1 : 0);\r",
                   "\r",
                   "pm.test(`Evaluation result contains ${totalExpectedTypologies} typology results`, function () {\r",
                   "    pm.expect(sortedTypologiesById.length).to.equal(totalExpectedTypologies);\r",
@@ -1442,7 +1661,7 @@
                   "        });\r",
                   "    }\r",
                   "\r",
-                  "    if (interdictionTypologies.includes(sortedTypologiesById[i].cfg.substring(0,3))) {\r",
+                  "    if (interdictionTypologies.includes(sortedTypologiesById[i].cfg.split('@')[0])) {\r",
                   "        pm.test(`Typology ${sortedTypologiesById[i].cfg} interdictionThreshold is greater than zero if not omitted`, function () {\r",
                   "            pm.expect(sortedTypologiesById[i].workflow.interdictionThreshold).to.be.greaterThan(0);\r",
                   "        });\r",
@@ -1463,11 +1682,21 @@
             "disableBodyPruning": true
           },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth-token}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"query\": \"FOR doc in transactions FILTER doc.transaction.FIToFIPmtSts.GrpHdr.MsgId == '{{messageIdPacs002}}' RETURN doc\"\r\n}",
+              "raw": "",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1493,40 +1722,6 @@
             }
           },
           "response": []
-        }
-      ],
-      "auth": {
-        "type": "bearer",
-        "bearer": [
-          {
-            "key": "token",
-            "value": "{{auth-token}}",
-            "type": "string"
-          }
-        ]
-      },
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
         }
       ]
     }
